@@ -2,6 +2,7 @@
 
 Masters live in web/media-src/cinematic/<group>/<name>.mp4 (not committed). For each clip this writes
 into web/public/media/cinematic/<group>/:
+  <name>-1440.mp4  2560x1440, CRF 16                                    large screens
   <name>-1080.mp4  1920x1080, CRF 17 (visually lossless at this size)   desktop
   <name>-720.mp4   1280x720,  CRF 20                                     phones
   <name>.jpg       first frame, 1920 px     (poster while the video loads)
@@ -15,10 +16,12 @@ AI-assisted implementation; human review pending.
 import pathlib, shutil, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-SRC, OUT = ROOT / 'media-src' / 'cinematic', ROOT / 'public' / 'media' / 'cinematic'
+import os
+SRC = pathlib.Path(os.environ['EGIZ_MASTERS']) if os.environ.get('EGIZ_MASTERS') else ROOT / 'media-src' / 'cinematic'
+OUT = ROOT / 'public' / 'media' / 'cinematic'
 CLIPS = {  # name: (group, scrubbed)
-    's1-arrival': ('hero', False), 's2-twin': ('earth', True), 's3-return': ('moon', True),
-    's4-passage': ('transitions', True), 's5-jezero': ('mars', True), 's6-answer': ('missions', False),
+    's1-arrival': ('hero', True), 's2-twin': ('earth', True), 's3-return': ('moon', True),
+    's4-passage': ('transitions', True), 's5-jezero': ('mars', True), 's6-answer': ('missions', True),
     's7-home': ('orbital', True),
 }
 
@@ -42,7 +45,7 @@ def encode(name):
     dst = OUT / group; dst.mkdir(parents=True, exist_ok=True)
     gop = ['-g', '4', '-keyint_min', '4', '-sc_threshold', '0'] if scrub else ['-g', '48']
     audio = ['-an'] if scrub else ['-c:a', 'aac', '-b:a', '160k']
-    for height, width, crf in ((1080, 1920, 17), (720, 1280, 20)):
+    for height, width, crf in ((1440, 2560, 16), (1080, 1920, 17), (720, 1280, 20)):
         run('-i', src, '-vf', f'scale={width}:{height}:flags=lanczos', '-c:v', 'libx264', '-preset', 'slow', '-crf', crf,
             '-profile:v', 'high', '-pix_fmt', 'yuv420p', *gop, *audio, '-movflags', '+faststart', dst / f'{name}-{height}.mp4')
     run('-i', src, '-vf', 'select=eq(n\\,0),scale=1920:-2:flags=lanczos', '-frames:v', '1', '-q:v', '2', dst / f'{name}.jpg')

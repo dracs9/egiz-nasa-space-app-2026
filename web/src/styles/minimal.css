@@ -14,7 +14,7 @@ html body { font-weight: 500; }
 html svg.lucide { stroke-width: 2.4; }
 
 /* sentence case, no tracking */
-html :where(.eg-header, #main-content:not(.route-home), .load-screen, .as-shell, .site-drawer, .interface-guide) :where(h1, h2, h3, h4, h5, button, summary, label, th, td, span, p, small, a, strong, em, dt, dd, legend, figcaption, div, li, b, option, select, input, time) {
+html :where(#main-content:not(.route-home), .load-screen, .as-shell, .site-drawer, .interface-guide) :where(h1, h2, h3, h4, h5, button, summary, label, th, td, span, p, small, a, strong, em, dt, dd, legend, figcaption, div, li, b, option, select, input, time) {
   text-transform: none !important; letter-spacing: normal !important;
 }
 html :where(#main-content:not(.route-home):not(.route-lab), .as-shell, .load-screen) h1 { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.2 !important; font-weight: 600 !important; max-width: 28ch; }
@@ -31,15 +31,7 @@ html :where(#main-content:not(.route-home), .as-shell) :where(th, td) { border-c
 
 /* header */
 html .eg-header { border-bottom-color: transparent !important; }
-/* inline navigation (the drawer below 1024 px keeps its own large type) */
-@media (min-width: 1024px) {
-  html .eg-header { gap: 18px !important; }
-  html .eg-header .eg-nav { gap: clamp(6px, .9vw, 18px) !important; margin-left: 4px !important; min-width: 0; flex: 0 1 auto; overflow: hidden; }
-  html .eg-header .eg-nav button { font: 600 clamp(10.5px, .84vw, 13px)/1 Inter, system-ui, sans-serif !important; color: var(--paper-3); white-space: nowrap; padding-left: 0 !important; padding-right: 0 !important; }
-  html .eg-header .eg-nav button.active, html .eg-header .eg-nav button:hover { color: var(--paper); }
-  html .eg-header .eg-header-tools { flex: none; }
-}
-html .eg-header .eg-nav-index { display: none !important; }
+/* the header keeps its own one-line layout and full-screen index (components/site-header.css) */
 html .eg-header .eg-wordmark strong { font-weight: 700 !important; letter-spacing: .2em !important; }
 html .eg-notes-toggle { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: rgba(240, 240, 245, .06); color: var(--paper-3); cursor: pointer; }
 html .eg-notes-toggle:hover, html .eg-notes-toggle[aria-pressed="true"] { color: var(--paper); background: rgba(240, 240, 245, .16); }
