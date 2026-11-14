@@ -90,6 +90,59 @@ def test_incompatible_units_are_rejected(tmp_path):
         load_geo_snapshot(out, PILOT)
 
 
+def _env_supplement(tmp_path: Path, records: list[dict], catalog_sha: str | None = None) -> Path:
+    import hashlib
+
+    out = tmp_path / "env-test"
+    out.mkdir()
+    sha = catalog_sha or hashlib.sha256((GEO / "aoi_catalog.json").read_bytes()).hexdigest()
+    doc = {"schema": "egiz.env_supplement", "schema_version": "0.1.0", "dataset_version": "env-test",
+           "synthetic": False, "base_release": {"dataset_version": "geo-0.1.0", "aoi_catalog_sha256": sha},
+           "provenance": [{"variable": "t_min_c", "dataset": "test", "method": "test", "url": ""}],
+           "records": records}
+    (out / "environment.json").write_text(json.dumps(doc), encoding="utf-8")
+    return out
+
+
+def test_env_supplement_fills_spec_climate(tmp_path):
+    env = _env_supplement(tmp_path, [
+        {"aoi_id": "PILOT_ICELAND", "t_min_c": -15.5, "t_max_c": 27.2, "precip_mm": 869.0, "missing": {}},
+        {"aoi_id": "PILOT_UTAH", "t_min_c": -8.0, "t_max_c": 55.0, "precip_mm": None,
+         "missing": {"precip_mm": "no valid observation over footprint after QA"}},
+    ])
+    snap = load_geo_snapshot(GEO, PILOT, ids=["PILOT_ICELAND", "PILOT_UTAH", "PILOT_ATACAMA"], env_dir=env)
+    tiles = {t["id"]: t for t in snap.candidates}
+    assert tiles["PILOT_ICELAND"]["attrs"]["t_min_c"] == -15.5
+    assert tiles["PILOT_UTAH"]["attrs"]["precip_mm"] is None
+    assert "QA" in tiles["PILOT_UTAH"]["missing_reasons"]["precip_mm"]
+    assert tiles["PILOT_ATACAMA"]["attrs"]["t_min_c"] is None
+    assert tiles["PILOT_ATACAMA"]["missing_reasons"]["t_min_c"] == "AOI absent from supplement"
+    assert any(key.startswith("env:") for key in snap.files)
+
+
+def test_env_supplement_must_match_catalog(tmp_path):
+    env = _env_supplement(tmp_path, [], catalog_sha="0" * 64)
+    with pytest.raises(ContractError, match="hash mismatch"):
+        load_geo_snapshot(GEO, PILOT, env_dir=env)
+
+
+ENV = ROOT / "data" / "env" / "env-0.1.0"
+
+
+@pytest.mark.skipif(not ENV.exists(), reason="env-0.1.0 supplement not present")
+def test_real_env_supplement_binds_to_release():
+    snap = load_geo_snapshot(GEO, PILOT, env_dir=ENV)
+    assert len(snap.candidates) == 329
+    assert all(t["attrs"]["precip_mm"] is not None for t in snap.candidates)
+    with_t = [t for t in snap.candidates if t["attrs"]["t_min_c"] is not None]
+    assert len(with_t) > 280
+    for tile in with_t:
+        assert -90 < tile["attrs"]["t_min_c"] < 40 and tile["attrs"]["t_min_c"] < tile["attrs"]["t_max_c"]
+    for tile in snap.candidates:
+        if tile["attrs"]["t_min_c"] is None:
+            assert tile["missing_reasons"]["t_min_c"]
+
+
 def test_documents_validate_with_groups_and_context():
     snap = load_geo_snapshot(GEO, PILOT, limit=30)
     docs = build_documents(snap, {"stability_draws": 10}, created_at="2026-11-14T00:00:00+00:00")

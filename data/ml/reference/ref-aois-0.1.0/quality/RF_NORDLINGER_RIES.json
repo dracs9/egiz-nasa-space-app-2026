@@ -1,0 +1,141 @@
+{
+ "aoi_id": "RF_NORDLINGER_RIES",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:08Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:10Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:11Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:13Z"
+  }
+ },
+ "missing": {
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (large)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    12.38,
+    16.06,
+    21.81,
+    27.85,
+    29.16,
+    32.1,
+    35.65,
+    36.32,
+    29.31,
+    24.98,
+    19.56,
+    13.64
+   ],
+   "t2m_min_c": [
+    -19.07,
+    -18.16,
+    -18.02,
+    -5.19,
+    -2.04,
+    2.78,
+    5.74,
+    5.02,
+    -0.41,
+    -6.38,
+    -8.33,
+    -17.75
+   ],
+   "t2m_c": [
+    -1.19,
+    -0.25,
+    3.78,
+    8.68,
+    12.95,
+    16.91,
+    18.74,
+    18.33,
+    13.82,
+    8.96,
+    3.66,
+    -0.07
+   ],
+   "precip_rate_mm_per_day": [
+    1.91,
+    1.52,
+    1.59,
+    1.45,
+    2.73,
+    2.47,
+    2.8,
+    2.62,
+    1.85,
+    1.79,
+    1.86,
+    1.92
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=10.5670&latitude=48.8830&format=JSON",
+  "accessed": "2026-11-14T16:19:11Z",
+  "sha256": "3ee7e05a665b4a9bba71e99d000b4130c4b928a8ce1e0d21e0d9d85874c2d302"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=48.88300&lng=10.56700",
+  "map_id": 3439450,
+  "source_id": 207,
+  "source_ref": "Vinnemann, C. (2007). Geologische Übersichtskarte der Bundesrepublik Deutschland 1:200.000\n(GÜK200) - CC 7126 Nürnberg. Bundesanstalt für Geowissenschaften und Rohstoffe",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-14T16:19:12Z"
+ }
+}

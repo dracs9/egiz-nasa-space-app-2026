@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_JETT_SP_CRATER",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:18:59Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:01Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:02Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:03Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    17.37,
+    19.52,
+    24.65,
+    28.81,
+    33.56,
+    36.64,
+    37.0,
+    35.62,
+    34.89,
+    28.64,
+    22.84,
+    17.61
+   ],
+   "t2m_min_c": [
+    -18.09,
+    -21.19,
+    -14.76,
+    -8.68,
+    -4.79,
+    1.03,
+    7.7,
+    6.35,
+    -1.52,
+    -9.45,
+    -13.0,
+    -21.21
+   ],
+   "t2m_c": [
+    -0.5,
+    0.86,
+    4.85,
+    8.39,
+    13.65,
+    19.99,
+    22.18,
+    20.89,
+    17.29,
+    10.39,
+    4.17,
+    -0.72
+   ],
+   "precip_rate_mm_per_day": [
+    1.15,
+    1.16,
+    0.78,
+    0.54,
+    0.45,
+    0.21,
+    1.84,
+    1.98,
+    1.05,
+    0.89,
+    0.86,
+    1.3
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-111.6286&latitude=35.5733&format=JSON",
+  "accessed": "2026-11-14T16:19:02Z",
+  "sha256": "534f17b3e777f7bc56b31d53475e67e9a439d073b7c01f942f4a786df3790b71"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=35.57333&lng=-111.62860",
+  "map_id": 2739006,
+  "source_id": 133,
+  "source_ref": "Horton, J.D., C.A. San Juan, and D.B. Stoeser (2017). The State Geologic Map Compilation (SGMC) geodatabase of the conterminous United States. U.S. Geological Survey Data Series 1052 doi: 10.3133/ds1052",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-14T16:19:03Z"
+ }
+}

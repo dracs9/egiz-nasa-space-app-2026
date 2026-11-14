@@ -59,10 +59,13 @@ def _float_or_none(text: str | None) -> float | None:
     return value
 
 
-def _validate_schema(data: dict, schema_path: Path) -> None:
+def _validate_schema(data: dict, schema_path: Path, *, extra_pools: tuple[str, ...] = ()) -> None:
     import jsonschema
 
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    if extra_pools:  # consumer-side, in-memory only: the contract file is not changed
+        pool = schema["properties"]["aois"]["items"]["properties"]["pool"]
+        pool["enum"] = list(pool["enum"]) + list(extra_pools)
     try:
         jsonschema.Draft202012Validator(schema).validate(data)
     except jsonschema.ValidationError as error:
@@ -81,9 +84,49 @@ def _check_units(columns: dict[str, Any]) -> None:
             raise ContractError(f"{attr}: unit {unit!r} incompatible with engine unit {sorted(expected)}")
 
 
+ENV_SCHEMA = "egiz.env_supplement"
+ENV_VARIABLES = ("t_min_c", "t_max_c", "precip_mm")
+
+
+def _load_env(env_dir: Path, catalog_sha: str, files: dict) -> tuple[dict[str, dict], list[dict]]:
+    """Spec-defined climate supplement (MODIS LST, GPM IMERG) bound to one catalog by hash."""
+    path = env_dir / "environment.json"
+    if not path.exists():
+        raise ContractError(f"Missing environment supplement: {path}")
+    raw = path.read_bytes()
+    doc = json.loads(raw)
+    if doc.get("schema") != ENV_SCHEMA or not str(doc.get("schema_version", "")).startswith("0."):
+        raise ContractError(f"{path}: unsupported supplement schema")
+    if doc.get("synthetic") is not False:
+        raise ContractError(f"{path}: supplement must be non-synthetic")
+    if doc.get("base_release", {}).get("aoi_catalog_sha256") != catalog_sha:
+        raise ContractError(f"{path}: built for a different aoi_catalog.json (hash mismatch)")
+    files[f"env:{env_dir.name}/environment.json"] = {"sha256": hashlib.sha256(raw).hexdigest(),
+                                                     "schema": ENV_SCHEMA, "version": doc.get("dataset_version")}
+    records = {}
+    for record in doc["records"]:
+        values = {}
+        for key in ENV_VARIABLES:
+            value = record.get(key)
+            if value is not None and not (isinstance(value, (int, float)) and math.isfinite(value)):
+                raise ContractError(f"{path}: {record['aoi_id']}.{key} is not finite or null")
+            values[key] = value
+        records[record["aoi_id"]] = {"values": values, "missing": record.get("missing", {})}
+    return records, doc.get("provenance", [])
+
+
 def load_geo_snapshot(geo_dir: str | Path, base_dir: str | Path = ROOT / "data" / "pilot", *,
-                      ids: list[str] | None = None, limit: int | None = None) -> Snapshot:
-    """Validated snapshot with Earth candidates from a geospatial release."""
+                      ids: list[str] | None = None, limit: int | None = None,
+                      env_dir: str | Path | None = None, reference: bool = False) -> Snapshot:
+    """Validated snapshot with Earth candidates from a geospatial release.
+
+    ``env_dir`` optionally supplies spec-defined ``t_min_c``/``t_max_c`` (MODIS
+    LST) and ``precip_mm`` (GPM IMERG) per AOI, bound to this release's catalog.
+
+    ``reference=True`` loads a reference-AOI set built with the same geo code
+    (``tools/build_reference_aois.py``): the only relaxation is that pool
+    ``reference`` is accepted, which the geospatial contract does not list yet.
+    """
     geo_dir, base_dir = Path(geo_dir), Path(base_dir)
     files: dict[str, dict[str, Any]] = {}
 
@@ -101,7 +144,8 @@ def load_geo_snapshot(geo_dir: str | Path, base_dir: str | Path = ROOT / "data" 
     sources_doc = json.loads(read("manifests/sources.json"))
     rows = list(csv.DictReader(io.StringIO(read("aoi_features.csv").decode("utf-8"))))
     schemas = ROOT / "contracts" / "geospatial"
-    _validate_schema(catalog, schemas / "aoi_catalog.schema.json")
+    _validate_schema(catalog, schemas / "aoi_catalog.schema.json",
+                     extra_pools=("reference",) if reference else ())
     _validate_schema(columns_doc, schemas / "aoi_features_columns.schema.json")
 
     versions = {doc.get("dataset_version") for doc in (catalog, columns_doc, sources_doc)}
@@ -131,6 +175,9 @@ def load_geo_snapshot(geo_dir: str | Path, base_dir: str | Path = ROOT / "data" 
 
     base = load_snapshot(base_dir)
     files.update({f"base:{k}": v for k, v in base.files.items() if k not in {"earth_candidates", "results"}})
+    env, env_provenance = ({}, [])
+    if env_dir is not None:
+        env, env_provenance = _load_env(Path(env_dir), files["geo:aoi_catalog.json"]["sha256"], files)
 
     earth = sorted((row for row in rows if row["body"] == "earth"), key=lambda row: row["aoi_id"])
     if ids is not None:
@@ -163,6 +210,14 @@ def load_geo_snapshot(geo_dir: str | Path, base_dir: str | Path = ROOT / "data" 
             continue
         attrs.update({attr: None for attr in UNMAPPED})
         reasons = {**aoi.get("missing", {}), **UNMAPPED}
+        if env_dir is not None:
+            supplement = env.get(row["aoi_id"])
+            for key in ENV_VARIABLES:
+                reasons.pop(key, None)
+                value = supplement["values"].get(key) if supplement else None
+                attrs[key] = value
+                if value is None:
+                    reasons[key] = (supplement or {}).get("missing", {}).get(key, "AOI absent from supplement")
         candidates.append({
             "id": row["aoi_id"], "name": aoi.get("name", row["aoi_id"]), "country": aoi.get("country"),
             "lon": float(row["lon"]), "lat": float(row["lat"]), "pool": row["pool"],
@@ -176,11 +231,17 @@ def load_geo_snapshot(geo_dir: str | Path, base_dir: str | Path = ROOT / "data" 
     sources = [{"id": s.get("source_id", f"geo:{i}"), "dataset": s.get("name", ""),
                 "role": s.get("product_id", ""), "url": s.get("url", "")}
                for i, s in enumerate(sources_doc.get("sources", []), start=1)]
+    sources += [{"id": f"env:{p['variable']}", "dataset": p.get("dataset", ""), "role": p.get("method", ""),
+                 "url": p.get("url", "")} for p in env_provenance]
     sources += [s for s in base.sources if s["id"].startswith("targets:")]
-    issues = list(base.issues) + [
-        "Engine climate attributes (t_min_c, t_max_c, precip_mm) are not substituted from the release's "
-        "modelled t2m / POWER columns; cold/dry objectives stay non-computable",
-    ]
+    issues = list(base.issues)
+    if env_dir is None:
+        issues.append("Engine climate attributes (t_min_c, t_max_c, precip_mm) are not substituted from the "
+                      "release's modelled t2m / POWER columns; cold/dry objectives stay non-computable")
+    missing_targets = sorted(t["id"] for t in base.targets.values() if t["attrs"].get("t_min_c") is None)
+    if missing_targets:
+        issues.append("Target surface temperature (t_min_c) missing for " + ", ".join(missing_targets)
+                      + "; 'colder' attributes cannot be scored until curated values exist")
     return Snapshot(path=geo_dir.as_posix(), files=files, synthetic=False, candidates=candidates,
                     targets=base.targets, templates=base.templates, params=base.params,
                     gap_alternatives=base.gap_alternatives, sun=base.sun, results=None,

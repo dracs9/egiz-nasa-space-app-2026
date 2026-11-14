@@ -1,0 +1,219 @@
+{
+ "schema": "egiz.env_supplement",
+ "schema_version": "0.1.0",
+ "dataset_version": "ref-env-0.1.0",
+ "synthetic": false,
+ "generated_at": "2026-11-14T16:27:43+00:00",
+ "base_release": {
+  "dataset_version": "geo-0.1.0",
+  "aoi_catalog_sha256": "15c650da7f912c07ef9c63a1da15279da696556c6cd0f3eb73b6c1717b83173f"
+ },
+ "geometry": "AOI footprint.ring_lonlat (22 km window), geodesic=false",
+ "code": "tools/acquire_env_supplement.py -> pipeline.earth.gee_env.environment",
+ "provenance": [
+  {
+   "variable": "t_min_c",
+   "dataset": "MODIS/061/MOD11A2 + MODIS/061/MYD11A2 LST_Night_1km",
+   "provider": "NASA LP DAAC via Google Earth Engine",
+   "version": "061",
+   "method": "QA bits 0-1 == 0; per-pixel 5th percentile over 2015-2024; mean over AOI footprint at 1 km",
+   "evidence": "observed",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2"
+  },
+  {
+   "variable": "t_max_c",
+   "dataset": "MODIS/061/MOD11A2 + MODIS/061/MYD11A2 LST_Day_1km",
+   "provider": "NASA LP DAAC via Google Earth Engine",
+   "version": "061",
+   "method": "QA bits 0-1 == 0; per-pixel 95th percentile over 2015-2024; mean over AOI footprint at 1 km",
+   "evidence": "observed",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2"
+  },
+  {
+   "variable": "precip_mm",
+   "dataset": "NASA/GPM_L3/IMERG_MONTHLY_V07 precipitation",
+   "provider": "NASA GES DISC via Google Earth Engine",
+   "version": "V07",
+   "method": "monthly rate x hours, annual sums 2001-2024, mean of years; mean over AOI footprint at 11 km",
+   "evidence": "derived",
+   "url": "https://developers.google.com/earth-engine/datasets/catalog/NASA_GPM_L3_IMERG_MONTHLY_V07"
+  }
+ ],
+ "records": [
+  {
+   "aoi_id": "RF_ASKJA",
+   "t_min_c": -17.1114,
+   "t_max_c": 21.9063,
+   "precip_mm": 1243.9888,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "t_min_c": 3.8234,
+   "t_max_c": 36.1319,
+   "precip_mm": 357.0313,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "t_min_c": -8.8654,
+   "t_max_c": 43.2148,
+   "precip_mm": 433.8324,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "t_min_c": -2.1884,
+   "t_max_c": 38.4744,
+   "precip_mm": 234.6334,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "t_min_c": -18.0612,
+   "t_max_c": 45.4403,
+   "precip_mm": 297.1501,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "t_min_c": 0.7958,
+   "t_max_c": 33.4787,
+   "precip_mm": 310.4223,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "t_min_c": -42.2887,
+   "t_max_c": 10.3313,
+   "precip_mm": 149.447,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "t_min_c": -6.557,
+   "t_max_c": 45.3896,
+   "precip_mm": 331.9252,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "t_min_c": -13.3937,
+   "t_max_c": 22.7484,
+   "precip_mm": 1063.9845,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "t_min_c": 11.4107,
+   "t_max_c": 35.6555,
+   "precip_mm": 1313.3702,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "t_min_c": -0.7883,
+   "t_max_c": 3.1144,
+   "precip_mm": 260.9189,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+   "t_min_c": -39.7487,
+   "t_max_c": -19.6651,
+   "precip_mm": 0.6149,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "t_min_c": -9.6868,
+   "t_max_c": 42.5982,
+   "precip_mm": 226.4397,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "t_min_c": -7.0213,
+   "t_max_c": 37.3777,
+   "precip_mm": 525.7342,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "t_min_c": -6.2002,
+   "t_max_c": 51.3128,
+   "precip_mm": 342.344,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "t_min_c": -31.2384,
+   "t_max_c": 14.3105,
+   "precip_mm": 723.0246,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "t_min_c": -11.2266,
+   "t_max_c": 42.4916,
+   "precip_mm": 472.9109,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "t_min_c": -9.9443,
+   "t_max_c": 33.519,
+   "precip_mm": 501.0047,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "t_min_c": -4.8271,
+   "t_max_c": 33.7468,
+   "precip_mm": 904.9437,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "t_min_c": 6.492,
+   "t_max_c": 51.1929,
+   "precip_mm": 148.0659,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "t_min_c": 3.4034,
+   "t_max_c": 59.9115,
+   "precip_mm": 114.1784,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "t_min_c": -12.9824,
+   "t_max_c": 46.7067,
+   "precip_mm": 416.5619,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "t_min_c": -9.2254,
+   "t_max_c": 27.7618,
+   "precip_mm": 925.1187,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "t_min_c": -7.4255,
+   "t_max_c": 38.1771,
+   "precip_mm": 364.6772,
+   "missing": {}
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "t_min_c": -1.2398,
+   "t_max_c": 43.9249,
+   "precip_mm": 149.5357,
+   "missing": {}
+  }
+ ]
+}

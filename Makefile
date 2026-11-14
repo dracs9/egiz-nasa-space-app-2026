@@ -6,7 +6,7 @@ EARTH_COUNT_PER_STRATUM ?= 1000
 EARTH_OUT_DIR ?= data/processed
 EARTH_ARGS ?=
 
-.PHONY: setup fixtures data earth test check web dev offline serve clean discover discover-acquire discover-check atlas atlas-verify atlas-discover atlas-check world world-verify world-check ml-validate-data ml-infer ml-test ml-example ml-infer-geo world-scene
+.PHONY: setup fixtures data earth test check web dev offline serve clean discover discover-acquire discover-check atlas atlas-verify atlas-discover atlas-check world world-verify world-check ml-validate-data ml-infer ml-test ml-example ml-infer-geo world-scene world-earth ml-env-acquire ml-infer-env
 
 setup:
 	python3 -m venv .venv
@@ -171,3 +171,11 @@ world-earth:
 	$(PYTHON) -m pipeline.world.scene earth:$(WINDOW)
 	$(PYTHON) -m pipeline.world.illumination earth:$(WINDOW) --days 2
 	node web/scripts/copy-world.mjs
+
+EE_ENV_OUT ?= data/env/env-0.1.0
+
+ml-env-acquire:
+	$(PYTHON) tools/acquire_env_supplement.py --project $(PROJECT) --geo $(GEO_RELEASE) --out $(EE_ENV_OUT) --batch 8
+
+ml-infer-env:
+	$(PYTHON) -m pipeline.ml infer --geo $(GEO_RELEASE) --env $(EE_ENV_OUT) --data data/pilot --out artifacts/ml/discovery-env

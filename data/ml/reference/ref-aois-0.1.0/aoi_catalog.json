@@ -1,0 +1,1598 @@
+{
+ "schema_version": "1.0.0",
+ "dataset_version": "geo-0.1.0",
+ "synthetic": false,
+ "coordinate_convention": "planetocentric lon/lat in degrees, east-positive, -180..180; Earth WGS84",
+ "aois": [
+  {
+   "aoi_id": "RF_ASKJA",
+   "site_id": "SITE_REF_ASKJA",
+   "group_id": "EARTH_GN64W018",
+   "body": "earth",
+   "name": "Askja caldera (Iceland)",
+   "region": "Askja caldera (Iceland)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -16.783,
+    "lat": 65.033
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -17.008994,
+      64.931394
+     ],
+     [
+      -16.543831,
+      64.936937
+     ],
+     [
+      -16.555284,
+      65.134265
+     ],
+     [
+      -17.023891,
+      65.128672
+     ],
+     [
+      -17.008994,
+      64.931394
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32628",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 579.7653,
+    "slope_r_p50_deg": 3.1922,
+    "elev_p50_m": 957.4927,
+    "bare_frac": 0.926,
+    "t2m_mean_annual_c": -2.8633,
+    "precip_annual_mm": 861.45,
+    "geo_lith_label": null
+   },
+   "missing": {
+    "geo_age_bottom_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)",
+    "geo_age_interval_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)",
+    "geo_age_top_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)",
+    "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)",
+    "geo_unit_name_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_ASKJA; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "site_id": "SITE_REF_BIG_BEND",
+   "group_id": "EARTH_GN28W104",
+   "body": "earth",
+   "name": "Big Bend National Park",
+   "region": "Big Bend National Park",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -103.25,
+    "lat": 29.25
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -103.364737,
+      29.152192
+     ],
+     [
+      -103.138641,
+      29.149241
+     ],
+     [
+      -103.135045,
+      29.347699
+     ],
+     [
+      -103.361577,
+      29.350674
+     ],
+     [
+      -103.364737,
+      29.152192
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32613",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 1033.7021,
+    "slope_r_p50_deg": 5.1567,
+    "elev_p50_m": 1262.0067,
+    "bare_frac": 0.0513,
+    "t2m_mean_annual_c": 20.09,
+    "precip_annual_mm": 329.3325,
+    "geo_lith_label": null
+   },
+   "missing": {
+    "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (large)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_BIG_BEND; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "site_id": "SITE_REF_CAPULIN",
+   "group_id": "EARTH_GN36W104",
+   "body": "earth",
+   "name": "Capulin Volcano",
+   "region": "Capulin Volcano",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -103.97,
+    "lat": 36.78222
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -104.094427,
+      36.684073
+     ],
+     [
+      -103.848227,
+      36.681946
+     ],
+     [
+      -103.845256,
+      36.88023
+     ],
+     [
+      -104.09209,
+      36.882373
+     ],
+     [
+      -104.094427,
+      36.684073
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32613",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 332.2912,
+    "slope_r_p50_deg": 1.5824,
+    "elev_p50_m": 2089.52,
+    "bare_frac": 0.0044,
+    "t2m_mean_annual_c": 11.8675,
+    "precip_annual_mm": 391.7975,
+    "geo_lith_label": "salt"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_CAPULIN; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "site_id": "SITE_REF_COSO",
+   "group_id": "EARTH_GN36W118",
+   "body": "earth",
+   "name": "Coso Volcanic Field",
+   "region": "Coso Volcanic Field",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -117.82,
+    "lat": 36.03
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -117.940902,
+      35.929941
+     ],
+     [
+      -117.697042,
+      35.931604
+     ],
+     [
+      -117.698792,
+      36.129939
+     ],
+     [
+      -117.943264,
+      36.128264
+     ],
+     [
+      -117.940902,
+      35.929941
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32611",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 763.9728,
+    "slope_r_p50_deg": 3.8879,
+    "elev_p50_m": 1225.0607,
+    "bare_frac": 0.3678,
+    "t2m_mean_annual_c": 10.6917,
+    "precip_annual_mm": 352.775,
+    "geo_lith_label": "rhyolite"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_COSO; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "site_id": "SITE_REF_CRATERS_OF_THE_MOON",
+   "group_id": "EARTH_GN42W114",
+   "body": "earth",
+   "name": "Craters of the Moon (Idaho)",
+   "region": "Craters of the Moon (Idaho)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -113.56271,
+    "lat": 43.46167
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -113.694149,
+      43.359604
+     ],
+     [
+      -113.422907,
+      43.365676
+     ],
+     [
+      -113.430829,
+      43.563594
+     ],
+     [
+      -113.702955,
+      43.55748
+     ],
+     [
+      -113.694149,
+      43.359604
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 718.7557,
+    "slope_r_p50_deg": 1.1521,
+    "elev_p50_m": 1743.6024,
+    "bare_frac": 0.3348,
+    "t2m_mean_annual_c": 5.6225,
+    "precip_annual_mm": 417.62,
+    "geo_lith_label": "basalt, latite"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_CRATERS_OF_THE_MOON; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "site_id": "SITE_REF_GRAND_CANYON",
+   "group_id": "EARTH_GN36W114",
+   "body": "earth",
+   "name": "Grand Canyon",
+   "region": "Grand Canyon",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -112.75,
+    "lat": 36.3
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -112.870088,
+      36.199026
+     ],
+     [
+      -112.625482,
+      36.202599
+     ],
+     [
+      -112.629602,
+      36.40086
+     ],
+     [
+      -112.874828,
+      36.397261
+     ],
+     [
+      -112.870088,
+      36.199026
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 883.1164,
+    "slope_r_p50_deg": 10.0688,
+    "elev_p50_m": 1267.9333,
+    "bare_frac": 0.4336,
+    "t2m_mean_annual_c": 11.8358,
+    "precip_annual_mm": 303.1375,
+    "geo_lith_label": null
+   },
+   "missing": {
+    "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (large)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_GRAND_CANYON; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "site_id": "SITE_REF_HAUGHTON_CRATER",
+   "group_id": "EARTH_GN74W090",
+   "body": "earth",
+   "name": "Haughton impact crater (Devon Island)",
+   "region": "Haughton impact crater (Devon Island)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -89.667,
+    "lat": 75.383
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -90.036939,
+      75.27979
+     ],
+     [
+      -89.2619,
+      75.288605
+     ],
+     [
+      -89.291933,
+      75.485622
+     ],
+     [
+      -90.077228,
+      75.476682
+     ],
+     [
+      -90.036939,
+      75.27979
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32616",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 181.5958,
+    "slope_r_p50_deg": 1.5022,
+    "elev_p50_m": 231.2251,
+    "bare_frac": 0.4531,
+    "t2m_mean_annual_c": -14.5067,
+    "precip_annual_mm": 312.28,
+    "geo_lith_label": "sedimentary"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_HAUGHTON; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "site_id": "SITE_REF_JETT_SP_CRATER",
+   "group_id": "EARTH_GN34W112",
+   "body": "earth",
+   "name": "S P Crater vicinity / JETT3",
+   "region": "S P Crater vicinity / JETT3",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -111.628601,
+    "lat": 35.573325
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -111.749069,
+      35.473456
+     ],
+     [
+      -111.506585,
+      35.474718
+     ],
+     [
+      -111.507835,
+      35.673075
+     ],
+     [
+      -111.750917,
+      35.671804
+     ],
+     [
+      -111.749069,
+      35.473456
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 461.3105,
+    "slope_r_p50_deg": 1.5859,
+    "elev_p50_m": 1842.7944,
+    "bare_frac": 0.0804,
+    "t2m_mean_annual_c": 10.12,
+    "precip_annual_mm": 372.66,
+    "geo_lith_label": "Major:{basalt}, Minor:{andesite,dacite,rhyolite}"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=AZGS_SP; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "site_id": "SITE_REF_KATMAI",
+   "group_id": "EARTH_GN58W156",
+   "body": "earth",
+   "name": "Valley of Ten Thousand Smokes (Katmai)",
+   "region": "Valley of Ten Thousand Smokes (Katmai)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -155.38528,
+    "lat": 58.39389
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -155.566091,
+      58.291552
+     ],
+     [
+      -155.19113,
+      58.298529
+     ],
+     [
+      -155.20342,
+      58.495977
+     ],
+     [
+      -155.580479,
+      58.488946
+     ],
+     [
+      -155.566091,
+      58.291552
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32605",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 885.3761,
+    "slope_r_p50_deg": 7.2244,
+    "elev_p50_m": 437.8802,
+    "bare_frac": 0.0822,
+    "t2m_mean_annual_c": 0.1692,
+    "precip_annual_mm": 1206.1175,
+    "geo_lith_label": "Unconsolidated"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_KATMAI; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "site_id": "SITE_REF_KILAUEA",
+   "group_id": "EARTH_GN18W156",
+   "body": "earth",
+   "name": "Kilauea / Kilauea Iki (Hawaii)",
+   "region": "Kilauea / Kilauea Iki (Hawaii)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -155.286762,
+    "lat": 19.421097
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -155.390005,
+      19.320425
+     ],
+     [
+      -155.18074,
+      19.323048
+     ],
+     [
+      -155.183393,
+      19.521723
+     ],
+     [
+      -155.392912,
+      19.519071
+     ],
+     [
+      -155.390005,
+      19.320425
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32605",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 785.9004,
+    "slope_r_p50_deg": 2.6023,
+    "elev_p50_m": 1107.3577,
+    "bare_frac": 0.2969,
+    "t2m_mean_annual_c": 21.2925,
+    "precip_annual_mm": 2300.6475,
+    "geo_lith_label": "basalt"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_KILAUEA; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "site_id": "SITE_REF_KILBOURNE_HOLE",
+   "group_id": "EARTH_GN30W108",
+   "body": "earth",
+   "name": "Kilbourne Hole maar",
+   "region": "Kilbourne Hole maar",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -106.96472,
+    "lat": 31.97194
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -107.078835,
+      31.87091
+     ],
+     [
+      -106.846378,
+      31.874499
+     ],
+     [
+      -106.850355,
+      32.072876
+     ],
+     [
+      -107.083312,
+      32.069259
+     ],
+     [
+      -107.078835,
+      31.87091
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32613",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 79.8089,
+    "slope_r_p50_deg": 0.2528,
+    "elev_p50_m": 1282.1982,
+    "bare_frac": 0.2213,
+    "t2m_mean_annual_c": 17.6408,
+    "precip_annual_mm": 228.5825,
+    "geo_lith_label": null
+   },
+   "missing": {
+    "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_KILBOURNE_HOLE; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+   "site_id": "SITE_REF_MCMURDO_DRY_VALLEYS",
+   "group_id": "EARTH_GS78E162",
+   "body": "earth",
+   "name": "McMurdo Dry Valleys",
+   "region": "McMurdo Dry Valleys",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": 162.517,
+    "lat": -77.467
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      162.040617,
+      -77.56089
+     ],
+     [
+      162.954981,
+      -77.569295
+     ],
+     [
+      162.986384,
+      -77.372279
+     ],
+     [
+      162.086019,
+      -77.364009
+     ],
+     [
+      162.040617,
+      -77.56089
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32758",
+   "coverage_level": "L1_dem",
+   "stages": {
+    "dem": "ok",
+    "landcover": "failed",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "fail",
+   "warnings": [],
+   "summary": {
+    "relief_m": 1229.0722,
+    "slope_r_p50_deg": 10.1815,
+    "elev_p50_m": 851.2991,
+    "t2m_mean_annual_c": -24.5417,
+    "precip_annual_mm": 72.6825,
+    "geo_lith_label": "gravel, sand, fanglomerate"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_MDV; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "site_id": "SITE_REF_MDRS_UTAH",
+   "group_id": "EARTH_GN38W112",
+   "body": "earth",
+   "name": "Mars Desert Research Station (Hanksville)",
+   "region": "Mars Desert Research Station (Hanksville)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -110.791903,
+    "lat": 38.406458
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -110.918002,
+      38.307479
+     ],
+     [
+      -110.666373,
+      38.307033
+     ],
+     [
+      -110.66546,
+      38.505299
+     ],
+     [
+      -110.917777,
+      38.505748
+     ],
+     [
+      -110.918002,
+      38.307479
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 157.8754,
+    "slope_r_p50_deg": 1.2213,
+    "elev_p50_m": 1384.9287,
+    "bare_frac": 0.935,
+    "t2m_mean_annual_c": 11.7042,
+    "precip_annual_mm": 241.7325,
+    "geo_lith_label": "sandstone"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_MDRS; coord_precision=point"
+   ]
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "site_id": "SITE_REF_MEDICINE_LAKE",
+   "group_id": "EARTH_GN40W122",
+   "body": "earth",
+   "name": "Medicine Lake Volcano",
+   "region": "Medicine Lake Volcano",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -121.553635,
+    "lat": 41.610956
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -121.687626,
+      41.513486
+     ],
+     [
+      -121.424071,
+      41.510176
+     ],
+     [
+      -121.419242,
+      41.708261
+     ],
+     [
+      -121.683603,
+      41.711594
+     ],
+     [
+      -121.687626,
+      41.513486
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32610",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 733.895,
+    "slope_r_p50_deg": 4.2,
+    "elev_p50_m": 1883.9631,
+    "bare_frac": 0.0719,
+    "t2m_mean_annual_c": 8.7817,
+    "precip_annual_mm": 675.725,
+    "geo_lith_label": "volcanic"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_MEDICINE_LAKE; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "site_id": "SITE_REF_METEOR_CRATER",
+   "group_id": "EARTH_GN34W112",
+   "body": "earth",
+   "name": "Meteor Crater",
+   "region": "Meteor Crater",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -111.02333,
+    "lat": 35.02806
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -111.143743,
+      34.928785
+     ],
+     [
+      -110.90286,
+      34.928831
+     ],
+     [
+      -110.902625,
+      35.127214
+     ],
+     [
+      -111.144091,
+      35.127167
+     ],
+     [
+      -111.143743,
+      34.928785
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 201.5582,
+    "slope_r_p50_deg": 0.6362,
+    "elev_p50_m": 1671.3872,
+    "bare_frac": 0.33,
+    "t2m_mean_annual_c": 11.3225,
+    "precip_annual_mm": 416.51,
+    "geo_lith_label": "sedimentary, limestone, sandstone"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_METEOR; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "site_id": "SITE_REF_MISTASTIN_CRATER",
+   "group_id": "EARTH_GN54W064",
+   "body": "earth",
+   "name": "Mistastin (Kamestastin) crater",
+   "region": "Mistastin (Kamestastin) crater",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -63.3,
+    "lat": 55.883
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -63.474632,
+      55.783612
+     ],
+     [
+      -63.123844,
+      55.784466
+     ],
+     [
+      -63.124475,
+      55.982138
+     ],
+     [
+      -63.47705,
+      55.981278
+     ],
+     [
+      -63.474632,
+      55.783612
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32620",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 155.5079,
+    "slope_r_p50_deg": 0.9557,
+    "elev_p50_m": 360.1538,
+    "bare_frac": 0.0016,
+    "t2m_mean_annual_c": -5.9492,
+    "precip_annual_mm": 950.36,
+    "geo_lith_label": "intrusive igneous rocks"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_MISTASTIN; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "site_id": "SITE_REF_MONO_CRATERS",
+   "group_id": "EARTH_GN36W120",
+   "body": "earth",
+   "name": "Mono-Inyo Craters",
+   "region": "Mono-Inyo Craters",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -119.0,
+    "lat": 37.883
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -119.122166,
+      37.781733
+     ],
+     [
+      -118.872473,
+      37.785967
+     ],
+     [
+      -118.877499,
+      37.984148
+     ],
+     [
+      -119.127862,
+      37.979884
+     ],
+     [
+      -119.122166,
+      37.781733
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32611",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 631.4397,
+    "slope_r_p50_deg": 2.5817,
+    "elev_p50_m": 2232.3481,
+    "bare_frac": 0.2072,
+    "t2m_mean_annual_c": 7.815,
+    "precip_annual_mm": 413.13,
+    "geo_lith_label": "volcanic"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_MONO_CRATERS; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "site_id": "SITE_REF_NEWBERRY",
+   "group_id": "EARTH_GN42W122",
+   "body": "earth",
+   "name": "Newberry Volcano",
+   "region": "Newberry Volcano",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -121.25489,
+    "lat": 43.689195
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -121.393965,
+      43.592192
+     ],
+     [
+      -121.121557,
+      43.588039
+     ],
+     [
+      -121.115367,
+      43.78602
+     ],
+     [
+      -121.388671,
+      43.790201
+     ],
+     [
+      -121.393965,
+      43.592192
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32610",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 696.8637,
+    "slope_r_p50_deg": 3.2472,
+    "elev_p50_m": 1813.2539,
+    "bare_frac": 0.0161,
+    "t2m_mean_annual_c": 6.99,
+    "precip_annual_mm": 497.9025,
+    "geo_lith_label": "Major: {rhyodacite flows}"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_NEWBERRY; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "site_id": "SITE_REF_NORDLINGER_RIES",
+   "group_id": "EARTH_GN48E010",
+   "body": "earth",
+   "name": "Nordlinger Ries crater",
+   "region": "Nordlinger Ries crater",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": 10.567,
+    "lat": 48.883
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      10.41422,
+      48.786017
+     ],
+     [
+      10.713598,
+      48.781954
+     ],
+     [
+      10.720371,
+      48.979772
+     ],
+     [
+      10.419811,
+      48.983864
+     ],
+     [
+      10.41422,
+      48.786017
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32632",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 85.5936,
+    "slope_r_p50_deg": 0.4286,
+    "elev_p50_m": 427.2567,
+    "bare_frac": 0.0006,
+    "t2m_mean_annual_c": 8.6933,
+    "precip_annual_mm": 748.0,
+    "geo_lith_label": null
+   },
+   "missing": {
+    "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (large)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_RIES; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "site_id": "SITE_REF_OROCOPIA",
+   "group_id": "EARTH_GN32W116",
+   "body": "earth",
+   "name": "Orocopia Mountains",
+   "region": "Orocopia Mountains",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -115.77583,
+    "lat": 33.56667
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -115.895584,
+      33.468588
+     ],
+     [
+      -115.658876,
+      33.466253
+     ],
+     [
+      -115.655805,
+      33.664628
+     ],
+     [
+      -115.893055,
+      33.666981
+     ],
+     [
+      -115.895584,
+      33.468588
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32611",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 861.3396,
+    "slope_r_p50_deg": 3.4674,
+    "elev_p50_m": 488.1352,
+    "bare_frac": 0.9343,
+    "t2m_mean_annual_c": 21.8483,
+    "precip_annual_mm": 94.91,
+    "geo_lith_label": "schist"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_OROCOPIA; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "site_id": "SITE_REF_PINACATE",
+   "group_id": "EARTH_GN32W114",
+   "body": "earth",
+   "name": "Pinacate (Sonora)",
+   "region": "Pinacate (Sonora)",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -113.917,
+    "lat": 32.0
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -114.030041,
+      31.898169
+     ],
+     [
+      -113.797678,
+      31.903501
+     ],
+     [
+      -113.80371,
+      32.101743
+     ],
+     [
+      -114.036571,
+      32.09637
+     ],
+     [
+      -114.030041,
+      31.898169
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 108.2096,
+    "slope_r_p50_deg": 0.3934,
+    "elev_p50_m": 157.6355,
+    "bare_frac": 0.998,
+    "t2m_mean_annual_c": 22.4458,
+    "precip_annual_mm": 140.475,
+    "geo_lith_label": "sedimentary"
+   },
+   "missing": {
+    "geo_unit_name_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+   },
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_PINACATE; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "site_id": "SITE_REF_RIO_GRANDE_GORGE",
+   "group_id": "EARTH_GN36W106",
+   "body": "earth",
+   "name": "Rio Grande Gorge",
+   "region": "Rio Grande Gorge",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -105.7338,
+    "lat": 36.47652
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -105.855491,
+      36.376545
+     ],
+     [
+      -105.610239,
+      36.378049
+     ],
+     [
+      -105.611796,
+      36.576373
+     ],
+     [
+      -105.857674,
+      36.574857
+     ],
+     [
+      -105.855491,
+      36.376545
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32613",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 200.0955,
+    "slope_r_p50_deg": 0.9311,
+    "elev_p50_m": 2155.9355,
+    "bare_frac": 0.0367,
+    "t2m_mean_annual_c": 7.7267,
+    "precip_annual_mm": 427.5425,
+    "geo_lith_label": "Major:{unconsolidated colluvium}"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_RIO_GRANDE_GORGE; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "site_id": "SITE_REF_SUDBURY",
+   "group_id": "EARTH_GN46W082",
+   "body": "earth",
+   "name": "Sudbury Basin",
+   "region": "Sudbury Basin",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -81.183,
+    "lat": 46.6
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -81.326025,
+      46.500688
+     ],
+     [
+      -81.039309,
+      46.501145
+     ],
+     [
+      -81.039452,
+      46.699132
+     ],
+     [
+      -81.327214,
+      46.698671
+     ],
+     [
+      -81.326025,
+      46.500688
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32617",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 109.0629,
+    "slope_r_p50_deg": 0.4761,
+    "elev_p50_m": 282.9854,
+    "bare_frac": 0.0032,
+    "t2m_mean_annual_c": 3.9942,
+    "precip_annual_mm": 816.7525,
+    "geo_lith_label": "wacke, minor siltstone"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_SUDBURY; coord_precision=area"
+   ]
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "site_id": "SITE_REF_SUNSET_CRATER",
+   "group_id": "EARTH_GN34W112",
+   "body": "earth",
+   "name": "Sunset Crater",
+   "region": "Sunset Crater",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -111.50361,
+    "lat": 35.36444
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -111.623927,
+      35.264694
+     ],
+     [
+      -111.382061,
+      35.265699
+     ],
+     [
+      -111.382997,
+      35.464067
+     ],
+     [
+      -111.625455,
+      35.463054
+     ],
+     [
+      -111.623927,
+      35.264694
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32612",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 605.1537,
+    "slope_r_p50_deg": 2.8332,
+    "elev_p50_m": 2059.3213,
+    "bare_frac": 0.0749,
+    "t2m_mean_annual_c": 13.7392,
+    "precip_annual_mm": 338.9675,
+    "geo_lith_label": "andesite, dacite, rhyolite, volcanic"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_SUNSET_CRATER; coord_precision=feature"
+   ]
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "site_id": "SITE_REF_UBEHEBE",
+   "group_id": "EARTH_GN36W118",
+   "body": "earth",
+   "name": "Ubehebe Crater",
+   "region": "Ubehebe Crater",
+   "country": null,
+   "pool": "reference",
+   "centroid": {
+    "lon": -117.45028,
+    "lat": 37.00972
+   },
+   "footprint": {
+    "window_m": 22000,
+    "core_m": 20000,
+    "ring_lonlat": [
+     [
+      -117.573175,
+      36.910032
+     ],
+     [
+      -117.326215,
+      36.910967
+     ],
+     [
+      -117.327063,
+      37.109281
+     ],
+     [
+      -117.574666,
+      37.108339
+     ],
+     [
+      -117.573175,
+      36.910032
+     ]
+    ]
+   },
+   "analysis_crs": "EPSG:32611",
+   "coverage_level": "L4_validated",
+   "stages": {
+    "dem": "ok",
+    "landcover": "ok",
+    "climate": "ok",
+    "geology": "ok"
+   },
+   "quality_status": "pass",
+   "warnings": [],
+   "summary": {
+    "relief_m": 988.2384,
+    "slope_r_p50_deg": 5.7593,
+    "elev_p50_m": 961.1097,
+    "bare_frac": 0.9102,
+    "t2m_mean_annual_c": 15.4175,
+    "precip_annual_mm": 165.0725,
+    "geo_lith_label": "Major:{rhyolite}"
+   },
+   "missing": {},
+   "notes": [
+    "reference site from reference_sites-0.1.0.csv; coord_source_key=WIKI_UBEHEBE; coord_precision=feature"
+   ]
+  }
+ ]
+}

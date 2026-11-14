@@ -1,0 +1,10 @@
+{
+ "dataset_version": "ref-0.1.0",
+ "builder": "pipeline.geodata (geo/data-foundation)",
+ "builder_commit": "234ae8606b6c120be6cbad87b0e390323d3110d2",
+ "same_code_as": "geo-0.1.0",
+ "dataset_version_in_files": "geo-0.1.0 (builder constant; schema accepts only geo-X.Y.Z)",
+ "sites_csv": "reference_sites-0.1.0.csv",
+ "n_aois": 25,
+ "note": "attributes only; no scores or ranks computed"
+}

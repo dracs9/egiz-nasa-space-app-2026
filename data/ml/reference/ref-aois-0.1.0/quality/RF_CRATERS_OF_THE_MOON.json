@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_CRATERS_OF_THE_MOON",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:27Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:29Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:30Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:31Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    7.26,
+    10.85,
+    17.42,
+    24.81,
+    31.03,
+    35.81,
+    36.91,
+    35.76,
+    33.61,
+    27.83,
+    17.98,
+    7.37
+   ],
+   "t2m_min_c": [
+    -29.23,
+    -25.53,
+    -21.87,
+    -10.44,
+    -6.47,
+    -3.59,
+    2.51,
+    1.53,
+    -3.66,
+    -13.87,
+    -32.62,
+    -27.65
+   ],
+   "t2m_c": [
+    -7.72,
+    -6.16,
+    -0.68,
+    3.92,
+    9.61,
+    15.2,
+    21.43,
+    20.0,
+    14.3,
+    6.11,
+    -1.1,
+    -7.44
+   ],
+   "precip_rate_mm_per_day": [
+    1.43,
+    1.28,
+    1.52,
+    1.31,
+    1.41,
+    0.92,
+    0.42,
+    0.51,
+    0.76,
+    1.08,
+    1.19,
+    1.89
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-113.5627&latitude=43.4617&format=JSON",
+  "accessed": "2026-11-14T16:19:30Z",
+  "sha256": "478bf54f65da43cdedbd422327c98601341edcd974827d7ed42743b1b7985ce8"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=43.46167&lng=-113.56271",
+  "map_id": 4547639,
+  "source_id": 546,
+  "source_ref": "(2012). Lewis, R.S., Link, P.K., Stanford, L.R., and Long, S.P., 2012, Geologic map of Idaho: Idaho Geological Survey, Map M-9, scale 1:750,000..",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-14T16:19:30Z"
+ }
+}

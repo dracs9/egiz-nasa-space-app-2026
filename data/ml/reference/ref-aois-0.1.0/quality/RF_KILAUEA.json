@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_KILAUEA",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:18Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:20Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:21Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:22Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    25.63,
+    26.66,
+    26.53,
+    27.45,
+    26.29,
+    26.4,
+    27.73,
+    27.94,
+    29.05,
+    28.25,
+    27.36,
+    26.01
+   ],
+   "t2m_min_c": [
+    15.9,
+    15.34,
+    15.8,
+    15.96,
+    17.77,
+    18.38,
+    18.52,
+    18.96,
+    18.81,
+    19.12,
+    17.43,
+    17.01
+   ],
+   "t2m_c": [
+    20.13,
+    19.85,
+    20.07,
+    20.5,
+    21.2,
+    21.64,
+    22.24,
+    22.65,
+    22.65,
+    22.4,
+    21.56,
+    20.62
+   ],
+   "precip_rate_mm_per_day": [
+    6.2,
+    6.47,
+    8.78,
+    8.03,
+    5.64,
+    4.4,
+    4.91,
+    5.41,
+    5.54,
+    5.92,
+    7.19,
+    7.11
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-155.2868&latitude=19.4211&format=JSON",
+  "accessed": "2026-11-14T16:19:21Z",
+  "sha256": "2166bf68298643b692d620b317b272d249b23d7186104ce8f499e29a220ecd02"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=19.42110&lng=-155.28676",
+  "map_id": 4490696,
+  "source_id": 558,
+  "source_ref": "(2021). Sherrod, D.R., Sinton, J.M., Watkins, S.E., and Brunt, K.M., 2021, Geologic map of the State of Hawaiʻi: U.S. Geological Survey Scientific Investigations Map 3143, pamphlet 72 p., 5 sheets, scales 1:100,000 and 1:250,000, https://doi.org/10.3133/sim3143..  https://doi.org/10.3133/sim3143",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-14T16:19:21Z"
+ }
+}

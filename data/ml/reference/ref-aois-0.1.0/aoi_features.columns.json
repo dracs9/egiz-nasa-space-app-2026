@@ -1,0 +1,542 @@
+{
+ "schema_version": "1.0.0",
+ "dataset_version": "geo-0.1.0",
+ "columns": {
+  "aoi_id": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "site_id": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "group_id": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "body": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "pool": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "lon": {
+   "unit": "deg",
+   "description": "AOI centre longitude, planetocentric, east-positive, -180..180"
+  },
+  "lat": {
+   "unit": "deg",
+   "description": "AOI centre latitude, planetocentric"
+  },
+  "coverage_level": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "quality_status": {
+   "unit": "id",
+   "description": "identifier / bookkeeping column"
+  },
+  "slope_f400_p50_deg": {
+   "unit": "deg",
+   "description": "Fine slope percentile p50, difference baseline 400 m, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "slope_f400_p90_deg": {
+   "unit": "deg",
+   "description": "Fine slope percentile p90, difference baseline 400 m, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "frac_lt10_f400": {
+   "unit": "fraction",
+   "description": "Fraction of valid slope pixels below threshold (frac_lt10_f400)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "frac_lt20_f400": {
+   "unit": "fraction",
+   "description": "Fraction of valid slope pixels below threshold (frac_lt20_f400)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "tri_f400_m": {
+   "unit": "m",
+   "description": "Median terrain ruggedness index (mean |dz| to 8 neighbours) on fine grid, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "slope_r_p50_deg": {
+   "unit": "deg",
+   "description": "Regional slope percentile p50, 2 km baseline on 200 m grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "slope_r_p90_deg": {
+   "unit": "deg",
+   "description": "Regional slope percentile p90, 2 km baseline on 200 m grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "frac_lt20_r": {
+   "unit": "fraction",
+   "description": "Fraction of valid slope pixels below threshold (frac_lt20_r)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m UTM)"
+  },
+  "relief_m": {
+   "unit": "m",
+   "description": "Elevation p95 - p5 on 200 m grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m regional grid)"
+  },
+  "elev_min_m": {
+   "unit": "m",
+   "description": "Minimum elevation on 200 m grid, 20 km core (body vertical datum)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (200 m regional grid)"
+  },
+  "slope_f100_p50_deg": {
+   "unit": "deg",
+   "description": "Fine slope percentile p50, difference baseline 100 m, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (50 m UTM)"
+  },
+  "slope_f100_p90_deg": {
+   "unit": "deg",
+   "description": "Fine slope percentile p90, difference baseline 100 m, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (50 m UTM)"
+  },
+  "frac_lt10_f100": {
+   "unit": "fraction",
+   "description": "Fraction of valid slope pixels below threshold (frac_lt10_f100)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (50 m UTM)"
+  },
+  "frac_lt20_f100": {
+   "unit": "fraction",
+   "description": "Fraction of valid slope pixels below threshold (frac_lt20_f100)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (50 m UTM)"
+  },
+  "tri_f100_m": {
+   "unit": "m",
+   "description": "Median terrain ruggedness index (mean |dz| to 8 neighbours) on fine grid, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.common.terrain.terrain_attributes on local metric grid (50 m UTM)"
+  },
+  "dem_valid_frac": {
+   "unit": "fraction",
+   "description": "Fraction of valid DEM pixels in the analysed fine grid core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "valid fraction of 20 km core on fine grid"
+  },
+  "elev_p05_m": {
+   "unit": "m",
+   "description": "Elevation percentile p05, fine grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "elev_p50_m": {
+   "unit": "m",
+   "description": "Elevation percentile p50, fine grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "elev_p95_m": {
+   "unit": "m",
+   "description": "Elevation percentile p95, fine grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "elev_std_m": {
+   "unit": "m",
+   "description": "Elevation standard deviation, fine grid, 20 km core",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_mean_deg": {
+   "unit": "deg",
+   "description": "Mean fine slope (baseline 100 m), central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_std_deg": {
+   "unit": "deg",
+   "description": "Std of fine slope (baseline 100 m), central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_bin_0_5_frac": {
+   "unit": "fraction",
+   "description": "Fraction of fine-slope pixels in bin 0_5 deg (baseline 100 m)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_bin_5_15_frac": {
+   "unit": "fraction",
+   "description": "Fraction of fine-slope pixels in bin 5_15 deg (baseline 100 m)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_bin_15_30_frac": {
+   "unit": "fraction",
+   "description": "Fraction of fine-slope pixels in bin 15_30 deg (baseline 100 m)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "slope_f100_bin_gt30_frac": {
+   "unit": "fraction",
+   "description": "Fraction of fine-slope pixels in bin gt30 deg (baseline 100 m)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "aspect_northness_mean_unitless": {
+   "unit": "1",
+   "description": "Mean cos(downslope azimuth) over pixels steeper than 2 deg, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "aspect_eastness_mean_unitless": {
+   "unit": "1",
+   "description": "Mean sin(downslope azimuth) over pixels steeper than 2 deg, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "aspect_sloped_frac": {
+   "unit": "fraction",
+   "description": "Fraction of central 10 km pixels steeper than 2 deg (aspect support)",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "curv_lap_f100_std_per_m": {
+   "unit": "1/m",
+   "description": "Std of 5-point Laplacian of elevation (1/m), fine grid, central 10 km",
+   "missing_encoding": "empty cell",
+   "evidence": "derived",
+   "sources_by_body": {
+    "earth": "COP_GLO30"
+   },
+   "method": "pipeline.geodata.features.extra_terrain on fine local grid"
+  },
+  "tree_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: tree",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "crop_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: crop",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "built_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: built",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "bare_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: bare",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "snow_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: snow",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "water_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: water",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "grass_shrub_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: grass_shrub",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "moss_lichen_frac": {
+   "unit": "fraction",
+   "description": "WorldCover 2021 class fraction: moss_lichen",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "landcover_classified_frac": {
+   "unit": "fraction",
+   "description": "Fraction of 20 km square with a valid WorldCover class",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "ESA_WC_V200"
+   },
+   "method": "fraction of classified 10 m pixels in 20 km UTM square (nearest reprojection)"
+  },
+  "t2m_max_warmest_month_c": {
+   "unit": "degC",
+   "description": "Max over months of POWER T2M_MAX climatology (2 m AIR temperature, not LST)",
+   "missing_encoding": "empty cell",
+   "evidence": "modelled",
+   "sources_by_body": {
+    "earth": "NASA_POWER_CLIM"
+   },
+   "method": "POWER climatology 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025); 2 m AIR temperature (not LST) at AOI centre, 0.5 deg cell; precip = sum(monthly mean rate x days)"
+  },
+  "t2m_min_coldest_month_c": {
+   "unit": "degC",
+   "description": "Min over months of POWER T2M_MIN climatology (2 m AIR temperature, not LST)",
+   "missing_encoding": "empty cell",
+   "evidence": "modelled",
+   "sources_by_body": {
+    "earth": "NASA_POWER_CLIM"
+   },
+   "method": "POWER climatology 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025); 2 m AIR temperature (not LST) at AOI centre, 0.5 deg cell; precip = sum(monthly mean rate x days)"
+  },
+  "t2m_mean_annual_c": {
+   "unit": "degC",
+   "description": "Mean of monthly POWER T2M climatology (2 m air temperature)",
+   "missing_encoding": "empty cell",
+   "evidence": "modelled",
+   "sources_by_body": {
+    "earth": "NASA_POWER_CLIM"
+   },
+   "method": "POWER climatology 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025); 2 m AIR temperature (not LST) at AOI centre, 0.5 deg cell; precip = sum(monthly mean rate x days)"
+  },
+  "t2m_seasonal_range_c": {
+   "unit": "degC",
+   "description": "Warmest minus coldest monthly mean POWER T2M",
+   "missing_encoding": "empty cell",
+   "evidence": "modelled",
+   "sources_by_body": {
+    "earth": "NASA_POWER_CLIM"
+   },
+   "method": "POWER climatology 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025); 2 m AIR temperature (not LST) at AOI centre, 0.5 deg cell; precip = sum(monthly mean rate x days)"
+  },
+  "precip_annual_mm": {
+   "unit": "mm",
+   "description": "Annual precipitation from POWER PRECTOTCORR monthly climatology",
+   "missing_encoding": "empty cell",
+   "evidence": "modelled",
+   "sources_by_body": {
+    "earth": "NASA_POWER_CLIM"
+   },
+   "method": "POWER climatology 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025); 2 m AIR temperature (not LST) at AOI centre, 0.5 deg cell; precip = sum(monthly mean rate x days)"
+  },
+  "geo_unit_name_label": {
+   "unit": "text",
+   "description": "Geologic map unit name at AOI centre (Macrostrat)",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  },
+  "geo_lith_label": {
+   "unit": "text",
+   "description": "Map-unit lithology text (not spectral mineralogy)",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  },
+  "geo_age_interval_label": {
+   "unit": "text",
+   "description": "Best chronostratigraphic interval of the map unit",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  },
+  "geo_age_top_ma": {
+   "unit": "Ma",
+   "description": "Map-unit top age, Ma",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  },
+  "geo_age_bottom_ma": {
+   "unit": "Ma",
+   "description": "Map-unit bottom age, Ma",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  },
+  "geo_map_scale_label": {
+   "unit": "text",
+   "description": "Scale class of the source map (large/medium/small/tiny)",
+   "missing_encoding": "empty cell",
+   "evidence": "proxy",
+   "sources_by_body": {
+    "earth": "MACROSTRAT"
+   },
+   "method": "Macrostrat map unit at AOI centre, most detailed scale (medium)"
+  }
+ }
+}

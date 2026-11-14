@@ -50,8 +50,12 @@ def environment(fc, *, project=None, start_year=2015, end_year=2024, precip_star
     # Preserve native product scales. Sampling all bands at 1 km would destroy
     # the narrow water/built fractions used by objective constraints.
     merged = {}
-    for image, scale in [(temp, 1000), (rain, 11000), (bands, 100)]:
-        for feature in image.reduceRegions(fc, ee.Reducer.mean(), scale=scale).getInfo()["features"]:
+    # A single-band reduction is reported as property "mean", not the band name;
+    # name it explicitly so precip_mm is not silently dropped (fix 2026-11-14, Claude Code).
+    for image, scale, reducer in [(temp, 1000, ee.Reducer.mean()),
+                                  (rain, 11000, ee.Reducer.mean().setOutputs(["precip_mm"])),
+                                  (bands, 100, ee.Reducer.mean())]:
+        for feature in image.reduceRegions(fc, reducer, scale=scale).getInfo()["features"]:
             props = feature["properties"]
             row = merged.setdefault(props["id"], {"id": props["id"], "attrs": {}, "context": {}})
             for key in ["t_min_c", "t_max_c", "precip_mm", "bare_frac"]:

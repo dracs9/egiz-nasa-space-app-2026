@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_COSO",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:22Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:23Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:24Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:26Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    19.3,
+    20.93,
+    23.39,
+    27.23,
+    32.15,
+    36.53,
+    37.4,
+    36.79,
+    35.11,
+    30.05,
+    23.34,
+    19.57
+   ],
+   "t2m_min_c": [
+    -16.36,
+    -17.57,
+    -14.59,
+    -12.59,
+    -4.69,
+    -3.17,
+    5.81,
+    3.74,
+    -2.06,
+    -5.78,
+    -14.61,
+    -17.21
+   ],
+   "t2m_c": [
+    1.58,
+    2.12,
+    4.92,
+    7.72,
+    12.61,
+    18.63,
+    22.68,
+    21.7,
+    17.89,
+    11.59,
+    5.62,
+    1.24
+   ],
+   "precip_rate_mm_per_day": [
+    1.93,
+    1.9,
+    1.46,
+    1.01,
+    0.52,
+    0.12,
+    0.27,
+    0.23,
+    0.25,
+    0.59,
+    1.15,
+    2.2
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-117.8200&latitude=36.0300&format=JSON",
+  "accessed": "2026-11-14T16:19:24Z",
+  "sha256": "3923bbe67411b69f0a6a35bbc1ac180b7c345adffebc24e24eaf06c5fbec3972"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=36.03000&lng=-117.82000",
+  "map_id": 5245691,
+  "source_id": 1134,
+  "source_ref": "Richard S. Whitmarsh (1998). Geologic Map of the Coso Range. https://www.geosociety.org/maps/1998-whitmarsh-coso/WhitmarshCoso-GIS-files.zip 10.1130/1998-whitmarsh-coso",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-14T16:19:25Z"
+ }
+}

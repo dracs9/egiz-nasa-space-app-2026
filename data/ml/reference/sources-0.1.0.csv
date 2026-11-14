@@ -1,0 +1,36 @@
+key,citation,url_or_doi,read_by_us,accessed
+NASA_JETT3,NASA 2022. To Practice Artemis Moonwalking and Roving Operations in Arizona Desert,see data/curated/sources.csv,curated,2026-10-15
+AZGS_SP,Arizona Geological Survey. Birds-eye view of SP Crater,see data/curated/sources.csv,curated,2026-10-15
+NASA_DRATS2022_QL,NASA JSC 2023. Desert Research and Technology Studies (D-RATS) 2022 Quicklook Report,https://ntrs.nasa.gov/citations/20230007175,yes (record page),2026-11-14
+NASA_EOL_BLACKPOINT,NASA Earth Observatory. Black Point Lava Flow Arizona (ISS020-E-33530; Lunar Electric Rover tests Aug-Sep 2009),https://eol.jsc.nasa.gov/Collections/EarthObservatory/articles/BlackPointLavaFlowArizona.htm,yes,2026-11-14
+FONG2010_K10,Fong T. et al. 2010. Robotic follow-up for human exploration (K10 rovers at Haughton Crater),https://ntrs.nasa.gov/api/citations/20110008151/downloads/20110008151.pdf,yes (PDF text),2026-11-14
+LEE2009_LPSC,Lee P. et al. 2009. LPSC XL abstract 2498 (HMP long-range vehicular traverses),https://ui.adsabs.harvard.edu/abs/2009LPI....40.2498L/abstract,search summary only,2026-11-14
+PHINNEY2015,"Phinney W. C. 2015. Science Training History of the Apollo Astronauts. NASA/SP-2015-626 (appendices E and I: field exercises by date, crew and site)",https://ntrs.nasa.gov/citations/20190026783,"yes (full PDF text, appendices E and I)",2026-11-14
+HOROWITZ1972,Horowitz N. H. Cameron R. E. Hubbard J. S. 1972. Microbiology of the Dry Valleys of Antarctica. Science 176:242-245,doi:10.1126/science.176.4032.242,no (cited by Wikipedia),2026-11-14
+CAPTAIN2010_RESOLVE,Captain J. et al. 2010. RESOLVE's Field Demonstration on Mauna Kea Hawaii 2010,https://ntrs.nasa.gov/api/citations/20100033667/downloads/20100033667.pdf,yes (PDF text),2026-11-14
+WIKI_HAUGHTON,Wikipedia. Haughton impact crater (coordinates),https://en.wikipedia.org/wiki/Haughton_impact_crater,yes,2026-11-14
+WIKI_RIES,Wikipedia. Nordlinger Ries,https://en.wikipedia.org/wiki/N%C3%B6rdlinger_Ries,yes,2026-11-14
+WIKI_ASKJA,Wikipedia. Askja; The Astronaut Monument,https://en.wikipedia.org/wiki/Askja,yes,2026-11-14
+WIKI_METEOR,Wikipedia. Meteor Crater,https://en.wikipedia.org/wiki/Meteor_Crater,yes,2026-11-14
+WIKI_MDV,Wikipedia. McMurdo Dry Valleys,https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys,yes,2026-11-14
+WIKI_MDRS,Wikipedia. Mars Desert Research Station,https://en.wikipedia.org/wiki/Mars_Desert_Research_Station,yes,2026-11-14
+WIKI_MISTASTIN,Wikipedia. Mistastin crater,https://en.wikipedia.org/wiki/Mistastin_crater,yes,2026-11-14
+WIKI_RIO_TINTO,Wikipedia. Rio Tinto (river),https://en.wikipedia.org/wiki/R%C3%ADo_Tinto,yes,2026-11-14
+WIKI_ATACAMA,Wikipedia. Atacama Desert,https://en.wikipedia.org/wiki/Atacama_Desert,yes,2026-11-14
+WIKI_KILBOURNE_HOLE,Wikipedia. Kilbourne Hole (coordinates),https://en.wikipedia.org/wiki/Kilbourne_Hole,yes,2026-11-14
+WIKI_SUNSET_CRATER,Wikipedia. Sunset Crater (coordinates),https://en.wikipedia.org/wiki/Sunset_Crater,yes,2026-11-14
+WIKI_UBEHEBE,Wikipedia. Ubehebe Crater (coordinates),https://en.wikipedia.org/wiki/Ubehebe_Crater,yes,2026-11-14
+WIKI_CAPULIN,Wikipedia. Capulin Volcano National Monument (coordinates),https://en.wikipedia.org/wiki/Capulin_Volcano_National_Monument,yes,2026-11-14
+WIKI_NEWBERRY,Wikipedia. Newberry Volcano (coordinates),https://en.wikipedia.org/wiki/Newberry_Volcano,yes,2026-11-14
+WIKI_MEDICINE_LAKE,Wikipedia. Medicine Lake Volcano (coordinates),https://en.wikipedia.org/wiki/Medicine_Lake_Volcano,yes,2026-11-14
+WIKI_KILAUEA,Wikipedia. K%C4%ABlauea (coordinates),https://en.wikipedia.org/wiki/K%C4%ABlauea,yes,2026-11-14
+WIKI_KATMAI,Wikipedia. Valley of Ten Thousand Smokes (coordinates),https://en.wikipedia.org/wiki/Valley_of_Ten_Thousand_Smokes,yes,2026-11-14
+WIKI_SUDBURY,Wikipedia. Sudbury Basin (coordinates),https://en.wikipedia.org/wiki/Sudbury_Basin,yes,2026-11-14
+WIKI_COSO,Wikipedia. Coso Volcanic Field (coordinates),https://en.wikipedia.org/wiki/Coso_Volcanic_Field,yes,2026-11-14
+WIKI_RIO_GRANDE_GORGE,Wikipedia. Rio Grande Gorge (coordinates),https://en.wikipedia.org/wiki/Rio_Grande_Gorge,yes,2026-11-14
+WIKI_OROCOPIA,Wikipedia. Orocopia Mountains (coordinates),https://en.wikipedia.org/wiki/Orocopia_Mountains,yes,2026-11-14
+WIKI_CRATERS_OF_THE_MOON,Wikipedia. Craters of the Moon National Monument and Preserve (coordinates),https://en.wikipedia.org/wiki/Craters_of_the_Moon_National_Monument_and_Preserve,yes,2026-11-14
+WIKI_MONO_CRATERS,Wikipedia. Mono%E2%80%93Inyo Craters (coordinates),https://en.wikipedia.org/wiki/Mono%E2%80%93Inyo_Craters,yes,2026-11-14
+WIKI_PINACATE,Wikipedia. El Pinacate y Gran Desierto de Altar Biosphere Reserve (coordinates),https://en.wikipedia.org/wiki/El_Pinacate_y_Gran_Desierto_de_Altar_Biosphere_Reserve,yes,2026-11-14
+WIKI_BIG_BEND,Wikipedia. Big Bend National Park (coordinates),https://en.wikipedia.org/wiki/Big_Bend_National_Park,yes,2026-11-14
+WIKI_GRAND_CANYON,Wikipedia. Grand Canyon (coordinates),https://en.wikipedia.org/wiki/Grand_Canyon,yes,2026-11-14

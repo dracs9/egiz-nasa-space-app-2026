@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_MDRS_UTAH",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:18:59Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:01Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:02Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:04Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    16.3,
+    19.82,
+    25.9,
+    30.48,
+    36.96,
+    40.13,
+    41.12,
+    38.52,
+    38.0,
+    31.19,
+    22.72,
+    16.7
+   ],
+   "t2m_min_c": [
+    -19.96,
+    -19.3,
+    -12.09,
+    -6.72,
+    -3.06,
+    2.17,
+    11.15,
+    9.62,
+    -0.13,
+    -9.55,
+    -12.56,
+    -16.49
+   ],
+   "t2m_c": [
+    -1.12,
+    1.09,
+    5.84,
+    10.11,
+    15.93,
+    22.93,
+    26.74,
+    24.79,
+    19.71,
+    11.42,
+    4.18,
+    -1.17
+   ],
+   "precip_rate_mm_per_day": [
+    0.57,
+    0.61,
+    0.63,
+    0.6,
+    0.58,
+    0.38,
+    0.84,
+    0.77,
+    0.86,
+    0.87,
+    0.58,
+    0.64
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-110.7919&latitude=38.4065&format=JSON",
+  "accessed": "2026-11-14T16:19:02Z",
+  "sha256": "9350311b4b7b0c950b2b232217596c62e04e9445f7a4c01e9a11e7af6463a756"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=38.40646&lng=-110.79190",
+  "map_id": 3858065,
+  "source_id": 475,
+  "source_ref": "(2000). Hintze, L.F., Willis, G.C., and Laes, D.Y.M., Sprinkel, D.A., and Brown, K.D., 2000, Digital Geologic Map of Utah: Utah Geological Survey Map M-179DM, scale 1:500,000, https://doi.org/10.34191/M-179dm..",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-14T16:19:03Z"
+ }
+}

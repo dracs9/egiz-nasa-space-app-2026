@@ -1,0 +1,141 @@
+{
+ "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+ "status": "fail",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "fail",
+   "detail": "landcover: AccessError: cannot open https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S78E162_Map.tif: HTTP response code: 404"
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L1_dem",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:18:59Z"
+  },
+  "landcover": {
+   "status": "failed",
+   "error": "AccessError: cannot open https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S78E162_Map.tif: HTTP response code: 404",
+   "at": "2026-11-14T16:21:21Z",
+   "trace": "ndcover(record, aoi)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\AppData\\Local\\Temp\\claude\\79acc49a9a7a717e\\e6d914f5-4e66-47cf-b416-c7a8020844ff\\scratchpad\\geowt\\pipeline\\geodata\\features.py\", line 268, in stage_landcover\n    z, transform, crs, info = mosaic_window(urls, bounds, dtype=\"uint8\", nodata=0)\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npipeline.planets.access.AccessError: cannot open https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S78E162_Map.tif: HTTP response code: 404\n"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:01Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:02Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -2.28,
+    -4.96,
+    -11.77,
+    -12.78,
+    -12.03,
+    -14.67,
+    -13.61,
+    -14.15,
+    -15.43,
+    -9.2,
+    -7.15,
+    -2.2
+   ],
+   "t2m_min_c": [
+    -20.24,
+    -30.09,
+    -39.22,
+    -44.59,
+    -47.77,
+    -49.62,
+    -47.39,
+    -46.16,
+    -46.4,
+    -42.81,
+    -35.55,
+    -23.25
+   ],
+   "t2m_c": [
+    -10.97,
+    -16.95,
+    -25.35,
+    -29.89,
+    -29.75,
+    -30.87,
+    -33.21,
+    -32.17,
+    -30.92,
+    -25.37,
+    -17.76,
+    -11.29
+   ],
+   "precip_rate_mm_per_day": [
+    0.21,
+    0.37,
+    0.23,
+    0.19,
+    0.16,
+    0.18,
+    0.12,
+    0.22,
+    0.18,
+    0.2,
+    0.15,
+    0.19
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=162.5170&latitude=-77.4670&format=JSON",
+  "accessed": "2026-11-14T16:19:01Z",
+  "sha256": "afb7ce03aecd9c9672cfc0f9acb3d9d44ba8354ddec22f36700faf315a812c7b"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=-77.46700&lng=162.51700",
+  "map_id": 4867385,
+  "source_id": 1084,
+  "source_ref": "(). GeoMAP: SCAR Antarctic geological map dataset.",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-14T16:19:01Z"
+ }
+}

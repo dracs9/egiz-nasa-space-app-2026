@@ -1,0 +1,2387 @@
+{
+ "schema_version": "1.0.0",
+ "dataset_version": "geo-0.1.0",
+ "assets": [
+  {
+   "aoi_id": "RF_ASKJA",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_ASKJA.tif",
+   "sha256": "be02faacbce5939ece509da51a8f51808026f3d224367a2d92ab91c7a062234f",
+   "bytes": 1988082,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0005555555555555556,
+    0.0,
+    -17.023891361994224,
+    0.0,
+    -0.0002777777777777778,
+    65.1342651802483
+   ],
+   "shape": [
+    730,
+    864
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N64_00_W018_00_DEM/Copernicus_DSM_COG_10_N64_00_W018_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N64_00_W017_00_DEM/Copernicus_DSM_COG_10_N64_00_W017_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W018_00_DEM/Copernicus_DSM_COG_10_N65_00_W018_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_ASKJA",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_ASKJA.tif",
+   "sha256": "c64d02c0fa6f18031ada06c345c37998439edecddd049285a803b8795baa9671",
+   "bytes": 124141,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_ASKJA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_ASKJA_p200.tif",
+   "sha256": "de561c39eef0bd5c585305e941cdf768239d6bc05d98b187a228389401b9f460",
+   "bytes": 33529,
+   "crs": "EPSG:32628",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    405032.13712034805,
+    0.0,
+    -200.0,
+    7224316.919594523
+   ],
+   "valid_frac": 0.9990082644628099,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_ASKJA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_ASKJA_p50.tif",
+   "sha256": "c7c3a7826e34059fa97fa1ba8cff3e044425552e3aeb9d13b86ce280e6d4417e",
+   "bytes": 469825,
+   "crs": "EPSG:32628",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    405032.13712034805,
+    0.0,
+    -50.0,
+    7224316.919594523
+   ],
+   "valid_frac": 0.99974173553719,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_BIG_BEND.tif",
+   "sha256": "2e3f863b9790129696453344b438ab21d0f3e961e7307d4515a725a07150c2e0",
+   "bytes": 1984976,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -103.36473726971313,
+    0.0,
+    -0.0002777777777777778,
+    29.350674097685406
+   ],
+   "shape": [
+    725,
+    827
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_W104_00_DEM/Copernicus_DSM_COG_10_N29_00_W104_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_BIG_BEND.tif",
+   "sha256": "b596f2344ce7252ea55345dce5a4218f359d41618cc913dfdbba6a0ff4ab4bc5",
+   "bytes": 347347,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27W105_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_BIG_BEND_p200.tif",
+   "sha256": "db762e40bcc44b377985621e743a5d3cfe102bbbe80f53d64bfbda0a83444ca5",
+   "bytes": 35000,
+   "crs": "EPSG:32613",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    659052.0374414623,
+    0.0,
+    -200.0,
+    3247953.1773375715
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_BIG_BEND",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_BIG_BEND_p50.tif",
+   "sha256": "7113cd0ed128d5908cc100b50215e166738324465bc4e70bd198d6008461795b",
+   "bytes": 498480,
+   "crs": "EPSG:32613",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    659052.0374414623,
+    0.0,
+    -50.0,
+    3247953.1773375715
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_CAPULIN.tif",
+   "sha256": "aa655e295285b10615758659c1fc86a30464f546ab4a1f421b41f714d463ab31",
+   "bytes": 1951118,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -104.09442651906063,
+    0.0,
+    -0.0002777777777777778,
+    36.88237254878358
+   ],
+   "shape": [
+    722,
+    897
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W105_00_DEM/Copernicus_DSM_COG_10_N36_00_W105_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W104_00_DEM/Copernicus_DSM_COG_10_N36_00_W104_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_CAPULIN.tif",
+   "sha256": "e141b64eda77cde1917ded1272ae24d4701c6a266e7123956ddc78f9a4f76fc8",
+   "bytes": 176883,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W105_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_CAPULIN_p200.tif",
+   "sha256": "1e7f7e857988413fc8640a47ec79bcd31bb62228bf5324dbff35e871ad232857",
+   "bytes": 31679,
+   "crs": "EPSG:32613",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    580907.4696008288,
+    0.0,
+    -200.0,
+    4082208.4528873586
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_CAPULIN",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_CAPULIN_p50.tif",
+   "sha256": "b9d6cb71338a6722d2b6ef6e22722e6849a506386de60e725291a7a6c1f9dceb",
+   "bytes": 440813,
+   "crs": "EPSG:32613",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    580907.4696008288,
+    0.0,
+    -50.0,
+    4082208.4528873586
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_COSO.tif",
+   "sha256": "c257a2a88a12e698ea34d14032a44d4eaa2ce3d1eb41fbc15717f309488f05df",
+   "bytes": 2064976,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -117.9432638894104,
+    0.0,
+    -0.0002777777777777778,
+    36.12993938178215
+   ],
+   "shape": [
+    720,
+    886
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W118_00_DEM/Copernicus_DSM_COG_10_N35_00_W118_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W118_00_DEM/Copernicus_DSM_COG_10_N36_00_W118_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_COSO.tif",
+   "sha256": "b54f8b7bb2a8d1fd00f7cac0084db24a10ac61b7a8614a85dc5866e1d9fe61e3",
+   "bytes": 565795,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W120_Map.tif",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W120_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_COSO_p200.tif",
+   "sha256": "246163da31b930e72bf815c8f26578b7ea2c07607d1392f90a237b253b484c3e",
+   "bytes": 34398,
+   "crs": "EPSG:32611",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    415122.5668906467,
+    0.0,
+    -200.0,
+    3998586.8725391454
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_COSO",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_COSO_p50.tif",
+   "sha256": "e150778ffed56356816492ec24b455fb75bae5b5b0111e3aa5a3b01f321677ad",
+   "bytes": 481994,
+   "crs": "EPSG:32611",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    415122.5668906467,
+    0.0,
+    -50.0,
+    3998586.8725391454
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_CRATERS_OF_THE_MOON.tif",
+   "sha256": "17a749f879f83dfb3bb0254d03ae4edbd01e91e107e60c5925ab29131a5e75e9",
+   "bytes": 2279290,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -113.70295538050465,
+    0.0,
+    -0.0002777777777777778,
+    43.56359368176629
+   ],
+   "shape": [
+    734,
+    1008
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_W114_00_DEM/Copernicus_DSM_COG_10_N43_00_W114_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_CRATERS_OF_THE_MOON.tif",
+   "sha256": "315ee61632b8a8cf21051697f6b5af2a2e7b60bf932589ecce1589a248610206",
+   "bytes": 290331,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42W114_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_CRATERS_OF_THE_MOON_p200.tif",
+   "sha256": "cf7dbe4a51621458504204604e4f38366911b2d14bf2ec4c4fde6f0b8e3a8786",
+   "bytes": 32869,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    281684.5981151352,
+    0.0,
+    -200.0,
+    4826274.858167186
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_CRATERS_OF_THE_MOON",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_CRATERS_OF_THE_MOON_p50.tif",
+   "sha256": "4819c592d6651bf7d0b8dde4ed45694d1c2823f55084fc2323fbf4d98aaac338",
+   "bytes": 459735,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    281684.5981151352,
+    0.0,
+    -50.0,
+    4826274.858167186
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_GRAND_CANYON.tif",
+   "sha256": "d3089cc9cadd8140433b4e2458421f7a7caabe37af6e3380020573e22484b11c",
+   "bytes": 2141536,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -112.87482755983702,
+    0.0,
+    -0.0002777777777777778,
+    36.4008596281439
+   ],
+   "shape": [
+    727,
+    898
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W113_00_DEM/Copernicus_DSM_COG_10_N36_00_W113_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_GRAND_CANYON.tif",
+   "sha256": "4703a40328a7a6212b8e5c8a51b958146d0427cb264b1fd4e3698d5659fdca16",
+   "bytes": 693513,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W114_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_GRAND_CANYON_p200.tif",
+   "sha256": "ab307af58c004f44c35033dac0a6ca6d8c4ca684d0901cb36c1e282959cc7abe",
+   "bytes": 35940,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    331868.82393662236,
+    0.0,
+    -200.0,
+    4029644.5534694865
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_GRAND_CANYON",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_GRAND_CANYON_p50.tif",
+   "sha256": "b8de459ebc20c4bd7b500eb768e4067e9191ad298910f93e27971e69068a928a",
+   "bytes": 512760,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    331868.82393662236,
+    0.0,
+    -50.0,
+    4029644.5534694865
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_HAUGHTON_CRATER.tif",
+   "sha256": "85295163548ac82af2e4462f290bd37d13b67b7712c29ad6da3fa199ddedf3ff",
+   "bytes": 2444000,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0008333333333333333,
+    0.0,
+    -90.0772280934419,
+    0.0,
+    -0.0002777777777777778,
+    75.48562183988751
+   ],
+   "shape": [
+    741,
+    978
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N75_00_W091_00_DEM/Copernicus_DSM_COG_10_N75_00_W091_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N75_00_W090_00_DEM/Copernicus_DSM_COG_10_N75_00_W090_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_HAUGHTON_CRATER.tif",
+   "sha256": "f1609d94c495e3aceb8168a52a941d23132190275247151019dc23fe85d37c1b",
+   "bytes": 832959,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N75W090_Map.tif",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N75W093_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_HAUGHTON_CRATER_p200.tif",
+   "sha256": "86e3992acf028bd6bd9f9a084418f4bbc026d343050998b3d20b1931db8df65e",
+   "bytes": 37523,
+   "crs": "EPSG:32616",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    413895.9391235715,
+    0.0,
+    -200.0,
+    8379032.009006033
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_HAUGHTON_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_HAUGHTON_CRATER_p50.tif",
+   "sha256": "8a3690e344bd6ff720f82a71f3ffe44eb9b975aa087a0703c40e6a13bbc2cc0f",
+   "bytes": 542591,
+   "crs": "EPSG:32616",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    413895.9391235715,
+    0.0,
+    -50.0,
+    8379032.009006033
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_JETT_SP_CRATER.tif",
+   "sha256": "215ce39a7ddfd5d65e039554172885ef6ca8c3640cce8f8180696319e3d35711",
+   "bytes": 1958392,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -111.75091732189887,
+    0.0,
+    -0.0002777777777777778,
+    35.67307482567878
+   ],
+   "shape": [
+    719,
+    880
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_JETT_SP_CRATER.tif",
+   "sha256": "9b428306684b1dd56377e29fbe450bc0f2b86f02c9c99f2a2bdac9bd64416c6c",
+   "bytes": 270165,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_JETT_SP_CRATER_p200.tif",
+   "sha256": "113f8c40948ea831f31d0035040b1c89b9d094e7c7976c334c6d87abf3991982",
+   "bytes": 32300,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    432041.67312581034,
+    0.0,
+    -200.0,
+    3947807.4377008895
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_JETT_SP_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_JETT_SP_CRATER_p50.tif",
+   "sha256": "b9d3d26114fe2afb6bded9253bfa79f7e6102a4b9736647cf4907910e45c8d0e",
+   "bytes": 449920,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    432041.67312581034,
+    0.0,
+    -50.0,
+    3947807.4377008895
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_KATMAI.tif",
+   "sha256": "c6e84c48bc82815bda56e7641008a521efad840e6f6ff9b66cd19b735d620396",
+   "bytes": 2378068,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.00041666666666666664,
+    0.0,
+    -155.5804790508883,
+    0.0,
+    -0.0002777777777777778,
+    58.49597679091238
+   ],
+   "shape": [
+    736,
+    934
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N58_00_W156_00_DEM/Copernicus_DSM_COG_10_N58_00_W156_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_KATMAI.tif",
+   "sha256": "366e3ae9e7494b03eee20d9c4951600a972218a1382206712a8ddd92d9f29ebb",
+   "bytes": 599805,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N57W156_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KATMAI_p200.tif",
+   "sha256": "98975b825221a7a59eed371d1ed6de9baf7c7deb51b94fe234a35b8ba556a588",
+   "bytes": 38242,
+   "crs": "EPSG:32605",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    349577.7231238737,
+    0.0,
+    -200.0,
+    6486036.74297638
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KATMAI",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KATMAI_p50.tif",
+   "sha256": "581fd02965eea5e22a8c44e01384f3ce2e544a67e9f2dd50770661b76b618eb2",
+   "bytes": 540702,
+   "crs": "EPSG:32605",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    349577.7231238737,
+    0.0,
+    -50.0,
+    6486036.74297638
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_KILAUEA.tif",
+   "sha256": "2b02580f971e06190b29d798d6699def7e7857e98c3fa4e3391c66717b2c6a31",
+   "bytes": 1792562,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -155.39291189668052,
+    0.0,
+    -0.0002777777777777778,
+    19.52172316521788
+   ],
+   "shape": [
+    725,
+    764
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N19_00_W156_00_DEM/Copernicus_DSM_COG_10_N19_00_W156_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_KILAUEA.tif",
+   "sha256": "b41a24d19cbec50f6257fd087b4cff1931559837155d6348ef047bbe2aed4152",
+   "bytes": 300357,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18W156_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KILAUEA_p200.tif",
+   "sha256": "d1a50a1bc4873ef8196e69fb1be86ecffd7774c4ad9d442a1e579e80da7d658a",
+   "bytes": 31847,
+   "crs": "EPSG:32605",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    248880.40965733404,
+    0.0,
+    -200.0,
+    2160015.9238554114
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KILAUEA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KILAUEA_p50.tif",
+   "sha256": "ffe0f67181a8824670083acfa4372d317ed629e5c1ba1827cbb2a2d0f6a1c020",
+   "bytes": 455785,
+   "crs": "EPSG:32605",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    248880.40965733404,
+    0.0,
+    -50.0,
+    2160015.9238554114
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_KILBOURNE_HOLE.tif",
+   "sha256": "62cc10a369f01a071301a55faccefe342062e0fede819c2dd88e83e10f6f0f22",
+   "bytes": 1762978,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -107.0833116552739,
+    0.0,
+    -0.0002777777777777778,
+    32.07287600339623
+   ],
+   "shape": [
+    727,
+    853
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N31_00_W108_00_DEM/Copernicus_DSM_COG_10_N31_00_W108_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N31_00_W107_00_DEM/Copernicus_DSM_COG_10_N31_00_W107_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N32_00_W108_00_DEM/Copernicus_DSM_COG_10_N32_00_W108_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N32_00_W107_00_DEM/Copernicus_DSM_COG_10_N32_00_W107_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_KILBOURNE_HOLE.tif",
+   "sha256": "07c1f082b4310573b6f94936389045a9bf20fb46eee126ae0677c9a86e33dfe3",
+   "bytes": 543009,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N30W108_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KILBOURNE_HOLE_p200.tif",
+   "sha256": "6d42bf99ba1549f1d9b3135dccfe2866e1ab0d8f0359ae8603fe75062a645d7f",
+   "bytes": 29258,
+   "crs": "EPSG:32613",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    303349.0954983528,
+    0.0,
+    -200.0,
+    3550011.3116137385
+   ],
+   "valid_frac": 0.9993388429752066,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_KILBOURNE_HOLE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_KILBOURNE_HOLE_p50.tif",
+   "sha256": "1d4af5ddf887f14a3db2f57d295401559e6fe89556fb9c97edbc8de4e5f85d6c",
+   "bytes": 413878,
+   "crs": "EPSG:32613",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    303349.0954983528,
+    0.0,
+    -50.0,
+    3550011.3116137385
+   ],
+   "valid_frac": 0.9998192148760331,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_MCMURDO_DRY_VALLEYS.tif",
+   "sha256": "bad74e08359acecd4b54c6fcb3adb59f1dc8a801f047e49ed82f437cd1c3ab6b",
+   "bytes": 2821194,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0008333333333333333,
+    0.0,
+    162.04061657208388,
+    0.0,
+    -0.0002777777777777778,
+    -77.3640093768228
+   ],
+   "shape": [
+    739,
+    1135
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S78_00_E162_00_DEM/Copernicus_DSM_COG_10_S78_00_E162_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MCMURDO_DRY_VALLEYS_p200.tif",
+   "sha256": "cd178f4991191596401ec13bee12538bb34bcf887b3394e047472fa4242ad97f",
+   "bytes": 36697,
+   "crs": "EPSG:32758",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    428868.20286488126,
+    0.0,
+    -200.0,
+    1410840.221686216
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MCMURDO_DRY_VALLEYS",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MCMURDO_DRY_VALLEYS_p50.tif",
+   "sha256": "1642431f8c4adc5a2a67cb5c57aee63b08c71ef49ee2a41d16be0b4b9775a77a",
+   "bytes": 500317,
+   "crs": "EPSG:32758",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    428868.20286488126,
+    0.0,
+    -50.0,
+    1410840.221686216
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_MDRS_UTAH.tif",
+   "sha256": "cf214dcaca096a3523bafbb32d523d470cad04fb01272f0cfb84c42d13dc37cc",
+   "bytes": 1996080,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -110.91800151073205,
+    0.0,
+    -0.0002777777777777778,
+    38.50574834369297
+   ],
+   "shape": [
+    715,
+    909
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_MDRS_UTAH.tif",
+   "sha256": "11c3cc421c397456e94d9d368053d6df2d9c6b71050aad5df6c0e66b2e872a5f",
+   "bytes": 151869,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MDRS_UTAH_p200.tif",
+   "sha256": "b9b5e92f4e084ce7d63d0db0d4d2c9cc43a6868fac4089a5bc3a0c73a2d36e89",
+   "bytes": 32701,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    507169.0858906802,
+    0.0,
+    -200.0,
+    4261934.475029481
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MDRS_UTAH",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MDRS_UTAH_p50.tif",
+   "sha256": "c3d5ba4d3d56d5fd5f9e786cc96d5cce66bc1171b771c75e0def44d107714096",
+   "bytes": 465151,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    507169.0858906802,
+    0.0,
+    -50.0,
+    4261934.475029481
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_MEDICINE_LAKE.tif",
+   "sha256": "1c63cd93a91b8b3caf5ed889aec55193f4a7f9eb0701692866cc5fb0cf15da54",
+   "bytes": 2249116,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -121.6876256651094,
+    0.0,
+    -0.0002777777777777778,
+    41.711594091948136
+   ],
+   "shape": [
+    725,
+    966
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N41_00_W122_00_DEM/Copernicus_DSM_COG_10_N41_00_W122_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_MEDICINE_LAKE.tif",
+   "sha256": "cf97cb8731fc751de323d7b042c4009182b91499da5679f20600e22e2ce14f3e",
+   "bytes": 183345,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N39W123_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MEDICINE_LAKE_p200.tif",
+   "sha256": "99033c73778fb1307df68bcaca3c41f93eb10e07b1759c8b9e7d5c89b5078c77",
+   "bytes": 33843,
+   "crs": "EPSG:32610",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    609512.852426583,
+    0.0,
+    -200.0,
+    4618592.818281677
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MEDICINE_LAKE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MEDICINE_LAKE_p50.tif",
+   "sha256": "55a53c93cd6151d6589ad596d11114ca048f5ff9c8f856c5f4908b5001fff0d7",
+   "bytes": 471915,
+   "crs": "EPSG:32610",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    609512.852426583,
+    0.0,
+    -50.0,
+    4618592.818281677
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_METEOR_CRATER.tif",
+   "sha256": "03ccbbaf2717c71baf7279a3561309f01df5e19019eb18c1715005c4b46c1a8f",
+   "bytes": 1844758,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -111.14409102044735,
+    0.0,
+    -0.0002777777777777778,
+    35.127252826326874
+   ],
+   "shape": [
+    714,
+    869
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W112_00_DEM/Copernicus_DSM_COG_10_N34_00_W112_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W111_00_DEM/Copernicus_DSM_COG_10_N34_00_W111_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W111_00_DEM/Copernicus_DSM_COG_10_N35_00_W111_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_METEOR_CRATER.tif",
+   "sha256": "ec847b9510ae44c64872c87642b5cc7c85d75892c8f7004422b7ed80cad81f16",
+   "bytes": 518105,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W111_Map.tif",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_METEOR_CRATER_p200.tif",
+   "sha256": "0312d393b51869c0bd333b1546c167c3cb16eeb944a6e2b849aef5d567c3c532",
+   "bytes": 29479,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    486871.8258934293,
+    0.0,
+    -200.0,
+    3887155.067757938
+   ],
+   "valid_frac": 0.990909090909091,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_METEOR_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_METEOR_CRATER_p50.tif",
+   "sha256": "e5e4b094422d9988d7da869bdaefe74a462391823a96c6b03026d79302e34a57",
+   "bytes": 418851,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    486871.8258934293,
+    0.0,
+    -50.0,
+    3887155.067757938
+   ],
+   "valid_frac": 0.9977272727272727,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_MISTASTIN_CRATER.tif",
+   "sha256": "4075943f7502039faede65ffd3e91a38506d3a78007b2cceb373c58606e687a0",
+   "bytes": 1368800,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.00041666666666666664,
+    0.0,
+    -63.47704967222584,
+    0.0,
+    -0.0002777777777777778,
+    55.98213812115049
+   ],
+   "shape": [
+    715,
+    848
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W064_00_DEM/Copernicus_DSM_COG_10_N55_00_W064_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_MISTASTIN_CRATER.tif",
+   "sha256": "ca11bf68c482a072e8e653054a7fe1a5e92f21c65c367a679f9b55929296832c",
+   "bytes": 502579,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N54W066_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MISTASTIN_CRATER_p200.tif",
+   "sha256": "177503ff1e2eb398236f1b4871956e87b1c45f977906bfd2e439f9d1dceecbc4",
+   "bytes": 27466,
+   "crs": "EPSG:32620",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    470233.2015781733,
+    0.0,
+    -200.0,
+    6204098.604255348
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MISTASTIN_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MISTASTIN_CRATER_p50.tif",
+   "sha256": "ba673952cc71f02e5e561be227fbb15abad86a0ba34bce0c45742630450a555a",
+   "bytes": 367456,
+   "crs": "EPSG:32620",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    470233.2015781733,
+    0.0,
+    -50.0,
+    6204098.604255348
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_MONO_CRATERS.tif",
+   "sha256": "b7fdbd198c70e27b39f9c07e04ee1258e1d65037c27d7c4da68a6739d986d906",
+   "bytes": 1852104,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -119.1278619064082,
+    0.0,
+    -0.0002777777777777778,
+    37.984148046246524
+   ],
+   "shape": [
+    729,
+    919
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W120_00_DEM/Copernicus_DSM_COG_10_N37_00_W120_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W119_00_DEM/Copernicus_DSM_COG_10_N37_00_W119_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_MONO_CRATERS.tif",
+   "sha256": "01873cfb846953f7348588162e6523ea76d1cb9ff35d507a46bb71c4fb1c9ae9",
+   "bytes": 421491,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W120_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MONO_CRATERS_p200.tif",
+   "sha256": "58d42dcc1e8ca50a21de4cf49a4fefbaa501a7d7c08ee497e92a322db0ff95df",
+   "bytes": 29788,
+   "crs": "EPSG:32611",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    313117.8623933816,
+    0.0,
+    -200.0,
+    4205719.15596868
+   ],
+   "valid_frac": 0.9992561983471074,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_MONO_CRATERS",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_MONO_CRATERS_p50.tif",
+   "sha256": "97b51fb35ea2879d629202f248031a745cc4c822d335c1d29d486208d90dc5e2",
+   "bytes": 407820,
+   "crs": "EPSG:32611",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    313117.8623933816,
+    0.0,
+    -50.0,
+    4205719.15596868
+   ],
+   "valid_frac": 0.9998192148760331,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_NEWBERRY.tif",
+   "sha256": "2b19fbbe22af8c28e60beaecf8770602b15e74194b6546ed2aa35a57cf508146",
+   "bytes": 2309958,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -121.3939646531704,
+    0.0,
+    -0.0002777777777777778,
+    43.79020126601356
+   ],
+   "shape": [
+    728,
+    1003
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_W122_00_DEM/Copernicus_DSM_COG_10_N43_00_W122_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_NEWBERRY.tif",
+   "sha256": "6cf3d4cb0a1307f38c5a8eae63fa27c9cbdd526906cc68ed514fb9f78d71c29e",
+   "bytes": 99189,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42W123_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_NEWBERRY_p200.tif",
+   "sha256": "c07a8dc791a4895032b63518d0454c4e005612039a142ffdfece980ac70d61f1",
+   "bytes": 33174,
+   "crs": "EPSG:32610",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    629641.9884304114,
+    0.0,
+    -200.0,
+    4849833.082765901
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_NEWBERRY",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_NEWBERRY_p50.tif",
+   "sha256": "09e872c3911c4f69cbab5758b4521d8db6942ea4024f87da454613bd8ad31c75",
+   "bytes": 462552,
+   "crs": "EPSG:32610",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    629641.9884304114,
+    0.0,
+    -50.0,
+    4849833.082765901
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_NORDLINGER_RIES.tif",
+   "sha256": "cbc7940826f1cb1bb533bb803e0a997c91753c2414477c7dd270515fe468f9b6",
+   "bytes": 2551208,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    10.414220001539409,
+    0.0,
+    -0.0002777777777777778,
+    48.983863641206845
+   ],
+   "shape": [
+    727,
+    1102
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E010_00_DEM/Copernicus_DSM_COG_10_N48_00_E010_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_NORDLINGER_RIES.tif",
+   "sha256": "b28bd9e9c9f1254228549c6ba831f5faa52c517f989c5f731527c6ede3922e23",
+   "bytes": 406337,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N48E009_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_NORDLINGER_RIES_p200.tif",
+   "sha256": "e654453194238b95254e24408593bee3dd4072f951adfba53242527c8cea49ed",
+   "bytes": 34245,
+   "crs": "EPSG:32632",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    603880.6369538492,
+    0.0,
+    -200.0,
+    5426633.223529225
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_NORDLINGER_RIES",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_NORDLINGER_RIES_p50.tif",
+   "sha256": "dd9d34017bfde16a142d83420422dcab59b3ab9ea4faf7bc1744757849fcc7d4",
+   "bytes": 483809,
+   "crs": "EPSG:32632",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    603880.6369538492,
+    0.0,
+    -50.0,
+    5426633.223529225
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_OROCOPIA.tif",
+   "sha256": "e7523bfb1886acf73113e8657a5e9f90651b6940cf8348b5a4e7d8c259418642",
+   "bytes": 2130540,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -115.89558408094335,
+    0.0,
+    -0.0002777777777777778,
+    33.66698100709231
+   ],
+   "shape": [
+    723,
+    863
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N33_00_W116_00_DEM/Copernicus_DSM_COG_10_N33_00_W116_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_OROCOPIA.tif",
+   "sha256": "38b9ceea41b1a6038a9488ed62a01fac1824a755f928bbe0e4f90c193eb7d2f1",
+   "bytes": 235631,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W117_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_OROCOPIA_p200.tif",
+   "sha256": "1f62e9da67593aefca50aa32e26c05fd70bf86d7190baa316dbe4b477e7b5cc3",
+   "bytes": 36972,
+   "crs": "EPSG:32611",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    602623.6326306589,
+    0.0,
+    -200.0,
+    3725782.0945182373
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_OROCOPIA",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_OROCOPIA_p50.tif",
+   "sha256": "93244ec19413351fc5195f1dbb4a5437519220cd96c5b9c3ca33ff2e42290c7a",
+   "bytes": 533142,
+   "crs": "EPSG:32611",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    602623.6326306589,
+    0.0,
+    -50.0,
+    3725782.0945182373
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_PINACATE.tif",
+   "sha256": "70f85951b705dd39cb1a808320e022bc7ceeb9d9dfc3d710f20a40c211b8ace0",
+   "bytes": 2049014,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -114.03657123276143,
+    0.0,
+    -0.0002777777777777778,
+    32.101743078714904
+   ],
+   "shape": [
+    733,
+    860
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N31_00_W115_00_DEM/Copernicus_DSM_COG_10_N31_00_W115_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N31_00_W114_00_DEM/Copernicus_DSM_COG_10_N31_00_W114_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N32_00_W115_00_DEM/Copernicus_DSM_COG_10_N32_00_W115_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N32_00_W114_00_DEM/Copernicus_DSM_COG_10_N32_00_W114_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_PINACATE.tif",
+   "sha256": "a43aef1644f0ddf84d3e065d2632de2f1fc2057c3b2ccd82698545450b243078",
+   "bytes": 27163,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N30W114_Map.tif",
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N30W117_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_PINACATE_p200.tif",
+   "sha256": "79f027b05c95938e6b6942bb5b25828e29bd7f330b329c64acb904505b274d3c",
+   "bytes": 33686,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    213421.1830680262,
+    0.0,
+    -200.0,
+    3555155.0724333324
+   ],
+   "valid_frac": 0.9996694214876033,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_PINACATE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_PINACATE_p50.tif",
+   "sha256": "0cc86ec49b958703afe08e7f5ae3575714fa3979790fe83513df9f5890d81eb8",
+   "bytes": 493642,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    213421.1830680262,
+    0.0,
+    -50.0,
+    3555155.0724333324
+   ],
+   "valid_frac": 0.9999018595041322,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_RIO_GRANDE_GORGE.tif",
+   "sha256": "aa70eee0e9754b3e973042e947a6c20f64d183a89607c9b495dc3406dd2d0dfb",
+   "bytes": 1873792,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -105.85767355433185,
+    0.0,
+    -0.0002777777777777778,
+    36.57637283360569
+   ],
+   "shape": [
+    719,
+    891
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W106_00_DEM/Copernicus_DSM_COG_10_N36_00_W106_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_RIO_GRANDE_GORGE.tif",
+   "sha256": "807d0a18c895ebb40a7fbbe3861cc3f1b357bab2cc11d759e209097b0935fbf0",
+   "bytes": 473031,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W108_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_RIO_GRANDE_GORGE_p200.tif",
+   "sha256": "409db0e1cd5f6627483d7f3e8c784fd9de4899737bd5ef0a2b683ddceb828ffc",
+   "bytes": 30258,
+   "crs": "EPSG:32613",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    423263.979789051,
+    0.0,
+    -200.0,
+    4048053.853039775
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_RIO_GRANDE_GORGE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_RIO_GRANDE_GORGE_p50.tif",
+   "sha256": "6d8cbb21b91856376ae6eec8edbf30cd4ad702ede744f42897356eb47507d971",
+   "bytes": 424336,
+   "crs": "EPSG:32613",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    423263.979789051,
+    0.0,
+    -50.0,
+    4048053.853039775
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_SUDBURY.tif",
+   "sha256": "23517df1cba9ac73419a562507f4bb4ce1a19df87af37e2db5f3b3ddcc7a15c0",
+   "bytes": 2307558,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -81.32721440588212,
+    0.0,
+    -0.0002777777777777778,
+    46.699132049912095
+   ],
+   "shape": [
+    714,
+    1036
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W082_00_DEM/Copernicus_DSM_COG_10_N46_00_W082_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_SUDBURY.tif",
+   "sha256": "4b7f309f6b273edde04a724f6db6960d1a89757e5f5ed472a4a8cb5594652cb6",
+   "bytes": 360149,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N45W084_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_SUDBURY_p200.tif",
+   "sha256": "0c6f8a0a64d9a472df5a142d9be4d2ba4a2c9aca814f8017a3074d1ec9781283",
+   "bytes": 34371,
+   "crs": "EPSG:32617",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    474983.8309211698,
+    0.0,
+    -200.0,
+    5171731.38446733
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_SUDBURY",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_SUDBURY_p50.tif",
+   "sha256": "f901af67de99fe0e78ec51ffd9b9281ba97bea8ba680f3f2de1b1ca9bc56025d",
+   "bytes": 503201,
+   "crs": "EPSG:32617",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    474983.8309211698,
+    0.0,
+    -50.0,
+    5171731.38446733
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_SUNSET_CRATER.tif",
+   "sha256": "106a03119feea749a0ae9f05d8280ebcbddc1d928ff6a99c093a0ccc3e891d10",
+   "bytes": 1996806,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -111.62545467760556,
+    0.0,
+    -0.0002777777777777778,
+    35.464066757350636
+   ],
+   "shape": [
+    718,
+    876
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_SUNSET_CRATER.tif",
+   "sha256": "f21fe96cee0d8e0b24157f0a93ac44f41cbb1324bae3e36b337614ff40ed06d5",
+   "bytes": 454219,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_SUNSET_CRATER_p200.tif",
+   "sha256": "c7f722db90a9ec51a901ca740556a789ec7eaf9e8b0bf83d6b57e8996964dbe1",
+   "bytes": 33003,
+   "crs": "EPSG:32612",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    443249.2422041562,
+    0.0,
+    -200.0,
+    3924575.6665865285
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_SUNSET_CRATER",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_SUNSET_CRATER_p50.tif",
+   "sha256": "5793617f9201e433e835ee6868a16c175a42a142e7516a4711253c725a5d0a08",
+   "bytes": 456493,
+   "crs": "EPSG:32612",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    443249.2422041562,
+    0.0,
+    -50.0,
+    3924575.6665865285
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "role": "native_window",
+   "source_id": "COP_GLO30",
+   "path": "data/raw/geo/copernicus_glo30/windows/RF_UBEHEBE.tif",
+   "sha256": "2e028cc324a4d7fceeff84f29e6d63e4e237b146c720354d3f76592e3d5877f1",
+   "bytes": 2146042,
+   "crs": "EPSG:4326",
+   "vertical_datum": "EGM2008 geoid, metres",
+   "nodata": "NaN (ocean / no tile)",
+   "native_res": "1 arcsec (~30 m)",
+   "transform": [
+    0.0002777777777777778,
+    0.0,
+    -117.57466642801596,
+    0.0,
+    -0.0002777777777777778,
+    37.10928078997632
+   ],
+   "shape": [
+    717,
+    894
+   ],
+   "tiles": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W118_00_DEM/Copernicus_DSM_COG_10_N36_00_W118_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W118_00_DEM/Copernicus_DSM_COG_10_N37_00_W118_00_DEM.tif"
+   ],
+   "absent_tiles": [],
+   "processing": "rasterio.merge method=first, nearest, finest source spacing; no value interpolation",
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "role": "native_window",
+   "source_id": "ESA_WC_V200",
+   "path": "data/raw/geo/esa_worldcover_v200/windows/RF_UBEHEBE.tif",
+   "sha256": "b42e40d491efed200aa5f1a8ef1531cc582015d22fb2e4ce8286d276f5c0bff8",
+   "bytes": 271779,
+   "crs": "EPSG:4326",
+   "nodata": "0 (unclassified / outside tiles)",
+   "native_res": "10 m",
+   "tiles": [
+    "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W120_Map.tif"
+   ],
+   "committed": false
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_UBEHEBE_p200.tif",
+   "sha256": "b6d7c20eb079ebc22ac45784f055c74904b997dd7f77490e2ea196103e615308",
+   "bytes": 35185,
+   "crs": "EPSG:32611",
+   "pixel_m": 200,
+   "shape": [
+    110,
+    110
+   ],
+   "transform": [
+    200.0,
+    0.0,
+    448940.8422254873,
+    0.0,
+    -200.0,
+    4107045.396583767
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  },
+  {
+   "aoi_id": "RF_UBEHEBE",
+   "role": "analysis_grid",
+   "source_id": null,
+   "path": "data/derived/geo-0.1.0/grids/RF_UBEHEBE_p50.tif",
+   "sha256": "cffde783b2cb944aea70d3f46b585d45900517157b7a006e30712d9b82a8a813",
+   "bytes": 497509,
+   "crs": "EPSG:32611",
+   "pixel_m": 50,
+   "shape": [
+    440,
+    440
+   ],
+   "transform": [
+    50.0,
+    0.0,
+    448940.8422254873,
+    0.0,
+    -50.0,
+    4107045.396583767
+   ],
+   "valid_frac": 1.0,
+   "committed": false,
+   "processing": "average (all source pixels valid), pipeline.planets.access.to_local_grid"
+  }
+ ]
+}

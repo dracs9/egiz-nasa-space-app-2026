@@ -1,0 +1,139 @@
+{
+ "aoi_id": "RF_MEDICINE_LAKE",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:17Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:18Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:19Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-14T16:19:21Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    17.32,
+    17.06,
+    22.09,
+    26.81,
+    31.46,
+    36.55,
+    39.37,
+    37.88,
+    36.57,
+    32.33,
+    24.35,
+    13.71
+   ],
+   "t2m_min_c": [
+    -23.88,
+    -18.68,
+    -12.59,
+    -12.43,
+    -5.51,
+    -1.75,
+    4.09,
+    3.87,
+    -1.91,
+    -6.98,
+    -17.46,
+    -20.23
+   ],
+   "t2m_c": [
+    -1.08,
+    0.38,
+    3.25,
+    6.11,
+    11.22,
+    16.14,
+    21.6,
+    20.64,
+    16.23,
+    9.2,
+    2.84,
+    -1.15
+   ],
+   "precip_rate_mm_per_day": [
+    2.85,
+    3.26,
+    3.01,
+    2.04,
+    1.56,
+    0.68,
+    0.22,
+    0.19,
+    0.42,
+    1.34,
+    2.54,
+    4.16
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-121.5536&latitude=41.6110&format=JSON",
+  "accessed": "2026-11-14T16:19:19Z",
+  "sha256": "d0bf0566ecc0d987f15ab973b06e91fbd9e11595e50399ef7c8ac2d10b023039"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=41.61096&lng=-121.55364",
+  "map_id": 4555544,
+  "source_id": 548,
+  "source_ref": "(2010). Jennings, C.W., Gutierrez, C., Bryant, W., Saucedo, G., and Wills, C., 2010, Geologic Map of California: California Geological Survey Geologic Data Map GDM-2.2010..",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-14T16:19:20Z"
+ }
+}
