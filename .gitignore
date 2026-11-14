@@ -63,3 +63,6 @@ web/public/world/
 
 # Generated copy of the discovery bundle (source: data/discovery)
 web/public/discovery/
+
+# Master footage (4K Veo exports); the site ships derived renditions from web/public/media/cinematic
+web/media-src/

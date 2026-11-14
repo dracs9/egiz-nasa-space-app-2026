@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { Type } from 'lucide-react';
 import { t, LanguageSwitcher } from '../i18n';
 import { useAppStore, type Route } from '../state/store';
 import type { DataMode } from '../data/modes';
-import { DataModePicker } from './DataModePicker';
 import { DataNotes } from './DataNotes';
 import copy from '../content/copy.json';
 
-const links: Route[] = ['discover', 'astral', 'studio', 'lab', 'campaign', 'atlas', 'evidence', 'twin'];
+// Mission Studio and Lunar World are superseded by the Planetary Studio and stay reachable from its Tools menu.
+const links: Route[] = ['planet', 'discover', 'lab', 'campaign', 'atlas', 'evidence', 'twin'];
 
 /** EGIZ mark: a horizon line under a partial orbit — Earth, before elsewhere. */
 export function EgizMark() {
@@ -17,9 +18,12 @@ export function EgizMark() {
   </svg>;
 }
 
-export function SiteHeader({ availableModes }: { availableModes: DataMode[] }) {
+export function SiteHeader(_props: { availableModes?: DataMode[] }) {
   const { route, navigate } = useAppStore();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notes, setNotes] = useState(false);
+  // Explanatory copy is hidden by default on every workspace page; this switch shows it (styles/minimal.css).
+  useEffect(() => { document.documentElement.classList.toggle('eg-notes', notes); return () => document.documentElement.classList.remove('eg-notes'); }, [notes]);
   const [scrolled, setScrolled] = useState(false);
   const [tucked, setTucked] = useState(false);
   const last = useRef(0);
@@ -58,7 +62,7 @@ export function SiteHeader({ availableModes }: { availableModes: DataMode[] }) {
       </button>)}
     </nav>
     <div className="eg-header-tools header-right">
-      <DataModePicker available={availableModes} compact />
+      <button className="eg-notes-toggle" aria-pressed={notes} aria-label={t('Show explanations')} title={t('Show explanations')} onClick={() => setNotes(!notes)}><Type size={15} /></button>
       <LanguageSwitcher />
       <DataNotes />
       <button id="navigation-toggle" className="eg-menu-toggle menu-button" aria-controls="primary-navigation" aria-label={t(menuOpen ? 'Close navigation' : 'Open navigation')} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /></button>

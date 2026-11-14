@@ -1,0 +1,58 @@
+/*
+ * EGIZ minimal layer. Loaded last; aligns every workspace page with the Planetary Studio:
+ * one typeface for interface text, sentence case, sturdier weights and icon strokes, soft fills instead of
+ * frames, and explanatory copy shown only when notes are switched on (the "i" in the header).
+ * The cinematic home page keeps its own typography. Numbers and coordinates stay monospaced.
+ */
+:root:not([data-route="home"]) {
+  --font-display: Inter, system-ui, sans-serif;
+  --ink: #0b0c0d; --ink-1: #0e0f11; --ink-2: #121416; --ink-3: #181a1d;
+  --rule: rgba(240, 240, 245, .07); --rule-strong: rgba(240, 240, 245, .16);
+  --border: rgba(240, 240, 245, .07); --line: rgba(240, 240, 245, .2);
+}
+html body { font-weight: 500; }
+html svg.lucide { stroke-width: 2.4; }
+
+/* sentence case, no tracking */
+html :where(.eg-header, #main-content:not(.route-home), .load-screen, .as-shell, .site-drawer, .interface-guide) :where(h1, h2, h3, h4, h5, button, summary, label, th, td, span, p, small, a, strong, em, dt, dd, legend, figcaption, div, li, b, option, select, input, time) {
+  text-transform: none !important; letter-spacing: normal !important;
+}
+html :where(#main-content:not(.route-home):not(.route-lab), .as-shell, .load-screen) h1 { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.2 !important; font-weight: 600 !important; max-width: 28ch; }
+html :where(#main-content:not(.route-home), .as-shell) :where(h2, h3, h4) { font-weight: 600 !important; }
+html :where(#main-content:not(.route-home), .as-shell) :where(h2) { font-size: clamp(15px, 1.2vw, 18px) !important; }
+html :where(#main-content:not(.route-home), .as-shell) :where(strong, b, th) { font-weight: 600; }
+
+/* controls: soft, rounded, quiet borders */
+html :where(#main-content:not(.route-home), .as-shell, .load-screen, .site-drawer) :where(button, select, textarea, input:not([type=range]):not([type=checkbox]):not([type=radio])) {
+  border-radius: 8px !important; border-color: rgba(240, 240, 245, .1) !important; font-weight: 500;
+}
+html :where(#main-content:not(.route-home), .as-shell, .site-drawer) :where(section, article, aside, details, figure, fieldset, table, [class*="card"], [class*="panel"]) { border-color: rgba(240, 240, 245, .06) !important; }
+html :where(#main-content:not(.route-home), .as-shell) :where(th, td) { border-color: rgba(240, 240, 245, .05) !important; }
+
+/* header */
+html .eg-header { border-bottom-color: transparent !important; }
+/* inline navigation (the drawer below 1024 px keeps its own large type) */
+@media (min-width: 1024px) {
+  html .eg-header { gap: 18px !important; }
+  html .eg-header .eg-nav { gap: clamp(6px, .9vw, 18px) !important; margin-left: 4px !important; min-width: 0; flex: 0 1 auto; overflow: hidden; }
+  html .eg-header .eg-nav button { font: 600 clamp(10.5px, .84vw, 13px)/1 Inter, system-ui, sans-serif !important; color: var(--paper-3); white-space: nowrap; padding-left: 0 !important; padding-right: 0 !important; }
+  html .eg-header .eg-nav button.active, html .eg-header .eg-nav button:hover { color: var(--paper); }
+  html .eg-header .eg-header-tools { flex: none; }
+}
+html .eg-header .eg-nav-index { display: none !important; }
+html .eg-header .eg-wordmark strong { font-weight: 700 !important; letter-spacing: .2em !important; }
+html .eg-notes-toggle { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: rgba(240, 240, 245, .06); color: var(--paper-3); cursor: pointer; }
+html .eg-notes-toggle:hover, html .eg-notes-toggle[aria-pressed="true"] { color: var(--paper); background: rgba(240, 240, 245, .16); }
+
+/* explanatory copy appears only with notes on */
+html:not(.eg-notes) #main-content:not(.route-home) :where(
+  .page-intro p, .page-intro .eyebrow, .eyebrow-dash, .eg-eyebrow,
+  .dc-intro p, .dc-meta, .dc-note, .dc-caveats,
+  .atlas-hint, .atlas-limits, .atlas-meta, .atlas-legend .muted,
+  .panel-description, .map-caption, .map-bottom-notes, .coverage-data-note, .operational-note, .research-footnote,
+  .destination-caption, .ml-start-note, .ex-welcome-intro, .astral-note, .small-copy, p.muted
+) { display: none !important; }
+html #main-content:not(.route-home) .page-intro { margin-bottom: 18px; }
+
+/* The Engineering Lab is laid out around the condensed face; it keeps it, with the shared case, weights and controls. */
+html #main-content.route-lab { --font-display: 'Sofia Sans Condensed', 'Arial Narrow', Inter, sans-serif; }

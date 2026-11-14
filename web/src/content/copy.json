@@ -15,7 +15,8 @@
     "atlas": "Transferability",
     "studio": "Lunar World",
     "astral": "Mission Studio",
-    "discover": "Discover"
+    "discover": "Discover",
+    "planet": "Planetary Studio"
   },
   "common": {
     "synthetic": "DEMO DATA — invented for illustration, not NASA observations",

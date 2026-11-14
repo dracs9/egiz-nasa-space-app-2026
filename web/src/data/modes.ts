@@ -12,6 +12,8 @@ export function initialDataMode(): DataMode {
   if (typeof window === 'undefined') return 'pilot';
   const query = new URLSearchParams(window.location.hash.split('?')[1] ?? '');
   if (query.has('data')) return isDataMode(query.get('data')) ? query.get('data') as DataMode : 'demo';
-  try { const saved = window.localStorage.getItem(MODE_STORAGE_KEY); return isDataMode(saved) ? saved : 'pilot'; } catch { return 'pilot'; }
+  // The app opens on measured data. Synthetic fixtures load only from an explicit ?data=demo link (tests, software demos);
+  // there is no in-app switch and no remembered preference.
+  return 'pilot';
 }
 export function rememberDataMode(mode: DataMode) { try { window.localStorage.setItem(MODE_STORAGE_KEY, mode); } catch { /* Preference persistence is optional. */ } }

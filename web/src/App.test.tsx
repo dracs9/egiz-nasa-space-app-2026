@@ -29,11 +29,8 @@ function fetcherFor(options: { pilotFails?: boolean; pilotGate?: Promise<void> }
 async function flush() { await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); }); }
 async function renderApp() { root = createRoot(document.getElementById('app-test')!); await act(async () => { root!.render(<App />); }); await flush(); }
 async function chooseMode(mode: string) {
-  await act(async () => {
-    const select = document.querySelector<HTMLSelectElement>('select[aria-label="Dataset source"]');
-    if (select) { select.value = mode; select.dispatchEvent(new Event('change', { bubbles: true })); }
-    else { const disclosure = document.querySelector<HTMLDetailsElement>('.dataset-switch')!; disclosure.querySelector('summary')!.click(); disclosure.querySelector<HTMLButtonElement>(`[data-dataset-mode="${mode}"]`)!.click(); }
-  });
+  // There is no in-app dataset switch any more; the source changes only programmatically or by an explicit link.
+  await act(async () => { useAppStore.getState().setDataMode(mode as 'demo' | 'pilot'); });
   await flush();
 }
 beforeEach(() => {
@@ -66,9 +63,9 @@ describe('explicit data source selection', () => {
     expect(document.querySelector('[role="alert"]')?.textContent).toContain('Data failed to load');
     expect(useAppStore.getState().dataMode).toBe('pilot'); expect(useAppStore.getState().data).toBeNull();
     expect(document.querySelector('.synthetic-banner')).toBeNull();
-    const reset = [...document.querySelectorAll('button')].find(button => button.textContent === 'Reset to synthetic demo')!;
-    await act(async () => { reset.click(); }); await flush();
-    expect(useAppStore.getState().dataMode).toBe('demo'); expect(document.querySelector('.synthetic-banner')).not.toBeNull();
+    // No control offers synthetic data in place of the failed measured source.
+    expect([...document.querySelectorAll('button')].some(button => /synthetic|demo/i.test(button.textContent ?? ''))).toBe(false);
+    expect(document.querySelector('.dataset-switch, select[aria-label="Dataset source"]')).toBeNull();
   });
   it('ignores an older measured request that completes after the user returns to demo', async () => {
     let release!: () => void; const pilotGate = new Promise<void>(resolve => { release = resolve; });

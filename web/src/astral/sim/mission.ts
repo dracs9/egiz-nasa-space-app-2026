@@ -3,7 +3,7 @@
 import { gradient, inShadow, inside, sample, type Field, type XY } from "../world/field.ts";
 import { solarAt } from "../../mission/solar.ts";
 import type { SpiceGeometry } from "../../mission/types.ts";
-import { drive, ROVERS, SOILS, type RoverProfile } from "./terramechanics.ts";
+import { axleOffsets, drive, ROVERS, SOILS, type RoverProfile } from "./terramechanics.ts";
 import { buildNavGrid, planRoute, type NavGrid, type Objective, type Obstacle, type Route, type RouteFailure } from "./traverse.ts";
 
 export type Fidelity = "fast" | "detailed";
@@ -59,7 +59,7 @@ export interface MissionResult {
   model: { fidelity: Fidelity; stepM: number; terrainPostingM: number; terramechanics: string; assumptions: string[] };
 }
 
-const WHEEL_ORDER = (r: RoverProfile) => [r.wheelbase / 2, 0, -r.wheelbase / 2].flatMap(x => [{ x, y: r.track / 2 }, { x, y: -r.track / 2 }]);
+const WHEEL_ORDER = (r: RoverProfile) => axleOffsets(r).flatMap(x => [{ x, y: r.track / 2 }, { x, y: -r.track / 2 }]);
 /** Body attitude from the measured surface: fast = gradient at the body centre; detailed = plane through six wheel contacts. */
 export function pose(f: Field, rover: RoverProfile, p: XY, heading: number, fidelity: Fidelity) {
   const fx = Math.sin(heading), fy = Math.cos(heading), lx = -fy, ly = fx; // forward and left unit vectors (east, north)
@@ -69,7 +69,7 @@ export function pose(f: Field, rover: RoverProfile, p: XY, heading: number, fide
   let pitch: number, roll: number;
   if (fidelity === "detailed" && contacts.every(c => c !== null)) {
     const z = contacts as number[], wheels = WHEEL_ORDER(rover);
-    const sxx = wheels.reduce((s, w) => s + w.x * w.x, 0), syy = wheels.reduce((s, w) => s + w.y * w.y, 0), mean = z.reduce((a, b) => a + b, 0) / 6;
+    const sxx = wheels.reduce((s, w) => s + w.x * w.x, 0), syy = wheels.reduce((s, w) => s + w.y * w.y, 0), mean = z.reduce((a, b) => a + b, 0) / z.length;
     pitch = Math.atan(wheels.reduce((s, w, i) => s + w.x * (z[i] - mean), 0) / sxx);
     roll = Math.atan(wheels.reduce((s, w, i) => s + w.y * (z[i] - mean), 0) / syy);
   } else {

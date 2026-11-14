@@ -121,3 +121,9 @@ make atlas-discover   # optional, network: Copernicus public COGs (Mangystau/Ust
 ```
 
 Measured results, failures and caveats are in [validation](docs/research/ATLAS_PI_VALIDATION_REPORT.md). Also see the [review](docs/research/ATLAS_PI_RESEARCH_REVIEW.md), [prior art](docs/research/ATLAS_PI_PRIOR_ART.md), [hypotheses](docs/research/ATLAS_PI_SCIENTIFIC_HYPOTHESES.md), [architecture](docs/research/ATLAS_PI_ARCHITECTURE_DECISIONS.md), [model card](docs/research/ATLAS_PI_MODEL_CARD.md), [provenance](docs/research/ATLAS_PI_DATA_PROVENANCE.md) and [limitations](docs/research/ATLAS_PI_LIMITATIONS.md). This is exploratory research software: no recommendation has been field-validated.
+
+### Phase II · Planetary Studio (14 November 2026)
+
+Open `/#/planet?data=pilot`. One investigation moves through **Discover → Inspect → Simulate → Compare → Decide** on a single terrain engine that renders every packaged site (Mons Mouton 5 m, Jezero 1 m, Earth GLO-30 windows) and streams real Earth elevation for any discovery candidate. It adds data-driven terrain layers, ephemeris lighting with computed shadows and solar energy, measurement tools, a configurable rover twin with scenarios, sensitivity and reproducible experiments, a context-aware assistant that calls the existing engines and is reviewed by an independent critic, an unsupervised candidate-space model, and reproducible reports. Simulation results are not validated; geology, soil and elevation-error data are not integrated.
+
+[Implemented scope, methods, verification and limits](docs/PHASE2_PLANETARY_STUDIO.md).

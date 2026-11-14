@@ -3,8 +3,9 @@
 // AI-assisted implementation; human review pending.
 
 /** plate: plays over the world · handoff: plays once, then dissolves into the live world ·
- *  scrub: the scroll position IS the frame · inline: placed by its own section */
-export type CinemaMode = 'plate' | 'handoff' | 'scrub' | 'inline';
+ *  scrub: the scroll position IS the frame · inline: placed by its own section ·
+ *  film: one of the chained clips of the opening film (Act I) */
+export type CinemaMode = 'plate' | 'handoff' | 'scrub' | 'inline' | 'film';
 export interface CinemaScene {
   id: string; name: string; group: string; base: string; mode: CinemaMode;
   window: [number, number]; loop: boolean; focus: string; role: string; status: string;
@@ -12,8 +13,10 @@ export interface CinemaScene {
 export interface CinemaAsset extends CinemaScene {
   /** video sources that exist, best first */
   sources: { src: string; type: string }[];
-  /** still / poster, if it exists */
+  /** still / poster (first frame), if it exists */
   still: string | null;
+  /** last frame, if it exists (held when a clip hands over) */
+  end: string | null;
 }
 
 const ROOT = `${import.meta.env.BASE_URL}media/cinematic/`;
@@ -37,9 +40,16 @@ export async function loadCinema(signal: AbortSignal): Promise<CinemaAsset[]> {
   } catch { return []; }
   const found = await Promise.all(scenes.map(async s => {
     const base = ROOT + s.base;
-    const [webm, mp4, jpg] = await Promise.all([exists(`${base}.webm`, 'video', signal), exists(`${base}.mp4`, 'video', signal), exists(`${base}.jpg`, 'image', signal)]);
-    const sources = [...(webm ? [{ src: `${base}.webm`, type: 'video/webm' }] : []), ...(mp4 ? [{ src: `${base}.mp4`, type: 'video/mp4' }] : [])];
-    return { ...s, sources, still: jpg ? `${base}.jpg` : null } as CinemaAsset;
+    // renditions: -1080 for desktops, -720 for phones, or a single file; the best fit for this screen goes first
+    const small = typeof window !== 'undefined' && Math.max(window.innerWidth, window.innerHeight) * Math.min(window.devicePixelRatio || 1, 2) < 1500;
+    const names = small ? ['-720', '-1080', ''] : ['-1080', '-720', ''];
+    const [videos, jpg, end] = await Promise.all([
+      Promise.all(names.map(n => exists(`${base}${n}.mp4`, 'video', signal).then(ok => ok ? { src: `${base}${n}.mp4`, type: 'video/mp4' } : null))),
+      exists(`${base}.jpg`, 'image', signal), exists(`${base}-end.jpg`, 'image', signal),
+    ]);
+    const first = videos.find(Boolean);
+    // one source only: a browser takes the first playable <source>, so listing all would never pick by size
+    return { ...s, sources: first ? [first] : [], still: jpg ? `${base}.jpg` : null, end: end ? `${base}-end.jpg` : null } as CinemaAsset;
   }));
   return found.filter(a => a.sources.length || a.still);
 }

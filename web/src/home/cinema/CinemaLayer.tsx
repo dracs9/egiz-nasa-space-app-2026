@@ -29,7 +29,7 @@ export const CinemaLayer = forwardRef<CinemaHandle, { lang: Lang; onAssets?: (a:
   const apply = (c: number) => {
     let cover = 0;
     for (const a of assets) {
-      if (a.mode === 'inline') continue;
+      if (a.mode === 'inline' || a.mode === 'film') continue;
       const el = els.current.get(a.id); if (!el) continue;
       let alpha = windowAlpha(a.window, c);
       if (a.mode === 'handoff' && ended.current.has(a.id)) alpha = 0;
@@ -58,7 +58,7 @@ export const CinemaLayer = forwardRef<CinemaHandle, { lang: Lang; onAssets?: (a:
   useImperativeHandle(ref, () => ({ update(c: number) { last.current = c; return apply(c); } }), [assets]);
   useEffect(() => { apply(last.current); });
 
-  const plates = assets.filter(a => a.mode !== 'inline');
+  const plates = assets.filter(a => a.mode !== 'inline' && a.mode !== 'film');
   if (!plates.length) return null;
   const useVideo = (a: CinemaAsset) => a.sources.length > 0 && !stills.current;
 

@@ -2,12 +2,12 @@ import type { Route } from '../state/store';
 export interface GuideTopic {id:string;selector:string;title:string;body:string;action:string}
 const topic=(id:string,selector:string,title:string,body:string,action:string):GuideTopic=>({id,selector,title,body,action});
 const shared=[
-  topic('data','.dataset-switch','Dataset source','Real terrain uses packaged measured elevations. Example data uses invented fixtures for learning. Switching the source reloads the workspace.','Open the data menu to choose the source.'),
   topic('navigation','.app-header nav','Workspaces','Mission brief sets your objectives. Campaign selects Earth sites. The laboratory runs experiments; the matrix and evidence explain the recommendations.','Choose a workspace without changing your mission target.'),
 ];
 export function topicsFor(route:Route):GuideTopic[] {
   const specific:Record<Route,GuideTopic[]>={
     home:[],
+    planet:[],
     studio:[],
     astral:[],
     discover:[],

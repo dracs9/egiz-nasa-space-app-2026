@@ -1963,5 +1963,8 @@
   "Lithology": "Литология",
   "Aridity": "Аридность",
   "Thermal": "Тепло",
-  "Sun geometry": "Солнце"
+  "Sun geometry": "Солнце",
+  "Planetary Studio": "Планетарная студия",
+  "Loading Planetary Studio…": "Загрузка планетарной студии…",
+  "Show explanations": "Показать пояснения"
 }

@@ -5,11 +5,10 @@
 
 ## Идея
 
-**Один непрерывный полёт камеры длиной 64 секунды.** Восемь клипов Veo по 8 секунд склеены так,
+**Один непрерывный полёт камеры длиной 56 секунд.** Семь клипов Veo по 8 секунд склеены так,
 что последний кадр каждого клипа совпадает с первым кадром следующего. Зритель не видит ни одной
-склейки: камера летит от Луны к Земле, обратно к Луне, к Марсу, а потом выясняется, что Марс — это
-макет на столе, на который указывает человеческая рука. Карта превращается в Землю, и камера
-поднимается домой, на орбиту.
+склейки: камера летит от Луны к Земле, обратно к Луне, к Марсу, а над кратером Езеро, не
+останавливаясь, Марс превращается в свой земной двойник. Оттуда камера поднимается домой, на орбиту.
 
 Это и есть то, что делает EGIZ, рассказанное одним движением камеры: **указать на чужую планету — и
 найти ту же почву на Земле.**
@@ -23,18 +22,16 @@
 | **S3 · Возвращение** | K2 → K3 | Камера поднимается над солончаком, голубое небо гаснет в черноту, соль снова становится реголитом. Мы на краю кратера у Монс-Мутон, Солнце ползёт по горизонту, тени тянутся на километры. | Переход к главе «Луна» (скролл). |
 | **S4 · Перелёт** | K3 → K4 | Камера отрывается от Луны, разгоняется в черноту; растёт Марс, и мы входим в его пыльную атмосферу. Слои золотой дымки расходятся над кратером Езеро. | Переход Луна → Марс (скролл). |
 | **S5 · Езеро** | K4 → K5 | Низкий полёт над слоистыми уступами древней дельты к голубому марсианскому закату; на горизонте стоят пылевые вихри. | Глава «Марс», чистое кино (скролл). |
-| **S6 · Указание** | K5 → K6 | Камера отъезжает назад и вверх, и оказывается, что дельта — это рельефный макет на столе в тёмной комнате. В кадр входит рука и указывает на кратер. Пауза: человек думает. | Открывает главу «Одна почва, две планеты». |
-| **S7 · Ответ** | K6 → K7 | Рельеф Марса оседает и поворачивается, на его месте поднимается земное лавовое плато. Палец скользит и останавливается на месте-двойнике. | Сразу после S6, затем живой интерактив сравнения. |
-| **S8 · Дом** | K7 → K8 | Камера падает в макет, и он становится настоящей Землёй. Камера взмывает сквозь облака на орбиту: тонкая линия атмосферы, сквозь которую восходит Луна. | Финал (скролл). |
+| **S6 · Ответ** | K5 → K6 | Та же камера над тем же рельефом, но планета меняется прямо в полёте: марсианский закат становится земным, слоистый уступ — исландским лавовым обрывом со мхом, тёмный песок — чёрным вулканическим. Тот же грунт, только на Земле. | Открывает главу «Одна почва, две планеты», затем живой интерактив сравнения. |
+| **S7 · Дом** | K6 → K8 | Камера поднимает взгляд от чёрного песка и взмывает сквозь закатные облака на орбиту: тонкая линия атмосферы, над ней Луна. | Финал (скролл). |
 
-Ритм: огромное (S1) → узнавание (S2) → тишина (S3) → скорость (S4) → красота (S5) → человек
-(S6) → ответ (S7) → дом (S8).
+Ритм: огромное (S1) → узнавание (S2) → тишина (S3) → скорость (S4) → красота (S5) → ответ (S6) → дом (S7).
 
 ---
 
 ## Как делать (важно для непрерывности)
 
-1. **Keyframes в Nano Banana, строго по порядку K0 → K8.** K0 генерируйте с нуля. Каждый
+1. **Keyframes в Nano Banana, строго по порядку K0 → K6, затем K8** (K7 не нужен). K0 генерируйте с нуля. Каждый
    следующий кадр генерируйте, **приложив предыдущий как референс** (промт начинается словами *Using the
    attached image as the previous frame…*). Так сохраняются свет, зерно и цвет. Формат 16:9,
    от 1920×1080. Выбирайте кадр, а не вариант: лучше скучнее, но точнее по описанию.
@@ -118,26 +115,12 @@ butterscotch above and blue around the Sun; the ground goes violet in long shado
 devils stand far away on the horizon. 35 mm, left side darker.
 ```
 
-### K6 · Это макет (используйте K5 как референс)
+### K6 · Земной двойник (используйте K5 как референс)
 ```
-Using the attached image as the previous frame: the camera has pulled far back and up, and the
-Martian landscape is revealed to be a large, extremely detailed physical relief model on a table in
-a dark room: the same crater, delta and layered scarp, now a sculpted ochre and rust relief lit by a
-single warm overhead light, soft shadows showing height. A human hand in a dark wool sleeve enters
-from the right and points at the crater with an index finger, fingertip in sharp focus. The room
-falls into warm black. 50 mm, shallow depth of field, 70 cm above the table, 35 degrees down.
+Using the attached image as the previous frame of the same continuous shot, keep exactly the same camera position, height, 35 mm lens, horizon line, composition and sun direction, and keep the same terrain layout: the same scarp on the right, the same ripples and boulders in the same places, the same rim line on the horizon. Only the planet has changed: we are now on Earth, in an Iceland-like volcanic landscape at sunset. The layered Martian scarp is now a cliff of stacked dark lava and tuff layers, banded in charcoal, rust-brown and grey, with thin streaks of green moss on its ledges. The dark sand ripples are now black volcanic sand with fine wind ripples and a few tufts of pale grass; the boulders are dark basalt with soft rims of warm light. The distant rim is now a low ridge of volcanic mountains with a white glacier edge. The sky is an Earth sunset: a larger golden Sun on the horizon, a warm gold-to-peach glow, soft pink and lilac high clouds, deep blue above. Thin mist lies in the low ground. No dust devils. Photoreal landscape cinematography, large-format cinema camera, natural light, fine film grain, soft highlight roll-off, shadows keep detail. Avoid: text, logos, people, buildings, roads, vehicles, lens flare streaks, oversaturated colours, oversharpening, CGI look, cartoon style, watermark.
 ```
 
-### K7 · Земной двойник на макете (используйте K6 как референс)
-```
-Using the attached image as the previous frame, same table, light, hand and camera: the relief
-model now shows Earth instead of Mars, a volcanic highland with dark lava fields, young cones,
-moss-green gentle ground and a glacier edge, sculpted in basalt grey, olive and white. The same index
-finger now rests on one lava plateau, in sharp focus; the rest of the model softly out of focus.
-No text, no screens.
-```
-
-### K8 · Дом (используйте K7 как референс по свету и зерну)
+### K8 · Дом (используйте K6 как референс по свету и зерну)
 ```
 Using the attached image as a reference for grade and grain: photograph from low Earth orbit with
 a long telephoto lens. Earth's limb at twilight across the lower third, a razor-thin glowing shell
@@ -196,46 +179,29 @@ into a pale blue aureole in a butterscotch sky, the ground turns violet in long 
 devils stand on the far horizon. Monumental, calm, photoreal. Soft thin wind.
 ```
 
-### S6 · Указание — K5 → K6 · `missions/s6-pointing`
+### S6 · Ответ — K5 → K6 · `missions/s6-answer`
 ```
-One continuous shot. The camera pulls back and up from the Martian sunset, faster and faster,
-and the landscape is revealed to be a large, extremely detailed physical relief model on a table in
-a dark room lit by a single warm overhead light. A human hand in a dark wool sleeve enters from the
-right and points at the crater with an index finger, then pauses there, thinking. Gentle rack focus
-to the fingertip. Quiet, intimate, photoreal, 50 mm, shallow depth of field. Room tone only.
+One continuous 8-second shot with no cuts, photoreal landscape cinematography, 35 mm lens, steady slow forward glide 25 metres above the ground toward the setting Sun. 0–3 s: Mars at sunset, a layered scarp on the right, dark sand ripples and backlit boulders, the small Sun in a pale blue aureole, dust devils on the horizon. 3–6 s: without any cut and without changing the shape of the land, the planet changes under the camera: the butterscotch sky warms into an Earth sunset of gold, peach and lilac clouds, the Sun grows larger and golden, the scarp darkens into stacked lava and tuff layers with green moss on the ledges, the sand turns into black volcanic sand with tufts of pale grass, the dust devils dissolve into low mist, and a glacier edge appears on the distant ridge. 6–8 s: we are on Earth, in an Iceland-like volcanic landscape, the same ground in the same place. Keep the terrain rigid and physically stable; only colour, material and sky change. Audio: thin Martian wind turning into a soft Earth breeze with distant birds, no music, no voices. Avoid: cuts, flicker, melting or wobbling geometry, people, text, logos, CGI look.
 ```
 
-### S7 · Ответ — K6 → K7 · `missions/s7-answer`
+### S7 · Дом — K6 → K8 · `orbital/s7-home`
 ```
-One continuous shot, camera almost still with a slow push toward the fingertip. On the table the
-Martian relief model slowly transforms: the crater and delta sink and rotate away and an Earth
-volcanic highland rises in their place, dark lava fields, young cones, moss-green ground and a glacier
-edge. The index finger slides across the new terrain and comes to rest on one lava plateau. Warm
-overhead light, dark room, shallow depth of field, photoreal, no text, no screens. Soft room tone.
-```
-
-### S8 · Дом — K7 → K8 · `orbital/s8-home`
-```
-One continuous shot. The camera dives toward the fingertip and into the relief model, which
-becomes real Earth terrain, lava fields and moss under a real sky; without stopping, the camera
-rises straight up through a layer of clouds and keeps climbing into black space until Earth's limb
-appears as a razor-thin glowing line of orange, cream and blue, with the Moon, a sharp white disc,
-resting just above it. Smooth, majestic, photoreal. Wind fading to silence.
+One continuous 8-second shot with no cuts, photoreal cinematic and space documentary film. 0–2 s: over the Iceland-like volcanic landscape at sunset, the camera tilts up from the black sand and lava cliffs and begins to rise straight up. 2–5 s: it climbs faster and faster through a layer of soft pink and gold sunset clouds; the land shrinks below into a coastline and glaciers. 5–8 s: it keeps climbing into black space until Earth's limb appears across the lower third as a razor-thin glowing shell of orange, cream and blue above the darkening night side with faint city lights, and the Moon, a sharp white disc, rests just above it. Camera motion: one smooth continuous upward path, majestic, no shake, no spinning. Audio: breeze rising into rushing wind, then fading to complete silence, no music, no voices. Avoid: cuts, flicker, warp streaks, lens flare streaks, spacecraft, satellites, text, logos, CGI look.
 ```
 
 ---
 
-## Перекодирование
+## Перекодирование## Перекодирование
 
 Установите ffmpeg один раз: `winget install Gyan.FFmpeg`. Затем для каждого клипа (замените `IN.mp4`
 и `NAME`):
 
-**S1, S6, S7** (обычное воспроизведение):
+**S1, S6** (обычное воспроизведение):
 ```bash
 ffmpeg -i IN.mp4 -an -vf "scale=1280:-2:flags=lanczos" -c:v libx264 -preset slow -crf 21 -pix_fmt yuv420p -movflags +faststart NAME.mp4
 ```
 
-**S2, S3, S4, S5, S8** (перемотка скроллом: нужен частый ключевой кадр, иначе прокрутка дёргается):
+**S2, S3, S4, S5, S7** (перемотка скроллом: нужен частый ключевой кадр, иначе прокрутка дёргается):
 ```bash
 ffmpeg -i IN.mp4 -an -vf "scale=1280:-2:flags=lanczos" -c:v libx264 -preset slow -crf 22 -g 4 -keyint_min 4 -pix_fmt yuv420p -movflags +faststart NAME.mp4
 ```
@@ -253,4 +219,3 @@ ffmpeg -i IN.mp4 -vf "select=eq(n\,0),scale=1600:-2:flags=lanczos" -frames:v 1 -
 - S5 → K4
 - S6 → K5
 - S7 → K6
-- S8 → K7

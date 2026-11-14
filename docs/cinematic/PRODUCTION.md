@@ -3,12 +3,12 @@
 Сценарий и все промты лежат в [SCENES.md](SCENES.md), стиль описан в [ART_DIRECTION.md](ART_DIRECTION.md).
 Код трогать не нужно: сайт сам находит файлы по путям ниже.
 
-## 1. Nano Banana: 9 ключевых кадров, строго по порядку
+## 1. Nano Banana: 8 ключевых кадров (K0–K6 и K8), строго по порядку
 
 K0 генерируйте с нуля. Для каждого следующего кадра прикладывайте предыдущий как референс.
-Сохраните их у себя как `K0.png` … `K8.png`.
+Сохраните их у себя как `K0.png` … `K6.png` и `K8.png`.
 
-## 2. Veo 3.1 в Flow: 8 клипов по 8 секунд, режим Frames to Video
+## 2. Veo 3.1 в Flow: 7 клипов по 8 секунд, режим Frames to Video
 
 | Клип | First → Last | Файл на сайте (без расширения) | Как играет на сайте |
 |---|---|---|---|
@@ -17,9 +17,8 @@ K0 генерируйте с нуля. Для каждого следующег�
 | S3 Возвращение | K2 → K3 | `web/public/media/cinematic/moon/s3-return` | перемотка скроллом |
 | S4 Перелёт | K3 → K4 | `web/public/media/cinematic/transitions/s4-passage` | перемотка скроллом |
 | S5 Езеро | K4 → K5 | `web/public/media/cinematic/mars/s5-jezero` | перемотка скроллом |
-| S6 Указание | K5 → K6 | `web/public/media/cinematic/missions/s6-pointing` | глава «Одна почва»: S6, сразу за ним S7 |
-| S7 Ответ | K6 → K7 | `web/public/media/cinematic/missions/s7-answer` | после S6, затем интерактив сравнения |
-| S8 Дом | K7 → K8 | `web/public/media/cinematic/orbital/s8-home` | финал, перемотка скроллом |
+| S6 Ответ | K5 → K6 | `web/public/media/cinematic/missions/s6-answer` | открывает главу «Одна почва», затем интерактив сравнения |
+| S7 Дом | K6 → K8 | `web/public/media/cinematic/orbital/s7-home` | финал, перемотка скроллом |
 
 ## 3. Перекодирование и раскладка
 
@@ -38,3 +37,13 @@ K0 генерируйте с нуля. Для каждого следующег�
 - Посетителям с настройкой «уменьшить движение» или режимом экономии трафика показываются только кадры.
 - Каждое видео подписано как «иллюстративный кадр».
 - Окна показа можно подвинуть в `web/public/media/cinematic/manifest.json`, поле `window`.
+
+## Новые версии клипов
+
+Положите 4K-мастер в `web/media-src/cinematic/<папка>/<имя>.mp4` (эта папка не попадает в git) и выполните:
+
+```bash
+python web/scripts/encode-cinema.py s5-jezero
+```
+
+Скрипт сделает `-1080.mp4` (CRF 17), `-720.mp4`, постеры первого и последнего кадра и положит их в `web/public/media/cinematic/`.

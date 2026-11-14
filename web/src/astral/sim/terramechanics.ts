@@ -26,7 +26,7 @@ export const SOILS: Record<string, Soil> = {
 
 export interface RoverProfile {
   id: string; name: string; kind: "reference" | "hypothetical"; note: string;
-  mass: number; wheels: 6; wheelRadius: number; wheelWidth: number; wheelbase: number; track: number; cgHeight: number;
+  mass: number; wheels: 4 | 6 | 8; wheelRadius: number; wheelWidth: number; wheelbase: number; track: number; cgHeight: number;
   groundClearance: number; maxSpeed: number; /** per wheel, N·m */ wheelTorqueLimit: number;
   maxTiltDeg: number; /** climbable step / rock height, m */ maxObstacle: number;
   batteryWh: number; idlePowerW: number; driveEfficiency: number;
@@ -99,20 +99,28 @@ export interface DriveState {
   admissible: boolean; reason: string | null; speed: number; meanSlip: number; maxSlip: number; maxSinkage: number;
   mechanicalW: number; electricalW: number; tractionUtilization: number; torqueUtilization: number; minWheelLoad: number; wheels: WheelState[];
 }
-/** Quasi-static six-wheel drive on a plane with along-track pitch and cross-track roll (radians, pitch > 0 = climbing). */
+/** Longitudinal axle positions (m, forward positive), evenly spaced over the wheelbase: 2, 3 or 4 axles. */
+export function axleOffsets(rover: Pick<RoverProfile, "wheels" | "wheelbase">): number[] {
+  const rows = rover.wheels / 2;
+  return Array.from({ length: rows }, (_, i) => rover.wheelbase / 2 - (i * rover.wheelbase) / (rows - 1));
+}
+/** Quasi-static drive (4, 6 or 8 wheels) on a plane with along-track pitch and cross-track roll (radians, pitch > 0 = climbing). */
 export function drive(rover: RoverProfile, soil: Soil, gravity: number, pitch: number, roll: number, commandedSpeed = rover.maxSpeed): DriveState {
   const weight = rover.mass * gravity, normal = weight * Math.cos(pitch) * Math.cos(roll);
-  const a = (-weight * Math.sin(pitch) * rover.cgHeight) / rover.wheelbase ** 2;
-  const b = (-weight * Math.abs(Math.sin(roll)) * rover.cgHeight) / (1.5 * rover.track ** 2);
+  // Static load transfer by moment balance over the wheel contacts: a·Σx² = −W·sin(pitch)·h, b·Σy² = −W·|sin(roll)|·h.
+  // For six wheels Σx² = wheelbase² and Σy² = 1.5·track², the original closed form.
+  const xs = axleOffsets(rover), n = rover.wheels;
+  const a = (-weight * Math.sin(pitch) * rover.cgHeight) / (2 * xs.reduce((s, x) => s + x * x, 0));
+  const b = (-weight * Math.abs(Math.sin(roll)) * rover.cgHeight) / (n * (rover.track / 2) ** 2);
   const grade = weight * Math.sin(pitch), lateral = weight * Math.abs(Math.sin(roll));
   const loads: number[] = [];
-  for (const x of [rover.wheelbase / 2, 0, -rover.wheelbase / 2]) for (const y of [rover.track / 2, -rover.track / 2]) loads.push(normal / 6 + a * x + b * y);
+  for (const x of xs) for (const y of [rover.track / 2, -rover.track / 2]) loads.push(normal / n + a * x + b * y);
   const minWheelLoad = Math.min(...loads);
   const wheels = loads.map(load => wheelContact(soil, Math.max(0, load), rover.wheelRadius, rover.wheelWidth, (grade * Math.max(0, load)) / normal));
   const capacity = wheels.reduce((s, w) => s + w.maxThrustN, 0), demand = wheels.reduce((s, w) => s + w.thrustN, 0);
   const tractionUtilization = Math.hypot(demand, lateral) / Math.max(1e-9, capacity);
   const torqueUtilization = Math.max(...wheels.map(w => w.torqueNm)) / rover.wheelTorqueLimit;
-  const maxSlip = Math.max(...wheels.map(w => w.slip)), meanSlip = wheels.reduce((s, w) => s + w.slip, 0) / 6;
+  const maxSlip = Math.max(...wheels.map(w => w.slip)), meanSlip = wheels.reduce((s, w) => s + w.slip, 0) / n;
   const tilt = (Math.acos(Math.cos(pitch) * Math.cos(roll)) * 180) / Math.PI;
   const reason = minWheelLoad <= 0 ? "wheel unloading (static tip-over margin exhausted)"
     : tilt > rover.maxTiltDeg ? `tilt ${tilt.toFixed(1)}° exceeds the ${rover.maxTiltDeg}° limit`

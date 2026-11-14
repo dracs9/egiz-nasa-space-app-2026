@@ -21,12 +21,12 @@ describe('loadCinema', () => {
   it('keeps only scenes whose media really exists (an HTML fallback page is not a video)', async () => {
     vi.stubGlobal('fetch', vi.fn(async (url: string) => {
       const type = url.endsWith('manifest.json') ? 'application/json'
-        : url.endsWith('hero/a.mp4') ? 'video/mp4' : url.endsWith('hero/a.jpg') ? 'image/jpeg' : 'text/html';
+        : url.endsWith('hero/a-1080.mp4') ? 'video/mp4' : url.endsWith('hero/a.jpg') ? 'image/jpeg' : 'text/html';
       return { ok: true, headers: new Headers({ 'content-type': type }), json: async () => manifest } as unknown as Response;
     }));
     const found = await loadCinema(new AbortController().signal);
     expect(found.map(f => f.id)).toEqual(['A']);
-    expect(found[0].sources.map(s => s.type)).toEqual(['video/mp4']);
+    expect(found[0].sources.map(s => s.src)).toEqual([expect.stringMatching(/hero\/a-1080\.mp4$/)]);
     expect(found[0].still).toMatch(/hero\/a\.jpg$/);
   });
 });

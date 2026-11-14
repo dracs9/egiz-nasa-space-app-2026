@@ -17,6 +17,8 @@ import { Soundscape } from './world/soundscape';
 import { CinemaLayer, type CinemaHandle } from './cinema/CinemaLayer';
 import type { CinemaAsset } from './cinema/cinema';
 import { MatchChapter } from './match/MatchChapter';
+import { FilmAct } from './film/FilmAct';
+import { Reticle } from './film/Reticle';
 import './home.css';
 
 interface Param { key: string; group: 'rover' | 'vehicle'; en: string; ru: string; unit: string; min: number; max: number; step: number; value: number; maxFrom?: string }
@@ -132,12 +134,13 @@ export function HomePage() {
   // ---------- Film plates and the opaque match chapter both may cover the live world ----------
   const cinema = useRef<CinemaHandle>(null);
   const [films, setFilms] = useState<CinemaAsset[]>([]);
-  const cover = useRef({ film: 0, match: false });
+  const cover = useRef({ film: 0, match: false, act: false, actChrome: false });
   const syncCover = useCallback(() => {
-    const { film, match } = cover.current;
-    if (root.current) { root.current.dataset.film = String(film > .5); root.current.dataset.match = String(match); }
-    api.current.engine?.setOccluded(film > .985 || match);
+    const { film, match, act, actChrome } = cover.current;
+    if (root.current) { root.current.dataset.film = String(film > .5); root.current.dataset.match = String(match); root.current.dataset.filmact = String(actChrome); }
+    api.current.engine?.setOccluded(film > .985 || match || act);
   }, []);
+  const onActCover = useCallback((v: boolean, chrome: boolean) => { cover.current.act = v; cover.current.actChrome = chrome; syncCover(); }, [syncCover]);
   const onFilmCover = useCallback((v: number) => { cover.current.film = v; syncCover(); }, [syncCover]);
   const onMatchCover = useCallback((v: boolean) => { cover.current.match = v; syncCover(); }, [syncCover]);
   const toggleSound = async () => {
@@ -274,6 +277,7 @@ export function HomePage() {
   return <main ref={root} className={`hm wd ${ready === false ? 'wd-no-gl' : ''} ${ready ? 'wd-ready' : ''}`} aria-labelledby="hm-title">
     <WorldStage analogues={analogues} shots={buildShots} labels={labels} apiRef={api} onProbe={onProbe} onReady={setReady} launch={launchState} />
     <CinemaLayer ref={cinema} lang={lang} onAssets={setFilms} onCover={onFilmCover} />
+    <Reticle />
 
     <div className="wd-labels" aria-hidden="true">
       {labelText.map((text, i) => <span key={i} ref={el => { labelRefs.current[i] = el; }} className="wd-label"><i />{text}</span>)}
@@ -301,18 +305,29 @@ export function HomePage() {
     </nav>
 
     {/* 00 — First light on Mons Mouton */}
+    {/* ACT I — the film: one continuous flight, scrubbed by the scroll (shows once the footage exists) */}
+    {films.some(f => f.mode === 'film') && <FilmAct lang={lang} clips={films.filter(f => f.mode === 'film')} hMax={moon?.h_max_deg ?? null} soundOn={soundOn}
+      onCover={onActCover} onPlan={() => jump(6)} onFinish={() => {}} />}
+
+    {/* ACT II — the live instrument: measured ground, rendered in the browser */}
     <section data-chapter="0" className="wd-ch wd-hero">
       <div className="wd-frame">
         <div className="wd-hero-copy">
-          <p className="wd-kicker wd-in" style={{ '--d': '300ms' } as React.CSSProperties}>{L(lang, 'EGIZ · Training grounds for the Moon and Mars', 'EGIZ · Земные полигоны для Луны и Марса')}</p>
-          <h1 id="hm-title" className="wd-title">
-            <span className="wd-line"><span style={{ '--d': '500ms' } as React.CSSProperties}>{L(lang, 'The next', 'Новый')}</span></span>
-            <span className="wd-line wd-line-indent"><span style={{ '--d': '620ms' } as React.CSSProperties}>{L(lang, 'frontier', 'рубеж')}</span></span>
-            <span className="wd-line"><span style={{ '--d': '740ms' } as React.CSSProperties}>{L(lang, 'starts here', 'начинается здесь')}</span></span>
-          </h1>
+          {films.some(f => f.mode === 'film')
+            ? <><p className="wd-kicker">{L(lang, 'Act II · The live instrument', 'Акт II · Живой инструмент')}</p>
+                <h2 className="wd-title wd-title-act">
+                  <span className="wd-line"><span style={{ '--d': '0ms' } as React.CSSProperties}>{L(lang, 'Same ground.', 'Тот же грунт.')}</span></span>
+                  <span className="wd-line wd-line-indent"><span style={{ '--d': '120ms' } as React.CSSProperties}>{L(lang, 'Measured.', 'Измеренный.')}</span></span>
+                </h2></>
+            : <><p className="wd-kicker wd-in" style={{ '--d': '300ms' } as React.CSSProperties}>{L(lang, 'EGIZ · Training grounds for the Moon and Mars', 'EGIZ · Земные полигоны для Луны и Марса')}</p>
+                <h1 id="hm-title" className="wd-title">
+                  <span className="wd-line"><span style={{ '--d': '500ms' } as React.CSSProperties}>{L(lang, 'The next', 'Новый')}</span></span>
+                  <span className="wd-line wd-line-indent"><span style={{ '--d': '620ms' } as React.CSSProperties}>{L(lang, 'frontier', 'рубеж')}</span></span>
+                  <span className="wd-line"><span style={{ '--d': '740ms' } as React.CSSProperties}>{L(lang, 'starts here', 'начинается здесь')}</span></span>
+                </h1></>}
           <p className="wd-lede wd-in" style={{ '--d': '1100ms' } as React.CSSProperties}>{L(lang,
-            'Every step on the Moon and Mars is practised on Earth first. EGIZ finds the places on our planet that come closest — and says plainly what no place on Earth can teach.',
-            'Каждый шаг на Луне и Марсе сначала отрабатывают на Земле. EGIZ находит места на нашей планете, которые ближе всего к цели, — и прямо говорит, чему Земля научить не может.')}</p>
+            films.some(f => f.mode === 'film') ? 'This is no longer footage: the lunar south pole from laser altimetry, rendered live in your browser. Scroll on and the ground changes — to Earth, back to the Moon, to Mars.' : 'Every step on the Moon and Mars is practised on Earth first. EGIZ finds the places on our planet that come closest — and says plainly what no place on Earth can teach.',
+            films.some(f => f.mode === 'film') ? 'Это уже не съёмка: южный полюс Луны по данным лазерной альтиметрии, отрисованный вживую в вашем браузере. Листайте дальше — грунт будет меняться: Земля, снова Луна, Марс.' : 'Каждый шаг на Луне и Марсе сначала отрабатывают на Земле. EGIZ находит места на нашей планете, которые ближе всего к цели, — и прямо говорит, чему Земля научить не может.')}</p>
           <div className="wd-actions wd-in" style={{ '--d': '1300ms' } as React.CSSProperties}>
             <button className="eg-button" onClick={() => jump(6)}>{L(lang, 'Plan a mission', 'Спланировать миссию')}<ArrowRight size={16} strokeWidth={1.6} /></button>
             <button className="eg-button quiet" onClick={() => open('campaign')}><span>{L(lang, 'Find field sites', 'Подобрать полигоны')}</span></button>

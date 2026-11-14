@@ -71,11 +71,11 @@ No other space website can use that device honestly, because the device *is* the
 
 ## 6. Rhythm of the film
 
-One continuous 64-second shot in eight 8-second Veo 3.1 clips, chained frame to frame (see
+One continuous 56-second shot in seven 8-second Veo 3.1 clips, chained frame to frame (see
 [SCENES.md](SCENES.md)):
 
 `ARRIVAL (vast) → THE TWIN (recognition) → RETURN (silence) → PASSAGE (speed) → JEZERO (beauty) →
-THE POINTING (a human hand) → THE ANSWER (the match) → HOME (orbit)`
+THE ANSWER (Mars becomes its Earth twin) → HOME (orbit)`
 
 ## 7. How footage meets the page
 
