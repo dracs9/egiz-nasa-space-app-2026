@@ -1,9 +1,9 @@
 /* A calm entry point for first-time explorers, within the mission workstation. */
 .ex-welcome,
 .ex-guide {
-  border-bottom: 1px solid #4b4030;
-  background: #171715;
-  color: #e4e3de;
+  border-bottom: 1px solid #3c3c3c;
+  background: #151517;
+  color: #e3e3e3;
 }
 .ex-welcome {
   display: grid;
@@ -16,7 +16,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  color: #d6b382;
+  color: #d8d8d8;
   font:
     9px "IBM Plex Mono",
     monospace;
@@ -34,7 +34,7 @@
 .ex-guide-copy > p {
   font-size: 12px;
   line-height: 1.7;
-  color: #b6b6b1;
+  color: #b6b6b6;
   margin: 0;
   max-width: 730px;
 }
@@ -54,16 +54,16 @@
   gap: 13px;
   justify-content: center;
   align-items: center;
-  color: #b9bab4;
+  color: #b9b9b9;
   border: 1px solid transparent;
   background: transparent;
-  border-radius: 3px;
+  border-radius: 0;
 }
 .ex-welcome-actions .ex-guide-primary,
 .ex-guide-actions .ex-guide-primary {
-  background: #dfbd8c;
-  border-color: #dfbd8c;
-  color: #191713;
+  background: #e3e3e3;
+  border-color: #e3e3e3;
+  color: #151517;
   font-weight: 600;
 }
 .ex-guide-primary:hover:not(:disabled) {
@@ -84,16 +84,16 @@
 }
 .ex-guide-eyebrow b {
   font-weight: 400;
-  color: #92948e;
+  color: #939393;
   padding-left: 10px;
-  border-left: 1px solid #464439;
+  border-left: 1px solid #3e3e3e;
 }
 .ex-guide-close {
   display: grid;
   place-items: center;
   width: 30px;
   height: 30px;
-  color: #aaa99e;
+  color: #a8a8a8;
   background: none;
   border: 0;
 }
@@ -102,7 +102,7 @@
   padding: 0;
   margin: 0 0 12px;
   display: flex;
-  border-bottom: 1px solid #37372f;
+  border-bottom: 1px solid #323232;
 }
 .ex-guide-steps li {
   flex: 1;
@@ -113,7 +113,7 @@
   align-items: center;
   gap: 8px;
   padding: 6px 10px 9px 0;
-  color: #9b9d96;
+  color: #9c9c9c;
   width: 100%;
   text-align: left;
   background: transparent;
@@ -127,19 +127,19 @@
   place-items: center;
   min-width: 22px;
   height: 22px;
-  border: 1px solid #414138;
+  border: 1px solid #3b3b3b;
   border-radius: 50%;
   font:
     9px "IBM Plex Mono",
     monospace;
 }
 .ex-guide-steps button[aria-current="step"] {
-  color: #f0d4ad;
-  border-bottom-color: #d1a873;
+  color: #fefefe;
+  border-bottom-color: #cccccc;
 }
 .ex-guide-steps button[aria-current="step"] > span {
-  border-color: #b49263;
-  background: #3b3021;
+  border-color: #b1b1b1;
+  background: #2d2d2d;
 }
 .ex-guide-steps button:disabled {
   opacity: 0.65;
@@ -161,7 +161,7 @@
   min-width: 0;
 }
 .ex-guide-copy > .ex-guide-hint {
-  color: #9a9d93;
+  color: #9c9c9c;
   margin-top: 8px;
   font-size: 10px;
 }
@@ -178,28 +178,28 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #1e201e;
-  border: 1px solid #3d4039;
-  color: #babfb5;
-  border-radius: 3px;
+  background: #1d1d1f;
+  border: 1px solid #3a3a3a;
+  color: #bdbdbd;
+  border-radius: 0;
   padding: 7px 13px;
   min-height: 32px;
   font-size: 11px;
 }
 .ex-guide-worlds button[aria-pressed="true"] {
-  border-color: #b19063;
-  color: #f2d9b2;
-  background: #2f291e;
+  border-color: #aeaeae;
+  color: #ffffff;
+  background: #262628;
 }
 .ex-reading-definitions {
-  border-bottom: 1px solid #2b2e2e;
+  border-bottom: 1px solid #2a2a2a;
   padding: 8px 0 12px;
   margin-bottom: 13px;
   font-size: 10px;
 }
 .ex-reading-definitions summary {
   cursor: pointer;
-  color: #b7b9b1;
+  color: #b8b8b8;
   line-height: 1.6;
 }
 .ex-reading-definitions dl {
@@ -209,11 +209,11 @@
   margin-top: 11px;
 }
 .ex-reading-definitions dt {
-  color: #e0c19b;
+  color: #e8e8e8;
 }
 .ex-reading-definitions dd {
   margin: 3px 0 0;
-  color: #a9aeaa;
+  color: #adadad;
   line-height: 1.6;
 }
 .ex-env-label {
@@ -221,17 +221,17 @@
   font:
     9px Inter,
     sans-serif;
-  color: #959c98;
+  color: #9a9a9a;
   margin-bottom: 5px;
 }
 .ex-guide button:focus-visible,
 .ex-welcome button:focus-visible,
 .ex-reading-definitions summary:focus-visible {
-  outline: 2px solid #e7c793;
+  outline: 2px solid #eeeeee;
   outline-offset: 3px;
 }
 .ex-mission .ml-results > .ex-guide {
-  border-top: 1px solid #4b4030;
+  border-top: 1px solid #3c3c3c;
   margin-bottom: 12px;
 }
 
@@ -241,7 +241,7 @@
   }
   .ex-mission[data-guide-step="2"] .ml-modes small {
     display: block;
-    color: #90978e;
+    color: #959595;
     font-size: 9px;
     margin-top: 4px;
   }

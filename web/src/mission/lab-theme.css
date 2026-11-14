@@ -1,0 +1,304 @@
+/*
+ * Engineering lab — EGIZ design language.
+ * Loaded after the lab's own stylesheets; selectors are scoped under
+ * .sim-workbench so they win without touching the scene logic.
+ */
+.sim-workbench {
+  --lab-bg: #000;
+  --lab-panel: #08080a;
+  --lab-panel-2: #0e0e11;
+  --lab-rule: rgba(240, 240, 245, .1);
+  --lab-rule-strong: rgba(240, 240, 245, .22);
+  --lab-ink: var(--paper);
+  --lab-ink-2: var(--paper-2);
+  --lab-ink-3: var(--paper-3);
+  background: var(--lab-bg);
+}
+
+/* ---------- Title bar ---------- */
+.sim-workbench .ex-mission-header {
+  background: var(--lab-bg) !important;
+  border-bottom: 1px solid var(--lab-rule) !important;
+  min-height: 66px;
+  padding-inline: 24px !important;
+}
+.sim-workbench .ex-mission-header h1 {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  letter-spacing: .06em !important;
+  text-transform: uppercase;
+  color: var(--lab-ink) !important;
+}
+.sim-workbench .ex-mission-header .sim-location {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--lab-ink-3);
+}
+.sim-workbench .ex-header-meta span { font-family: var(--font-mono); letter-spacing: .14em; color: var(--lab-ink-3); }
+.sim-workbench .ex-header-meta strong { color: var(--lab-ink); font-weight: 500; }
+.sim-workbench .ex-indicator { background: var(--lab-ink-3) !important; box-shadow: none !important; }
+.sim-workbench .ex-indicator.live { background: #7bd389 !important; }
+.sim-workbench .ml-intro-actions > button,
+.sim-workbench .ml-intro-actions .context-help > summary {
+  border-radius: 0 !important;
+  border: 1px solid var(--lab-rule-strong) !important;
+  background: transparent !important;
+  color: var(--lab-ink-2) !important;
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+.sim-workbench .ml-intro-actions > button:hover,
+.sim-workbench .ml-intro-actions > button[aria-pressed=true] { background: var(--lab-ink) !important; color: #000 !important; border-color: var(--lab-ink) !important; }
+
+/* ---------- Expedition tabs ---------- */
+.sim-workbench .ml-modes {
+  background: var(--lab-bg) !important;
+  border-bottom: 1px solid var(--lab-rule) !important;
+  min-height: 56px;
+}
+.sim-workbench .ml-modes button {
+  position: relative;
+  background: transparent !important;
+  border: 0 !important;
+  border-right: 1px solid var(--lab-rule) !important;
+  color: var(--lab-ink-3) !important;
+  min-height: 56px;
+  gap: 14px;
+  transition: color .3s ease, background-color .4s ease;
+}
+.sim-workbench .ml-modes button strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: inherit;
+}
+.sim-workbench .ml-modes button small { font-size: 11px; color: var(--lab-ink-3); }
+.sim-workbench .ml-modes .ml-mode-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: var(--paper-4); }
+.sim-workbench .ml-modes .mission-glyph { width: 40px; height: 30px; opacity: .7; }
+.sim-workbench .ml-modes .ml-mode-dot { display: none; }
+.sim-workbench .ml-modes button::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--lab-ink);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .5s var(--ease-out);
+}
+.sim-workbench .ml-modes button:hover { color: var(--lab-ink) !important; background: rgba(240, 240, 245, .03) !important; }
+.sim-workbench .ml-modes button[aria-pressed=true] { color: var(--lab-ink) !important; background: rgba(240, 240, 245, .045) !important; }
+.sim-workbench .ml-modes button[aria-pressed=true]::after { transform: scaleX(1); }
+.sim-workbench .ml-modes button[aria-pressed=true] .mission-glyph { opacity: 1; }
+.sim-workbench .ml-modes button[aria-pressed=true] .ml-mode-index { color: var(--lab-ink); }
+
+/* ---------- Workspace rail ---------- */
+.sim-workbench .sim-rail { background: var(--lab-bg) !important; border-right: 1px solid var(--lab-rule) !important; }
+.sim-workbench .sim-rail button {
+  position: relative;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--lab-ink-3) !important;
+  transition: color .3s ease;
+}
+.sim-workbench .sim-rail button span { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase; }
+.sim-workbench .sim-rail button::before {
+  content: '';
+  position: absolute;
+  left: -5px; top: 10px; bottom: 10px;
+  width: 2px;
+  background: var(--lab-ink);
+  transform: scaleY(0);
+  transition: transform .4s var(--ease-out);
+}
+.sim-workbench .sim-rail button:hover { color: var(--lab-ink) !important; }
+.sim-workbench .sim-rail button[aria-pressed=true] { color: var(--lab-ink) !important; background: rgba(240, 240, 245, .05) !important; }
+.sim-workbench .sim-rail button[aria-pressed=true]::before { transform: scaleY(1); }
+.sim-workbench .sim-rail button b { border-radius: 0 !important; background: var(--lab-ink) !important; color: #000 !important; }
+
+/* ---------- Setup panel ---------- */
+.sim-workbench .ml-setup { background: var(--lab-panel) !important; border-right: 1px solid var(--lab-rule) !important; }
+.sim-workbench .ml-panel-heading { font-family: var(--font-mono); letter-spacing: .16em; color: var(--lab-ink-3) !important; border-bottom: 1px solid var(--lab-rule) !important; }
+.sim-workbench .ex-worlds { gap: 0 !important; border: 1px solid var(--lab-rule-strong); }
+.sim-workbench .ex-worlds button {
+  flex: 1;
+  justify-content: center;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--lab-ink-3) !important;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.sim-workbench .ex-worlds button + button { border-left: 1px solid var(--lab-rule-strong) !important; }
+.sim-workbench .ex-worlds button:hover { color: var(--lab-ink) !important; }
+.sim-workbench .ex-worlds button[aria-pressed=true] { background: var(--lab-ink) !important; color: #000 !important; }
+.sim-workbench .ex-region-summary .ex-overline,
+.sim-workbench .ex-overline { font-family: var(--font-mono); letter-spacing: .16em; color: var(--lab-ink-3) !important; }
+.sim-workbench .ex-region-summary h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  line-height: .95 !important;
+  letter-spacing: .02em !important;
+  text-transform: uppercase;
+  color: var(--lab-ink) !important;
+  margin: 10px 0 8px !important;
+}
+.sim-workbench .ex-region-summary p, .sim-workbench .terrain-resolution { font-family: var(--font-mono); color: var(--lab-ink-2) !important; letter-spacing: .04em; }
+.sim-workbench .terrain-resolution { border-radius: 0 !important; border-color: var(--lab-rule-strong) !important; background: transparent !important; }
+
+/* Primary action */
+.sim-workbench .ex-primary-start,
+.sim-workbench .ml-start {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0 !important;
+  background: var(--lab-ink) !important;
+  color: #000 !important;
+  border: 1px solid var(--lab-ink) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+  box-shadow: none !important;
+  transition: color .4s var(--ease-out);
+}
+.sim-workbench .ex-primary-start::before, .sim-workbench .ml-start::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform .45s var(--ease-out);
+}
+.sim-workbench .ex-primary-start:not(:disabled):hover, .sim-workbench .ml-start:not(:disabled):hover { color: var(--lab-ink) !important; }
+.sim-workbench .ex-primary-start:not(:disabled):hover::before, .sim-workbench .ml-start:not(:disabled):hover::before { transform: scaleY(1); }
+.sim-workbench .ex-primary-start:disabled { background: transparent !important; color: var(--lab-ink-3) !important; border-color: var(--lab-rule-strong) !important; }
+.sim-workbench .eng-launcher { border-radius: 0 !important; font-family: var(--font-display); font-weight: 700; letter-spacing: .12em; background: transparent !important; border: 1px solid var(--lab-rule-strong) !important; color: var(--lab-ink) !important; }
+.sim-workbench .eng-launcher:hover { background: var(--lab-ink) !important; color: #000 !important; }
+.sim-workbench .ex-config-details > summary { font-family: var(--font-mono); letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px; color: var(--lab-ink-2); border-color: var(--lab-rule) !important; }
+
+/* Form controls inside the lab */
+.sim-workbench input:not([type=range]):not([type=checkbox]):not([type=radio]),
+.sim-workbench select {
+  border-radius: 0 !important;
+  background: #000 !important;
+  border: 1px solid var(--lab-rule-strong) !important;
+  color: var(--lab-ink) !important;
+  font-family: var(--font-mono);
+}
+.sim-workbench input:focus-visible, .sim-workbench select:focus-visible { outline: 1px solid var(--lab-ink); outline-offset: 1px; }
+.sim-workbench input[type=range] { accent-color: var(--lab-ink); }
+
+/* ---------- Scene overlays ---------- */
+.sim-workbench .ex-target-card {
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, .72) !important;
+  border: 1px solid var(--lab-rule-strong) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.sim-workbench .ex-target-card h2, .sim-workbench .ex-target-card h3, .sim-workbench .ex-target-card strong:first-of-type {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.sim-workbench .ex-target-card button { font-family: var(--font-display); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--lab-ink) !important; }
+.sim-workbench .ex-planet-tools button {
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, .6) !important;
+  border: 1px solid var(--lab-rule-strong) !important;
+  color: var(--lab-ink-2) !important;
+}
+.sim-workbench .ex-planet-tools button:hover, .sim-workbench .ex-planet-tools button[aria-pressed=true] { background: var(--lab-ink) !important; color: #000 !important; }
+
+/* Welcome */
+.sim-workbench .ex-welcome {
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, .86) !important;
+  border: 1px solid var(--lab-rule-strong) !important;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, .55) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.sim-workbench .ex-welcome h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 26px !important;
+  line-height: 1 !important;
+  letter-spacing: .03em !important;
+  text-transform: uppercase;
+}
+.sim-workbench .ex-welcome p { color: var(--lab-ink-3) !important; }
+.sim-workbench .ex-guide-primary {
+  border-radius: 0 !important;
+  background: var(--lab-ink) !important;
+  color: #000 !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase;
+}
+.sim-workbench .ex-guide-primary:hover { background: transparent !important; color: var(--lab-ink) !important; box-shadow: inset 0 0 0 1px var(--lab-ink); }
+.sim-workbench .ex-guide-skip { font-family: var(--font-display); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lab-ink-2) !important; }
+.sim-workbench .ex-guide-skip:hover { color: var(--lab-ink) !important; text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Timeline / mission views ---------- */
+.sim-workbench .ex-timeline { background: var(--lab-bg) !important; border-top: 1px solid var(--lab-rule) !important; }
+.sim-workbench .ex-transport button { border-radius: 0 !important; }
+.sim-workbench .ex-bookmarks { background: var(--lab-bg) !important; border-top: 1px solid var(--lab-rule) !important; }
+.sim-workbench .ex-bookmark-label { font-family: var(--font-mono); letter-spacing: .16em; color: var(--lab-ink-3) !important; }
+.sim-workbench .ex-bookmark {
+  position: relative;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border-color: var(--lab-rule) !important;
+  color: var(--lab-ink-3) !important;
+  transition: color .3s ease, background-color .3s ease;
+}
+.sim-workbench .ex-bookmark strong, .sim-workbench .ex-bookmark b { font-family: var(--font-display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 12.5px; }
+.sim-workbench .ex-bookmark::after { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--lab-ink); transform: scaleX(0); transform-origin: 0 50%; transition: transform .5s var(--ease-out); }
+.sim-workbench .ex-bookmark:not(:disabled):hover { color: var(--lab-ink) !important; background: rgba(240, 240, 245, .03) !important; }
+.sim-workbench .ex-bookmark[aria-pressed=true] { color: var(--lab-ink) !important; background: rgba(240, 240, 245, .05) !important; }
+.sim-workbench .ex-bookmark[aria-pressed=true]::after { transform: scaleX(1); }
+
+/* Status bar */
+.sim-workbench .sim-statusbar { background: var(--lab-bg) !important; border-top: 1px solid var(--lab-rule) !important; font-family: var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--lab-ink-3) !important; }
+
+/* Result panels: section titles follow the display face */
+.sim-workbench .ml-results h2,
+.sim-workbench .ml-results h3:first-child {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.sim-workbench .ml-results button:not(.ex-primary-start):not(.ml-start) { border-radius: 0 !important; }
+.sim-workbench .ml-notice, .sim-workbench .ml-error { border-radius: 0 !important; }
+
+/* Expedition tabs fill the bar */
+html .focused-workspace .sim-workbench { --sim-accent: var(--paper); --sim-line: #1d1d20; --sim-panel: #08080a; }
+html .focused-workspace .sim-workbench .ml-modes { min-height: 54px; background: #000; }
+html .focused-workspace .sim-workbench .ml-modes > button { flex: 1 1 0; min-height: 54px; padding: 8px 22px; gap: 14px; box-shadow: none; }
+html .focused-workspace .sim-workbench .ml-modes > button strong { font-size: 14.5px; font-weight: 700; }
+html .focused-workspace .sim-workbench .ml-modes > button .mission-glyph { width: 34px; height: 26px; }
+html .focused-workspace .sim-workbench .ml-modes .ml-mode-index { display: inline; }
+@media (max-width: 900px) {
+  html .focused-workspace .sim-workbench .ml-modes > button { flex: 0 0 auto; min-width: 170px; }
+}

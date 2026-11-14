@@ -1,50 +1,50 @@
 /* A viewport-based engineering workspace. Panels scroll independently; clocks stay with their solver. */
 .focused-workspace .sim-workbench {
-  --sim-panel: #11171b;
-  --sim-line: #2a353b;
-  --sim-dim: #92a0a8;
-  --sim-accent: #d6b27c;
+  --sim-panel: #141416;
+  --sim-line: #2f2f2f;
+  --sim-dim: #9e9e9e;
+  --sim-accent: #d6d6d6;
   height: calc(100dvh - var(--sim-header-height,57px));
   min-height: 560px;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  background: #0a0f13;
+  background: #0d0d0f;
 }
 .sim-workbench [hidden] { display: none !important; }
-.focused-workspace .sim-workbench .ex-mission-header { height: 62px; min-height: 62px; padding: 0 22px; background: #10161b; }
+.focused-workspace .sim-workbench .ex-mission-header { height: 62px; min-height: 62px; padding: 0 22px; background: #131315; }
 .sim-workbench .ex-title { min-width: 0; }
-.focused-workspace .sim-workbench .ex-mission-header h1 { font-size: 15px; margin: 0; color: #e2e7e9; }
+.focused-workspace .sim-workbench .ex-mission-header h1 { font-size: 15px; margin: 0; color: #e6e6e6; }
 .sim-location { display: flex; gap: 7px; align-items: center; color: var(--sim-dim); font-size: 11px; margin-top: 6px; }
 .focused-workspace .sim-workbench .ex-header-meta { margin: auto 12px auto auto; }
 .focused-workspace .sim-workbench .ex-header-meta > span { font-size: 10px; }
 .sim-workbench .ex-header-meta > span:first-child { display: none; }
 .focused-workspace .sim-workbench .ml-intro-actions { gap: 5px; flex-wrap: nowrap; }
-.focused-workspace .sim-workbench .ml-intro-actions > button { height: 33px; min-width: 33px; padding: 7px; background: transparent; border: 1px solid #354149; border-radius: 4px; }
+.focused-workspace .sim-workbench .ml-intro-actions > button { height: 33px; min-width: 33px; padding: 7px; background: transparent; border: 1px solid #3a3a3a; border-radius: 0; }
 .sim-workbench .ml-intro-actions > .context-help > summary { width: 33px; height: 33px; }
-.focused-workspace .sim-workbench .ml-modes { flex-shrink: 0; display: flex; min-height: 45px; padding-left: 72px; background: #10161b; border-bottom: 1px solid var(--sim-line); }
-.focused-workspace .sim-workbench .ml-modes > button { flex: 0 1 225px; min-width: 0; min-height: 45px; padding: 8px 18px; border: 0; border-right: 1px solid #283139; display: flex; align-items: center; gap: 10px; background: none; }
+.focused-workspace .sim-workbench .ml-modes { flex-shrink: 0; display: flex; min-height: 45px; padding-left: 72px; background: #131315; border-bottom: 1px solid var(--sim-line); }
+.focused-workspace .sim-workbench .ml-modes > button { flex: 0 1 225px; min-width: 0; min-height: 45px; padding: 8px 18px; border: 0; border-right: 1px solid #2c2c2c; display: flex; align-items: center; gap: 10px; background: none; }
 .focused-workspace .sim-workbench .ml-modes > button strong { font-size: 12px; font-weight: 450; }
 .focused-workspace .sim-workbench .ml-modes > button .mission-glyph { width: 24px; height: 24px; }
 .sim-workbench .ml-modes :is(.ml-mode-index, small, .ml-mode-dot) { display: none; }
-.focused-workspace .sim-workbench .ml-modes > button[aria-pressed=true] { background: #d0b17d0e; color: #ead4b0; box-shadow: inset 0 -2px var(--sim-accent); }
+.focused-workspace .sim-workbench .ml-modes > button[aria-pressed=true] { background: #ffffff08; color: #fdfdfd; box-shadow: inset 0 -2px var(--sim-accent); }
 .sim-deck { display: grid; flex: 1; min-height: 0; grid-template-columns: 72px minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
-.sim-rail { grid-area: 1 / 1 / 3 / 2; display: flex; flex-direction: column; background: #0e151b; border-right: 1px solid var(--sim-line); overflow-y: auto; scrollbar-width: none; padding: 7px 5px; gap: 4px; }
-.sim-rail > button { position: relative; min-height: 53px; flex-shrink: 0; padding: 8px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: #8a9ba7; border: 1px solid transparent; border-radius: 5px; }
+.sim-rail { grid-area: 1 / 1 / 3 / 2; display: flex; flex-direction: column; background: #121214; border-right: 1px solid var(--sim-line); overflow-y: auto; scrollbar-width: none; padding: 7px 5px; gap: 4px; }
+.sim-rail > button { position: relative; min-height: 53px; flex-shrink: 0; padding: 8px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: #989898; border: 1px solid transparent; border-radius: 0; }
 .sim-rail > button > span { font-size: 10px; line-height: 1.3; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
-.sim-rail > button[aria-pressed=true] { color: #e2c391; background: #d3b07510; border-color: #9f845844; }
+.sim-rail > button[aria-pressed=true] { color: #eaeaea; background: #ffffff08; border-color: #87878744; }
 .sim-rail > button:hover { background: #ffffff06; }
-.sim-rail > button > b { position: absolute; right: 5px; top: 4px; color: #0c1c18; background: #a4c1ad; border-radius: 3px; min-width: 13px; font: 9px 'IBM Plex Mono',monospace; padding: 2px; }
-.sim-rail .sim-world-button { border-bottom-color: #354047; border-radius: 0; margin-bottom: 6px; padding-bottom: 13px; }
+.sim-rail > button > b { position: absolute; right: 5px; top: 4px; color: #161618; background: #b9b9b9; border-radius: 0; min-width: 13px; font: 9px 'IBM Plex Mono',monospace; padding: 2px; }
+.sim-rail .sim-world-button { border-bottom-color: #393939; border-radius: 0; margin-bottom: 6px; padding-bottom: 13px; }
 .focused-workspace .sim-workbench .ml-workspace { grid-area: 1 / 2; height: 100%; min-height: 0; grid-template-columns: 230px minmax(0, 1fr); }
 .focused-workspace .sim-workbench .ml-main-scene { min-height: 0; grid-column: 2; }
-.focused-workspace .sim-workbench .ml-setup { background: #10161b; padding: 18px; }
+.focused-workspace .sim-workbench .ml-setup { background: #131315; padding: 18px; }
 .focused-workspace .sim-workbench .ml-setup { overflow-x: hidden; min-width: 0; }
 .focused-workspace .sim-workbench .ml-setup .ex-region-summary h2 { font-size: 23px; margin: 10px 0; }
 .focused-workspace .sim-workbench .ex-worlds { margin-bottom: 20px; gap: 6px; }
 .focused-workspace .sim-workbench .ex-worlds > button { font-size: 11px; padding: 8px 5px; gap: 5px; flex: 1; min-width: 0; justify-content: center; }
-.focused-workspace .sim-workbench .ex-primary-start { margin: 16px 0 20px; min-height: 42px; font-size: 10px; border-radius: 4px; }
+.focused-workspace .sim-workbench .ex-primary-start { margin: 16px 0 20px; min-height: 42px; font-size: 10px; border-radius: 0; }
 .focused-workspace .sim-workbench .ex-schematic-image { height: 140px; }
 .focused-workspace .sim-workbench .ml-telemetry { display: none; }
 .sim-workbench .ml-setup .ml-panel-heading { font-size: 10px; letter-spacing: .07em; }
@@ -53,27 +53,27 @@
 .sim-workbench .ex-schematic dl { margin-bottom: 15px; }
 .sim-workbench .ml-setup .ex-config-details { margin-top: 18px; }
 .sim-transport { grid-area: 2 / 2; min-width: 0; }
-.focused-workspace .sim-workbench .ex-timeline { padding: 0; border-top: 1px solid var(--sim-line); background: #10171d; }
+.focused-workspace .sim-workbench .ex-timeline { padding: 0; border-top: 1px solid var(--sim-line); background: #141416; }
 .focused-workspace .sim-workbench .ex-transport { min-height: 76px; padding: 11px 18px; gap: 16px; }
 .focused-workspace .sim-workbench .ex-mission-clock { min-width: 118px; }
-.focused-workspace .sim-workbench .ex-mission-clock > span { font-size: 9px; color: #8898a3; }
+.focused-workspace .sim-workbench .ex-mission-clock > span { font-size: 9px; color: #959595; }
 .focused-workspace .sim-workbench .ex-mission-clock > strong { font-size: 16px; margin-top: 5px; }
 .sim-workbench .ex-time-labels > span { font-size: 9px; letter-spacing: 0; }
 .sim-workbench .ex-time-ticks { font-size: 8px; }
-.focused-workspace .sim-workbench .ex-bookmarks { display: flex; padding: 0 12px; gap: 4px; overflow-x: auto; border-top: 1px solid #293238; min-height: 38px; scrollbar-width: thin; scrollbar-color: #3a4b54 #11191e; }
+.focused-workspace .sim-workbench .ex-bookmarks { display: flex; padding: 0 12px; gap: 4px; overflow-x: auto; border-top: 1px solid #2d2d2d; min-height: 38px; scrollbar-width: thin; scrollbar-color: #424242 #161618; }
 .sim-workbench .ex-bookmarks > .ex-bookmark-label { display: none; }
 .focused-workspace .sim-workbench .ex-bookmarks > button { flex: 1 0 auto; border: 0; border-bottom: 2px solid transparent; background: none; min-width: 68px; }
-.focused-workspace .sim-workbench .ex-bookmarks > button[aria-pressed=true] { border-bottom-color: var(--sim-accent); background: #ffffff04; color: #e2c391; }
+.focused-workspace .sim-workbench .ex-bookmarks > button[aria-pressed=true] { border-bottom-color: var(--sim-accent); background: #ffffff04; color: #eaeaea; }
 .focused-workspace .sim-workbench .ex-bookmark-art { display: none; }
 .focused-workspace .sim-workbench .ex-bookmark > div:last-child { padding: 10px 8px; display: flex; align-items: center; justify-content: center; gap: 7px; }
 .focused-workspace .sim-workbench .ex-bookmark > div:last-child > svg { display: block; }
 .focused-workspace .sim-workbench .ex-bookmark strong { font-size: 10px; }
-.focused-workspace .sim-workbench .ml-results { grid-area: 1 / 2 / 3 / 3; margin: 0; padding: 0; min-width: 0; min-height: 0; height: 100%; overflow: auto; scrollbar-width: thin; scrollbar-color: #45525a transparent; background: var(--sim-panel); border: 0; }
-.sim-panel-heading { position: sticky; z-index: 24; top: 0; display: flex; gap: 14px; align-items: center; padding: 13px 20px; min-height: 53px; border-bottom: 1px solid var(--sim-line); background: #131c23; }
+.focused-workspace .sim-workbench .ml-results { grid-area: 1 / 2 / 3 / 3; margin: 0; padding: 0; min-width: 0; min-height: 0; height: 100%; overflow: auto; scrollbar-width: thin; scrollbar-color: #494949 transparent; background: var(--sim-panel); border: 0; }
+.sim-panel-heading { position: sticky; z-index: 24; top: 0; display: flex; gap: 14px; align-items: center; padding: 13px 20px; min-height: 53px; border-bottom: 1px solid var(--sim-line); background: #18181a; }
 .sim-panel-heading h2 { font-size: 13px; font-weight: 500; margin: 0; }
-.sim-panel-heading .sim-close-panel { margin-left: auto; padding: 4px; display: flex; color: #93a5b1; }
+.sim-panel-heading .sim-close-panel { margin-left: auto; padding: 4px; display: flex; color: #a2a2a2; }
 .sim-panel-heading .ml-export-actions { margin-left: auto; display: flex; gap: 4px; }
-.sim-panel-heading .ml-export-actions > button { display: flex; align-items: center; gap: 5px; padding: 5px; font-size: 10px; color: #9eafb9; }
+.sim-panel-heading .ml-export-actions > button { display: flex; align-items: center; gap: 5px; padding: 5px; font-size: 10px; color: #acacac; }
 .sim-panel-heading .ml-export-actions + .sim-close-panel { margin-left: 0; }
 .sim-workbench .ml-results > :not(.sim-panel-heading):not([hidden]) { padding: 22px; }
 .sim-deck[data-scene-panel=true]:has(.ml-results:not([hidden])) { grid-template-columns: 72px minmax(0, 1fr) minmax(340px, 370px); }
@@ -109,17 +109,17 @@
 .focused-workspace .sim-workbench .ml-scene-title p { font-size: 10px; }
 .sim-workbench .ml-camera-dock button { min-width: 34px; }
 .focused-workspace .sim-workbench .ml-camera-dock button span { display: none; }
-.sim-statusbar { display: flex; align-items: center; flex-shrink: 0; gap: 23px; padding: 0 175px 0 18px; min-height: 35px; background: #111a20; border-top: 1px solid #2c3941; font: 10px 'IBM Plex Mono',monospace; color: #98aab5; }
+.sim-statusbar { display: flex; align-items: center; flex-shrink: 0; gap: 23px; padding: 0 175px 0 18px; min-height: 35px; background: #171719; border-top: 1px solid #323232; font: 10px 'IBM Plex Mono',monospace; color: #a7a7a7; }
 .sim-statusbar > span { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-.sim-status-chip > i { width: 6px; height: 6px; background: #83949d; border-radius: 50%; }
-.sim-status-chip > i.recorded { background: #8abfa4; }
-.sim-status-chip > i.computing { background: #e5be7c; }
-.sim-statusbar code { color: #b8c7cd; }
+.sim-status-chip > i { width: 6px; height: 6px; background: #919191; border-radius: 50%; }
+.sim-status-chip > i.recorded { background: #b2b2b2; }
+.sim-status-chip > i.computing { background: #e4e4e4; }
+.sim-statusbar code { color: #c4c4c4; }
 .sim-cancel { display: flex; gap: 6px; align-items: center; color: #e4aa91; }
 .focused-workspace .sim-workbench .ml-provenance-details { position: absolute; bottom: 0; right: 18px; margin: 0; padding: 0; border: 0; z-index: 80; }
 .focused-workspace .sim-workbench .ml-provenance-details > summary { padding: 8px 0; font-size: 11px; }
-.focused-workspace .sim-workbench .ml-provenance-details .ml-provenance { position: absolute; bottom: 42px; right: 0; width: min(480px,calc(100vw - 40px)); padding: 24px; max-height: 65dvh; overflow: auto; border: 1px solid #4b5c63; box-shadow: 0 16px 60px #0009; background: #152028; }
-.sim-workbench .ex-welcome, .sim-workbench .ex-guide { position: absolute; z-index: 95; top: 112px; left: 87px; width: min(520px,calc(100% - 112px)); max-height: calc(100% - 170px); overflow: auto; border: 1px solid #68604a; border-radius: 6px; padding: 24px; box-shadow: 0 18px 80px #0009; }
+.focused-workspace .sim-workbench .ml-provenance-details .ml-provenance { position: absolute; bottom: 42px; right: 0; width: min(480px,calc(100vw - 40px)); padding: 24px; max-height: 65dvh; overflow: auto; border: 1px solid #525252; box-shadow: 0 16px 60px #0009; background: #1c1c1e; }
+.sim-workbench .ex-welcome, .sim-workbench .ex-guide { position: absolute; z-index: 95; top: 112px; left: 87px; width: min(520px,calc(100% - 112px)); max-height: calc(100% - 170px); overflow: auto; border: 1px solid #585858; border-radius: 0; padding: 24px; box-shadow: 0 18px 80px #0009; }
 .sim-workbench .ml-results > .ex-guide { top: 20px; left: 20px; width: calc(100% - 40px); position: absolute; }
 .sim-workbench .eng-title { display: block; margin-bottom: 20px; }
 .sim-workbench .eng-title h2 { font-size: 23px; }
@@ -136,12 +136,12 @@
 .sim-workbench .dyn-title { margin-bottom: 20px; }
 .sim-workbench .dyn-title h2 { font-size: 24px; }
 .sim-workbench .dyn-layout { grid-template-columns: 254px minmax(0,1fr); gap: 20px; }
-.sim-workbench .dyn-config { background: #101a20; border-color: #354149; padding: 18px; }
-.dyn-input-state { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-block: 10px; border-block: 1px solid #35464f; font-size: 12px; color: #b4c5d0; }
-.dyn-input-state > b { font-size: 10px; font-weight: 450; color: #dfc38f; }
+.sim-workbench .dyn-config { background: #161618; border-color: #3a3a3a; padding: 18px; }
+.dyn-input-state { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-block: 10px; border-block: 1px solid #3e3e3e; font-size: 12px; color: #c2c2c2; }
+.dyn-input-state > b { font-size: 10px; font-weight: 450; color: #e9e9e9; }
 .sim-workbench .dyn-canvas { height: clamp(380px,55dvh,700px); }
-.sim-workbench .dyn-empty { min-height: 500px; padding: 60px 9%; background: #101b22; }
-.sim-workbench .dyn-empty .ready-orbit { color: #adbdba; }
+.sim-workbench .dyn-empty { min-height: 500px; padding: 60px 9%; background: #171719; }
+.sim-workbench .dyn-empty .ready-orbit { color: #b9b9b9; }
 .sim-workbench .dyn-viewport:fullscreen .dyn-canvas { height: 100dvh; }
 .sim-workbench :is(.ml-analysis, .ml-compare-panel, .ml-library) { font-size: 12px; }
 .sim-workbench .ml-dual-scenes .ml-viewer { height: clamp(430px,56dvh,650px); flex: none; }
@@ -160,60 +160,60 @@ body:has(.sim-workbench) .interface-guide-panel { bottom: 91px; }
 body:has(.sim-workbench) .interface-guide-toggle > span { display: none; }
 
 /* Test requirements stay distinct from observations and from solver fidelity. */
-.test-bench { color: #cdd7dc; }
+.test-bench { color: #d5d5d5; }
 .bench-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 26px; }
-.bench-heading > svg { color: #d4b47d; margin-top: 4px; flex-shrink: 0; }
+.bench-heading > svg { color: #d8d8d8; margin-top: 4px; flex-shrink: 0; }
 .bench-heading .eng-kicker { display: none; }
 .bench-heading h2 { font-size: 21px; line-height: 1.3; font-weight: 450; margin: 0; }
 .bench-heading .context-help { margin-left: auto; }
-.test-bench h3 { font-size: 13px; font-weight: 500; margin: 0 0 17px; color: #cbd6dc; }
-.test-bench section { border-top: 1px solid #334149; padding-top: 23px; margin-bottom: 23px; }
-.bench-requirements { margin-bottom: 20px; border-block: 1px solid #334149; }
-.bench-requirements > summary { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 15px 0; font-size: 13px; color: #cbd6dc; }
+.test-bench h3 { font-size: 13px; font-weight: 500; margin: 0 0 17px; color: #d4d4d4; }
+.test-bench section { border-top: 1px solid #3a3a3a; padding-top: 23px; margin-bottom: 23px; }
+.bench-requirements { margin-bottom: 20px; border-block: 1px solid #3a3a3a; }
+.bench-requirements > summary { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 15px 0; font-size: 13px; color: #d4d4d4; }
 .bench-requirements > summary::marker { content: ''; }
 .bench-requirements > div { padding-top: 10px; }
 .focused-workspace .test-bench .ml-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.focused-workspace .test-bench .ml-field > span { display: flex; justify-content: space-between; font-size: 12px; color: #a6b6bf; }
-.focused-workspace .test-bench .ml-field > span small { color: #b1c2cd; font: 11px 'IBM Plex Mono',monospace; }
-.test-bench input { font: 13px 'IBM Plex Mono',monospace; padding: 10px; border-radius: 4px; background: #0d151b; border: 1px solid #3c4b55; color: #e0e6e9; width: 100%; }
+.focused-workspace .test-bench .ml-field > span { display: flex; justify-content: space-between; font-size: 12px; color: #b3b3b3; }
+.focused-workspace .test-bench .ml-field > span small { color: #bfbfbf; font: 11px 'IBM Plex Mono',monospace; }
+.test-bench input { font: 13px 'IBM Plex Mono',monospace; padding: 10px; border-radius: 0; background: #121214; border: 1px solid #434343; color: #e5e5e5; width: 100%; }
 .bench-actions { display: flex; gap: 8px; margin-bottom: 25px; }
-.bench-actions > button { display: flex; align-items: center; gap: 9px; justify-content: center; padding: 12px; border: 1px solid #45535a; border-radius: 4px; }
+.bench-actions > button { display: flex; align-items: center; gap: 9px; justify-content: center; padding: 12px; border: 1px solid #4a4a4a; border-radius: 0; }
 .bench-actions > button:first-child { flex: 1; font-size: 12px; }
-.bench-json { width: 100%; min-height: 140px; resize: vertical; padding: 12px; border: 1px solid #4a5d69; background: #0c141a; color: #b7ccd6; font: 11px 'IBM Plex Mono',monospace; margin-bottom: 20px; }
+.bench-json { width: 100%; min-height: 140px; resize: vertical; padding: 12px; border: 1px solid #535353; background: #111113; color: #c8c8c8; font: 11px 'IBM Plex Mono',monospace; margin-bottom: 20px; }
 .bench-section-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
 .bench-section-title h3 { margin: 0; }
-.bench-section-title > span { font: 14px 'IBM Plex Mono',monospace; color: #adc8bb; }
-.bench-gates > article { display: flex; align-items: center; gap: 10px; padding: 15px 0; border-bottom: 1px solid #26343c; }
+.bench-section-title > span { font: 14px 'IBM Plex Mono',monospace; color: #c1c1c1; }
+.bench-gates > article { display: flex; align-items: center; gap: 10px; padding: 15px 0; border-bottom: 1px solid #2e2e2e; }
 .bench-gates > article > div { flex: 1; display: grid; gap: 7px; }
 .bench-gates article strong { font-size: 12px; font-weight: 450; }
-.bench-gates article > div > span { font: 10px 'IBM Plex Mono',monospace; color: #91a5b1; line-height: 1.5; }
-.bench-gates article > b { font-size: 10px; font-weight: 400; color: #9bc7af; }
-.gate-icon { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: #88bb9815; color: #9bc7af; flex-shrink: 0; }
+.bench-gates article > div > span { font: 10px 'IBM Plex Mono',monospace; color: #a2a2a2; line-height: 1.5; }
+.bench-gates article > b { font-size: 10px; font-weight: 400; color: #bcbcbc; }
+.gate-icon { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: #aeaeae15; color: #bcbcbc; flex-shrink: 0; }
 .bench-gates article[data-state=fail] :is(.gate-icon, b) { color: #e6a28d; }
-.bench-gates article[data-state=unresolved] :is(.gate-icon, b) { color: #d4bb88; }
-.bench-run-id { display: block; margin-top: 15px; font-size: 10px; color: #879fac; }
-.bench-empty { display: flex; align-items: center; gap: 14px; padding: 13px 0; color: #849ba8; }
-.test-bench p { font-size: 12px; line-height: 1.7; color: #96abb6; }
-.bench-pin { display: flex; gap: 9px; align-items: center; padding: 11px 12px; font-size: 11px; border: 1px solid #496056; border-radius: 4px; color: #c1d7cd; width: 100%; }
+.bench-gates article[data-state=unresolved] :is(.gate-icon, b) { color: #dfdfdf; }
+.bench-run-id { display: block; margin-top: 15px; font-size: 10px; color: #9b9b9b; }
+.bench-empty { display: flex; align-items: center; gap: 14px; padding: 13px 0; color: #979797; }
+.test-bench p { font-size: 12px; line-height: 1.7; color: #a7a7a7; }
+.bench-pin { display: flex; gap: 9px; align-items: center; padding: 11px 12px; font-size: 11px; border: 1px solid #535353; border-radius: 0; color: #d2d2d2; width: 100%; }
 .bench-baseline-id { display: flex; gap: 8px; align-items: center; font: 10px 'IBM Plex Mono',monospace; }
-.bench-baseline-id > i { width: 5px; height: 5px; border-radius: 50%; background: #85ae9b; }
+.bench-baseline-id > i { width: 5px; height: 5px; border-radius: 50%; background: #a4a4a4; }
 .bench-deltas { display: grid; gap: 15px; padding-block: 15px 20px; }
 .bench-deltas > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.bench-deltas span { font-size: 11px; color: #a0b4be; }
-.bench-deltas strong { font: 14px 'IBM Plex Mono',monospace; color: #d7c598; }
+.bench-deltas span { font-size: 11px; color: #b0b0b0; }
+.bench-deltas strong { font: 14px 'IBM Plex Mono',monospace; color: #e9e9e9; }
 .bench-deltas small { font-size: 10px; }
-.bench-warning { color: #e1b48a; padding: 12px 0; font-size: 12px; }
+.bench-warning { color: #dcdcdc; padding: 12px 0; font-size: 12px; }
 .bench-warning p { color: inherit; }
 .bench-baseline details { margin-top: 20px; }
-.bench-baseline summary { font-size: 12px; color: #b5c7d0; }
-.bench-baseline summary > b { float: right; color: #d3bd91; }
-.bench-input-change { padding: 12px 0; border-bottom: 1px solid #283943; display: grid; gap: 6px; }
-.bench-input-change code { font-size: 10px; color: #a3b7c3; overflow-wrap: anywhere; }
-.bench-input-change span { font: 11px 'IBM Plex Mono',monospace; color: #d6c89f; overflow-wrap: anywhere; }
+.bench-baseline summary { font-size: 12px; color: #c4c4c4; }
+.bench-baseline summary > b { float: right; color: #e1e1e1; }
+.bench-input-change { padding: 12px 0; border-bottom: 1px solid #323232; display: grid; gap: 6px; }
+.bench-input-change code { font-size: 10px; color: #b4b4b4; overflow-wrap: anywhere; }
+.bench-input-change span { font: 11px 'IBM Plex Mono',monospace; color: #ececec; overflow-wrap: anywhere; }
 
 @media(min-width:1600px) {
   .focused-workspace .sim-workbench[data-active-panel=world][data-setup-open=true] .ml-workspace { grid-template-columns: 250px minmax(0,1fr) 215px; }
-  .focused-workspace .sim-workbench[data-active-panel=world][data-setup-open=true] .ml-telemetry { display: block; padding: 20px; background: #10161b; }
+  .focused-workspace .sim-workbench[data-active-panel=world][data-setup-open=true] .ml-telemetry { display: block; padding: 20px; background: #131315; }
   .sim-deck[data-scene-panel=true]:has(.ml-results:not([hidden])) { grid-template-columns: 72px minmax(0,1fr) 420px; }
 }
 @media(min-width:801px) and (max-width:1200px) {

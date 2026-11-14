@@ -31,15 +31,15 @@
 .destination-artwork{display:block;object-fit:cover;user-select:none;pointer-events:none}
 .brief-page .destination-card{min-height:280px;padding:22px;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;background:#0a0a0c;border-color:#393939;transition:border-color .22s,box-shadow .22s}
 .destination-card>.destination-artwork{position:absolute;inset:0;width:100%;height:100%;object-position:62% 48%;z-index:-2;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
-.destination-card>.destination-shade{position:absolute;inset:0;background:linear-gradient(180deg,#04070b33 0%,#04070b00 28%,#04070b33 48%,#04070bee 100%);z-index:-1}
+.destination-card>.destination-shade{position:absolute;inset:0;background:linear-gradient(180deg,#07070733 0%,#07070700 28%,#07070733 48%,#070707ee 100%);z-index:-1}
 .brief-page .destination-card:after{display:none}
 .brief-page .destination-card .target-choice-top{width:100%;align-items:center}
 .brief-page .destination-card .eyebrow{color:#e6e6e6;letter-spacing:1.2px;text-shadow:0 1px 8px #000002}
-.brief-page .destination-card .radio-mark{width:24px;height:24px;background:#080c1177;border-color:#dadbd155;backdrop-filter:blur(5px)}
+.brief-page .destination-card .radio-mark{width:24px;height:24px;background:#0c0c0c77;border-color:#dadada55;backdrop-filter:blur(5px)}
 .brief-page .destination-card.selected .radio-mark{background:#d8d8d8;border-color:#d8d8d8;color:#171719}
 .brief-page .destination-card.mars.selected .radio-mark{background:#e7ab80;border-color:#e7ab80;color:#19191b}
-.brief-page .destination-card.selected{border-color:#c3c3c3;box-shadow:0 0 0 1px #accac438}
-.brief-page .destination-card.mars.selected{border-color:#db9b75;box-shadow:0 0 0 1px #db9b7530}
+.brief-page .destination-card.selected{border-color:#c3c3c3;box-shadow:0 0 0 1px #c3c3c338}
+.brief-page .destination-card.mars.selected{border-color:#db9b75;box-shadow:0 0 0 1px #a6a6a630}
 .destination-card:hover>.destination-artwork{transform:scale(1.045)}
 .brief-page .destination-caption{position:relative;z-index:1;margin-top:80px;width:100%}
 .brief-page .destination-caption h3{color:#f3f3f3;font-size:27px;font-weight:500;letter-spacing:-.7px;margin:0 0 10px;line-height:1.2}
@@ -58,9 +58,9 @@
 .workspace-data-bar .data-notes>summary:hover,.workspace-data-bar .data-notes[open]>summary{border-color:#ffffff22;background:#ffffff06}
 .campaign-world-entry{position:relative;isolation:isolate;overflow:hidden;min-height:106px}
 .campaign-world-entry>.destination-artwork{position:absolute;inset:0 0 0 auto;width:64%;height:100%;object-position:50% 38%;z-index:-2}
-.campaign-world-entry>.campaign-world-shade{position:absolute;inset:0;background:linear-gradient(90deg,#14262bf7 0%,#14262bed 35%,#14262b66 75%,#14262b22);z-index:-1}
+.campaign-world-entry>.campaign-world-shade{position:absolute;inset:0;background:linear-gradient(90deg,#232323f7 0%,#232323ed 35%,#23232366 75%,#23232322);z-index:-1}
 .campaign-world-entry>div{position:relative;z-index:1}
 @media(max-width:1200px){.brief-summary-art{margin-left:-20px;margin-right:-20px}}
-@media(max-width:767px){.brief-page .destination-card{min-height:260px;padding:22px}.brief-summary-art{height:180px;margin-left:-23px;margin-right:-23px}.campaign-world-entry>.destination-artwork{width:100%;opacity:.65}.campaign-world-entry>.campaign-world-shade{background:linear-gradient(90deg,#14262bf2,#14262b99)}.icon-action{min-width:40px;min-height:40px}}
+@media(max-width:767px){.brief-page .destination-card{min-height:260px;padding:22px}.brief-summary-art{height:180px;margin-left:-23px;margin-right:-23px}.campaign-world-entry>.destination-artwork{width:100%;opacity:.65}.campaign-world-entry>.campaign-world-shade{background:linear-gradient(90deg,#232323f2,#23232399)}.icon-action{min-width:40px;min-height:40px}}
 @media(prefers-reduced-motion:reduce){.destination-card>.destination-artwork,.brief-page .destination-card{transition:none}.destination-card:hover>.destination-artwork{transform:none}}
 @media(pointer:coarse){.icon-action,.workspace-data-bar .data-notes>summary{min-width:44px;min-height:44px}}

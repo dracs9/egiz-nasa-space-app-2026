@@ -85,8 +85,8 @@
 }
 
 .dataset-menu>button[aria-checked=true] {
-  border-color:#779f8a77;
-  background:#7fa58e14;
+  border-color:#95959577;
+  background:#9b9b9b14;
   color:#e2e2e2
 }
 
@@ -156,7 +156,7 @@
 .focused-workspace .context-help>summary:hover,.focused-workspace .context-help[open]>summary {
   color:#e5e5e5;
   background:#ffffff08;
-  border-color:#6e8a7c66
+  border-color:#83838366
 }
 
 .focused-workspace .context-help-body {
@@ -268,7 +268,7 @@
   color:#b0b0b0;
   padding:3px 7px;
   border-radius:0;
-  background:#91ba9b0c
+  background:#afafaf0c
 }
 
 .focused-workspace .detail-section>summary:hover {
@@ -705,7 +705,7 @@
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button:hover {
-  background:#b8d0bd08
+  background:#cacaca08
 }
 
 .focused-workspace .ex-mission .ml-intro-actions>button {

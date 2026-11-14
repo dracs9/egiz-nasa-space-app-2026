@@ -91,6 +91,7 @@ import { defaultRequirements, type TestRequirements } from './acceptance';
 import "./engineering.css";
 import "./workbench.css";
 import "./observatory.css";
+import "./lab-theme.css";
 import { MissionTimeline, type ExplorerView } from "./MissionTimeline";
 import type { CameraMode } from "./scene/runtime";
 import {
@@ -99,6 +100,7 @@ import {
   useMissionGuide,
   type GuideStep,
 } from "./MissionGuide";
+import { takeLaunchIntent } from "./launchIntent";
 
 const RESULT_TABS = [
 ['engineering','Design','Rover engineering',Wrench],['dynamics','Dynamics','Native engineering lab',Settings2],['tests','Tests','Experiment test bench',ClipboardCheck],['telemetry','Telemetry','Telemetry charts',ChartNoAxesCombined],['analysis','Analysis','Scientific analysis',FlaskConical],['validation','Earth tests','Earth validation',MapPin],['compare','Compare','Compare & sensitivity',GitCompareArrows],['control','Control','Mission Control',Radio],['experiments','Archive','Saved experiments',FolderOpen],
@@ -407,8 +409,9 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     const terrain = bundle?.entries.find((e) => e.id === targetId);
     if (!terrain) return;
     cancelWorker.current?.();
-    setScenario(defaultScenario(terrain));
-    setRequirements(defaultRequirements(defaultScenario(terrain)));
+    const intent = takeLaunchIntent() ?? undefined;
+    setScenario(defaultScenario(terrain, intent));
+    setRequirements(defaultRequirements(defaultScenario(terrain, intent)));
     setGuideStep((step) => (step === null ? null : 0));
     setExplorerView("planet");
     setRun(null);
@@ -421,7 +424,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     setTransferRuns([]);
     setObservations([]);
     setNotice("");
-    setSpeed(120);
+    setSpeed(intent === "launch" || intent === "descent" ? 5 : 120);
   }, [bundle, targetId]);
   useEffect(() => { if (scenario) setRequirements(defaultRequirements(scenario)); }, [scenario?.mode]);
   useEffect(() => {

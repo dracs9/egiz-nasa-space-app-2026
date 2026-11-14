@@ -1,11 +1,21 @@
 // EGIZ landing narrative. Every figure on this page is read from the loaded dataset.
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { t as tr, useLanguage } from '../i18n';
 import { useAppStore, type Route } from '../state/store';
 import type { AppData, Run, Target } from '../types/contracts';
 import { hasSyntheticData } from '../data/load';
+import { MissionGlyph } from '../mission/MissionGlyph';
+import { setLaunchIntent } from '../mission/launchIntent';
+import type { Mode } from '../mission/types';
 import './home.css';
+
+const EXPEDITIONS: { mode: Mode; en: string; ru: string; textEn: string; textRu: string }[] = [
+  { mode: 'rover', en: 'Rover traverse', ru: 'Маршрут ровера', textEn: 'Drive across measured terrain', textRu: 'Проехать по измеренному рельефу' },
+  { mode: 'launch', en: 'Launch & flight', ru: 'Взлёт и полёт', textEn: 'Test a rocket launch', textRu: 'Испытать запуск ракеты' },
+  { mode: 'descent', en: 'Descent & landing', ru: 'Спуск и посадка', textEn: 'Try a surface landing', textRu: 'Попробовать посадку' },
+  { mode: 'eva', en: 'Habitat & EVA', ru: 'База и выход', textEn: 'Plan surface exploration', textRu: 'Спланировать выход на поверхность' },
+];
 
 type Lang = 'en' | 'ru';
 const L = <T,>(lang: Lang, en: T, ru: T) => (lang === 'ru' ? ru : en);
@@ -67,6 +77,7 @@ export function HomePage() {
   const lang = useLanguage(s => s.language) as Lang;
   const { data, navigate, setTarget } = useAppStore();
   const root = useRef<HTMLElement>(null);
+  const [destination, setDestination] = useState<'moon' | 'mars'>('moon');
   useReveal(root); useParallax(root);
   if (!data) return null;
 
@@ -80,6 +91,7 @@ export function HomePage() {
   const gapRows = Array.from(new Map([...(moonRun?.gaps.physical ?? []), ...(marsRun?.gaps.physical ?? [])].map(g => [g.gap, g])).values());
   const synthetic = hasSyntheticData(data);
   const open = (route: Route, target?: Target) => { if (target) setTarget(target.id); navigate(route); };
+  const startExpedition = (mode: Mode) => { setLaunchIntent(mode); open('lab', destination === 'mars' ? mars : moon); };
 
   const tools: { route: Route; title: string; ru: string; text: string; textRu: string }[] = [
     { route: 'lab', title: 'Engineering lab', ru: 'Инженерная лаборатория', text: 'Measured terrain, vehicles, transfers and surface operations in one 3D workbench.', textRu: 'Измеренный рельеф, техника, перелёты и работа на поверхности — в одном 3D-стенде.' },
@@ -93,30 +105,50 @@ export function HomePage() {
   return <main ref={root} className="hm" aria-labelledby="hm-title">
     {/* 01 — Hero */}
     <section className="hm-hero">
-      <picture className="hm-hero-plate" aria-hidden="true">
+      <picture className={`hm-hero-plate ${destination === 'moon' ? 'is-active' : ''}`} aria-hidden="true">
         <source media="(max-width: 700px) and (orientation: portrait)" srcSet={asset('hero/moon-south-pole-portrait-1080.jpg')} />
         <img src={asset('hero/moon-south-pole-2560.jpg')} srcSet={`${asset('hero/moon-south-pole-1440.jpg')} 1440w, ${asset('hero/moon-south-pole-2560.jpg')} 2560w`} sizes="100vw" width={2560} height={1440} alt="" fetchPriority="high" decoding="async" />
       </picture>
+      {mars && <picture className={`hm-hero-plate hm-hero-plate-mars ${destination === 'mars' ? 'is-active' : ''}`} aria-hidden="true">
+        <img src={asset('hero/mars-jezero-2560.jpg')} srcSet={`${asset('hero/mars-jezero-1440.jpg')} 1440w, ${asset('hero/mars-jezero-2560.jpg')} 2560w`} sizes="100vw" width={2560} height={1440} alt="" loading="lazy" decoding="async" />
+      </picture>}
       <div className="hm-hero-shade" aria-hidden="true" />
       <div className="hm-hero-copy">
         <p className="eg-eyebrow hm-rise" style={{ '--d': '120ms' } as React.CSSProperties}>{L(lang, 'Egiz — analogue campaign designer', 'Egiz — проектировщик аналоговых кампаний')}</p>
         <h1 id="hm-title" className="eg-display hm-hero-title">
           <span className="hm-line"><span style={{ '--d': '220ms' } as React.CSSProperties}>{L(lang, 'Rehearse', 'Репетиция')}</span></span>
-          <span className="hm-line"><span style={{ '--d': '320ms' } as React.CSSProperties}>{L(lang, 'the Moon', 'Луны')}</span></span>
+          <span className="hm-line"><span key={destination} className="hm-swap" style={{ '--d': '320ms' } as React.CSSProperties}>{destination === 'mars' ? L(lang, 'Mars', 'Марса') : L(lang, 'the Moon', 'Луны')}</span></span>
           <span className="hm-line"><span style={{ '--d': '420ms' } as React.CSSProperties}>{L(lang, 'on Earth', 'на Земле')}</span></span>
         </h1>
         <p className="hm-hero-lede hm-rise" style={{ '--d': '640ms' } as React.CSSProperties}>{L(lang,
-          'Egiz finds the smallest set of places on Earth that can rehearse a Moon-base or Mars mission — and states, plainly, what Earth can never test.',
-          'Egiz находит минимальный набор мест на Земле, где можно отрепетировать миссию на Луну или Марс, — и честно показывает, что Земля проверить не может.')}</p>
+          'Pick a destination and an expedition. Egiz finds the smallest set of places on Earth that can rehearse it — and states, plainly, what Earth can never test.',
+          'Выберите цель и экспедицию. Egiz находит минимальный набор мест на Земле, где её можно отрепетировать, — и честно показывает, что Земля проверить не может.')}</p>
         <div className="hm-actions hm-rise" style={{ '--d': '780ms' } as React.CSSProperties}>
           <button className="eg-button" onClick={() => open('lab')}>{L(lang, 'Open the lab', 'Открыть лабораторию')}<ArrowRight size={16} strokeWidth={1.6} /></button>
-          <button className="eg-button quiet" onClick={() => open('campaign', moon)}><span>{L(lang, 'See the campaign', 'Смотреть кампанию')}</span><ArrowRight size={16} strokeWidth={1.6} /></button>
+          <button className="eg-button quiet" onClick={() => open('campaign', destination === 'mars' ? mars : moon)}><span>{L(lang, 'See the campaign', 'Смотреть кампанию')}</span><ArrowRight size={16} strokeWidth={1.6} /></button>
         </div>
       </div>
-      {moon && <dl className="hm-hero-readout hm-rise" style={{ '--d': '960ms' } as React.CSSProperties} aria-label={L(lang, 'Target', 'Цель')}>
-        <div><dt>{L(lang, 'Target', 'Цель')}</dt><dd>Mons Mouton</dd></div>
-        <div><dt>{L(lang, 'Position', 'Координаты')}</dt><dd>{latLon(lang, moon.lat, moon.lon)}</dd></div>
-      </dl>}
+      <nav className="hm-expeditions hm-rise" style={{ '--d': '960ms' } as React.CSSProperties} aria-label={L(lang, 'Choose an expedition', 'Выберите экспедицию')}>
+        <div className="hm-exp-head">
+          <span className="eg-eyebrow">{L(lang, 'Choose an expedition', 'Выберите экспедицию')}</span>
+          <div className="hm-dest" role="radiogroup" aria-label={L(lang, 'Destination', 'Цель')}>
+            {([['moon', moon, L(lang, 'Moon', 'Луна')], ['mars', mars, L(lang, 'Mars', 'Марс')]] as const).filter(([, t]) => t).map(([body, t, label]) => <button key={body} role="radio" aria-checked={destination === body} onClick={() => setDestination(body)}>
+              <span>{label}</span><small>{latLon(lang, t!.lat, t!.lon)}</small>
+            </button>)}
+          </div>
+        </div>
+        <ul className="hm-exp-list">
+          {EXPEDITIONS.map((exp, i) => <li key={exp.mode}>
+            <button onClick={() => startExpedition(exp.mode)}>
+              <span className="hm-exp-n">0{i + 1}</span>
+              <MissionGlyph mode={exp.mode} />
+              <span className="hm-exp-title">{L(lang, exp.en, exp.ru)}</span>
+              <span className="hm-exp-text">{L(lang, exp.textEn, exp.textRu)}</span>
+              <ArrowRight className="hm-exp-arrow" size={16} strokeWidth={1.6} aria-hidden="true" />
+            </button>
+          </li>)}
+        </ul>
+      </nav>
       <a className="hm-scroll" href="#hm-thesis" aria-label={L(lang, 'Scroll to story', 'Прокрутить вниз')}><span /></a>
     </section>
 
