@@ -58,6 +58,8 @@ const CLIP_RES = (() => {
   const px = Math.max(window.innerWidth, window.innerHeight) * Math.min(window.devicePixelRatio || 1, 2);
   return px < 1000 ? 720 : px < 1800 ? 1080 : 1440;
 })();
+/** On phones the film starts this far into the first clip. */
+const PHONE_LEAD = .8;
 /** The seven clips, in flight order: one continuous film behind the whole page. */
 const FILM = ['hero/s1-arrival', 'earth/s2-twin', 'moon/s3-return', 'transitions/s4-passage', 'mars/s5-jezero', 'missions/s6-answer', 'orbital/s7-home'];
 
@@ -224,7 +226,9 @@ function useSpatial(root: React.RefObject<HTMLElement | null>) {
         const anchors = [0, ...Array.from(host.querySelectorAll<HTMLElement>('[data-film-anchor]')).map(e => e.getBoundingClientRect().top + y - vh * .6)];
         const n = Math.min(film.length, anchors.length - 1);
         let k = n - 1; for (let j = 0; j < n; j++) if (y < anchors[j + 1]) { k = j; break; }
-        const pos = k + clamp((y - anchors[k]) / Math.max(1, anchors[k + 1] - anchors[k]));
+        // phones open on the lit crater horizon: the first seconds of the arrival are a near-black limb in a portrait crop
+        const lead = k === 0 && window.innerWidth <= 760 ? PHONE_LEAD : 0;
+        const pos = k + lead + (1 - lead) * clamp((y - anchors[k]) / Math.max(1, anchors[k + 1] - anchors[k]));
         filmSp = filmSp < 0 ? pos : filmSp + (pos - filmSp) * (1 - Math.exp(-dt * 12));
         const ci = Math.min(n - 1, Math.floor(filmSp)); const ct = filmSp - ci;
         if (ci !== shown) { layers[shown].style.opacity = '0'; layers[ci].style.opacity = '1'; shown = ci; }

@@ -457,4 +457,11 @@ html.lenis, html.lenis body { height: auto; }
   .hm-footnote { display: none; }
   .hm-ledger-alt { display: none; }
   .hm-index-text { display: none; }
+  /* hero: the Moon fills the top of the first screen, the words sit at its foot */
+  .hm-hero-grid { padding-top: calc(var(--header-h, 57px) + 36svh); }
+  .hm-hero-shade { -webkit-mask-image: none; mask-image: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0, rgba(0,0,0,0) 30svh, rgba(0,0,0,.5) 62svh, rgba(0,0,0,.82) 100svh, #000 calc(100svh + 260px)); }
+  .hm-hero-copy { text-shadow: 0 2px 24px rgba(0,0,0,.6); }
+  .hm-hero-copy .eg-eyebrow { color: rgba(240,240,245,.82); }
+  .hm-hero-title { font-size: clamp(54px, 17vw, 80px); }
 }
