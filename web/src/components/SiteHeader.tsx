@@ -11,12 +11,18 @@ import './site-header.css';
 // Mission Studio and Lunar World are superseded by the Planetary Studio and stay reachable from its Tools menu.
 const links: Route[] = ['planet', 'discover', 'lab', 'campaign', 'atlas', 'evidence', 'twin'];
 
-/** EGIZ mark: a horizon line under a partial orbit — Earth, before elsewhere. */
+/** EGIZ mark: a world rising over a measured horizon, its orbit and a moon — Earth, before elsewhere. */
 export function EgizMark() {
-  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
-    <circle cx="12" cy="12" r="10.25" strokeOpacity=".45" />
-    <path d="M3.2 15.2h17.6" />
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10.25" strokeOpacity=".4" strokeWidth="1" />
+    <path d="M12 1.3v1.5M22.7 12h-1.5M1.3 12h1.5" strokeOpacity=".75" strokeWidth="1" />
+    <path d="M4.9 9.6C6.4 6.9 11.6 5.3 16.4 6.1c2.6.4 3.9 1.4 3.6 2.6" strokeOpacity=".6" strokeWidth=".75" strokeDasharray="0 1.55" />
+    <circle cx="19.9" cy="9.1" r=".9" fill="currentColor" stroke="none" />
+    <path d="M9.23 15.2A4.7 4.7 0 1 1 14.77 15.2" strokeOpacity=".3" strokeWidth=".7" />
     <circle cx="12" cy="11.4" r="3.3" fill="currentColor" stroke="none" />
+    <path d="M3.2 15.2h17.6" />
+    <path d="M5.6 17.7h12.8" strokeOpacity=".55" strokeWidth=".9" />
+    <path d="M8.4 20.1h7.2" strokeOpacity=".3" strokeWidth=".9" />
   </svg>;
 }
 

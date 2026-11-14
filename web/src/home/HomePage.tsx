@@ -8,6 +8,7 @@ import { useAppStore, type Route } from '../state/store';
 import type { AppData, Run, Target } from '../types/contracts';
 import { hasSyntheticData } from '../data/load';
 import { MissionGlyph } from '../mission/MissionGlyph';
+import { DestinationArtwork } from '../components/DestinationArtwork';
 import { setLaunchIntent, type LaunchOverrides } from '../mission/launchIntent';
 import type { Mode } from '../mission/types';
 import './home.css';
@@ -325,9 +326,6 @@ export function HomePage() {
     </div>
     {/* 01 — Hero */}
     <section className="hm-hero">
-      {mars && <div className={`hm-hero-plate hm-hero-plate-mars ${destination === 'mars' ? 'is-active' : ''}`} aria-hidden="true">
-        <img src={asset('media/cinematic/mars/s5-jezero-end.jpg')} alt="" decoding="async" />
-      </div>}
       <div className="hm-hero-shade" aria-hidden="true" />
       <div className="hm-hero-grid">
         <div className="hm-hero-copy">
@@ -347,7 +345,10 @@ export function HomePage() {
           <p className="hm-panel-kicker">{L(lang, 'New mission', 'Новая миссия')}</p>
 
           <div className="hm-dest" role="radiogroup" aria-label={L(lang, 'Destination', 'Цель')}>
-            {([['moon', moon, L(lang, 'Moon', 'Луна')], ['mars', mars, L(lang, 'Mars', 'Марс')]] as const).filter(([, t]) => t).map(([body, , label]) => <button key={body} role="radio" aria-checked={destination === body} onClick={() => setDestination(body)}>{label}</button>)}
+            {([['moon', moon, L(lang, 'Moon', 'Луна')], ['mars', mars, L(lang, 'Mars', 'Марс')]] as const).filter(([, t]) => t).map(([body, , label]) => <button key={body} role="radio" aria-checked={destination === body} onClick={() => setDestination(body)}>
+              <DestinationArtwork body={body} sizes="200px" />
+              <span>{label}</span>
+            </button>)}
           </div>
 
           <p className="hm-panel-label">{L(lang, 'Expedition', 'Экспедиция')}</p>
