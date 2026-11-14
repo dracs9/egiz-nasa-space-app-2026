@@ -290,3 +290,4 @@ html[lang] .eg-header .eg-nav button { padding-left: 0; padding-right: 0; }
 .eg-header .language-switch { background: rgba(0,0,0,.35); }
 .eg-header.menu-open, .eg-header.over-hero.menu-open { background: #000; border-color: var(--rule); }
 body:has(.eg-header.menu-open) { overflow: hidden; }
+#main-content h1[tabindex="-1"]:focus, #main-content h1[tabindex="-1"]:focus-visible { outline: none; }

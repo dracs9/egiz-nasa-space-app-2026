@@ -121,6 +121,7 @@ export function HomePage() {
   const tiles = data.candidates.tiles.filter(t => t.pool !== 'control').length;
   const gapRows = Array.from(new Map([...(moonRun?.gaps.physical ?? []), ...(marsRun?.gaps.physical ?? [])].map(g => [g.gap, g])).values());
   const synthetic = hasSyntheticData(data);
+  const currentTarget = destination === 'mars' ? mars : moon;
   const open = (route: Route, target?: Target) => { if (target) setTarget(target.id); navigate(route); };
   const startExpedition = (autorun: boolean) => {
     const overrides: LaunchOverrides = {};
@@ -152,56 +153,51 @@ export function HomePage() {
         <img src={asset('hero/mars-jezero-2560.jpg')} srcSet={`${asset('hero/mars-jezero-1440.jpg')} 1440w, ${asset('hero/mars-jezero-2560.jpg')} 2560w`} sizes="100vw" width={2560} height={1440} alt="" loading="lazy" decoding="async" />
       </picture>}
       <div className="hm-hero-shade" aria-hidden="true" />
-      <div className="hm-hero-copy">
-        <p className="eg-eyebrow hm-rise" style={{ '--d': '120ms' } as React.CSSProperties}>{L(lang, 'Egiz — analogue campaign designer', 'Egiz — проектировщик аналоговых кампаний')}</p>
-        <h1 id="hm-title" className="eg-display hm-hero-title">
-          <span className="hm-line"><span key={destination} className="hm-swap" style={{ '--d': '220ms' } as React.CSSProperties}>{destination === 'mars' ? L(lang, 'Rehearse Mars', 'Репетиция Марса') : L(lang, 'Rehearse the Moon', 'Репетиция Луны')}</span></span>
-          <span className="hm-line"><span style={{ '--d': '340ms' } as React.CSSProperties}>{L(lang, 'on Earth', 'на Земле')}</span></span>
-        </h1>
-        <p className="hm-hero-lede hm-rise" style={{ '--d': '560ms' } as React.CSSProperties}>{L(lang,
-          'Egiz finds the smallest set of places on Earth that can rehearse a mission — and states, plainly, what Earth can never test.',
-          'Egiz находит минимальный набор мест на Земле, где можно отрепетировать миссию, — и честно показывает, что Земля проверить не может.')}</p>
+      <div className="hm-hero-grid">
+        <div className="hm-hero-copy">
+          <p className="eg-eyebrow hm-rise" style={{ '--d': '120ms' } as React.CSSProperties}>{L(lang, 'Egiz — analogue campaign designer', 'Egiz — проектировщик аналоговых кампаний')}</p>
+          <h1 id="hm-title" className="eg-display hm-hero-title">
+            <span className="hm-line"><span style={{ '--d': '220ms' } as React.CSSProperties}>{L(lang, 'Rehearse', 'Репетиция')}</span></span>
+            <span className="hm-line"><span key={destination} className="hm-swap" style={{ '--d': '320ms' } as React.CSSProperties}>{destination === 'mars' ? L(lang, 'Mars', 'Марса') : L(lang, 'the Moon', 'Луны')}</span></span>
+            <span className="hm-line"><span style={{ '--d': '420ms' } as React.CSSProperties}>{L(lang, 'on Earth', 'на Земле')}</span></span>
+          </h1>
+          <p className="hm-hero-lede hm-rise" style={{ '--d': '600ms' } as React.CSSProperties}>{L(lang,
+            'Egiz finds the smallest set of places on Earth that can rehearse a mission — and states, plainly, what Earth can never test.',
+            'Egiz находит минимальный набор мест на Земле, где можно отрепетировать миссию, — и честно показывает, что Земля проверить не может.')}</p>
+          {currentTarget && <p className="hm-hero-coord hm-rise" style={{ '--d': '760ms' } as React.CSSProperties}><span>{currentTarget.name.split(/[/,]/)[0].trim()}</span>{latLon(lang, currentTarget.lat, currentTarget.lon)}</p>}
+        </div>
+
+        <aside className="hm-panel hm-rise" style={{ '--d': '520ms' } as React.CSSProperties} aria-label={L(lang, 'New mission', 'Новая миссия')}>
+          <p className="hm-panel-kicker">{L(lang, 'New mission', 'Новая миссия')}</p>
+
+          <div className="hm-dest" role="radiogroup" aria-label={L(lang, 'Destination', 'Цель')}>
+            {([['moon', moon, L(lang, 'Moon', 'Луна')], ['mars', mars, L(lang, 'Mars', 'Марс')]] as const).filter(([, t]) => t).map(([body, , label]) => <button key={body} role="radio" aria-checked={destination === body} onClick={() => setDestination(body)}>{label}</button>)}
+          </div>
+
+          <p className="hm-panel-label">{L(lang, 'Expedition', 'Экспедиция')}</p>
+          <div className="hm-exp-list" role="radiogroup" aria-label={L(lang, 'Expedition', 'Экспедиция')}>
+            {EXPEDITIONS.map(exp => <button key={exp.mode} role="radio" aria-checked={mode === exp.mode} onClick={() => chooseMode(exp.mode)}>
+              <MissionGlyph mode={exp.mode} />
+              <span className="hm-exp-title">{L(lang, exp.en, exp.ru)}</span>
+            </button>)}
+          </div>
+
+          <p className="hm-panel-label">{L(lang, 'Parameters', 'Параметры')}</p>
+          <div className="hm-params">
+            {PARAMS[mode].map(p => {
+              const max = paramMax(p, params);
+              const value = paramValue(p, params);
+              return <label key={p.key} className="hm-param">
+                <span className="hm-param-head"><span>{L(lang, p.en, p.ru)}</span><output>{value.toLocaleString(lang)}<small>{p.unit}</small></output></span>
+                <input type="range" min={p.min} max={max} step={p.step} value={value} onChange={e => setParams(v => ({ ...v, [p.key]: Number(e.target.value) }))} style={{ '--fill': `${((value - p.min) / (max - p.min)) * 100}%` } as React.CSSProperties} />
+              </label>;
+            })}
+          </div>
+
+          <button className="eg-button hm-launch-button" onClick={() => startExpedition(true)}>{L(lang, 'Start simulation', 'Запустить моделирование')}<ArrowRight size={16} strokeWidth={1.6} /></button>
+          <button className="hm-panel-link" onClick={() => startExpedition(false)}>{L(lang, 'Open the lab without running', 'Открыть лабораторию без запуска')}</button>
+        </aside>
       </div>
-      <section className="hm-console hm-rise" style={{ '--d': '760ms' } as React.CSSProperties} aria-label={L(lang, 'Mission setup', 'Настройка миссии')}>
-        <div className="hm-console-row hm-console-top">
-          <div className="hm-step">
-            <span className="hm-step-label"><b>01</b>{L(lang, 'Destination', 'Цель')}</span>
-            <div className="hm-dest" role="radiogroup" aria-label={L(lang, 'Destination', 'Цель')}>
-              {([['moon', moon, L(lang, 'Moon', 'Луна')], ['mars', mars, L(lang, 'Mars', 'Марс')]] as const).filter(([, t]) => t).map(([body, t, label]) => <button key={body} role="radio" aria-checked={destination === body} onClick={() => setDestination(body)}>
-                <span>{label}</span><small>{latLon(lang, t!.lat, t!.lon)}</small>
-              </button>)}
-            </div>
-          </div>
-          <div className="hm-step hm-step-wide">
-            <span className="hm-step-label"><b>02</b>{L(lang, 'Expedition', 'Экспедиция')}</span>
-            <div className="hm-exp-list" role="radiogroup" aria-label={L(lang, 'Expedition', 'Экспедиция')}>
-              {EXPEDITIONS.map(exp => <button key={exp.mode} role="radio" aria-checked={mode === exp.mode} onClick={() => chooseMode(exp.mode)}>
-                <MissionGlyph mode={exp.mode} />
-                <span className="hm-exp-title">{L(lang, exp.en, exp.ru)}</span>
-              </button>)}
-            </div>
-          </div>
-        </div>
-        <div className="hm-console-row hm-console-bottom">
-          <div className="hm-step hm-step-params">
-            <span className="hm-step-label"><b>03</b>{L(lang, 'Parameters', 'Параметры')}</span>
-            <div className="hm-params">
-              {PARAMS[mode].map(p => {
-                const max = paramMax(p, params);
-                const value = paramValue(p, params);
-                return <label key={p.key} className="hm-param">
-                  <span className="hm-param-head"><span>{L(lang, p.en, p.ru)}</span><output>{value.toLocaleString(lang)} <small>{p.unit}</small></output></span>
-                  <input type="range" min={p.min} max={max} step={p.step} value={value} onChange={e => setParams(v => ({ ...v, [p.key]: Number(e.target.value) }))} style={{ '--fill': `${((value - p.min) / (max - p.min)) * 100}%` } as React.CSSProperties} />
-                </label>;
-              })}
-            </div>
-          </div>
-          <div className="hm-launch">
-            <button className="eg-button hm-launch-button" onClick={() => startExpedition(true)}>{L(lang, 'Start simulation', 'Запустить моделирование')}<ArrowRight size={16} strokeWidth={1.6} /></button>
-            <button className="eg-button quiet" onClick={() => startExpedition(false)}><span>{L(lang, 'Open the lab without running', 'Открыть лабораторию без запуска')}</span></button>
-          </div>
-        </div>
-      </section>
       <a className="hm-scroll" href="#hm-thesis" aria-label={L(lang, 'Scroll to story', 'Прокрутить вниз')}><span /></a>
     </section>
 

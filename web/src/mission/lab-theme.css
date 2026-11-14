@@ -356,3 +356,77 @@ html .focused-workspace .sim-workbench .ml-modes .ml-mode-index { display: inlin
 .sim-workbench .ml-results .ml-tiny { color: var(--lab-ink-3) !important; }
 .sim-workbench .sim-rail button span { white-space: normal !important; text-align: center; line-height: 1.15; overflow: visible !important; text-overflow: clip !important; max-width: 60px; word-break: break-word; }
 .sim-workbench .sim-rail button span { font-size: 7.5px !important; letter-spacing: 0 !important; word-break: normal; overflow-wrap: normal; max-width: 64px; }
+
+/* =========================================================
+   Polish pass: one chrome bar, ghost controls, calmer panel
+   ========================================================= */
+.focused-workspace .sim-workbench { position: relative; }
+
+/* Lab title row folds into the expedition bar */
+html .focused-workspace .sim-workbench .ex-mission-header {
+  position: absolute !important;
+  top: 0; right: 0;
+  z-index: 6;
+  height: 54px !important;
+  min-height: 54px !important;
+  width: auto !important;
+  padding: 0 16px 0 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  display: flex; align-items: center;
+}
+.sim-workbench .ex-mission-header .ex-title {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+html .focused-workspace .sim-workbench .ml-modes { padding-right: 290px; }
+.sim-workbench .ml-intro-actions { gap: 2px !important; }
+html .sim-workbench .ml-intro-actions > button,
+html .sim-workbench .ml-intro-actions .context-help > summary {
+  width: 38px; height: 38px; min-width: 38px; padding: 0 !important;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0 !important; background: transparent !important; color: var(--lab-ink-3) !important;
+}
+html .sim-workbench .ml-intro-actions > button:hover { background: rgba(240,240,245,.07) !important; color: var(--lab-ink) !important; }
+html .sim-workbench .ml-intro-actions > button[aria-pressed=true] { background: transparent !important; color: var(--lab-ink) !important; box-shadow: inset 0 -2px var(--lab-ink); }
+html .sim-workbench .ml-intro-actions > button b { margin-left: 3px; font-family: var(--font-mono); font-size: 10px; color: var(--lab-ink-3); background: none !important; }
+
+/* Expedition bar: the lab's single header */
+html .focused-workspace .sim-workbench .ml-modes > button { justify-content: flex-start; }
+html .focused-workspace .sim-workbench .ml-modes > button:last-child { border-right: 0 !important; }
+
+/* Setup panel */
+.sim-workbench .ml-setup { scrollbar-width: none; padding-top: 6px; }
+.sim-workbench .ml-setup::-webkit-scrollbar { display: none; }
+.sim-workbench .ml-setup .ml-panel-heading { border-bottom: 0 !important; padding-bottom: 0 !important; margin-bottom: 4px; }
+.sim-workbench .ml-setup .ml-panel-heading svg, .sim-workbench .ml-setup .ml-panel-heading > span:last-child { display: none; }
+html .sim-workbench .ex-worlds { display: flex; gap: 18px !important; border: 0 !important; margin: 4px 0 6px; }
+html .sim-workbench .ex-worlds button {
+  flex: 0 0 auto; position: relative; padding: 4px 0 7px !important; min-height: 0 !important;
+  background: transparent !important; color: rgba(240,240,245,.32) !important;
+  font-size: 15px !important; letter-spacing: .1em !important;
+}
+html .sim-workbench .ex-worlds button + button { border-left: 0 !important; }
+html .sim-workbench .ex-worlds button .ex-world-dot { display: none; }
+html .sim-workbench .ex-worlds button::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--lab-ink); transform: scaleX(0); transform-origin: 0 50%; transition: transform .5s var(--ease-out); }
+html .sim-workbench .ex-worlds button:hover { color: rgba(240,240,245,.7) !important; }
+html .sim-workbench .ex-worlds button[aria-pressed=true] { background: transparent !important; color: var(--lab-ink) !important; }
+html .sim-workbench .ex-worlds button[aria-pressed=true]::after { transform: scaleX(1); }
+.sim-workbench .ex-region-summary { border: 0 !important; background: none !important; padding-inline: 0 !important; }
+.sim-workbench .ex-region-summary .ex-overline { display: none; }
+.sim-workbench .ex-region-summary h2 { font-size: 34px !important; margin-top: 14px !important; }
+.sim-workbench .terrain-resolution { border: 0 !important; padding: 0 !important; color: var(--lab-ink-3) !important; font-size: 10.5px; }
+.sim-workbench .ex-primary-start { min-height: 52px; justify-content: space-between; padding-inline: 18px !important; }
+.sim-workbench .ex-primary-start svg:first-child { display: none; }
+.sim-workbench .ex-schematic { border: 0 !important; background: none !important; padding-inline: 0 !important; }
+.sim-workbench .ex-schematic-image { border: 0 !important; background: radial-gradient(closest-side, rgba(240,240,245,.06), transparent) !important; border-radius: 0 !important; }
+
+/* Scene: planet name in the display face */
+.sim-workbench .ex-planet > h2, .sim-workbench .ex-planet-name, .sim-workbench .ml-scene-title h2, .sim-workbench .ml-scene-title strong {
+  font-family: var(--font-display) !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: .04em !important;
+}
+.sim-workbench .ex-orbit-heading h2 { font-family: var(--font-display) !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: .06em !important; font-size: 30px !important; color: var(--lab-ink) !important; }
+html .focused-workspace .sim-workbench .ml-modes { padding-right: 300px; }
+html .focused-workspace .sim-workbench .ml-modes > button > div { min-width: 0; }
+html .focused-workspace .sim-workbench .ml-modes > button strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html .sim-workbench .ex-primary-start { font-size: 13px !important; letter-spacing: .08em !important; white-space: nowrap; }
+@media (max-width: 1280px) { html .focused-workspace .sim-workbench .ml-modes > button .mission-glyph { display: none; } }
