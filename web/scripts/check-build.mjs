@@ -67,3 +67,7 @@ if(modelCount!==6)throw Error('NASA equipment catalog is incomplete');
 for(const asset of ['vendor/draco/draco_decoder.js','vendor/draco/LICENSE.txt'])if(!(await readFile(path.join(dist,asset))).length)throw Error(`Missing Draco asset: ${asset}`);
 if(!names.some(n=>/^ModelInspector-.+\.js$/.test(n)))throw Error('Equipment studio is not emitted as a lazy module');
 console.log('Egiz: verified 6 original NASA GLBs, embedded assets, fingerprints, local Draco decoder and credits.');
+
+const searchWorker=names.find(name=>/^search\.worker-.+\.js$/.test(name));
+if(!searchWorker||!chunks.some(c=>c.includes(searchWorker)))throw Error('Operating study worker is missing from the production application');
+console.log(`Egiz: verified bounded operating study worker ${searchWorker}.`);

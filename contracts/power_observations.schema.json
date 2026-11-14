@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.local/contracts/power_observations.schema.json",
+  "title": "EGIZ power observations 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "synthetic",
+    "provenance",
+    "units",
+    "series"
+  ],
+  "properties": {
+    "schema": {
+      "const": "egiz.power_observations"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "instrument",
+        "operator",
+        "hardwareId",
+        "conditions",
+        "uncertainty"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instrument": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hardwareId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conditions": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "t_s",
+        "mechanical_power_w",
+        "bus_voltage_v",
+        "bus_current_a"
+      ],
+      "properties": {
+        "t_s": {
+          "const": "s"
+        },
+        "mechanical_power_w": {
+          "const": "W"
+        },
+        "bus_voltage_v": {
+          "const": "V"
+        },
+        "bus_current_a": {
+          "const": "A"
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "source",
+          "recordedAt",
+          "maxGapS",
+          "rows"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "enum": [
+              "fit",
+              "validation"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxGapS": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 3600
+          },
+          "rows": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 5000,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "t_s",
+                "mechanical_power_w",
+                "bus_voltage_v",
+                "bus_current_a"
+              ],
+              "properties": {
+                "t_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "mechanical_power_w": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "bus_voltage_v": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "bus_current_a": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

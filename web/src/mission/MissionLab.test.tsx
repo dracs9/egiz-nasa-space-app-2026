@@ -2,6 +2,10 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import MissionLab from "./MissionLab";
+import { executeStudy } from "./search";
+import type { SearchSpace } from "./search";
+import type { Scenario, MissionTerrain } from "./types";
+import type { TestRequirements } from "./acceptance";
 import { simulate } from "./engine";
 import { saveRun, savedRuns } from "./storage";
 import { useAppStore } from "../state/store";
@@ -33,7 +37,8 @@ const jobs: MissionJob[][] = [];
 class WorkerMock {
   onmessage: ((e: { data: unknown }) => void) | null = null;
   onerror: (() => void) | null = null;
-  postMessage(message: { jobs: MissionJob[] }) {
+  postMessage(message: { jobs: MissionJob[]; kind?: string; scenario?: Scenario; terrain?: MissionTerrain; inputs?: Record<string,string>; requirements?:TestRequirements; space?:SearchSpace }) {
+    if(message.kind==='search'){queueMicrotask(()=>this.onmessage?.({data:{result:executeStudy(message.scenario!,message.terrain!,message.inputs!,message.requirements!,message.space!)}}));return;}
     jobs.push(message.jobs);
     queueMicrotask(() =>
       this.onmessage?.({
@@ -519,7 +524,7 @@ it("reaches the recorded terminal state despite native range decimal serializati
   ).toBe(recorded.metrics.duration);
 });
 
-it("connects edited rover engineering, a nine-design sweep and measured Earth campaign execution",async()=>{
+it("connects edited rover engineering, fixed-hardware operating search and measured Earth campaign execution",async()=>{
   await render();
   await click("ROVER ENGINEERING");
   await change("Wheel radius (m)","0.6");
@@ -527,9 +532,10 @@ it("connects edited rover engineering, a nine-design sweep and measured Earth ca
   expect(jobs.at(-1)![0].scenario.rover.design!.wheelRadius).toBe(.6);
   expect(document.querySelector(".system-metric-grid")?.textContent).toContain("Wheel speed");
   await click("Rover engineering");
-  await click("Run 9-design trade study");
-  expect(jobs.at(-1)).toHaveLength(9);
-  expect(new Set(jobs.at(-1)!.map(j=>j.scenario.rover.design!.stallTorque))).toEqual(new Set([20,60,120]));
+  await click("Find a feasible operating mode");
+  await click("Search fixed requirements");
+  expect(document.querySelector(".study-summary")?.textContent).toContain("Feasible modes");
+  expect(document.querySelector(".study-recommendation")).not.toBeNull();
   await click("Earth validation");
   await click("Build mission-aware campaign");
   expect(jobs.at(-1)).toHaveLength(17);
@@ -600,7 +606,8 @@ it('cancels a running worker, restores controls and rejects late worker publicat
   const terminate = vi.fn();
   class HangingWorker extends WorkerMock {
     constructor() { super(); hanging = this; }
-    override postMessage(message: { jobs: MissionJob[] }) { jobs.push(message.jobs); }
+    override postMessage(message: { jobs: MissionJob[]; kind?: string; scenario?: Scenario; terrain?: MissionTerrain; inputs?: Record<string,string>; requirements?:TestRequirements; space?:SearchSpace }) {
+    if(message.kind==='search'){queueMicrotask(()=>this.onmessage?.({data:{result:executeStudy(message.scenario!,message.terrain!,message.inputs!,message.requirements!,message.space!)}}));return;} jobs.push(message.jobs); }
     override terminate = terminate;
   }
   vi.stubGlobal('Worker', HangingWorker);

@@ -1,3 +1,4 @@
+import { calibrationError } from "./observations.ts";
 import { ASSUMPTIONS, ENVIRONMENTS, G0, MODEL } from "./environment.ts";
 import { planRoute } from "./routing.ts";
 import { sampleTerrain, slopeAt } from "./terrain.ts";
@@ -10,6 +11,8 @@ export function validateScenario(
   terrain: MissionTerrain,
 ): string[] {
   const errors: string[] = [];
+  const invalidCalibration = calibrationError(s);
+  if (invalidCalibration) errors.push(invalidCalibration);
   if (
     s.version !== "1.0.0" ||
     !["launch", "descent", "rover", "eva"].includes(s.mode)
@@ -655,6 +658,7 @@ export function simulate(
     run.assumptions.push("Regional quasi-static six-wheel drivetrain with equal load sharing, wheel-shaft linear DC torque-speed and power limits. No acceleration transient, slip, regolith or dynamic suspension solver. Conservative static tip angle uses the smaller support span.",
       "Wheel width and suspension travel control illustrative geometry/articulation only. Solar area is a horizontal electrical collection aperture; rendered panel dimensions are illustrative. No dynamic rollover, obstacle clearance or contact prediction.");
   }
+  if (scenario.calibration) run.assumptions.push(`${scenario.calibration.observations.synthetic ? "SYNTHETIC SOFTWARE CONTROL; physical validation unconfirmed" : "Imported Earth electrical observations; physical review remains required"}. Electrical efficiency and idle bus demand fitted from known mechanical power. Fit and held-out source series are embedded in scenario.calibration. Scope: Earth electrical bench only; no soil or planetary thermal transfer.`);
   if (scenario.solar) run.assumptions.push(...scenario.solar.limitations, `${scenario.solar.engine}; ${scenario.solar.frame}; UTC ${scenario.solar.epochUtc}; ${scenario.solar.step} s recorded samples, vector interpolation. Solar charging uses assumed horizontal panel efficiency and transmission.`);
   if (scenario.mode === "rover" || scenario.mode === "eva") surface(run);
   else flight(run);

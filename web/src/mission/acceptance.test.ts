@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import bundle from '../../../data/pilot/mission_terrain.json';
 import { defaultScenario } from './environment';
 import { simulate } from './engine';
-import { assessRun, baselineCompatibility, defaultRequirements, requirementsValid, scenarioChanges } from './acceptance';
+import { assessRun, acceptanceAtTime, baselineCompatibility, defaultRequirements, requirementsValid, scenarioChanges } from './acceptance';
 import type { MissionTerrain } from './types';
 
 const terrain = bundle.entries.find(t => t.id === 'MARS_JEZERO') as MissionTerrain;
@@ -42,6 +42,17 @@ describe('recorded experiment acceptance', () => {
     mismatch.scenario.environment = base.scenario.environment; mismatch.model = 'different';
     expect(baselineCompatibility(base, mismatch).reasons).toContain('Different numerical models');
     const route = structuredClone(next); route.scenario.destination.x += 200;
-    expect(baselineCompatibility(base, route)).toMatchObject({ comparable: true, sameRoute: false });
+    expect(baselineCompatibility(base, route)).toMatchObject({ comparable: false, sameRoute: false });
   });
+});
+
+
+it('keeps unfinished acceptance pending and shares each record time in A/B',()=>{
+  const run=simulate(scenario,terrain),limits=defaultRequirements(scenario);
+  const start=acceptanceAtTime(run,limits,0);
+  expect(start.find(g=>g.id==='arrival')?.status).toBe('pending');
+  expect(start.find(g=>g.id==='energy')?.status).toBe('pending');
+  const mid=acceptanceAtTime(run,{...limits,maxDurationS:1},run.metrics.duration/2);
+  expect(mid.find(g=>g.id==='time')?.status).toBe('fail');
+  expect(acceptanceAtTime(run,limits,run.metrics.duration)).toEqual(assessRun(run,limits));
 });

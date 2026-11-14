@@ -21,7 +21,7 @@ export function defaultRequirements(s: Scenario): TestRequirements {
     minAltitudeM: 1000, maxTouchdownMS: s.vehicle.safeSpeed };
 }
 export function requirementsValid(r: TestRequirements) {
-  return Object.values(r).every(n => Number.isFinite(n) && n >= 0);
+  return !!r && ['maxDurationS','maxEnergyWh','minReserveWh','minAltitudeM','maxTouchdownMS'].every(k => Number.isFinite(r[k as keyof TestRequirements]) && r[k as keyof TestRequirements] >= 0);
 }
 /** Acceptance screening of recorded model output, never a flight certification. */
 export function assessRun(run: RunResult, r: TestRequirements): TestGate[] {
@@ -34,7 +34,7 @@ export function assessRun(run: RunResult, r: TestRequirements): TestGate[] {
   if (mode === 'rover' || mode === 'eva') {
     gates.unshift({ id: 'arrival', label: 'Destination reached', value: run.outcome, limit: null, unit: '', status: run.outcome === 'destination_reached' ? 'pass' : 'fail' });
     gates.push(gate('energy', 'Electrical energy', run.metrics.energyWh, r.maxEnergyWh, 'Wh'));
-    const reserve = run.frames.at(-1)?.mobility?.batteryRemainingWh ?? run.scenario.rover.batteryWh - run.metrics.energyWh;
+    const reserve = run.frames.at(-1)?.mobility?.batteryRemainingWh ?? (run.scenario.rover.design ? null : run.scenario.rover.batteryWh - run.metrics.energyWh);
     gates.push(gate('reserve', 'Final battery reserve', reserve, r.minReserveWh, 'Wh', '≥'));
     if (run.scenario.rover.design) {
       const samples = run.frames.map(f => f.mobility?.stabilityMarginDeg);
@@ -73,7 +73,11 @@ export function baselineCompatibility(a: RunResult, b: RunResult) {
   if (a.terrain.id !== b.terrain.id || a.terrain.source.sha256 !== b.terrain.source.sha256 || JSON.stringify(a.terrain.grid) !== JSON.stringify(b.terrain.grid)) reasons.push('Different terrain geometry');
   if (a.scenario.kind !== b.scenario.kind || JSON.stringify(a.scenario.environment) !== JSON.stringify(b.scenario.environment)) reasons.push('Different physical environments');
   const sameRoute = JSON.stringify([a.scenario.start, a.scenario.destination, a.scenario.rover.route]) === JSON.stringify([b.scenario.start, b.scenario.destination, b.scenario.rover.route]);
-  return { comparable: reasons.length === 0, reasons, sameRoute };
+  const actualRoute = JSON.stringify(a.route) === JSON.stringify(b.route);
+  if (!sameRoute || !actualRoute) reasons.push('Different route or task geometry');
+  if (!!a.scenario.rover.design !== !!b.scenario.rover.design) reasons.push('Different classes of surface physics');
+  if (JSON.stringify(a.scenario.solar) !== JSON.stringify(b.scenario.solar)) reasons.push('Different solar geometry');
+  return { comparable: reasons.length === 0, reasons, sameRoute: sameRoute && actualRoute };
 }
 
 export function acceptanceReport(current: RunResult, baseline: RunResult | null, requirements: TestRequirements) {
@@ -83,4 +87,18 @@ export function acceptanceReport(current: RunResult, baseline: RunResult | null,
     requirements, gates: assessRun(current, requirements),
     comparison: baseline ? { ...baselineCompatibility(baseline, current), changes: scenarioChanges(baseline.scenario, current.scenario) } : null,
     current, baseline };
+}
+
+/** Acceptance evidence available by the selected recorded time. A not-yet-completed
+ * task cannot earn a pass merely because it has used little energy so far. */
+export function acceptanceAtTime(run:RunResult,r:TestRequirements,time:number): (Omit<TestGate,'status'> & {status:TestGate['status']|'pending'})[] {
+  if(time>=run.metrics.duration-1e-8)return assessRun(run,r);
+  const frames=run.frames.filter(f=>f.t<=Math.max(0,time)),last=frames.at(-1)??run.frames[0];
+  const partial={...run,frames:frames.length?frames:[last],outcome:'in_progress',events:run.events.filter(e=>e.t<=time),metrics:{...run.metrics,duration:last.t,energyWh:last.energyWh,maxAltitude:frames.reduce((m,f)=>Math.max(m,f.altitude),0),touchdownSpeed:null}};
+  return assessRun(partial,r).map(g=>{
+    if(['arrival','landing','contact','reserve','bounds'].includes(g.id))return {...g,status:g.status==='unresolved'&&g.id==='reserve'?'unresolved':'pending'};
+    if(['time','energy','stability'].includes(g.id)&&g.status==='pass')return {...g,status:'pending'};
+    if(['liftoff','altitude'].includes(g.id)&&g.status==='fail')return {...g,status:'pending'};
+    return g;
+  });
 }

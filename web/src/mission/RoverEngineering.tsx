@@ -55,7 +55,7 @@ export function RoverEngineering({scenario, frame, onChange, busy, exploded, onE
         <ContextHelp label="Model & assumptions"><p className="ml-tiny">{localizeText("200 m regional terrain cannot resolve wheel contact or rocks. Width and suspension travel affect the illustration only. Panel aperture is an electrical assumption, not a CAD area measurement.")}</p></ContextHelp>
         {localizeText(frame?.mobility && <p className="eng-live">{localizeText("Recorded state · ")}{localizeText(frame.mobility.motorRpm.toFixed(2))}{localizeText(" rpm · ")}{localizeText(frame.mobility.wheelTorqueNm.toFixed(2))}{localizeText(" N m/wheel · ")}{localizeText(frame.mobility.batteryRemainingWh.toFixed(1))}{localizeText(" Wh remaining")}</p>)}
         {localizeText(validationErrors.length>0 && <div className="ml-error" role="alert">{localizeText(validationErrors.map(e=><p key={e}>{localizeText(e)}</p>))}</div>)}
-        <div className="eng-presets"><button disabled={busy || validationErrors.length>0} onClick={onRun}>{localizeText("Calculate this design →")}</button><button disabled={busy || !scenario.rover.design || validationErrors.length>0} onClick={onSweep}>{localizeText("Run 9-design trade study")}</button></div>
+        <div className="eng-presets"><button disabled={busy || validationErrors.length>0} onClick={onRun}>{localizeText("Calculate this design →")}</button><button disabled={busy || !scenario.rover.design || validationErrors.length>0} onClick={onSweep}>{localizeText("Find a feasible operating mode")}</button></div>
       </div>
     </div>
   </div>;

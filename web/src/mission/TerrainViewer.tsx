@@ -69,7 +69,7 @@ export function TerrainViewer(props: Props) {
   const [layer, setLayer] = useState("surface"),
     [cameraMode, setCameraMode] = useState<CameraMode>("close"),
     [quality, setQuality] = useState(props.initialQuality ?? "auto"),
-    [sun, setSun] = useState(28),
+    [sun, setSun] = useState(18),
     [exaggeration, setExaggeration] = useState(1),
     [error, setError] = useState(""),
     [inspection, setInspection] = useState<Point | null>(null),
@@ -168,7 +168,7 @@ export function TerrainViewer(props: Props) {
     exaggeration,
     reset,
   ]);
-  const inspect = inspection ?? start,
+  const inspect = inspection ?? props.frame ?? start,
     elevation = sampleTerrain(terrain, inspect),
     slope = slopeAt(terrain, inspect);
   const heights = terrain.grid.elevation_m.filter(

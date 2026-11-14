@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { chronographEvents } from "./chronograph";
+import type { TestRequirements } from "./acceptance";
 import { message } from '../i18n/messages';
 import { t as localizeText, useLanguage } from '../i18n';
 import {
@@ -32,8 +35,12 @@ export function MissionTimeline({
   view,
   onView,
   snapshots,
+  requirements,
+  onEvent,
 }: {
   run: RunResult | null;
+  requirements: TestRequirements;
+  onEvent(): void;
   time: number;
   playing: boolean;
   speed: number;
@@ -47,7 +54,14 @@ export function MissionTimeline({
 }) {
   useLanguage();
   const end = run?.metrics.duration ?? 0,
-    events = run?.events ?? [];
+    events = useMemo(() => run ? chronographEvents(run, requirements) : [], [run, requirements]);
+  const seekEvent = (t: number) => { onSeek(t); onEvent(); };
+  const energyTrace = useMemo(() => {
+    if(!run || !["rover","eva"].includes(run.scenario.mode)) return null;
+    const max = Math.max(1,run.metrics.energyWh,requirements.maxEnergyWh);
+    const stride = Math.max(1,Math.ceil(run.frames.length/300));
+    return {points:run.frames.filter((_,i)=>i%stride===0||i===run.frames.length-1).map(f=>`${f.t/Math.max(1,end)*1000},${43-f.energyWh/max*36}`).join(" "), ceiling:43-requirements.maxEnergyWh/max*36};
+  },[run,requirements.maxEnergyWh]);
   const bookmarks = [
     ["planet", "The planet", Globe2],
     ["region", "The region", Mountain],
@@ -56,7 +70,8 @@ export function MissionTimeline({
     ["scientific", "Scientific view", ScanLine],
     ["outcome", "The outcome", ChartNoAxesCombined],
   ] as const;
-  const sampled = terrain.grid.elevation_m.filter(
+  const profile = useMemo(() => {
+    const sampled = terrain.grid.elevation_m.filter(
       (v): v is number => v !== null,
     ),
     low = Math.min(...sampled),
@@ -71,6 +86,8 @@ export function MissionTimeline({
         `${(i / (row.length - 1)) * 180},${48 - (v === null ? 0 : (v - low) / Math.max(1, high - low)) * 38}`,
     )
     .join(" ");
+    return profile;
+  }, [terrain]);
   const current = events.filter((e) => e.t <= time).at(-1);
   return (
     <section className="ex-timeline" aria-label={localizeText("Mission playback")}>
@@ -104,7 +121,7 @@ export function MissionTimeline({
           <button
             aria-label={localizeText("Next mission event")}
             disabled={!events.some((e) => e.t > time)}
-            onClick={() => onSeek(events.find((e) => e.t > time)!.t)}
+            onClick={() => seekEvent(events.find((e) => e.t > time)!.t)}
           >
             <SkipForward size={15} />
           </button>
@@ -128,6 +145,8 @@ export function MissionTimeline({
           <strong>{localizeText("T+")}{localizeText(missionClock(time))}</strong>
         </div>
         <div className="ex-time-track">
+          <div className="chrono-identity"><b>{localizeText("EGIZ / MISSION CHRONOGRAPH")}</b><span>{localizeText("RECORDED TIME · REQUIREMENT EVENTS")}</span></div>
+          {energyTrace && <svg className="chrono-energy" viewBox="0 0 1000 50" preserveAspectRatio="none" role="img" aria-label={localizeText("Recorded energy and fixed ceiling over mission time")}><path d="M0 43H1000 M0 25H1000 M0 7H1000" className="chrono-grid"/><line x1="0" x2="1000" y1={energyTrace.ceiling} y2={energyTrace.ceiling} className="chrono-ceiling"/><polyline points={energyTrace.points}/><line x1={Math.min(1,time/Math.max(1,end))*1000} x2={Math.min(1,time/Math.max(1,end))*1000} y1="0" y2="50" className="chrono-cursor"/></svg>}
           <div className="ex-time-labels">
             <span>
               {localizeText(current?.type.replaceAll("_", " ") ??
@@ -144,7 +163,7 @@ export function MissionTimeline({
                 value=""
                 onChange={(e) => {
                   if (e.target.value !== "")
-                    onSeek(events[Number(e.target.value)].t);
+                    seekEvent(events[Number(e.target.value)].t);
                 }}
               >
                 <option value="">{localizeText("EVENTS / ")}{localizeText(events.length)}</option>
@@ -159,11 +178,13 @@ export function MissionTimeline({
             {localizeText(events.map((e, i) => (
               <button
                 key={i}
+                data-severity={e.severity}
+                aria-current={Math.abs(e.t-time)<.1?"step":undefined}
                 className={e.t <= time ? "passed" : ""}
                 style={{ left: `${end ? (e.t / end) * 100 : 0}%` }}
                 title={localizeText(`${e.type} · ${e.t.toFixed(1)} s — ${e.detail}`)}
                 aria-label={localizeText(`Timeline event: ${e.type} at ${e.t.toFixed(1)} seconds`)}
-                onClick={() => onSeek(e.t)}
+                onClick={() => seekEvent(e.t)}
               />
             )))}
           </div>
@@ -193,6 +214,7 @@ export function MissionTimeline({
           </div>
         </div>
       </div>
+      {run && <div className="chrono-explanation" data-severity={current?.severity}><span>{current?.gate ? localizeText("REQUIREMENT") : localizeText("RECORDED EVENT")}</span><b>{localizeText(current?.type ?? "Awaiting simulation")}</b><p>{localizeText(current?.detail ?? run.explanation)}</p>{current && <code>T+{current.t.toFixed(1)} s · E {current.x.toFixed(0)} / N {current.y.toFixed(0)} m</code>}</div>}
       <div className="ex-bookmarks">
         <div className="ex-bookmark-label">{localizeText("MISSION VIEWS")}<strong>
             06 <span>{localizeText("BOOKMARKS")}</span>

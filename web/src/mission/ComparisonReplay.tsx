@@ -1,3 +1,5 @@
+import { baselineCompatibility, acceptanceAtTime, defaultRequirements } from "./acceptance";
+import { chronographEvents } from "./chronograph";
 import { ContextHelp } from '../components/ContextHelp';
 import { t as localizeText, useLanguage } from '../i18n';
 // Written with AI assistance (Codex); human review pending.
@@ -40,7 +42,7 @@ export function ComparisonReplay({ runs, initiallyOpen = false }: { runs: RunRes
     if (time >= end) setPlaying(false);
   }, [time, end]);
   const label = (r: RunResult) =>
-    `${r.terrain.name} · ${r.scenario.environment.planet} physics · ${r.scenario.kind}`;
+    `${r.id.slice(0,6)} · ${r.terrain.name} · ${r.scenario.rover.speed.toFixed(2)} m/s · ${r.scenario.rover.route} · ${r.scenario.environment.planet}`;
   return (
     <section className="ml-dual-replay">
       <button
@@ -103,6 +105,7 @@ export function ComparisonReplay({ runs, initiallyOpen = false }: { runs: RunRes
               )))}
             </select>
           </div>
+          <p className="comparison-contract">{localizeText(baselineCompatibility(a,b).comparable ? "Matching model, physical environment and route. Inspect changed inputs and fixed requirements." : "Direct deltas unavailable. The experiments differ in route, model, physical environment or solar geometry.")}</p>
           <div className="ml-dual-scenes">
             {localizeText([a, b].map((r, i) => {
               const f = replayFrame(r, time);
@@ -126,6 +129,7 @@ export function ComparisonReplay({ runs, initiallyOpen = false }: { runs: RunRes
                       )))}
                     </select>
                   </label>
+                  <select aria-label={localizeText(`Recorded events ${i===0?"A":"B"}`)} value="" onChange={e=>{if(e.target.value!==""){setTime(Number(e.target.value));setPlaying(false);}}}><option value="">{localizeText("Jump to mission event")}</option>{chronographEvents(r,r.requirements??defaultRequirements(r.scenario)).map((e,j)=><option key={j} value={e.t}>{localizeText(e.type)} · {e.t.toFixed(1)} s</option>)}</select>
                   <TerrainViewer
                     terrain={r.terrain}
                     frame={f}
@@ -138,6 +142,8 @@ export function ComparisonReplay({ runs, initiallyOpen = false }: { runs: RunRes
                     onPick={noPick}
                     initialQuality="auto"
                   />
+                  <svg className="comparison-energy" viewBox="0 0 500 80" role="img" aria-label={localizeText("Recorded energy and synchronized cursor")}><polyline points={r.frames.filter((_,i)=>i%Math.max(1,Math.ceil(r.frames.length/300))===0||i===r.frames.length-1).map(f=>`${f.t/Math.max(1,end)*500},${75-f.energyWh/Math.max(1,a.metrics.energyWh,b.metrics.energyWh)*65}`).join(" ")}/><line x1={time/Math.max(1,end)*500} x2={time/Math.max(1,end)*500} y1="0" y2="80"/></svg>
+                  <div className="comparison-gates">{acceptanceAtTime(r,r.requirements??defaultRequirements(r.scenario),time).map(g=><span key={g.id} data-state={g.status}>{localizeText(g.label)} {typeof g.value==='number'?`${g.value.toFixed(1)} ${g.unit}`:''} · {localizeText(g.status==='pass'?'Pass':g.status==='fail'?'Fail':g.status==='pending'?'Pending':'Unresolved')}</span>)}</div>
                   <div className="ml-dual-readout">
                     <span>
                       {localizeText(time >= r.metrics.duration

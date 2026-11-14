@@ -81,3 +81,14 @@ Codex assisted with code, tests, fixtures, and draft text. Human scientific revi
 ### Native engineering expansion (20 October 2026)
 
 [EGIZ 4 implementation and model limits](docs/EGIZ_4_ENGINEERING.md) · [exact verification](docs/EGIZ_4_VERIFICATION.md). MuJoCo contact dynamics, Basilisk orbit propagation, a measured 10 m lunar mesh atlas and robust mission-conditioned Earth testing extend the existing browser workflows. Optional runtime: `pip install -e '.[science,dynamics,dev]'`, then `make science-serve` and `npm --prefix web run dev`. Browser-only recorded references remain available.
+
+### Operating decisions and observations · 22 October 2026
+
+The existing **Tests** workspace now searches feasible operating modes under fixed hardware, task and requirements, using actual regional rover records. It connects Pareto trade-offs, finite decision maps, requirement events in the mission chronograph, synchronized A/B evidence and the existing Earth campaign. A versioned SI observation import fits two electrical parameters with a separate held-out series; its included control is explicitly synthetic and does not establish physical validation. The familiar workspace now uses a restrained graphite/brass observatory treatment.
+
+[Implemented scope, exact demo and scientific limits](docs/EGIZ_NEXT_ENGINEERING.md) · [verification and browser evidence](docs/EGIZ_NEXT_VERIFICATION.md).
+
+```sh
+node tools/benchmark_operating.mjs
+node tools/reproduce_operating.mjs artifacts/next-MOON_MONS_MOUTON.json
+```

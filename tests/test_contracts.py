@@ -103,3 +103,12 @@ def test_committed_bundle_integrity():
     from tools.check_bundle import check_bundle
 
     check_bundle(Path(ROOT) / "data/fixtures")
+
+
+def test_power_observations_contract_units_and_provenance():
+    schema = json.loads((ROOT / "contracts/power_observations.schema.json").read_text())
+    data = json.loads((ROOT / "contracts/examples/power_observations.json").read_text())
+    validator = Draft202012Validator(schema)
+    validator.validate(data)
+    data["units"]["bus_current_a"] = "mA"
+    assert list(validator.iter_errors(data))

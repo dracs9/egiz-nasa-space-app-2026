@@ -97,6 +97,8 @@ export interface Scenario {
   /** Piecewise-constant launch throttle; omitted preserves constant full thrust. */
   thrustProgram?: { time: number; throttle: number }[];
   solar?: SpiceGeometry;
+  /** Additive archive extension; never transfers Earth soil to a planetary surface. */
+  calibration?: import("./observations").PowerCalibration;
   vehicle: {
     dryMass: number;
     fuel: number;
@@ -167,6 +169,8 @@ export interface RunResult {
   inputs: Record<string, string>;
   integrator: string;
   assumptions: string[];
+  /** Optional fixed screening requirements; legacy archives omit this extension. */
+  requirements?: import("./acceptance").TestRequirements;
   frames: Frame[];
   events: MissionEvent[];
   route: Point[];

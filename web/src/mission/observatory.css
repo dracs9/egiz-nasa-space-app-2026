@@ -1,0 +1,118 @@
+/* EGIZ Observatory · 22 October 2026. Original instrument language, no postprocessing. */
+.focused-workspace .sim-workbench {
+  --sim-panel:#111214; --sim-line:#303031; --sim-dim:#aaa69e; --sim-accent:#c7a879;
+  background:#08090b; color:#e6e0d4;
+}
+.focused-workspace .sim-workbench :is(.ex-mission-header,.ml-modes,.ml-setup,.ex-timeline,.sim-panel-heading,.sim-statusbar) {background:#111214; border-color:var(--sim-line);}
+.focused-workspace .sim-workbench .sim-rail {background:#0c0d0f; border-color:var(--sim-line);}
+.focused-workspace .sim-workbench .ex-mission-header h1 {color:#e7e1d6;font-weight:400;letter-spacing:.025em;}
+.focused-workspace .sim-workbench :is(.sim-location,.ex-time-labels,.ml-field>span,.ml-tiny,.eng-title p) {color:#b0aaa0;}
+.focused-workspace .sim-workbench :is(input,select,textarea) {background:#0c0d0f;color:#e9e1d4;border-color:#44413a;border-radius:2px;accent-color:#c7a879;}
+.sim-workbench :is(button,input,select,summary):focus-visible {outline:2px solid #e3c08c;outline-offset:3px;}
+.sim-workbench :is(.ml-primary,.ex-primary-start) {background:#c7a879;color:#17130d;border-color:#c7a879;box-shadow:none;}
+.sim-workbench :is(.eng-kicker,.ml-panel-heading,.ex-overline,.chrono-identity,.chrono-explanation>span) {font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#c7ae87;}
+.sim-workbench :is(.ml-chart,.study-baseline,.study-options>article,.observation-bench) {background:#0c0e10;border:1px solid #2e2e2b;border-radius:2px;}
+.focused-workspace .sim-workbench .ml-main-scene {background:#08090b;}
+.sim-workbench .ml-main-scene canvas {outline:0;}
+.sim-workbench .ex-planet-info h2 {font-weight:300;letter-spacing:.06em;}
+.sim-workbench .ex-bookmarks {background:#0c0d0f;}
+.focused-workspace .sim-workbench .ex-transport {gap:14px;padding:10px 18px;min-height:106px;}
+.sim-workbench .ex-time-track {position:relative;min-width:0;}
+.chrono-identity {display:flex;justify-content:space-between;gap:8px;margin-bottom:3px;}
+.chrono-identity b {font-size:9px;font-weight:500;white-space:nowrap;}
+.chrono-identity span {font-size:7px;color:#8e8981;}
+.chrono-energy {display:block;width:100%;height:35px;overflow:visible;}
+.chrono-energy polyline {fill:none;stroke:#c7a879;stroke-width:1.5;vector-effect:non-scaling-stroke;}
+.chrono-grid {stroke:#292b2b;fill:none;stroke-width:.6;}
+.chrono-ceiling {stroke:#bb7f66;stroke-width:1;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;}
+.chrono-cursor {stroke:#ede7d9;stroke-width:1;vector-effect:non-scaling-stroke;}
+.sim-workbench .ex-track-events button[data-severity=fail] {background:#c88f75;border-color:#e1b090;}
+.sim-workbench .ex-track-events button[aria-current=step] {outline:2px solid #f1ddba;outline-offset:3px;z-index:2;}
+.chrono-explanation {display:grid;grid-template-columns:auto minmax(100px,auto) 1fr;gap:5px 14px;align-items:baseline;padding:9px 18px 11px;border-top:1px solid #2b2b29;background:#0b0d0f;min-width:0;}
+.chrono-explanation>b {font-size:10px;font-weight:500;color:#e4d6be;}
+.chrono-explanation p {font-size:10px;line-height:1.5;color:#b4aea3;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chrono-explanation code {grid-column:2/4;font-size:9px;color:#99978f;}
+.chrono-explanation[data-severity=fail] {border-left:2px solid #c88f75;}
+.operating-search {margin-top:25px;padding-top:25px;border-top:1px solid #454039;}
+.operating-search h3,.observation-bench h2 {font-size:21px;font-weight:400;line-height:1.35;margin:10px 0 14px;color:#ede5d6;}
+.operating-search p,.observation-bench p {font-size:12px;line-height:1.7;color:#b5afa4;}
+.operating-search button,.observation-bench button {border:1px solid #494237;padding:9px 11px;min-height:34px;font-size:11px;color:#dfc7a3;border-radius:2px;line-height:1.4;}
+.operating-search button:hover,.observation-bench button:hover {background:#b7986020;}
+.operating-search button:disabled,.observation-bench button:disabled {opacity:.4;cursor:default;}
+.study-demo {width:100%;margin:5px 0 15px;background:#b798600b;}
+.study-actions {display:flex;gap:7px;flex-wrap:wrap;margin:12px 0;}
+.study-check {display:flex;gap:9px;align-items:center;font-size:11px;margin:14px 0;line-height:1.5;}
+.study-bounds {display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.study-summary {display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:22px 0;border-block:1px solid #37342e;margin:20px 0;}
+.study-summary span {font-size:10px;color:#aaa296;}
+.study-summary b {display:block;margin-top:7px;font:18px 'IBM Plex Mono',monospace;color:#e2d0af;}
+.study-baseline {padding:14px;margin:14px 0;font-size:12px;}
+.study-trade {padding:10px 0;}
+.study-trade svg {width:100%;max-height:200px;}
+.study-trade path {stroke:#57534a;fill:none;}
+.study-trade text {fill:#a9a398;font:9px 'IBM Plex Mono',monospace;}
+.study-trade circle {stroke:#8c8271;fill:#111214;}
+.study-trade circle[data-feasible=true] {fill:#c7a879;stroke:#c7a879;}
+.study-trade small {color:#a9a398;font-size:10px;line-height:1.6;display:block;}
+.study-options {display:grid;gap:9px;}
+.study-options>article {padding:13px;border-left:2px solid #766956;}
+.study-options>article[data-feasible=true] {border-left-color:#c7a879;}
+.study-options>article>div:first-child {display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.study-options b {font:12px 'IBM Plex Mono',monospace;color:#e2d6c1;}
+.study-options span,.study-options small {font-size:10px;color:#aaa296;}
+.study-options p {margin:9px 0 4px;font:11px 'IBM Plex Mono',monospace;line-height:1.7;}
+.study-options .study-actions {margin-bottom:0;}
+.study-cause {padding:10px 0;border-bottom:1px solid #30302b;}
+.study-cause b {font-size:12px;color:#dec49b;}
+.study-cause p {margin:8px 0;}
+.study-event {width:100%;text-align:left;margin:4px 0;}
+.decision-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 0;gap:5px;font:9px 'IBM Plex Mono',monospace;}
+.decision-row {display:contents;}
+.decision-grid b {font-weight:400;color:#b7aa96;align-self:center;font-size:9px;}
+.decision-grid button {padding:12px 2px;background:#c7a87910;}
+.observation-bench {padding:25px;margin:30px 0;}
+.observation-label {color:#d2b582!important;font:10px 'IBM Plex Mono',monospace;line-height:1.7;letter-spacing:.05em;}
+.study-summary,.study-bounds,.study-actions,.observation-bench {min-width:0;overflow-wrap:anywhere;}
+@media(min-width:1500px) {.sim-deck[data-scene-panel=true]:has(.ml-results:not([hidden])) {grid-template-columns:72px minmax(0,1fr) minmax(370px,420px);}}
+@media(max-width:850px) {.chrono-identity span {display:none;}.chrono-explanation {grid-template-columns:auto 1fr;padding:9px 12px;}.chrono-explanation p {grid-column:1/3;white-space:normal;max-height:3em;overflow:auto;}.chrono-explanation code {grid-column:1/3;}.chrono-energy {height:28px;}}
+@media(max-width:600px) {.focused-workspace .sim-workbench .ex-transport {padding:10px;gap:10px;}.chrono-identity {margin-top:5px;}.chrono-explanation {padding:8px 10px;}.observation-bench {padding:16px;}.study-bounds {grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce) {.sim-workbench *, .sim-workbench *::before,.sim-workbench *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+.comparison-contract {font-size:12px;line-height:1.7;color:#b9ad98;padding:10px 0;}
+.comparison-energy {width:100%;height:72px;background:#0c0e10;border-block:1px solid #34332e;}
+.comparison-energy polyline {fill:none;stroke:#c7a879;stroke-width:1.5;}
+.comparison-energy line {stroke:#eee6d8;stroke-dasharray:3 3;}
+.comparison-gates {display:flex;flex-wrap:wrap;gap:6px;padding:14px 0;}
+.comparison-gates span {font-size:10px;border:1px solid #62553d;color:#cfbc9b;padding:5px 8px;}
+.comparison-gates [data-state=fail] {color:#deb19a;border-color:#835744;}
+.field-contract {border-left:1px solid #796346;padding:10px 16px;margin:18px 0;}
+.field-contract b {color:#dcc59f;font-size:13px;}
+.field-contract p {font-size:12px;line-height:1.7;}
+.study-recommendation {border:1px solid #8c724a;background:#b99b6810;padding:16px;margin:18px 0;}
+.study-recommendation>b {font:15px 'IBM Plex Mono',monospace;color:#e6d3ae;}
+.study-recommendation .ml-field {margin:16px 0;}
+.operating-search>details {margin:17px 0;}
+.operating-search>details>summary {font-size:12px;color:#d1bb97;padding:9px 0;}
+.scene-handoff {position:absolute;pointer-events:none;z-index:23;left:95px;top:124px;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#0c0d0fe8;border-left:1px solid #b79d72;animation:handoff-in .4s ease-out;}
+.scene-handoff span {font:8px 'IBM Plex Mono',monospace;letter-spacing:.13em;color:#d3b98b;}
+.scene-handoff b {font-size:17px;font-weight:400;color:#e8e0d2;}
+.scene-handoff small {font-size:10px;color:#aaa498;}
+@keyframes handoff-in {from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px) {.scene-handoff{top:148px;left:14px;right:14px;}}
+/* Event ticks remain adjacent to the transport scrubber after adding the energy trace. */
+.sim-workbench .ex-track-events {top:auto;bottom:23px;}
+@media(min-width:901px) and (max-height:800px) {
+  .focused-workspace .sim-workbench .ex-transport {min-height:88px;padding-block:7px;}
+  .chrono-energy {height:23px;}
+  .sim-workbench .ex-time-track input[type=range] {margin-block:9px 8px;}
+  .chrono-explanation {padding-block:7px;gap:6px;}
+  .chrono-explanation code {display:none;}
+  .focused-workspace .sim-workbench .ex-bookmarks {min-height:31px;}
+  .focused-workspace .sim-workbench .ex-bookmark>div:last-child {padding-block:8px;}
+  .focused-workspace .sim-workbench .ml-tools {min-height:31px;height:31px;}
+  .focused-workspace .sim-workbench .ml-scene-toolbar {min-height:29px;}
+  .sim-workbench .ex-track-events {bottom:19px;}
+}
+.sim-workbench .ml-notice {max-width:min(700px,calc(100vw - 28px));white-space:normal;overflow-wrap:anywhere;}
+.sim-workbench .ml-notice>button {flex-shrink:0;}
+.comparison-gates [data-state=pending] {border-style:dashed;border-color:#58544b;color:#b2ab9c;}
+.comparison-gates [data-state=unresolved] {border-color:#5a5d60;color:#a4a8ae;}

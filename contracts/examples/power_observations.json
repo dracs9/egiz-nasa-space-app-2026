@@ -1,0 +1,105 @@
+{
+  "schema": "egiz.power_observations",
+  "version": "1.0.0",
+  "synthetic": true,
+  "provenance": {
+    "source": "EGIZ synthetic software control; no field measurements",
+    "instrument": "Exact algebraic generator",
+    "operator": "EGIZ software fixture",
+    "hardwareId": "EGIZ declared drivetrain under test",
+    "conditions": "Positive shaft work, no solar input, no regeneration or stall-loss model",
+    "uncertainty": "No noise distribution; exact synthetic values are not instrument accuracy"
+  },
+  "units": {
+    "t_s": "s",
+    "mechanical_power_w": "W",
+    "bus_voltage_v": "V",
+    "bus_current_a": "A"
+  },
+  "series": [
+    {
+      "id": "synthetic-fit",
+      "role": "fit",
+      "source": "synthetic-independent-input-fit",
+      "recordedAt": "2026-10-22T00:00:00Z",
+      "maxGapS": 2,
+      "rows": [
+        {
+          "t_s": 0,
+          "mechanical_power_w": 0,
+          "bus_voltage_v": 28,
+          "bus_current_a": 2.3214285714285716
+        },
+        {
+          "t_s": 2,
+          "mechanical_power_w": 40,
+          "bus_voltage_v": 28,
+          "bus_current_a": 4.201127819548872
+        },
+        {
+          "t_s": 4,
+          "mechanical_power_w": 100,
+          "bus_voltage_v": 28,
+          "bus_current_a": 7.020676691729323
+        },
+        {
+          "t_s": 6,
+          "mechanical_power_w": 180,
+          "bus_voltage_v": 28,
+          "bus_current_a": 10.780075187969926
+        },
+        {
+          "t_s": 8,
+          "mechanical_power_w": 280,
+          "bus_voltage_v": 28,
+          "bus_current_a": 15.479323308270677
+        },
+        {
+          "t_s": 10,
+          "mechanical_power_w": 400,
+          "bus_voltage_v": 28,
+          "bus_current_a": 21.11842105263158
+        }
+      ]
+    },
+    {
+      "id": "synthetic-validation",
+      "role": "validation",
+      "source": "synthetic-independent-input-validation",
+      "recordedAt": "2026-10-22T00:00:00Z",
+      "maxGapS": 2,
+      "rows": [
+        {
+          "t_s": 0,
+          "mechanical_power_w": 20,
+          "bus_voltage_v": 28,
+          "bus_current_a": 3.2612781954887216
+        },
+        {
+          "t_s": 2,
+          "mechanical_power_w": 70,
+          "bus_voltage_v": 28,
+          "bus_current_a": 5.610902255639098
+        },
+        {
+          "t_s": 4,
+          "mechanical_power_w": 140,
+          "bus_voltage_v": 28,
+          "bus_current_a": 8.900375939849624
+        },
+        {
+          "t_s": 6,
+          "mechanical_power_w": 240,
+          "bus_voltage_v": 28,
+          "bus_current_a": 13.599624060150376
+        },
+        {
+          "t_s": 8,
+          "mechanical_power_w": 360,
+          "bus_voltage_v": 28,
+          "bus_current_a": 19.23872180451128
+        }
+      ]
+    }
+  ]
+}

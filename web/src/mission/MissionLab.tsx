@@ -84,10 +84,13 @@ import { ScienceGeometry } from "./ScienceGeometry";
 import { TransferWorkspace } from "./TransferWorkspace";
 import { MissionControl } from "./MissionControl";
 import { verifyImportedGeometry } from "./solar";
+import { OperatingSearch, type SearchRecord } from "./OperatingSearch";
+import { ObservationWorkbench } from "./ObservationWorkbench";
 import { ExperimentBench } from './ExperimentBench';
 import { defaultRequirements, type TestRequirements } from './acceptance';
 import "./engineering.css";
 import "./workbench.css";
+import "./observatory.css";
 import { MissionTimeline, type ExplorerView } from "./MissionTimeline";
 import type { CameraMode } from "./scene/runtime";
 import {
@@ -109,7 +112,7 @@ const names: Record<Mode, string> = {
   eva: "Habitat & EVA",
 };
 const display = (n: number | undefined, digits = 1) =>
-  n === undefined
+  n === undefined || !Number.isFinite(n)
     ? "—"
     : n.toLocaleString("en-US", { maximumFractionDigits: digits });
 const human = (text: string) => text.replaceAll("_", " ");
@@ -163,15 +166,15 @@ function TelemetryChart({
   unit: string;
 }) {
   useLanguage();
-  const value = (f:Frame) => field === "battery" ? f.mobility?.batteryRemainingWh??0 : field === "electricalPower" ? f.mobility?.electricalPowerW??0 : field === "solarPower" ? f.mobility?.solarPowerW??0 : f[field];
+  const value = (f:Frame) => field === "battery" ? f.mobility?.batteryRemainingWh??NaN : field === "electricalPower" ? f.mobility?.electricalPowerW??NaN : field === "solarPower" ? f.mobility?.solarPowerW??NaN : f[field];
   const { peak, end, points } = useMemo(() => {
     const frames = run.frames,
-      peak = frames.reduce((max, f) => Math.max(max, value(f)), 1),
+      peak = frames.reduce((max, f) => Number.isFinite(value(f)) ? Math.max(max, value(f)) : max, 1),
       end = frames.at(-1)!.t || 1;
     const step = Math.max(1, Math.floor(frames.length / 420));
     const points = frames
       .filter((_, i) => i % step === 0 || i === frames.length - 1)
-      .map((f) => `${36 + (f.t / end) * 440},${113 - (value(f) / peak) * 84}`)
+      .map((f,i,subset) => Number.isFinite(value(f)) ? `${i===0||!Number.isFinite(value(subset[i-1]))?"M":"L"}${36 + (f.t / end) * 440},${113 - (value(f) / peak) * 84}` : "")
       .join(" ");
     return { peak, end, points };
   }, [run, field]);
@@ -202,8 +205,8 @@ function TelemetryChart({
         <text x="36" y="134">{localizeText("0 s")}</text>
         <text x="430" y="134">
           {localizeText(display(end, 0))}{localizeText(" s")}</text>
-        <polyline
-          points={points}
+        <path
+          d={points}
           fill="none"
           stroke="#71dec9"
           strokeWidth="1.8"
@@ -290,6 +293,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
   const [setupOpen, setSetupOpen] = useState(true);
   const [nativeVisited, setNativeVisited] = useState(false);
   const [baseline, setBaseline] = useState<RunResult | null>(null);
+  const [searchRecord, setSearchRecord] = useState<SearchRecord | null>(null);
   const [comparisonAutoOpen, setComparisonAutoOpen] = useState(false);
   const [requirements, setRequirements] = useState<TestRequirements | null>(null);
   useEffect(() => { if (activePanel === 'dynamics') setNativeVisited(true); }, [activePanel]);
@@ -315,6 +319,8 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
   useEffect(() => {
     setSnapshots({});
   }, [scenario?.terrainId, scenario?.mode, scenario?.rover.design]);
+  const [viewHandoff, setViewHandoff] = useState(false);
+  useEffect(() => {setViewHandoff(true);const timer=setTimeout(()=>setViewHandoff(false),1400);return ()=>clearTimeout(timer);},[explorerView]);
   const goView = (view: ExplorerView) => {
     setExplorerView(view);
     if (view === "scientific") setPresentation("scientific");
@@ -400,6 +406,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
   useEffect(() => {
     const terrain = bundle?.entries.find((e) => e.id === targetId);
     if (!terrain) return;
+    cancelWorker.current?.();
     setScenario(defaultScenario(terrain));
     setRequirements(defaultRequirements(defaultScenario(terrain)));
     setGuideStep((step) => (step === null ? null : 0));
@@ -456,7 +463,9 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
         ),
     ) ?? [];
   const update = (next: Scenario) => {
+    if(next.calibration && (next.kind!=="earth-analog" || next.mode!=="rover" || JSON.stringify(next.rover.design)!==JSON.stringify(next.calibration.hardware) || next.rover.efficiency!==next.calibration.efficiency || next.rover.idlePower!==next.calibration.idlePowerW)) delete next.calibration;
     if(next.solar && (next.solar.siteId!==next.terrainId || next.kind==="counterfactual")) delete next.solar;
+    cancelWorker.current?.();
     setScenario(next);
     setTransferRuns([]);
     setComparison([]);
@@ -529,6 +538,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     }
   };
   const present = (result: RunResult, autoplay = true) => {
+    if (!result.requirements && requirements) result = { ...result, requirements: { ...requirements } };
     setRun(result);
     setTime(0);
     setPlaying(autoplay);
@@ -555,24 +565,15 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     document.querySelector(".ml-results")?.scrollIntoView({behavior:"smooth", block:"start"});
   };
   const tradeStudy = async () => {
-    if(!scenario || !terrain || !scenario.rover.design) return;
-    try {
-      const jobs:MissionJob[]=[];
-      for(const radius of [.25,.41,.6]) for(const torque of [20,60,120]) {
-        const test=structuredClone(scenario);
-        test.rover.design={...test.rover.design!,wheelRadius:radius,stallTorque:torque};
-        jobs.push({scenario:test,terrain,inputs:archivedInputs??bundle!.inputs});
-      }
-      setComparison(await execute(jobs));setTab("compare");
-      setNotice("Nine executed designs: wheel radius 0.25/0.41/0.60 m × wheel-shaft stall torque 20/60/120 N m. Other inputs held fixed.");
-    }catch(e){setError((e as Error).message);}
+    setTab("tests");
+    setNotice("Search operating modes with fixed hardware, mission and acceptance requirements.");
   };
   const missionCampaign = async () => {
     if(!scenario || !bundle || !scenario.rover.design) return;
     const target=bundle.entries.find(t=>t.id===targetId);
     if(!target) return;
     try {
-      const base=structuredClone(scenario);delete base.solar;
+      const base=structuredClone(scenario);delete base.solar;delete base.calibration;
       const jobs:MissionJob[]=[{scenario:{...base,terrainId:target.id,kind:"native",environment:{...ENVIRONMENTS[target.body]}},terrain:target,inputs:bundle.inputs}];
       for(const earth of eligibleEarth) for(const kind of ["earth-analog","counterfactual"] as const)
         jobs.push({scenario:{...base,terrainId:earth.id,kind,environment:{...ENVIRONMENTS[kind==="earth-analog"?"earth":target.body]}},terrain:earth,inputs:bundle.inputs});
@@ -666,6 +667,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     setArchivedTerrain(result.terrain);
     setArchivedInputs(result.inputs);
     setScenario(result.scenario);
+    if(result.requirements) setRequirements(result.requirements);
     setSpeed(
       result.scenario.mode === "rover" || result.scenario.mode === "eva"
         ? 120
@@ -693,6 +695,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
           inputs: parsed.inputs,
         },
       ]);
+      if(parsed.requirements) result.requirements = parsed.requirements;
       replay(result);
       setNotice(
         "Imported inputs re-executed. Displayed telemetry was recalculated, not trusted from the file.",
@@ -1710,8 +1713,11 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
           </ol>
         </aside>
       </div>
+      {viewHandoff && scenePanel && <div className="scene-handoff" aria-live="polite"><span>{localizeText(explorerView === "planet" ? "PLANETARY CONTEXT" : explorerView === "region" || explorerView === "scientific" ? "MEASURED REGIONAL SURFACE" : "RECORDED VEHICLE STATE")}</span><b>{localizeText(terrain.name.split(" / ")[0])}</b><small>{explorerView === "planet" ? localizeText("Imagery for orientation") : `${terrain.grid.cell_m} m DEM · ${localizeText("interpolation adds no observations")}`}</small></div>}
       <div className="sim-transport" hidden={!scenePanel}><MissionTimeline
         snapshots={snapshots}
+        requirements={requirements ?? defaultRequirements(scenario)}
+        onEvent={() => goView(explorerView === "scientific" ? "scientific" : "follow")}
         run={run}
         time={time}
         playing={playing}
@@ -1750,7 +1756,14 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
           <button className="sim-close-panel" onClick={()=>setActivePanel('world')} aria-label={localizeText('Return to simulation')} title={localizeText('Return to simulation')}><X size={17}/></button>
         </header>
         <div hidden={tab!=='dynamics'}>{nativeVisited && <DynamicsWorkbench active={activePanel==='dynamics'} scenario={scenario} terrain={terrain} onInspect={openInspector}/>}</div>
-        {tab === 'tests' && <ExperimentBench scenario={scenario} run={run} baseline={baseline} limits={requirements ?? defaultRequirements(scenario)} onLimits={setRequirements} busy={busy} invalid={errors.length>0} onPin={()=>{if(run)setBaseline(run);}} onClear={()=>setBaseline(null)} onRun={()=>void launch().then(()=>setTab('tests'))} onCompare={()=>{if(run&&baseline){setComparison([baseline,run]);setComparisonAutoOpen(true);setTab('compare');}}}/>}
+        {tab === 'tests' && <ExperimentBench scenario={scenario} run={run} baseline={baseline} limits={requirements ?? defaultRequirements(scenario)} onLimits={setRequirements} busy={busy} invalid={errors.length>0} onPin={()=>{if(run)setBaseline(run);}} onClear={()=>setBaseline(null)} onRun={()=>void launch().then(()=>setTab('tests'))} onCompare={()=>{if(run&&baseline){setComparison([baseline,run]);setComparisonAutoOpen(true);setTab('compare');}}}>
+          {scenario.mode==='rover' && scenario.rover.design && <OperatingSearch scenario={scenario} terrain={terrain} bundle={bundle} inputs={archivedInputs??bundle.inputs} requirements={requirements??defaultRequirements(scenario)} record={searchRecord} onRecord={setSearchRecord} busy={busy}
+            onDemo={()=>{const next=defaultScenario(terrain);next.rover.speed=.2;update(next);setRequirements({...defaultRequirements(next),maxDurationS:7200,maxEnergyWh:400,minReserveWh:2500});}}
+            onOpen={(r,limits)=>{replay(r);setRequirements(limits);setBaseline(searchRecord?.study.baseline.run??null);setTab('tests');}}
+            onSeek={t=>{setTime(t);setPlaying(false);goView('follow');}}
+            onCompare={records=>{setComparison(records);setComparisonAutoOpen(true);setTab('compare');}}
+            onEarth={()=>{setTab('validation');setPlaying(false);}}/>}
+        </ExperimentBench>}
         {localizeText(tab === "control" && <MissionControl key={run?.id??"empty"} run={run} time={time}/>)}
         {localizeText(tab === "engineering" && <>
           {localizeText(scenario.mode==="rover" ? <RoverEngineering scenario={scenario} frame={frame} onChange={update} busy={busy} exploded={exploded} onExplode={setExploded} validationErrors={errors}
@@ -1758,7 +1771,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
             onRun={()=>void launch()} onSweep={()=>void tradeStudy()}/> : <p className="ml-tiny">{localizeText("Select Rover traverse for the mechanical engineering workspace.")}</p>)}
           <ScienceGeometry terrain={terrain} scenario={scenario} time={time} disabled={busy} onChange={update}/>
         </>)}
-        {localizeText(tab === "validation" && <TransferWorkspace runs={transferRuns} busy={busy} enabled={scenario.mode==="rover" && !!scenario.rover.design && terrain.body!=="earth"} onGenerate={()=>void missionCampaign()} onReplay={replay}/>)}
+        {localizeText(tab === "validation" && <><TransferWorkspace runs={transferRuns} busy={busy} enabled={scenario.mode==="rover" && !!scenario.rover.design && terrain.body!=="earth"} onGenerate={()=>void missionCampaign()} onReplay={replay}/><ObservationWorkbench scenario={scenario} busy={busy} onApply={s=>{update(s);setTab("tests");}}/></>)}
         {localizeText(tab === "telemetry" &&
           (run ? (
             <div className="ml-charts">
@@ -1969,7 +1982,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
                             {localizeText(result.scenario.rover.design && result.scenario.mode==="rover" && <small>{localizeText("r ")}{localizeText(result.scenario.rover.design.wheelRadius.toFixed(2))}{localizeText(" m · τ ")}{localizeText(result.scenario.rover.design.stallTorque)}{localizeText(" N m")}</small>)}
                             {localizeText(result.scenario.mode === "rover" ||
                             result.scenario.mode === "eva"
-                              ? `${result.scenario.rover.maxSlope}° slope limit`
+                              ? `${result.scenario.rover.speed.toFixed(2)} m/s · ${result.scenario.rover.route} · ${result.scenario.rover.maxSlope}°`
                               : result.scenario.mode === "descent"
                                 ? `${result.scenario.vehicle.initialVelocity} m/s initial`
                                 : `${result.scenario.vehicle.thrust} N thrust`)}
@@ -2143,6 +2156,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
       </section>
       </div>
       <footer className="sim-statusbar">
+        {scenario.calibration && <span className="observation-label">{localizeText(scenario.calibration.observations.synthetic?"SYNTHETIC CALIBRATION":"EARTH CALIBRATION")}</span>}
         <span className="sim-status-chip"><i className={busy?'computing':run?'recorded':''}/>{localizeText(busy?'CALCULATING':scenePanel?(run?'RECORDED RUN':'READY TO CONFIGURE'):'ENGINEERING WORKSPACE')}</span>
         <span title={localizeText(scenePanel ? (run?.model ?? 'Fast analytical model') : 'Specialized tools use their own declared solvers and recorded time.')}><Gauge size={13}/>{localizeText(scenePanel ? 'FAST' : activePanel==='dynamics' ? 'RESEARCH' : 'TOOLS')}{scenePanel && run && <code>{run.id.slice(0, 10)}</code>}</span>
         {scenePanel && <span className="sim-source-status"><Mountain size={13}/>{terrain.grid.cell_m} m DEM</span>}

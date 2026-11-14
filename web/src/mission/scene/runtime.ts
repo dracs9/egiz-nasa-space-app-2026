@@ -626,7 +626,7 @@ export function createMissionScene(o: Options) {
       manual = false;
       transition = true;
       const distance =
-        (rig.height > 5 ? 17 : 6.7) * Math.max(1, 1.2 / camera.aspect) *
+        (rig.height > 5 ? 17 : mode === "close" ? 5.4 : 6.7) * Math.max(1, 1.2 / camera.aspect) *
         (scenario.mode === "rover" ? Math.max(1,rig.radius/2.6,rig.height/2.8)*(1+(s.exploded??0)*.45) : 1);
       if (mode === "orbit") {
         const fit = fitRegionalCamera(recordBounds, camera.fov, camera.aspect);
@@ -667,7 +667,7 @@ export function createMissionScene(o: Options) {
       } else {
         const offset = new T.Vector3(
           mode === "follow" ? 0 : distance * 0.72,
-          distance * 0.26,
+          distance * (mode === "close" ? .4 : .26),
           mode === "follow" ? distance * 0.9 : -distance * 0.9,
         ).applyAxisAngle(new T.Vector3(0, 1, 0), yaw);
         desiredPosition.copy(center).add(offset);
@@ -770,6 +770,7 @@ export function createMissionScene(o: Options) {
     skyMat.uniforms.horizon.value
       .set(palette.horizon)
       .lerp(new T.Color("#06080d"), 1 - attenuation);
+    renderer.toneMappingExposure = s.presentation === "scientific" ? 1.25 : 1.02;
     scene.fog = regional ? null : fog;
     sky.visible = !regional;
     sky.position.copy(camera.position);
