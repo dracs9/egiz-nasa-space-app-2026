@@ -320,7 +320,10 @@
 /* ---------- one film behind the page ---------- */
 .hm { position: relative; isolation: isolate; }
 .hm-film { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: #000; }
-.hm-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+.hm-film-layer { position: absolute; inset: 0; }
+.hm-film-layer > img, .hm-film-layer > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+.hm-film-layer > video { opacity: 0; transition: opacity .35s ease; }
+.hm-film-layer > video.is-ready { opacity: 1; }
 .hm > section, .hm > footer { position: relative; z-index: 1; }
 .hm-hero { background: transparent; }
 /* reading sections sit on a veil over the moving film; the edges stay soft so nothing reads as a black gap */
@@ -335,7 +338,7 @@
 .hm-window-top .hm-plate-copy { padding-top: clamp(140px, 22vh, 240px); }
 .hm-footer { background: #000; }
 @media (max-width: 700px) {
-  .hm-film video { object-position: 60% 50%; }
+  .hm-film-layer > img, .hm-film-layer > video { object-position: 60% 50%; }
   .hm-window { min-height: 115svh; }
   .hm-window::after { background: linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.4) 45%, rgba(0,0,0,0) 72%); }
 }
@@ -441,3 +444,17 @@ html.lenis, html.lenis body { height: auto; }
 /* Decode: the real text for assistive tech, a fixed-width scramble for the eye */
 .fa-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .fa-dec { white-space: pre-wrap; }
+
+/* ---------- phones: the film and the story, without the instrument panels and reference detail ---------- */
+@media (max-width: 760px) {
+  .hm-hud, .hm-path { display: none; }
+  .hm-hero-coord, .hm-exp-list + .hm-panel-label, .hm-params { display: none; }
+  .hm-dest button { aspect-ratio: 5 / 2; }
+  .hm-thesis-cols p + p { display: none; }
+  .hm-target-figure, .hm-specs { display: none; }
+  .hm-target-copy { padding-top: 0; }
+  .hm-method .hm-steps { display: none; }
+  .hm-footnote { display: none; }
+  .hm-ledger-alt { display: none; }
+  .hm-index-text { display: none; }
+}

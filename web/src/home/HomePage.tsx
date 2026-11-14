@@ -193,6 +193,20 @@ function useSpatial(root: React.RefObject<HTMLElement | null>) {
     const TEXT = ['wave', 'blur', 'swing', 'drop', 'zoom', 'spread'];
     movers.forEach(el => { const m = motionFor(el, el.matches('.hm-ledger li') ? ledger++ : 0); el.dataset.sp = m; if (m === 'text') el.dataset.tv = TEXT[heading++ % TEXT.length]; });
     const film = Array.from(host.querySelectorAll<HTMLVideoElement>('video[data-film]'));
+    const layers = film.map(v => v.parentElement as HTMLElement);
+    // a clip shows over its still only once it has a decoded frame
+    const markReady = (e: Event) => { const v = e.currentTarget as HTMLVideoElement; if (v.readyState >= 2) v.classList.add('is-ready'); };
+    film.forEach(v => { v.addEventListener('loadeddata', markReady); v.addEventListener('seeked', markReady); });
+    // phones (iOS Safari above all) ignore preload and decode nothing until a clip has played once:
+    // start each nearby clip muted for a moment, then hold it for scrubbing
+    const primed = new Set<HTMLVideoElement>(), priming = new Set<HTMLVideoElement>();
+    const prime = (v: HTMLVideoElement) => {
+      if (primed.has(v)) return; primed.add(v);
+      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+      priming.add(v);
+      const done = () => { priming.delete(v); v.pause(); };
+      const p = v.play(); if (p) p.then(done, done); else done();
+    };
     let filmSp = -1, shown = 0;
     let raf = 0, last = performance.now();
     const frame = (now: number) => {
@@ -213,8 +227,8 @@ function useSpatial(root: React.RefObject<HTMLElement | null>) {
         const pos = k + clamp((y - anchors[k]) / Math.max(1, anchors[k + 1] - anchors[k]));
         filmSp = filmSp < 0 ? pos : filmSp + (pos - filmSp) * (1 - Math.exp(-dt * 12));
         const ci = Math.min(n - 1, Math.floor(filmSp)); const ct = filmSp - ci;
-        if (ci !== shown) { film[shown].style.opacity = '0'; film[ci].style.opacity = '1'; shown = ci; }
-        film.forEach((v, j) => { if (Math.abs(j - ci) <= 1 && v.preload !== 'auto') { v.preload = 'auto'; v.load(); } if (!v.paused) v.pause(); });
+        if (ci !== shown) { layers[shown].style.opacity = '0'; layers[ci].style.opacity = '1'; shown = ci; }
+        film.forEach((v, j) => { if (Math.abs(j - ci) <= 1) prime(v); if (!v.paused && !priming.has(v)) v.pause(); });
         const v = film[ci];
         if (v.readyState >= 2 && v.duration) {
           // one seek at a time: queued seeks are what makes scrubbing stutter
@@ -248,7 +262,7 @@ function useSpatial(root: React.RefObject<HTMLElement | null>) {
     };
     host.classList.add('is-spatial');
     raf = requestAnimationFrame(frame);
-    return () => { cancelAnimationFrame(raf); lenis.destroy(); host.classList.remove('is-spatial'); movers.forEach(el => { delete el.dataset.sp; }); };
+    return () => { film.forEach(v => { v.removeEventListener('loadeddata', markReady); v.removeEventListener('seeked', markReady); }); cancelAnimationFrame(raf); lenis.destroy(); host.classList.remove('is-spatial'); movers.forEach(el => { delete el.dataset.sp; }); };
   }, [root]);
 }
 
@@ -303,7 +317,11 @@ export function HomePage() {
   return <main ref={root} className="hm" aria-labelledby="hm-title">
     {/* one continuous film behind the page: scrolling flies the camera forward, scrolling back flies it back */}
     <div className="hm-film" aria-hidden="true">
-      {FILM.map((base, i) => <video key={base} data-film={i} muted playsInline preload={i < 2 ? 'auto' : 'none'} poster={asset(`media/cinematic/${base}.jpg`)} src={asset(`media/cinematic/${base}-${CLIP_RES}.mp4`)} style={{ opacity: i === 0 ? 1 : 0 }} />)}
+      {/* each clip sits on its own still: if a phone has not decoded the clip yet, the still shows instead of black */}
+      {FILM.map((base, i) => <div key={base} className="hm-film-layer" data-film-layer={i} style={{ opacity: i === 0 ? 1 : 0 }}>
+        <img src={asset(`media/cinematic/${base}.jpg`)} alt="" decoding="async" />
+        <video data-film={i} muted playsInline disablePictureInPicture preload={i < 2 ? 'auto' : 'none'} src={asset(`media/cinematic/${base}-${CLIP_RES}.mp4`)} />
+      </div>)}
       <span className="hm-veo">{L(lang, 'AI-generated (Veo) — illustration, not data', 'создано ИИ (Veo) — иллюстрация, не данные')}</span>
     </div>
     {/* letterbox: the film opens up with the first scroll */}
