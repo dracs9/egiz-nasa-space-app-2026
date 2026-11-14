@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/robustness.schema.json",
+  "title": "Egiz robustness 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.robustness"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "runs": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "selection_freq": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "jaccard_median": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "runs",
+    "seed",
+    "selection_freq",
+    "jaccard_median"
+  ]
+}

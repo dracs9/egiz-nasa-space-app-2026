@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/results.schema.json",
+  "title": "Egiz results 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.results"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "engine_version": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "earth_candidates_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "targets_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "templates_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sun_windows_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "earth_candidates_sha256",
+        "targets_sha256",
+        "templates_sha256",
+        "sun_windows_sha256"
+      ]
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "template": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "fidelity": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "F": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "partial": {
+                        "type": "boolean"
+                      },
+                      "parts": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "best_month": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 12
+                      }
+                    },
+                    "required": [
+                      "F",
+                      "partial"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "F": {
+                        "type": "null"
+                      },
+                      "reason": {
+                        "enum": [
+                          "missing",
+                          "constraint"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "F",
+                      "reason"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "campaigns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "k": {
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ]
+                },
+                "coverage": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "sites": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                        }
+                      },
+                      "best_month": {
+                        "anyOf": [
+                          {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 12
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "roles",
+                      "best_month"
+                    ]
+                  },
+                  "maxItems": 3
+                },
+                "per_objective": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "objective": {
+                        "type": "string",
+                        "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                      },
+                      "site": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "F": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "objective",
+                      "site",
+                      "F"
+                    ]
+                  }
+                },
+                "method": {
+                  "type": "object",
+                  "properties": {
+                    "shortlist_size": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "pool_size": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "exact_coverage": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "greedy_coverage": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "merged_greedy": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "shortlist_size",
+                    "pool_size",
+                    "exact_coverage",
+                    "greedy_coverage",
+                    "merged_greedy"
+                  ]
+                },
+                "explain": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "k",
+                "coverage",
+                "sites",
+                "per_objective",
+                "method"
+              ]
+            }
+          },
+          "gaps": {
+            "type": "object",
+            "properties": {
+              "attribute": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "objective": {
+                      "type": "string",
+                      "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                    },
+                    "attr": {
+                      "type": "string"
+                    },
+                    "ceiling": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "objective",
+                    "attr",
+                    "ceiling"
+                  ]
+                }
+              },
+              "objective_ceiling": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": ["number", "null"],
+                  "description": "Maximum observed eligible fidelity; null when none is known. A measured zero remains zero.",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "physical": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "gap": {
+                      "type": "string"
+                    },
+                    "alternative": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "gap",
+                    "alternative",
+                    "source"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "attribute",
+              "objective_ceiling",
+              "physical"
+            ]
+          }
+        },
+        "required": [
+          "target",
+          "template",
+          "fidelity",
+          "campaigns",
+          "gaps"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "engine_version",
+    "inputs",
+    "runs"
+  ]
+}

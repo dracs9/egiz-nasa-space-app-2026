@@ -28,6 +28,11 @@ dist/
 
 # Big data stays local: only small processed JSON goes to git
 data/raw/
+data/kernels/*.bsp
+data/kernels/*.tls
+data/kernels/*.tpc
+data/kernels/*.tf
+data/kernels/*.bpc
 *.tif
 *.tiff
 *.img
@@ -36,3 +41,17 @@ data/raw/
 *.hdf
 *.h5
 *.zip
+
+# Generated application copies, local verification and offline packages
+web/public/data/
+web/public/vendor/openmct/
+artifacts/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+playwright-report/
+test-results/
+
+# Generated native catalogs and measured mesh copies
+web/public/dynamics/
+web/public/terrain/

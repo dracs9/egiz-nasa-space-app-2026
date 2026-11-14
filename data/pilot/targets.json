@@ -1,0 +1,140 @@
+{
+  "schema": "egiz.targets",
+  "version": "1.0.0",
+  "synthetic": false,
+  "generated_at": "2026-10-17T19:03:22.514086Z",
+  "provenance": [
+    {
+      "dataset": "Barker et al. 2021. Improved LOLA Elevation Maps for South Pole Landing Sites. DOI 10.1016/j.pss.2020.105119",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://pgda.gsfc.nasa.gov/products/78",
+      "role": "target definition and DEM"
+    },
+    {
+      "dataset": "Center of native Site20 5 m DEM extent: x=73000 m,y=118000 m; inverse raster CRS, MOON_ME DE421",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20/Site20_final_adj_5mpp_surf.tif",
+      "role": "target definition and DEM"
+    },
+    {
+      "dataset": "NASA 2024. Provides Update on Artemis III Moon Landing Regions (historical candidate list)",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/",
+      "role": "target definition and DEM"
+    },
+    {
+      "dataset": "NASA PGDA Site20v2 extended LOLA 5m elevation raster (August 2022 update)",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+      "role": "target definition and DEM"
+    },
+    {
+      "dataset": "Fergason et al. 2018. Mars MGS MOLA - MEX HRSC Blended DEM Global 200 m v2",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m",
+      "role": "target definition and DEM"
+    },
+    {
+      "dataset": "Bell et al. 2022. Geological, multispectral, and meteorological imaging results from the Mars 2020 Perseverance rover in Jezero crater. Landing coordinates 18.4446 N 77.4509 E",
+      "provider": "see source citation",
+      "version": "see product",
+      "url": "https://doi.org/10.1126/sciadv.abo4856",
+      "role": "target definition and DEM"
+    }
+  ],
+  "targets": [
+    {
+      "id": "MOON_MONS_MOUTON",
+      "body": "moon",
+      "name": "Mons Mouton / PGDA Site20 extent center",
+      "kind": "base_region",
+      "lon": 31.7427611534,
+      "lat": -85.4265772804,
+      "dem_product": "PGDA LOLA 5mpp Site20v2",
+      "fine_baseline_m": 100,
+      "attrs": {
+        "slope_f100_p50_deg": 11.397202844269422,
+        "slope_f100_p90_deg": 21.432034285811273,
+        "frac_lt10_f100": 0.4034,
+        "frac_lt20_f100": 0.852775,
+        "tri_f100_m": 7.77740478515625,
+        "slope_r_p50_deg": 9.883077864533897,
+        "slope_r_p90_deg": 21.58043756249064,
+        "frac_lt20_r": 0.8269906928645294,
+        "relief_m": 2549.96337890625,
+        "elev_min_m": 3150.247802734375,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": 0,
+        "bare_frac": 1
+      },
+      "attr_sources": {
+        "slope_f100_p50_deg": "computed:PGDA LOLA 5mpp Site20v2; pixel=50m",
+        "slope_f100_p90_deg": "computed:PGDA LOLA 5mpp Site20v2; pixel=50m",
+        "frac_lt10_f100": "computed:PGDA LOLA 5mpp Site20v2; pixel=50m",
+        "frac_lt20_f100": "computed:PGDA LOLA 5mpp Site20v2; pixel=50m",
+        "tri_f100_m": "computed:PGDA LOLA 5mpp Site20v2; pixel=50m",
+        "slope_r_p50_deg": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m",
+        "slope_r_p90_deg": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m",
+        "frac_lt20_r": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m",
+        "relief_m": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m",
+        "elev_min_m": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m",
+        "precip_mm": "definition:EGIZ_METHOD",
+        "bare_frac": "definition:EGIZ_METHOD"
+      },
+      "h_max_deg": 6.1134227196000035,
+      "templates": [
+        "MOON_BASE_OPS"
+      ]
+    },
+    {
+      "id": "MARS_JEZERO",
+      "body": "mars",
+      "name": "Jezero / Perseverance landing site",
+      "kind": "landing_site",
+      "lon": 77.4509,
+      "lat": 18.4446,
+      "dem_product": "MOLA-HRSC blend 200m v2",
+      "fine_baseline_m": 400,
+      "attrs": {
+        "slope_f400_p50_deg": 1.9563140187776713,
+        "slope_f400_p90_deg": 3.819797296945511,
+        "frac_lt10_f400": 1.0,
+        "frac_lt20_f400": 1.0,
+        "tri_f400_m": 5.5456085205078125,
+        "slope_r_p50_deg": 1.472522271847431,
+        "slope_r_p90_deg": 7.581769003119053,
+        "frac_lt20_r": 1.0,
+        "relief_m": 742.9878723144532,
+        "elev_min_m": -2715.2783203125,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": 0,
+        "bare_frac": 1
+      },
+      "attr_sources": {
+        "slope_f400_p50_deg": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "slope_f400_p90_deg": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "frac_lt10_f400": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "frac_lt20_f400": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "tri_f400_m": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "slope_r_p50_deg": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "slope_r_p90_deg": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "frac_lt20_r": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "relief_m": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "elev_min_m": "computed:MOLA-HRSC blend 200m v2; pixel=200m",
+        "precip_mm": "definition:EGIZ_METHOD",
+        "bare_frac": "definition:EGIZ_METHOD"
+      },
+      "h_max_deg": null,
+      "templates": [
+        "MARS_SURFACE_OPS"
+      ]
+    }
+  ]
+}

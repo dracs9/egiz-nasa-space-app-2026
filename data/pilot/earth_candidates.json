@@ -1,0 +1,515 @@
+{
+  "schema": "egiz.earth_candidates",
+  "version": "1.0.0",
+  "generated_at": "2026-10-17T19:14:17.913506Z",
+  "synthetic": false,
+  "provenance": [
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W117_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E051_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S25_00_W070_00_DEM/Copernicus_DSM_COG_10_S25_00_W070_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S27W072_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_E035_00_DEM/Copernicus_DSM_COG_10_N29_00_E035_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E033_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W009_Map.tif",
+      "role": "environment and land cover"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E054_00_DEM/Copernicus_DSM_COG_10_N43_00_E054_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "version": "2021 v200",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E054_Map.tif",
+      "role": "environment and land cover"
+    }
+  ],
+  "tiles_hash": "eda6ab21d5ac95970b099b14a90a9a238c311dd0355d22f44d2eeff39b10b9b4",
+  "tiles": [
+    {
+      "id": "GL_W116.820_N36.240",
+      "attrs": {
+        "slope_f400_p50_deg": 0.023761831002447876,
+        "slope_f400_p90_deg": 4.930625198940491,
+        "frac_lt10_f400": 0.9416,
+        "frac_lt20_f400": 0.9656,
+        "tri_f400_m": 0.07195901870727539,
+        "slope_r_p50_deg": 3.2826158698506434,
+        "slope_r_p90_deg": 17.48102151573919,
+        "frac_lt20_r": 0.9335408091557073,
+        "relief_m": 1431.052503967285,
+        "elev_min_m": -85.76056671142578,
+        "slope_f100_p50_deg": 0.0919956932032982,
+        "slope_f100_p90_deg": 4.7890150320062554,
+        "frac_lt10_f100": 0.946025,
+        "frac_lt20_f100": 0.96235,
+        "tri_f100_m": 0.08519792556762695,
+        "bare_frac": 0.9497865,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.0011735,
+        "crop_frac": 0.00014375,
+        "built_frac": 4.1e-05,
+        "water_frac": 0.00082725,
+        "snow_frac": 0.0
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Death Valley regional window",
+      "country": "United States",
+      "lon": -116.82,
+      "lat": 36.24,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "KZ_E051.200_N43.400",
+      "attrs": {
+        "slope_f400_p50_deg": 0.0,
+        "slope_f400_p90_deg": 0.0,
+        "frac_lt10_f400": 1.0,
+        "frac_lt20_f400": 1.0,
+        "tri_f400_m": 0.0,
+        "slope_r_p50_deg": 0.0,
+        "slope_r_p90_deg": 0.0,
+        "frac_lt20_r": 1.0,
+        "relief_m": 0.0,
+        "elev_min_m": -28.5,
+        "slope_f100_p50_deg": 0.0,
+        "slope_f100_p90_deg": 0.0,
+        "frac_lt10_f100": 1.0,
+        "frac_lt20_f100": 1.0,
+        "tri_f100_m": 0.0,
+        "bare_frac": 0.0227655,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 2.5e-07,
+        "crop_frac": 0.0,
+        "built_frac": 0.00154975,
+        "water_frac": 0.958658,
+        "snow_frac": 0.0
+      },
+      "pool": "kazakhstan",
+      "stratum": null,
+      "name": "Water-dominated coastal window (excluded)",
+      "country": "Kazakhstan",
+      "lon": 51.2,
+      "lat": 43.4,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_ATACAMA",
+      "attrs": {
+        "slope_f400_p50_deg": 2.576584056074984,
+        "slope_f400_p90_deg": 6.865676534516274,
+        "frac_lt10_f400": 0.9624,
+        "frac_lt20_f400": 1.0,
+        "tri_f400_m": 7.240074157714844,
+        "slope_r_p50_deg": 1.7596341011141594,
+        "slope_r_p90_deg": 3.5786680596140625,
+        "frac_lt20_r": 1.0,
+        "relief_m": 369.62691650390616,
+        "elev_min_m": 1594.5433349609375,
+        "slope_f100_p50_deg": 2.7532246639171096,
+        "slope_f100_p90_deg": 9.124147677918637,
+        "frac_lt10_f100": 0.91465,
+        "frac_lt20_f100": 0.990075,
+        "tri_f100_m": 1.8970108032226562,
+        "bare_frac": 0.999807,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.0,
+        "crop_frac": 0.0,
+        "built_frac": 8.5e-05,
+        "water_frac": 0.0,
+        "snow_frac": 0.0
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Atacama regional window",
+      "country": "Chile",
+      "lon": -69.5,
+      "lat": -24.5,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_BOSZHIRA",
+      "attrs": {
+        "slope_f400_p50_deg": 0.8431326423212784,
+        "slope_f400_p90_deg": 4.739407405341203,
+        "frac_lt10_f400": 0.9916,
+        "frac_lt20_f400": 0.9992,
+        "tri_f400_m": 2.408024787902832,
+        "slope_r_p50_deg": 0.6149244432574621,
+        "slope_r_p90_deg": 4.125404548179404,
+        "frac_lt20_r": 1.0,
+        "relief_m": 288.9761905193328,
+        "elev_min_m": -16.849699020385742,
+        "slope_f100_p50_deg": 0.9672861522566841,
+        "slope_f100_p90_deg": 5.790168687498337,
+        "frac_lt10_f100": 0.938525,
+        "frac_lt20_f100": 0.987575,
+        "tri_f100_m": 0.6784029006958008,
+        "bare_frac": 0.77231075,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.0,
+        "crop_frac": 0.0,
+        "built_frac": 0.0,
+        "water_frac": 1.55e-05,
+        "snow_frac": 0.0
+      },
+      "pool": "kazakhstan",
+      "stratum": null,
+      "name": "Boszhira regional window",
+      "country": "Kazakhstan",
+      "lon": 54.2,
+      "lat": 43.4,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_ICELAND",
+      "attrs": {
+        "slope_f400_p50_deg": 1.65567990668445,
+        "slope_f400_p90_deg": 2.9102107061962648,
+        "frac_lt10_f400": 0.9928,
+        "frac_lt20_f400": 1.0,
+        "tri_f400_m": 4.664392471313477,
+        "slope_r_p50_deg": 1.2591106732290687,
+        "slope_r_p90_deg": 3.211815467979835,
+        "frac_lt20_r": 1.0,
+        "relief_m": 405.9692108154297,
+        "elev_min_m": 347.69915771484375,
+        "slope_f100_p50_deg": 1.9204960429846332,
+        "slope_f100_p90_deg": 3.770772686121144,
+        "frac_lt10_f100": 0.9861,
+        "frac_lt20_f100": 0.994425,
+        "tri_f100_m": 1.3653564453125,
+        "bare_frac": 0.67085175,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.00336125,
+        "crop_frac": 0.0,
+        "built_frac": 0.0,
+        "water_frac": 0.0,
+        "snow_frac": 7.5e-05
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Iceland volcanic regional window",
+      "country": "Iceland",
+      "lon": -16.5,
+      "lat": 65.5,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_RIO_TINTO",
+      "attrs": {
+        "slope_f400_p50_deg": 4.223594091755162,
+        "slope_f400_p90_deg": 9.13072907995535,
+        "frac_lt10_f400": 0.9204,
+        "frac_lt20_f400": 0.9944,
+        "tri_f400_m": 13.677019119262695,
+        "slope_r_p50_deg": 2.272979960688489,
+        "slope_r_p90_deg": 4.549988478975236,
+        "frac_lt20_r": 1.0,
+        "relief_m": 286.8186683654784,
+        "elev_min_m": 144.535888671875,
+        "slope_f100_p50_deg": 7.412757343941189,
+        "slope_f100_p90_deg": 16.261587183137554,
+        "frac_lt10_f100": 0.677825,
+        "frac_lt20_f100": 0.9538,
+        "tri_f100_m": 5.621316909790039,
+        "bare_frac": 0.04096625,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.34654075,
+        "crop_frac": 0.01267175,
+        "built_frac": 0.01282925,
+        "water_frac": 0.02213925,
+        "snow_frac": 0.0
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Rio Tinto regional window",
+      "country": "Spain",
+      "lon": -6.6,
+      "lat": 37.7,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_UTAH",
+      "attrs": {
+        "slope_f400_p50_deg": 2.04707951434889,
+        "slope_f400_p90_deg": 6.014493054425246,
+        "frac_lt10_f400": 0.9868,
+        "frac_lt20_f400": 1.0,
+        "tri_f400_m": 6.558189392089844,
+        "slope_r_p50_deg": 1.2993255359637121,
+        "slope_r_p90_deg": 2.698024639609072,
+        "frac_lt20_r": 1.0,
+        "relief_m": 164.67940673828116,
+        "elev_min_m": 1283.776611328125,
+        "slope_f100_p50_deg": 2.6365921823610536,
+        "slope_f100_p90_deg": 11.401451778758993,
+        "frac_lt10_f100": 0.875125,
+        "frac_lt20_f100": 0.980225,
+        "tri_f100_m": 2.003448486328125,
+        "bare_frac": 0.941561,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.000122,
+        "crop_frac": 0.0063895,
+        "built_frac": 0.000784,
+        "water_frac": 0.00077075,
+        "snow_frac": 0.0
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Utah desert regional window",
+      "country": "United States",
+      "lon": -110.75,
+      "lat": 38.4,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PILOT_WADI_RUM",
+      "attrs": {
+        "slope_f400_p50_deg": 6.073459730623912,
+        "slope_f400_p90_deg": 26.927482672553886,
+        "frac_lt10_f400": 0.6132,
+        "frac_lt20_f400": 0.7984,
+        "tri_f400_m": 19.792003631591797,
+        "slope_r_p50_deg": 4.480189132242813,
+        "slope_r_p90_deg": 11.093165107399539,
+        "frac_lt20_r": 0.9998,
+        "relief_m": 504.2082061767576,
+        "elev_min_m": 795.5880737304688,
+        "slope_f100_p50_deg": 5.546891794475565,
+        "slope_f100_p90_deg": 37.94987939769915,
+        "frac_lt10_f100": 0.604525,
+        "frac_lt20_f100": 0.72515,
+        "tri_f100_m": 4.194610595703125,
+        "bare_frac": 0.99292825,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.00042175,
+        "crop_frac": 0.000319,
+        "built_frac": 0.0009715,
+        "water_frac": 4e-06,
+        "snow_frac": 0.0
+      },
+      "pool": "global",
+      "stratum": null,
+      "name": "Wadi Rum regional window",
+      "country": "Jordan",
+      "lon": 35.5,
+      "lat": 29.5,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    },
+    {
+      "id": "PR_JETT_SP_CRATER",
+      "attrs": {
+        "slope_f400_p50_deg": 2.690969741956238,
+        "slope_f400_p90_deg": 12.431121363445627,
+        "frac_lt10_f400": 0.8708,
+        "frac_lt20_f400": 0.9772,
+        "tri_f400_m": 7.950904846191406,
+        "slope_r_p50_deg": 1.5851289909570296,
+        "slope_r_p90_deg": 3.7248369904736527,
+        "frac_lt20_r": 1.0,
+        "relief_m": 461.80571899414076,
+        "elev_min_m": 1609.849853515625,
+        "slope_f100_p50_deg": 3.147572757708277,
+        "slope_f100_p90_deg": 15.937611746809619,
+        "frac_lt10_f100": 0.827975,
+        "frac_lt20_f100": 0.93855,
+        "tri_f100_m": 2.2279891967773438,
+        "bare_frac": 0.08039925,
+        "t_min_c": null,
+        "t_max_c": null,
+        "precip_mm": null
+      },
+      "context": {
+        "tree_frac": 0.0703285,
+        "crop_frac": 2e-06,
+        "built_frac": 0.001509,
+        "water_frac": 0.0013625,
+        "snow_frac": 0.0
+      },
+      "pool": "practice",
+      "stratum": "volcanic",
+      "name": "S P Crater vicinity / JETT3",
+      "country": "United States",
+      "lon": -111.628601417,
+      "lat": 35.5733252222,
+      "missing": [
+        "t_min_c",
+        "t_max_c",
+        "precip_mm"
+      ]
+    }
+  ]
+}

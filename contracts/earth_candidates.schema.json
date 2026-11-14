@@ -1,0 +1,499 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/earth_candidates.schema.json",
+  "title": "Egiz earth_candidates 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.earth_candidates"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "tiles_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "tiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "pool": {
+            "enum": [
+              "global",
+              "practice",
+              "kazakhstan",
+              "control"
+            ]
+          },
+          "stratum": {
+            "anyOf": [
+              {
+                "enum": [
+                  "hot_desert",
+                  "cold_polar",
+                  "volcanic",
+                  "other_open"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "attrs": {
+            "type": "object",
+            "properties": {
+              "slope_f100_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f100_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt10_f100": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_f100": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tri_f100_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f400_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f400_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt10_f400": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_f400": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tri_f400_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_r_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_r_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_r": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "relief_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "elev_min_m": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "precip_mm": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "bare_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "t_min_c": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "t_max_c": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "context": {
+            "type": "object",
+            "properties": {
+              "tree_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "crop_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "built_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "water_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "snow_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "pop_density": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "tree_frac",
+              "crop_frac",
+              "built_frac",
+              "water_frac",
+              "snow_frac"
+            ]
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "slope_f100_p50_deg",
+                "slope_f100_p90_deg",
+                "frac_lt10_f100",
+                "frac_lt20_f100",
+                "tri_f100_m",
+                "slope_f400_p50_deg",
+                "slope_f400_p90_deg",
+                "frac_lt10_f400",
+                "frac_lt20_f400",
+                "tri_f400_m",
+                "slope_r_p50_deg",
+                "slope_r_p90_deg",
+                "frac_lt20_r",
+                "relief_m",
+                "elev_min_m",
+                "precip_mm",
+                "bare_frac",
+                "t_min_c",
+                "t_max_c"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "snow_free_frac": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "minItems": 12,
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "id",
+          "pool",
+          "stratum",
+          "name",
+          "country",
+          "lon",
+          "lat",
+          "attrs",
+          "context",
+          "missing"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "tiles_hash",
+    "tiles"
+  ]
+}

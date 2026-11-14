@@ -123,7 +123,7 @@ interface Run {
   fidelity: Record<string /*objective*/, Record<string /*tile id*/, FidelityCell>>;
   campaigns: Campaign[];                     // k = 1, 2, 3
   gaps: { attribute: { objective: string; attr: string; ceiling: number }[];
-          objective_ceiling: Record<string, number>;
+          objective_ceiling: Record<string, number | null>;
           physical: { gap: string; alternative: string; source: string }[] };
 }
 type FidelityCell = { F: number; partial: boolean; parts: Record<string, number | null>; best_month?: number }
@@ -139,7 +139,11 @@ interface Campaign {
 
 Чтобы файл оставался небольшим, в `fidelity` хранятся все допущенные кандидаты, а `parts` — только для коротких списков (≤ 120). Для остальных `parts` опускается (minor-совместимо).
 
+Уточнение локального прототипа 15.10.2026 (DEC-029, ещё не замороженный контракт): `objective_ceiling[o] = null`, если для задачи нет ни одного известного допустимого F. Численный 0 означает измеренный нулевой результат и не заменяет отсутствие оценки. Ключ каждой задачи обязателен; отсутствие ключа — ошибка контракта. Согласованы JSON Schema, Python-модели/движок и TypeScript-загрузчик. Вес активной задачи без допустимых данных остаётся в знаменателе покрытия кампании; интерфейс и экспорт отдельно объясняют отсутствие зачтённого покрытия.
+
 ### 2.6 `validation.json` — схема `egiz.validation` (D; потребители B, C, F, E)
+
+Единицы `practice_pairs[].pct` и `baselines[].median_pct` — проценты **0–100** (`100 · rank / n`), а не доли 0–1. Значение 0,5 означает 0,5-й процентиль.
 
 ```ts
 interface Validation extends Envelope {

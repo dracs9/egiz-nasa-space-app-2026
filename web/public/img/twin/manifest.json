@@ -1,0 +1,609 @@
+{
+  "synthetic": true,
+  "generated_at": "2026-10-15T00:00:00Z",
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "version": "seed-42-v1",
+      "url": "https://example.invalid/egiz/fixtures",
+      "role": "software testing only; not observations"
+    }
+  ],
+  "description": "Invented analytic DEMs. Not observed NASA/ESA terrain.",
+  "heights": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "azimuths": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "items": [
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 0,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 45,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 90,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 135,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 180,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 225,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 270,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 1,
+      "az_deg": 315,
+      "file": "FAKE_MOON_MONS_MOUTON_h1_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 0,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 45,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 90,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 135,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 180,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 225,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 270,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 2,
+      "az_deg": 315,
+      "file": "FAKE_MOON_MONS_MOUTON_h2_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 0,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 45,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 90,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 135,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 180,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 225,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 270,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 3,
+      "az_deg": 315,
+      "file": "FAKE_MOON_MONS_MOUTON_h3_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 0,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 45,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 90,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 135,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 180,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 225,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 270,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 5,
+      "az_deg": 315,
+      "file": "FAKE_MOON_MONS_MOUTON_h5_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 0,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 45,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 90,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 135,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 180,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 225,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 270,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "h_deg": 7,
+      "az_deg": 315,
+      "file": "FAKE_MOON_MONS_MOUTON_h7_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 0,
+      "file": "FAKE_GL_018_h1_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 45,
+      "file": "FAKE_GL_018_h1_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 90,
+      "file": "FAKE_GL_018_h1_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 135,
+      "file": "FAKE_GL_018_h1_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 180,
+      "file": "FAKE_GL_018_h1_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 225,
+      "file": "FAKE_GL_018_h1_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 270,
+      "file": "FAKE_GL_018_h1_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 1,
+      "az_deg": 315,
+      "file": "FAKE_GL_018_h1_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 0,
+      "file": "FAKE_GL_018_h2_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 45,
+      "file": "FAKE_GL_018_h2_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 90,
+      "file": "FAKE_GL_018_h2_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 135,
+      "file": "FAKE_GL_018_h2_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 180,
+      "file": "FAKE_GL_018_h2_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 225,
+      "file": "FAKE_GL_018_h2_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 270,
+      "file": "FAKE_GL_018_h2_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 2,
+      "az_deg": 315,
+      "file": "FAKE_GL_018_h2_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 0,
+      "file": "FAKE_GL_018_h3_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 45,
+      "file": "FAKE_GL_018_h3_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 90,
+      "file": "FAKE_GL_018_h3_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 135,
+      "file": "FAKE_GL_018_h3_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 180,
+      "file": "FAKE_GL_018_h3_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 225,
+      "file": "FAKE_GL_018_h3_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 270,
+      "file": "FAKE_GL_018_h3_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 3,
+      "az_deg": 315,
+      "file": "FAKE_GL_018_h3_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 0,
+      "file": "FAKE_GL_018_h5_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 45,
+      "file": "FAKE_GL_018_h5_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 90,
+      "file": "FAKE_GL_018_h5_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 135,
+      "file": "FAKE_GL_018_h5_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 180,
+      "file": "FAKE_GL_018_h5_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 225,
+      "file": "FAKE_GL_018_h5_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 270,
+      "file": "FAKE_GL_018_h5_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 5,
+      "az_deg": 315,
+      "file": "FAKE_GL_018_h5_az315.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 0,
+      "file": "FAKE_GL_018_h7_az0.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 45,
+      "file": "FAKE_GL_018_h7_az45.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 90,
+      "file": "FAKE_GL_018_h7_az90.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 135,
+      "file": "FAKE_GL_018_h7_az135.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 180,
+      "file": "FAKE_GL_018_h7_az180.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 225,
+      "file": "FAKE_GL_018_h7_az225.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 270,
+      "file": "FAKE_GL_018_h7_az270.webp",
+      "px_m": 30
+    },
+    {
+      "id": "FAKE_GL_018",
+      "h_deg": 7,
+      "az_deg": 315,
+      "file": "FAKE_GL_018_h7_az315.webp",
+      "px_m": 30
+    }
+  ],
+  "curves": {
+    "FAKE_MOON_MONS_MOUTON": [
+      0.6652,
+      0.5281,
+      0.4129,
+      0.2415,
+      0.1597
+    ],
+    "FAKE_GL_018": [
+      0.6584,
+      0.4442,
+      0.327,
+      0.1781,
+      0.1271
+    ]
+  }
+}

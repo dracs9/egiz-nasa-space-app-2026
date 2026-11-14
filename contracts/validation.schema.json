@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/validation.schema.json",
+  "title": "Egiz validation 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.validation"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "preregistration_commit": {
+      "type": "string"
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "enum": [
+              "E1",
+              "E2",
+              "E3",
+              "E4",
+              "E5",
+              "E6",
+              "E7",
+              "E8",
+              "E9",
+              "E10"
+            ]
+          },
+          "hypothesis": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "confirmed",
+              "not_confirmed",
+              "inconclusive",
+              "not_run"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "hypothesis",
+          "metric",
+          "value",
+          "status",
+          "notes"
+        ]
+      }
+    },
+    "practice_pairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "site": {
+            "type": "string"
+          },
+          "tile": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "objective": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "target": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "source": {
+            "type": "string"
+          },
+          "testable": {
+            "type": "boolean"
+          },
+          "exclusion_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rank": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "n": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pct": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "site",
+          "tile",
+          "objective",
+          "target",
+          "source",
+          "testable",
+          "exclusion_reason",
+          "rank",
+          "n",
+          "pct"
+        ]
+      }
+    },
+    "baselines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "enum": [
+              "aridity_only",
+              "random",
+              "v1_similarity"
+            ]
+          },
+          "median_pct": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "median_pct"
+        ]
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ]
+      }
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "preregistration_commit",
+    "experiments",
+    "practice_pairs",
+    "baselines",
+    "controls",
+    "figures"
+  ]
+}

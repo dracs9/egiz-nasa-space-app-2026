@@ -1,0 +1,1649 @@
+.app-header {
+  position:relative;
+  z-index:60;
+  gap:24px
+}
+
+.app-header .header-right {
+  gap:12px;
+  padding-left:18px
+}
+
+.app-header nav {
+  gap:22px
+}
+
+.app-header nav>button {
+  font-size:12px
+}
+
+.ex-app-header nav button {
+  font-size:11px
+}
+
+.dataset-switch {
+  position:relative;
+  flex-shrink:0
+}
+
+.dataset-switch>summary {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:34px;
+  padding:6px 9px;
+  border:1px solid #40514c;
+  border-radius:6px;
+  color:#bed2c8;
+  font-size:11px;
+  white-space:nowrap;
+  background:#a0ccb009
+}
+
+.dataset-switch.example-mode>summary {
+  color:#e8bf91;
+  border-color:#67523d
+}
+
+.dataset-switch[open]>summary {
+  background:#a0ccb018
+}
+
+.dataset-menu {
+  position:absolute;
+  right:0;
+  top:calc(100% + 12px);
+  width:340px;
+  max-width:calc(100vw - 32px);
+  padding:16px;
+  border:1px solid #43524c;
+  border-radius:10px;
+  background:#151d22;
+  box-shadow:0 18px 50px #0008;
+  z-index:90
+}
+
+.dataset-menu h3 {
+  font-size:13px;
+  color:#aebbb5;
+  font-weight:500;
+  margin:0 0 12px;
+  padding:0 6px
+}
+
+.dataset-menu>button {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  text-align:left;
+  padding:16px 12px;
+  border:1px solid transparent;
+  border-radius:7px;
+  margin-top:5px;
+  color:#acbdb8
+}
+
+.dataset-menu>button[aria-checked=true] {
+  border-color:#779f8a77;
+  background:#7fa58e14;
+  color:#d7e6dc
+}
+
+.dataset-menu>button:hover {
+  background:#ffffff08
+}
+
+.dataset-menu>button>span {
+  flex:1;
+  min-width:0
+}
+
+.dataset-menu strong {
+  display:block;
+  font-size:14px;
+  font-weight:500;
+  margin-bottom:5px
+}
+
+.dataset-menu small {
+  display:block;
+  font-size:12px;
+  line-height:1.6;
+  color:#8ea39c
+}
+
+.dataset-menu button:last-child small {
+  color:#a69c8c
+}
+
+.header-right .data-notes>summary {
+  width:34px;
+  height:34px;
+  justify-content:center;
+  border-radius:5px;
+  border:1px solid transparent;
+  padding:0
+}
+
+.header-right .data-notes>summary:hover {
+  border-color:#ffffff22
+}
+
+.header-right .data-notes-panel {
+  right:24px;
+  top:calc(100% + 8px)
+}
+
+.focused-workspace .context-help {
+  display:inline-block;
+  vertical-align:middle;
+  margin:4px 6px 4px 0
+}
+
+.focused-workspace .context-help>summary {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  border:1px solid transparent;
+  border-radius:50%;
+  color:#8fa49c;
+  padding:0
+}
+
+.focused-workspace .context-help>summary:hover,.focused-workspace .context-help[open]>summary {
+  color:#dce8e0;
+  background:#ffffff08;
+  border-color:#6e8a7c66
+}
+
+.focused-workspace .context-help-body {
+  position:fixed;
+  right:24px;
+  top:88px;
+  z-index:180;
+  width:min(440px,calc(100vw - 32px));
+  max-height:70vh;
+  overflow:auto;
+  background:#162026;
+  border:1px solid #43554e;
+  border-radius:10px;
+  box-shadow:0 20px 65px #0009;
+  padding:25px;
+  color:#c5d0cb;
+  font-size:13px;
+  line-height:1.8
+}
+
+.focused-workspace .context-help-body h3 {
+  font-size:17px;
+  color:#e3eae4;
+  margin:0 0 16px
+}
+
+.focused-workspace .context-help-body p,.focused-workspace .context-help-body .ml-tiny,.focused-workspace .context-help-body .small-copy {
+  font-size:13px!important;
+  line-height:1.8!important;
+  color:#b0beb6!important;
+  margin:12px 0
+}
+
+.focused-workspace .context-help-body :is(.method-strip,.matrix-footer,.twin-footer,.research-footnote,.operational-note) {
+  display:block;
+  border:0;
+  padding:0;
+  background:none
+}
+
+.focused-workspace .context-help-body code {
+  font-size:11px;
+  overflow-wrap:anywhere
+}
+
+.focused-workspace .context-help-body a,.focused-workspace .context-help-body button {
+  font-size:13px
+}
+
+.focused-workspace .context-help-body .eng-kicker {
+  font-size:10px
+}
+
+.focused-workspace .eng-title>div,.focused-workspace .dyn-title>div:first-child {
+  position:relative
+}
+
+.focused-workspace .eng-title h2,.focused-workspace .dyn-title h2 {
+  display:inline;
+  font-size:23px;
+  font-weight:500;
+  letter-spacing:-.5px
+}
+
+.focused-workspace .eng-title .context-help,.focused-workspace .dyn-title .context-help {
+  margin-left:8px
+}
+
+.focused-workspace .eng-title .eng-kicker,.focused-workspace .dyn-title .eng-kicker {
+  font-size:10px;
+  letter-spacing:.06em;
+  display:block;
+  margin-bottom:10px
+}
+
+.focused-workspace .eng-title {
+  margin-bottom:28px
+}
+
+.focused-workspace .detail-section {
+  border:1px solid var(--border,#35413e);
+  border-radius:8px;
+  background:#ffffff02;
+  margin:16px 0;
+  overflow:visible
+}
+
+.focused-workspace .detail-section>summary {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:58px;
+  padding:17px 20px;
+  font-size:14px;
+  font-weight:500;
+  color:var(--text,#d4ddd7)
+}
+
+.focused-workspace .detail-section>summary>svg:first-child {
+  color:#96afa2
+}
+
+.focused-workspace .detail-section>summary>span {
+  flex:1
+}
+
+.focused-workspace .detail-section>summary>b {
+  font:12px"IBM Plex Mono",monospace;
+  color:#9ab7a8;
+  padding:3px 7px;
+  border-radius:4px;
+  background:#91ba9b0c
+}
+
+.focused-workspace .detail-section>summary:hover {
+  background:#ffffff03
+}
+
+.focused-workspace .detail-section-body {
+  padding:8px 22px 24px;
+  border-top:1px solid var(--border,#35413e)
+}
+
+.focused-workspace .detail-section-body>.panel {
+  border:0;
+  background:none
+}
+
+.focused-workspace .detail-section-body .context-help {
+  margin-left:0
+}
+
+.focused-workspace .detail-section[open]>summary>svg:last-child {
+  transform:rotate(180deg)
+}
+
+.focused-workspace .page .page-intro {
+  margin-bottom:34px
+}
+
+.focused-workspace .page .page-intro p {
+  font-size:13px;
+  line-height:1.7;
+  max-width:740px
+}
+
+.focused-workspace .page .page-intro .eyebrow {
+  display:none
+}
+
+.focused-workspace .page .page-intro h1 {
+  font-size:32px;
+  margin-top:0
+}
+
+.focused-workspace .campaign-page .planner-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:28px;
+  align-items:start
+}
+
+.focused-workspace .campaign-page .map-column {
+  grid-column:auto;
+  grid-row:auto;
+  order:1;
+  min-width:0
+}
+
+.focused-workspace .campaign-page .results-column {
+  grid-column:auto;
+  grid-row:auto;
+  order:2;
+  min-width:0
+}
+
+.focused-workspace .campaign-page .campaign-objective-fold {
+  grid-column:1/-1;
+  order:3;
+  margin:4px 0
+}
+
+.focused-workspace .campaign-objective-fold .objectives-panel {
+  padding:14px 0 0;
+  overflow:visible
+}
+
+.focused-workspace .campaign-objective-fold .panel-heading,.focused-workspace .campaign-objective-fold .panel-description,.focused-workspace .campaign-objective-fold .objective-footer {
+  display:none
+}
+
+.focused-workspace .campaign-objective-fold .objective-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px
+}
+
+.focused-workspace .campaign-objective-fold .objective-item {
+  border:1px solid var(--border);
+  padding:18px 16px
+}
+
+.focused-workspace .campaign-objective-fold .objective-title>strong {
+  font-size:13px
+}
+
+.focused-workspace .campaign-objective-fold .objective-meta {
+  font-size:10px
+}
+
+.focused-workspace .campaign-objective-fold .edit-brief {
+  max-width:240px;
+  margin-top:18px
+}
+
+.focused-workspace .campaign-page .campaign-card {
+  padding:25px 22px
+}
+
+.focused-workspace .campaign-page .campaign-card .panel-heading>.eyebrow {
+  font-size:11px;
+  letter-spacing:.5px
+}
+
+.focused-workspace .campaign-page .campaign-site-content>strong {
+  font-size:14px;
+  line-height:1.5
+}
+
+.focused-workspace .campaign-page .campaign-site-content>small {
+  font-size:12px;
+  margin-top:4px
+}
+
+.focused-workspace .campaign-page .campaign-site {
+  padding:20px 0
+}
+
+.focused-workspace .campaign-page .role-tags {
+  gap:5px
+}
+
+.focused-workspace .campaign-page .role-tags>span {
+  font-size:10px;
+  line-height:1.6;
+  padding:3px 6px
+}
+
+.focused-workspace .campaign-page .coverage-heading {
+  gap:18px;
+  align-items:center;
+  margin:24px 0 12px
+}
+
+.focused-workspace .campaign-page .coverage-heading>div>span {
+  font-size:14px;
+  line-height:1.5
+}
+
+.focused-workspace .coverage-ring {
+  position:relative;
+  width:112px;
+  height:112px;
+  flex:0 0 auto
+}
+
+.focused-workspace .coverage-ring svg {
+  width:100%;
+  height:100%;
+  overflow:visible
+}
+
+.focused-workspace .coverage-ring circle {
+  fill:none;
+  stroke-width:6
+}
+
+.focused-workspace .coverage-ring-track {
+  stroke:#31433f
+}
+
+.focused-workspace .coverage-ring-value {
+  stroke:#8fc7b5;
+  stroke-linecap:round
+}
+
+.focused-workspace .coverage-ring strong {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  font:29px"IBM Plex Mono",monospace;
+  color:#bdd8cd
+}
+
+.focused-workspace .coverage-ring small {
+  font-size:12px;
+  color:#91a99c;
+  align-self:center;
+  margin-top:10px
+}
+
+.focused-workspace .campaign-page .gaps-card {
+  padding:14px 0 0
+}
+
+.focused-workspace .campaign-page .gaps-title,.focused-workspace .campaign-page .gaps-card>p:first-of-type {
+  display:none
+}
+
+.focused-workspace .campaign-page .gap-item>summary {
+  font-size:13px;
+  padding:13px 0
+}
+
+.focused-workspace .campaign-page .map-bottom-notes {
+  font-size:11px;
+  margin:14px 0 8px
+}
+
+.focused-workspace .campaign-page .map-bottom-notes>span {
+  display:none
+}
+
+.focused-workspace .campaign-page .campaign-world-entry {
+  min-height:78px;
+  padding:18px 22px;
+  margin-bottom:30px
+}
+
+.focused-workspace .campaign-page .campaign-world-entry strong {
+  font-size:15px;
+  font-weight:500
+}
+
+.focused-workspace .campaign-page .target-trajectory>strong {
+  font-size:14px
+}
+
+.focused-workspace .campaign-page .campaign-topline {
+  padding:20px 0;
+  margin-bottom:6px
+}
+
+.focused-workspace .campaign-page .frontier-heading {
+  padding:17px 20px
+}
+
+.focused-workspace .campaign-page .frontier-heading>span:last-child {
+  display:none
+}
+
+.focused-workspace .campaign-page .frontier-options>button {
+  padding:17px
+}
+
+.focused-workspace .campaign-page .frontier-value {
+  font-size:23px
+}
+
+.focused-workspace .campaign-page .frontier-gain {
+  font-size:10px
+}
+
+.focused-workspace .campaign-page .campaign-research {
+  margin-top:22px
+}
+
+.focused-workspace .campaign-research .preference-explorer {
+  border:0;
+  margin:0;
+  background:none
+}
+
+.focused-workspace .campaign-page .map-column>.context-help {
+  float:right;
+  margin:0
+}
+
+.focused-workspace .campaign-page .operational-note {
+  display:flex;
+  flex-wrap:wrap;
+  font-size:12px;
+  border:0;
+  padding:10px 0
+}
+
+.focused-workspace .campaign-page .results-column>.detail-section {
+  margin-top:20px
+}
+
+.focused-workspace .research-overview {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin:32px 0
+}
+
+.focused-workspace .research-overview>div {
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:6px 16px;
+  align-items:center;
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:#ffffff02
+}
+
+.focused-workspace .research-overview svg {
+  grid-row:1/3;
+  color:#8ab2a4
+}
+
+.focused-workspace .research-overview strong {
+  font:27px"IBM Plex Mono",monospace;
+  color:var(--text)
+}
+
+.focused-workspace .research-overview span {
+  font-size:12px;
+  color:var(--text-muted)
+}
+
+.focused-workspace .evidence-page .evidence-grid {
+  display:block
+}
+
+.focused-workspace .evidence-page .evidence-section {
+  margin:0;
+  padding:12px 0;
+  border:0
+}
+
+.focused-workspace .evidence-page .evidence-section>.section-heading {
+  display:none
+}
+
+.focused-workspace .evidence-page .pilot-scope {
+  padding:12px 0 0;
+  margin:0
+}
+
+.focused-workspace .evidence-page .method-cards p,.focused-workspace .evidence-page .limitations-list p,.focused-workspace .evidence-page .source-list p {
+  font-size:13px;
+  line-height:1.8
+}
+
+.focused-workspace .evidence-page .detail-section .disclosure-card {
+  padding:16px 0 0
+}
+
+.focused-workspace .evidence-page .evidence-toc {
+  gap:24px;
+  margin:28px 0;
+  font-size:13px
+}
+
+.focused-workspace .matrix-page .matrix-topline {
+  padding:20px 0;
+  font-size:13px
+}
+
+.focused-workspace .matrix-page .matrix-topline strong {
+  font-size:15px
+}
+
+.focused-workspace .matrix-page .matrix-table th>button span {
+  font-size:12px;
+  line-height:1.6
+}
+
+.focused-workspace .matrix-page .matrix-cell {
+  font-size:13px;
+  min-height:50px
+}
+
+.focused-workspace .matrix-page .matrix-table tbody th button {
+  font-size:13px
+}
+
+.focused-workspace .matrix-page .matrix-table tbody th small {
+  display:none
+}
+
+.focused-workspace .twin-page .twin-empty {
+  padding:64px 32px;
+  gap:24px
+}
+
+.focused-workspace .twin-page .twin-empty h2 {
+  font-size:24px
+}
+
+.focused-workspace .twin-page .twin-empty>p {
+  max-width:600px;
+  font-size:14px;
+  line-height:1.8
+}
+
+.focused-workspace .twin-page .twin-empty>.small-copy {
+  font-size:13px
+}
+
+.focused-workspace .twin-page .twin-controls {
+  padding:25px;
+  gap:30px
+}
+
+.focused-workspace .ex-mission .clear-stepbar {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  border-block:1px solid #29332f;
+  padding:0;
+  margin:0;
+  background:#101716
+}
+
+.focused-workspace .ex-mission .clear-stepbar>button {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:flex-start;
+  min-height:68px;
+  padding:16px 24px;
+  color:#bbc9c1;
+  font-size:13px;
+  letter-spacing:0;
+  text-transform:none;
+  border-right:1px solid #29332f
+}
+
+.focused-workspace .ex-mission .clear-stepbar>button>svg:first-child {
+  color:#c2b48f
+}
+
+.focused-workspace .ex-mission .clear-stepbar>button>span {
+  flex:1
+}
+
+.focused-workspace .ex-mission .clear-stepbar>button>svg:last-child {
+  color:#61776d
+}
+
+.focused-workspace .ex-mission .clear-stepbar>button:hover {
+  background:#b8d0bd08
+}
+
+.focused-workspace .ex-mission .ml-intro-actions>button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  min-width:36px;
+  min-height:36px;
+  padding:7px!important
+}
+
+.focused-workspace .ex-mission .ml-intro-actions>button>b {
+  font-size:10px;
+  font-weight:400
+}
+
+.focused-workspace .ex-mission .ex-welcome {
+  padding:18px 25px;
+  min-height:0
+}
+
+.focused-workspace .ex-mission .ex-welcome h2 {
+  font-size:17px;
+  font-weight:500;
+  margin:0
+}
+
+.focused-workspace .ex-mission .ex-welcome-intro>p {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-welcome-actions button {
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ex-region-summary {
+  padding-top:20px;
+  padding-bottom:20px
+}
+
+.focused-workspace .ex-mission .ex-region-summary>.ex-overline {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-region-summary h2 {
+  font-size:25px;
+  letter-spacing:-.6px;
+  margin:0 0 10px
+}
+
+.focused-workspace .ex-mission .ex-region-summary>p {
+  font-size:10px;
+  margin-bottom:14px
+}
+
+.focused-workspace .ex-mission .terrain-resolution {
+  font-size:11px;
+  letter-spacing:0;
+  gap:7px;
+  color:#9ab7a8
+}
+
+.focused-workspace .ex-mission .ex-schematic>.ex-overline,.focused-workspace .ex-mission .ex-schematic-image>i {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-schematic-image {
+  margin-top:0
+}
+
+.focused-workspace .ex-mission .ex-schematic>dl>div {
+  margin-bottom:9px
+}
+
+.focused-workspace .ex-mission .ex-schematic>dl dt {
+  font-size:11px
+}
+
+.focused-workspace .ex-mission .ex-schematic>dl dd {
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ml-setup .ml-panel-heading>span:last-child {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-primary-start {
+  font-size:12px;
+  letter-spacing:.02em;
+  min-height:44px;
+  margin-top:18px
+}
+
+.focused-workspace .ex-mission .ex-config-details>summary {
+  font-size:12px;
+  padding-block:18px
+}
+
+.focused-workspace .ex-mission .ml-telemetry {
+  padding-top:20px
+}
+
+.focused-workspace .ex-mission .ml-readouts {
+  margin-top:20px;
+  gap:12px
+}
+
+.focused-workspace .ex-mission .ml-readouts>div {
+  padding:14px 10px;
+  min-height:92px;
+  border-color:#28372f
+}
+
+.focused-workspace .ex-mission .ml-readouts>div>span {
+  font-size:10px;
+  line-height:1.6;
+  letter-spacing:0;
+  text-transform:none;
+  min-height:30px
+}
+
+.focused-workspace .ex-mission .ml-readouts>div>strong {
+  font-size:23px
+}
+
+.focused-workspace .ex-mission .ml-readouts small {
+  font-size:10px
+}
+
+.focused-workspace .ex-mission .ml-telemetry>.detail-section {
+  margin-top:20px;
+  border-color:#2b3830
+}
+
+.focused-workspace .ex-mission .ml-telemetry>.detail-section>summary {
+  font-size:12px;
+  min-height:48px;
+  padding:12px 10px;
+  gap:8px
+}
+
+.focused-workspace .ex-mission .ml-telemetry>.detail-section>summary>svg:first-child {
+  width:16px
+}
+
+.focused-workspace .ex-mission .ml-telemetry .detail-section-body {
+  padding:10px
+}
+
+.focused-workspace .ex-mission .ml-environment-readout {
+  border:0;
+  margin:0;
+  padding:0
+}
+
+.focused-workspace .ex-mission .ml-environment-readout .ex-env-label {
+  font-size:11px
+}
+
+.focused-workspace .ex-mission .ex-env-details {
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ml-environment-readout>span,.focused-workspace .ex-mission .ml-environment-readout>p {
+  font-size:10px
+}
+
+.focused-workspace .ex-mission .ml-events li {
+  position:relative;
+  padding-top:14px;
+  padding-bottom:14px
+}
+
+.focused-workspace .ex-mission .ml-events strong {
+  font-size:12px;
+  text-transform:none;
+  line-height:1.5
+}
+
+.focused-workspace .ex-mission .ml-events .context-help {
+  margin-top:4px
+}
+
+.focused-workspace .ex-mission .ml-events .context-help>summary {
+  width:24px;
+  height:24px
+}
+
+.focused-workspace .ex-mission .ml-event-heading {
+  font-size:11px;
+  letter-spacing:.03em;
+  margin-top:24px
+}
+
+.focused-workspace .system-metric-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px 12px;
+  margin:5px 0
+}
+
+.focused-workspace .system-metric-grid dt {
+  font-size:11px;
+  color:#8b9f92;
+  margin-bottom:5px
+}
+
+.focused-workspace .system-metric-grid dd {
+  font:15px"IBM Plex Mono",monospace;
+  color:#cfdbd2;
+  margin:0
+}
+
+.focused-workspace .system-metric-grid small {
+  font-size:9px;
+  color:#829e8e
+}
+
+.focused-workspace .ex-mission .ex-bookmark-label {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-bookmarks {
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  padding:18px 24px;
+  gap:12px
+}
+
+.focused-workspace .ex-mission .ex-bookmark>div:last-child>span {
+  display:none
+}
+
+.focused-workspace .ex-mission .ex-bookmark>div:last-child {
+  gap:6px;
+  padding:10px
+}
+
+.focused-workspace .ex-mission .ex-bookmark strong {
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none
+}
+
+.focused-workspace .ex-mission .ex-bookmark-art {
+  height:62px
+}
+
+.focused-workspace .ex-mission .ex-mission-clock>span {
+  font-size:10px;
+  letter-spacing:.03em
+}
+
+.focused-workspace .ex-mission .ex-mission-clock>strong {
+  font-size:20px
+}
+
+.focused-workspace .ex-mission .ml-results {
+  margin-top:28px
+}
+
+.focused-workspace .ex-mission .ml-results>nav {
+  padding:12px;
+  gap:6px;
+  flex-wrap:wrap;
+  border:1px solid #304036;
+  background:#111a16
+}
+
+.focused-workspace .ex-mission .ml-results>nav>button {
+  padding:11px 13px;
+  font-size:12px;
+  letter-spacing:0;
+  min-height:42px
+}
+
+.focused-workspace .eng-fields,.focused-workspace .dyn-config .ml-field {
+  gap:8px
+}
+
+.focused-workspace .eng-fields .ml-field>span,.focused-workspace .dyn-config .ml-field>span {
+  font-size:12px;
+  line-height:1.5
+}
+
+.focused-workspace .eng-fields input,.focused-workspace .dyn-config input,.focused-workspace .dyn-config select {
+  font-size:13px;
+  min-height:38px
+}
+
+.focused-workspace .dyn-layout {
+  gap:28px
+}
+
+.focused-workspace .dyn-config {
+  padding:24px
+}
+
+.focused-workspace .dyn-title {
+  margin-bottom:28px
+}
+
+.focused-workspace .dyn-config>h3 {
+  font-size:17px;
+  line-height:1.6
+}
+
+.focused-workspace .dyn-config>.eng-kicker {
+  font-size:10px;
+  line-height:1.6;
+  letter-spacing:0
+}
+
+.focused-workspace .dyn-config details {
+  margin:18px 0
+}
+
+.focused-workspace .dyn-config summary {
+  font-size:12px;
+  line-height:1.7
+}
+
+.focused-workspace .dyn-config>button,.focused-workspace .dyn-config details>button {
+  font-size:12px;
+  line-height:1.5;
+  padding:11px
+}
+
+.focused-workspace .dyn-empty {
+  min-height:460px;
+  gap:24px
+}
+
+.focused-workspace .dyn-empty>.eng-kicker {
+  display:none
+}
+
+.focused-workspace .dyn-empty h2 {
+  font-size:27px;
+  font-weight:500
+}
+
+.focused-workspace .ready-orbit {
+  font-size:80px;
+  font-weight:200;
+  color:#899b86;
+  line-height:1
+}
+
+.focused-workspace .native-quick-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center
+}
+
+.focused-workspace .native-quick-actions button {
+  padding:13px 18px;
+  font-size:13px;
+  border:1px solid #496055;
+  border-radius:5px
+}
+
+.focused-workspace .dyn-metrics>div {
+  padding:18px
+}
+
+.focused-workspace .dyn-metrics span {
+  font-size:11px;
+  line-height:1.6
+}
+
+.focused-workspace .dyn-metrics b {
+  font-size:21px;
+  margin-top:10px
+}
+
+.focused-workspace .eng-readings>div {
+  padding:22px
+}
+
+.focused-workspace .eng-readings dt {
+  font-size:12px;
+  line-height:1.6
+}
+
+.focused-workspace .eng-readings dd {
+  font-size:23px;
+  margin-top:12px
+}
+
+.focused-workspace .eng-title p,.focused-workspace .dyn-title p {
+  font-size:13px
+}
+
+.focused-workspace .eng-fields {
+  gap:20px
+}
+
+.focused-workspace .eng-science {
+  margin-top:26px
+}
+
+.focused-workspace .eng-science>h3 {
+  font-size:19px
+}
+
+.focused-workspace .transfer-notes {
+  gap:28px
+}
+
+.focused-workspace .transfer-table th,.focused-workspace .transfer-table td {
+  font-size:12px;
+  padding:16px 14px
+}
+
+@media (max-width:1279px) {
+  .dataset-selected-label {
+    display:none
+  }
+
+  .app-header nav {
+    gap:14px
+  }
+
+  .app-header .header-right {
+    gap:8px;
+    padding-left:12px
+  }
+
+  .dataset-switch>summary {
+    gap:5px
+  }
+
+}
+
+@media (max-width:1000px) {
+  .focused-workspace .campaign-page .planner-grid {
+    grid-template-columns:minmax(0,1fr) 285px;
+    gap:20px
+  }
+
+  .focused-workspace .campaign-page .coverage-heading {
+    gap:10px
+  }
+
+  .focused-workspace .coverage-ring {
+    width:92px;
+    height:92px
+  }
+
+  .focused-workspace .coverage-ring strong {
+    font-size:25px
+  }
+
+  .focused-workspace .campaign-page .campaign-card {
+    padding:20px 17px
+  }
+
+}
+
+@media (max-width:900px) {
+  .focused-workspace .campaign-page .planner-grid {
+    grid-template-columns:1fr
+  }
+
+  .focused-workspace .campaign-page .results-column {
+    display:block
+  }
+
+  .focused-workspace .campaign-page .campaign-card {
+    padding:24px
+  }
+
+  .focused-workspace .campaign-page .clear-stepbar>button {
+    padding-inline:12px
+  }
+
+  .focused-workspace .ex-mission .clear-stepbar>button {
+    padding:14px 12px;
+    gap:8px
+  }
+
+  .focused-workspace .ex-mission .clear-stepbar>button>svg:last-child {
+    display:none
+  }
+
+  .focused-workspace .ex-mission .ex-bookmark-art {
+    height:48px
+  }
+
+  .focused-workspace .ex-mission .ex-bookmark strong {
+    font-size:10px
+  }
+
+  .focused-workspace .research-overview {
+    gap:14px
+  }
+
+  .focused-workspace .research-overview>div {
+    padding:19px;
+    gap:7px 10px
+  }
+
+}
+
+@media (max-width:600px) {
+  .dataset-menu {
+    position:fixed;
+    top:70px;
+    right:16px
+  }
+
+  .focused-workspace .context-help-body {
+    top:76px;
+    right:16px;
+    padding:21px
+  }
+
+  .focused-workspace .detail-section>summary {
+    padding:16px;
+    font-size:13px
+  }
+
+  .focused-workspace .detail-section-body {
+    padding:8px 16px 20px
+  }
+
+  .focused-workspace .research-overview {
+    grid-template-columns:1fr;
+    margin:25px 0
+  }
+
+  .focused-workspace .research-overview>div {
+    grid-template-columns:28px 54px 1fr;
+    padding:16px
+  }
+
+  .focused-workspace .research-overview svg {
+    grid-row:auto
+  }
+
+  .focused-workspace .research-overview span {
+    font-size:13px
+  }
+
+  .focused-workspace .ex-mission .clear-stepbar {
+    grid-template-columns:repeat(4,1fr)
+  }
+
+  .focused-workspace .ex-mission .clear-stepbar>button {
+    flex-direction:column;
+    gap:9px;
+    padding:15px 5px;
+    min-height:76px;
+    font-size:11px
+  }
+
+  .focused-workspace .ex-mission .ex-bookmarks {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px;
+    padding:16px
+  }
+
+  .focused-workspace .ex-mission .ex-bookmark-art {
+    height:55px
+  }
+
+  .focused-workspace .ex-mission .ml-results>nav {
+    gap:3px
+  }
+
+  .focused-workspace .ex-mission .ml-results>nav>button {
+    font-size:11px;
+    padding:10px
+  }
+
+  .focused-workspace .campaign-page .campaign-world-entry {
+    padding:18px
+  }
+
+  .focused-workspace .campaign-page .campaign-world-entry strong {
+    font-size:13px
+  }
+
+}
+
+@media (pointer:coarse) {
+  .dataset-switch>summary,.focused-workspace .context-help>summary {
+    min-width:44px;
+    min-height:44px
+  }
+
+}
+
+.focused-workspace .ml-results>nav>button {
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+
+.focused-workspace .ml-results>nav>button>svg {
+  color:#9bb4a7
+}
+
+.focused-workspace .ex-mission .eng-title h2,.focused-workspace .ex-mission .dyn-title h2 {
+  font-size:23px;
+  font-weight:500
+}
+
+.focused-workspace .ex-mission .eng-title>.eng-kicker {
+  font-size:10px
+}
+
+.app-header.ex-app-header nav>button {
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ml-telemetry .ml-readouts {
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-top:20px
+}
+
+.focused-workspace .ex-mission .ml-readouts>div {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-height:62px;
+  padding:13px 12px
+}
+
+.focused-workspace .ex-mission .ml-readouts>div>span {
+  font-size:12px;
+  min-height:0;
+  line-height:1.5;
+  max-width:100px
+}
+
+.focused-workspace .ex-mission .ml-readouts>div>strong {
+  display:flex;
+  align-items:baseline;
+  gap:4px;
+  font-size:23px;
+  line-height:1.3
+}
+
+.focused-workspace .ex-mission .ml-readouts>div small {
+  font-size:9px;
+  display:inline;
+  margin:0
+}
+
+.focused-workspace .ex-mission .ex-primary-start {
+  margin:0 0 20px;
+  position:relative;
+  padding-inline:8px;
+  width:100%;
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ex-schematic-image {
+  height:160px
+}
+
+.focused-workspace .ex-mission .ex-schematic-image canvas {
+  height:100%;
+  object-fit:contain
+}
+
+.focused-workspace .ex-mission .ex-header-meta {
+  font-family:Inter,sans-serif;
+  font-size:11px;
+  letter-spacing:0
+}
+
+.focused-workspace .ex-mission .ex-header-meta span {
+  font-size:11px;
+  letter-spacing:0
+}
+
+.focused-workspace .ex-mission .ml-events:empty {
+  display:none
+}
+
+.focused-workspace .ex-mission .ml-panel-heading {
+  font-size:11px;
+  letter-spacing:.06em
+}
+
+.focused-workspace .ex-mission .ex-mission-header h1 {
+  font-size:17px
+}
+
+.focused-workspace .ex-mission .ex-orbit-heading {
+  top:26px
+}
+
+.focused-workspace .ex-mission .ex-orbit-heading h2 {
+  font-size:28px
+}
+
+.focused-workspace .ex-mission .dyn-workbench .dyn-title {
+  margin-bottom:28px
+}
+
+.focused-workspace .ex-mission .dyn-empty {
+  min-height:440px;
+  padding:35px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center
+}
+
+.focused-workspace .ex-mission .dyn-config {
+  max-height:780px;
+  overflow:auto
+}
+
+.focused-workspace .transfer-workspace>.detail-section {
+  margin-top:22px
+}
+
+.focused-workspace .transfer-notes {
+  margin:15px 0
+}
+
+.focused-workspace .eng-title>div>p {
+  font-size:13px
+}
+
+.focused-workspace .dyn-config .context-help>summary {
+  width:28px;
+  height:28px
+}
+
+.focused-workspace .ml-telemetry .ex-reading-definitions>summary {
+  font-size:11px
+}
+
+.focused-workspace .ex-mission .ml-modes>button strong {
+  font-size:12px
+}
+
+.focused-workspace .ex-mission .ml-results>nav>.ml-export-actions button {
+  font-size:12px;
+  padding:10px
+}
+
+.dataset-switch>summary .dataset-selected-label {
+  display:inline;
+  font-size:11px
+}
+
+.app-header .header-right {
+  gap:10px
+}
+
+.dataset-switch>summary {
+  max-width:170px
+}
+
+.dataset-selected-label {
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+@media(max-width:1180px) {
+  .dataset-switch>summary {
+    max-width:120px
+  }
+
+  .dataset-switch>summary .dataset-selected-label {
+    max-width:70px
+  }
+
+  .app-header nav {
+    gap:12px
+  }
+
+}
+
+@media(max-width:1050px) {
+  .dataset-switch>summary .dataset-selected-label {
+    display:none
+  }
+
+}
+
+@media(max-width:600px) {
+  .focused-workspace .ex-mission .ml-telemetry .ml-readouts {
+    grid-template-columns:repeat(2,1fr)
+  }
+
+}
+
+.focused-workspace .campaign-page .results-column {
+  display:block;
+  width:100%
+}
+
+.focused-workspace .campaign-page .results-column>.detail-section {
+  width:100%
+}
+
+.focused-workspace .campaign-page .frontier-heading {
+  padding:0;
+  margin-bottom:17px
+}
+
+.focused-workspace .campaign-page .frontier-options>button {
+  padding-top:16px;
+  padding-bottom:16px
+}
+
+.focused-workspace .campaign-page .coverage-heading>div:not(.coverage-ring) {
+  flex:1;
+  min-width:0;
+  font-size:14px;
+  line-height:1.6
+}
+
+.focused-workspace .campaign-page .coverage-heading>div:not(.coverage-ring)>small {
+  font-size:12px;
+  margin-top:8px
+}
+
+.focused-workspace .campaign-page .coverage-heading {
+  flex-wrap:nowrap
+}
+
+.focused-workspace .site-drawer .detail-section {
+  margin:15px 24px
+}
+
+.site-drawer.focused-workspace .drawer-body>.detail-section {
+  margin:18px 24px
+}
+
+.site-drawer.focused-workspace .detail-section .drawer-section {
+  border:0;
+  padding:12px 0
+}
+
+.site-drawer.focused-workspace .detail-section .drawer-section>h3 {
+  display:none
+}
+
+.site-drawer.focused-workspace .drawer-section p {
+  font-size:13px;
+  line-height:1.8
+}
+
+.site-drawer.focused-workspace .drawer-body {
+  padding-top:12px
+}
+
+.site-drawer.focused-workspace .drawer-section h3 {
+  font-size:16px
+}
+
+.site-drawer.focused-workspace .attribute-row {
+  font-size:12px
+}
+
+.site-drawer.focused-workspace .drawer-actions button {
+  font-size:12px;
+  min-height:40px
+}
+
+.focused-workspace .twin-empty .context-help {
+  margin:0
+}
+
+.focused-workspace .twin-empty>.context-help>.context-help-body {
+  text-align:left
+}
+.focused-workspace .matrix-scale{display:flex;align-items:center;gap:8px;font:11px 'IBM Plex Mono',monospace;color:var(--text-muted);margin-left:auto;margin-right:12px}.focused-workspace .matrix-scale>i{display:block;width:96px;height:7px;border-radius:2px}.focused-workspace .matrix-topline{gap:18px}.focused-workspace .matrix-table th>button span{font-size:12px;line-height:1.5;display:block}.focused-workspace .matrix-table th>button em{font-size:10px;line-height:1.8;font-style:normal;font-weight:400;color:#8da39c}.focused-workspace .matrix-table th>button small{font-size:9px}.focused-workspace .twin-empty{display:flex;flex-direction:column;align-items:center;gap:22px;position:relative}.focused-workspace .twin-empty>.context-help{position:absolute;right:20px;top:20px}.focused-workspace .dyn-title>div:first-child>.eng-kicker,.focused-workspace .eng-title>div>.eng-kicker{display:none}.focused-workspace .eng-title h2,.focused-workspace .dyn-title h2{line-height:1.5}@media(max-width:767px){.focused-workspace .matrix-topline{flex-wrap:wrap}.focused-workspace .matrix-scale{margin-left:0}}
+
+/* Keep campaign ranks inline with site names, separate from column headings. */
+.focused-workspace .matrix-page .matrix-table tbody th button .tiny-number {
+  display: inline-flex;
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: middle;
+}
+.focused-workspace .matrix-scroll {
+  scrollbar-color: #40534f #141e23;
+  scrollbar-width: thin;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  html[lang=ru] .app-header {
+    height: auto;
+    min-height: 112px;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    padding: 14px 24px 0;
+  }
+  html[lang=ru] .app-header .header-right {
+    margin-left: auto;
+    border-left: 0;
+  }
+  html[lang=ru] .app-header nav {
+    order: 3;
+    flex-basis: 100%;
+    height: 44px;
+    margin: 0;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  html[lang=ru] .app-header nav>button {
+    flex-shrink: 0;
+    padding-inline: 0;
+  }
+  html[lang=ru] .dataset-switch>summary {
+    max-width: 220px;
+  }
+  html[lang=ru] .dataset-switch>summary .dataset-selected-label {
+    display: inline;
+    max-width: none;
+  }
+  html[lang=ru] .focused-workspace .context-help-body {
+    top: 132px;
+  }
+}
+
+@media (min-width:768px) and (max-width:1200px) {
+  /* The explorer's legacy fixed header must not overlap its second navigation row. */
+  html[lang=ru] .app-header.ex-app-header {
+    height:auto !important;
+    min-height:112px !important;
+    padding:14px 24px 0 !important;
+  }
+}
+.focused-workspace .method-cards .science-plate{display:block;width:100%;height:106px;margin:20px 0 24px;color:#92b6aa;opacity:.9}
+.focused-workspace .twin-empty-icon>.science-plate{width:210px;height:88px;color:#9ab8ab}

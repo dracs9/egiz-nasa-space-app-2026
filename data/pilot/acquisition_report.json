@@ -1,0 +1,188 @@
+{
+  "status": "measured terrain pilot, incomplete environment and global sampling",
+  "synthetic": false,
+  "raster_windows": [
+    {
+      "id": "MOON_MONS_MOUTON",
+      "body": "moon",
+      "file": "data/raw/targets/Site20v2_final_adj_5mpp_surf.tif",
+      "sha256": "0e96c40987c0814eadd4f94f85dacbb33bcab5388dd0b1dc99dc59bf987f072f",
+      "native": {
+        "shape": [
+          5200,
+          5200
+        ],
+        "bounds": [
+          60000.0,
+          105000.0,
+          86000.0,
+          131000.0
+        ],
+        "crs": "PROJCS[\"unknown\",GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"unknown\",1737400,0]],PRIMEM[\"Reference meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",-90],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1],AXIS[\"Easting\",NORTH],AXIS[\"Northing\",NORTH]]",
+        "pixel_size": [
+          5.0,
+          5.0
+        ]
+      },
+      "local_pixel_m": 50,
+      "grid_shape": [
+        440,
+        440
+      ],
+      "local_valid_fraction": 0.9559504132231404,
+      "projection": "AEQD",
+      "core20_valid_fraction": 0.99273125
+    },
+    {
+      "id": "MARS_JEZERO",
+      "body": "mars",
+      "file": "data/raw/targets/Jezero_MOLA_HRSC_200m.tif",
+      "sha256": "a7f6b4d38e0f17e77e7e423c7e26f2334991146db716f057c7a7c6ec2d5580b0",
+      "native": {
+        "shape": [
+          111,
+          117
+        ],
+        "bounds": [
+          77.25309449056175,
+          18.256068778080415,
+          77.64786662774675,
+          18.630596190281565
+        ],
+        "crs": "ESRI:104971",
+        "pixel_size": [
+          0.003374120830641,
+          0.003374120830641
+        ]
+      },
+      "local_pixel_m": 200,
+      "grid_shape": [
+        110,
+        110
+      ],
+      "local_valid_fraction": 1.0,
+      "projection": "AEQD",
+      "core20_valid_fraction": 1.0
+    },
+    {
+      "id": "PR_JETT_SP_CRATER",
+      "body": "earth",
+      "file": "data/raw/earth_dem30/SP_CRATER.tif",
+      "sha256": "a0aea7de936d0126270c4a6c5e7f6047194bfea6972cf8a4d0b6a51ae500d42b",
+      "native": {
+        "shape": [
+          715,
+          875
+        ],
+        "bounds": [
+          -111.75013888888888,
+          35.47402777777778,
+          -111.50708333333333,
+          35.67263888888889
+        ],
+        "crs": "EPSG:4326",
+        "pixel_size": [
+          0.0002777777777777778,
+          0.0002777777777777778
+        ]
+      },
+      "local_pixel_m": 50,
+      "grid_shape": [
+        440,
+        440
+      ],
+      "local_valid_fraction": 0.9958626033057851,
+      "projection": "UTM",
+      "core20_valid_fraction": 1.0
+    },
+    {
+      "id": "GL_W116.820_N36.240",
+      "body": "earth",
+      "file": "data/raw/earth_dem30/DEATH_VALLEY.tif",
+      "sha256": "45e4a8b6ea4fe9a05f1dda40344f896009a658e19a3097f439ca7b9064bc0ae8",
+      "native": {
+        "shape": [
+          715,
+          883
+        ],
+        "bounds": [
+          -116.94263888888888,
+          36.14069444444444,
+          -116.6973611111111,
+          36.339305555555555
+        ],
+        "crs": "EPSG:4326",
+        "pixel_size": [
+          0.0002777777777777778,
+          0.0002777777777777778
+        ]
+      },
+      "local_pixel_m": 200,
+      "grid_shape": [
+        110,
+        110
+      ],
+      "local_valid_fraction": 0.9959504132231405,
+      "projection": "UTM",
+      "core20_valid_fraction": 1.0
+    },
+    {
+      "id": "KZ_E051.200_N43.400",
+      "body": "earth",
+      "file": "data/raw/earth_dem30/MANGYSTAU.tif",
+      "sha256": "77642c10e2a354ee7daf36c25d6e6073c5d97679905be7f2cf241c21e4476f26",
+      "native": {
+        "shape": [
+          714,
+          981
+        ],
+        "bounds": [
+          51.06375,
+          43.30069444444445,
+          51.33625,
+          43.49902777777778
+        ],
+        "crs": "EPSG:4326",
+        "pixel_size": [
+          0.0002777777777777778,
+          0.0002777777777777778
+        ]
+      },
+      "local_pixel_m": 200,
+      "grid_shape": [
+        110,
+        110
+      ],
+      "local_valid_fraction": 0.9931404958677686,
+      "projection": "UTM",
+      "core20_valid_fraction": 1.0
+    }
+  ],
+  "E1": {
+    "geometric_max_altitude_error_deg": 0.006705057562186312,
+    "max_azimuth_error_deg": 0.09577229902387785,
+    "horizon_sign_agreement": 1,
+    "samples": 1344,
+    "latitude_count": 7,
+    "date_count": 4,
+    "step_minutes": 30,
+    "reference": "Astropy AltAz pressure=0; astropy bundled IERS, no network download"
+  },
+  "external_blockers": [
+    "No authenticated EE_PROJECT for global pool and MODIS/GPM/WorldCover/snow observations",
+    "No verified site-specific target thermal values",
+    "Only one potentially testable practice site; E3 requires at least eight preregistered pairs",
+    "No preregistration commit or human science review supplied"
+  ],
+  "not_claimed": [
+    "global best analog",
+    "validated scientific result",
+    "competition eligibility or organizer approval"
+  ],
+  "software_verification": {
+    "owned_tests_passed": 22,
+    "ruff": "passed",
+    "contract_files_validated": 5,
+    "scientific_validation_status": "not established"
+  }
+}

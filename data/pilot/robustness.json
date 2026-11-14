@@ -1,0 +1,213 @@
+{
+  "generated_at": "2026-10-17T19:14:17.913506Z",
+  "jaccard_median": {
+    "MARS_JEZERO": 1.0,
+    "MOON_MONS_MOUTON": 1.0
+  },
+  "provenance": [
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W117_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E051_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S25_00_W070_00_DEM/Copernicus_DSM_COG_10_S25_00_W070_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S27W072_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_E035_00_DEM/Copernicus_DSM_COG_10_N29_00_E035_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E033_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W009_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E054_00_DEM/Copernicus_DSM_COG_10_N43_00_E054_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E054_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Barker et al. 2021. Improved LOLA Elevation Maps for South Pole Landing Sites. DOI 10.1016/j.pss.2020.105119",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/products/78",
+      "version": "see product"
+    },
+    {
+      "dataset": "Center of native Site20 5 m DEM extent: x=73000 m,y=118000 m; inverse raster CRS, MOON_ME DE421",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20/Site20_final_adj_5mpp_surf.tif",
+      "version": "see product"
+    },
+    {
+      "dataset": "NASA 2024. Provides Update on Artemis III Moon Landing Regions (historical candidate list)",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/",
+      "version": "see product"
+    },
+    {
+      "dataset": "NASA PGDA Site20v2 extended LOLA 5m elevation raster (August 2022 update)",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+      "version": "see product"
+    },
+    {
+      "dataset": "Fergason et al. 2018. Mars MGS MOLA - MEX HRSC Blended DEM Global 200 m v2",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m",
+      "version": "see product"
+    },
+    {
+      "dataset": "Bell et al. 2022. Geological, multispectral, and meteorological imaging results from the Mars 2020 Perseverance rover in Jezero crater. Landing coordinates 18.4446 N 77.4509 E",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://doi.org/10.1126/sciadv.abo4856",
+      "version": "see product"
+    },
+    {
+      "dataset": "Egiz mathematical specification",
+      "provider": "Egiz team",
+      "role": "provisional_method_parameters",
+      "url": "docs/science/MATHEMATICAL_SPECIFICATION.md",
+      "version": "1.0.0"
+    }
+  ],
+  "runs": 200,
+  "schema": "egiz.robustness",
+  "seed": 20261018,
+  "selection_freq": {
+    "MARS_JEZERO": {
+      "GL_W116.820_N36.240": 0.11,
+      "KZ_E051.200_N43.400": 0.0,
+      "PILOT_ATACAMA": 0.105,
+      "PILOT_BOSZHIRA": 0.0,
+      "PILOT_ICELAND": 0.88,
+      "PILOT_RIO_TINTO": 0.0,
+      "PILOT_UTAH": 0.12,
+      "PILOT_WADI_RUM": 0.88,
+      "PR_JETT_SP_CRATER": 0.0
+    },
+    "MOON_MONS_MOUTON": {
+      "GL_W116.820_N36.240": 0.885,
+      "KZ_E051.200_N43.400": 0.0,
+      "PILOT_ATACAMA": 0.0,
+      "PILOT_BOSZHIRA": 0.11,
+      "PILOT_ICELAND": 0.89,
+      "PILOT_RIO_TINTO": 0.89,
+      "PILOT_UTAH": 0.0,
+      "PILOT_WADI_RUM": 0.195,
+      "PR_JETT_SP_CRATER": 0.03
+    }
+  },
+  "synthetic": false,
+  "version": "1.0.0"
+}

@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/targets.schema.json",
+  "title": "Egiz targets 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.targets"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "body": {
+            "enum": [
+              "moon",
+              "mars"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "base_region",
+              "landing_site",
+              "validation_only"
+            ]
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "dem_product": {
+            "type": "string"
+          },
+          "fine_baseline_m": {
+            "enum": [
+              100,
+              400
+            ]
+          },
+          "attrs": {
+            "type": "object",
+            "properties": {
+              "slope_f100_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f100_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt10_f100": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_f100": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tri_f100_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f400_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_f400_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt10_f400": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_f400": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tri_f400_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_r_p50_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "slope_r_p90_deg": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 90
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "frac_lt20_r": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "relief_m": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "elev_min_m": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "precip_mm": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "bare_frac": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "t_min_c": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "t_max_c": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "attr_sources": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "h_max_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 90
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "templates": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9_.-]*$"
+            },
+            "minItems": 1
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "body",
+          "name",
+          "kind",
+          "lon",
+          "lat",
+          "dem_product",
+          "fine_baseline_m",
+          "attrs",
+          "attr_sources",
+          "h_max_deg",
+          "templates"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "targets"
+  ]
+}

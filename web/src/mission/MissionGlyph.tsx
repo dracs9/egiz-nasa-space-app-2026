@@ -1,0 +1,7 @@
+import type { Mode } from './types';
+/** Original compact technical elevations; purely visual navigation marks. */
+export function MissionGlyph({mode}:{mode:Mode}) {
+  return <svg className="mission-glyph" viewBox="0 0 48 36" fill="none" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {mode==='rover'?<><path d="M8 22l6-5h17l7 5M13 17v-5h20v5M12 12l4-3h13l4 3M15 22h18M20 12V4h8v4h-8M23 4V2M33 12l5-4M36 7l4 3M10 22v3m26-3v3"/><path d="M15 14h9m3 0h4M17 17l-3 8m13-8 6 8M5 29h38" strokeOpacity=".45"/>{[10,23,36].map(x=><g key={x}><circle cx={x} cy="26" r="4"/><circle cx={x} cy="26" r="1.5"/><path d={`M${x-3} 23l6 6m-6 0 6-6`} strokeOpacity=".45"/></g>)}</>:mode==='launch'?<><path d="M19 27V11Q19 5 24 2q5 3 5 9v16M19 27h10M21 27l-1 4h8l-1-4M19 19l-5 8h5m10-8 5 8h-5M19 11h10M19 15h10M22 31l-2 3m6-3 2 3M22 7h4v3h-4zM24 16v8"/><path d="M9 31h7m16 0h7M10 9h4m20 0h4M24 3v2" strokeOpacity=".4"/></>:mode==='descent'?<><path d="M15 17V9l9-4 9 4v8l-9 4zM15 9l9 4 9-4m-9 4v8M15 13l-6 15m24-15 6 15M13 20l-4 8m26-8 4 8M5 28h8m22 0h8M21 20l-2 5h10l-2-5M20 26l-2 5m10-5 2 5M8 13l-4 2v6l6-2m28-6 6 2v6l-6-2M25 5V2h6M10 32h28"/><path d="M4 17l5-2m30 0 5 2M18 9l6 3 6-3" strokeOpacity=".45"/></>:<><path d="M17 11a7 7 0 0 1 14 0v4H17zM18 8h12v5H18zM18 15l-2 12h16l-2-12M16 19l-5 6 3 3 4-5m14-4 5 6-3 3-4-5M18 27l-2 7h6l2-7m1 0 2 7h6l-3-7M19 19h10v5H19zM31 17h4v8h-3M22 4V2M13 34h24"/><path d="M21 21h6M19 17h10M16 30h5m7 0h4" strokeOpacity=".45"/></>}
+  </svg>;
+}

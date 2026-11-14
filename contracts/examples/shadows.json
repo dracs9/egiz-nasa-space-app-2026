@@ -1,0 +1,35 @@
+{
+  "schema": "egiz.shadows",
+  "version": "1.0.0",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "synthetic": true,
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "version": "seed-42-v1",
+      "url": "https://example.invalid/egiz/fixtures",
+      "role": "software testing only; not observations"
+    }
+  ],
+  "grid": {
+    "h_deg": [
+      1,
+      2,
+      3,
+      5,
+      7
+    ],
+    "az_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ]
+  },
+  "items": []
+}

@@ -1,0 +1,69 @@
+{
+  "synthetic": false,
+  "sampling": "purposive regional windows; not global",
+  "rasters": [
+    {
+      "id": "PR_JETT_SP_CRATER",
+      "file": "data/pilot/../raw/earth_dem30/SP_CRATER.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+      "sha256": "a0aea7de936d0126270c4a6c5e7f6047194bfea6972cf8a4d0b6a51ae500d42b",
+      "cached": true
+    },
+    {
+      "id": "GL_W116.820_N36.240",
+      "file": "data/pilot/../raw/earth_dem30/DEATH_VALLEY.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif",
+      "sha256": "45e4a8b6ea4fe9a05f1dda40344f896009a658e19a3097f439ca7b9064bc0ae8",
+      "cached": true
+    },
+    {
+      "id": "KZ_E051.200_N43.400",
+      "file": "data/pilot/../raw/earth_dem30/MANGYSTAU.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif",
+      "sha256": "77642c10e2a354ee7daf36c25d6e6073c5d97679905be7f2cf241c21e4476f26",
+      "cached": true
+    },
+    {
+      "id": "PILOT_ATACAMA",
+      "file": "data/pilot/../raw/earth_dem30/ATACAMA.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S25_00_W070_00_DEM/Copernicus_DSM_COG_10_S25_00_W070_00_DEM.tif",
+      "sha256": "5cd5109592ced1fba1c7daea2265a4281349cc906444c9e0fe4c3ca191129eb6",
+      "cached": true
+    },
+    {
+      "id": "PILOT_UTAH",
+      "file": "data/pilot/../raw/earth_dem30/UTAH.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif",
+      "sha256": "c4fefb6fd33aca82385c5ba17b9228f1b83465ac82ef70e91f90e23d02d38f72",
+      "cached": true
+    },
+    {
+      "id": "PILOT_ICELAND",
+      "file": "data/pilot/../raw/earth_dem30/ICELAND.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif",
+      "sha256": "0f8b3f6f0b90aeb0b13d9f16883cc836c7d56c6948764acf213798c3eb95fe8a",
+      "cached": true
+    },
+    {
+      "id": "PILOT_WADI_RUM",
+      "file": "data/pilot/../raw/earth_dem30/WADI_RUM.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_E035_00_DEM/Copernicus_DSM_COG_10_N29_00_E035_00_DEM.tif",
+      "sha256": "e7b5d91c9e1e1cd5950c55768ed50087526dc381f39f20f1a64a0e1fb2559109",
+      "cached": true
+    },
+    {
+      "id": "PILOT_RIO_TINTO",
+      "file": "data/pilot/../raw/earth_dem30/RIO_TINTO.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif",
+      "sha256": "2e3191a3353118641af7347248234c8653c7590ef148285d208752cff33585fb",
+      "cached": true
+    },
+    {
+      "id": "PILOT_BOSZHIRA",
+      "file": "data/pilot/../raw/earth_dem30/BOSZHIRA.tif",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E054_00_DEM/Copernicus_DSM_COG_10_N43_00_E054_00_DEM.tif",
+      "sha256": "4f8fe942f3c25d819c201d68c656caa2f9f10b586f932bb072106f22af9bd041",
+      "cached": true
+    }
+  ]
+}

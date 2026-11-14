@@ -1,0 +1,23 @@
+{
+  "engine_version": "1.0.0",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "inputs": {
+    "earth_candidates_sha256": "3bec17377f89671bbda61581082a034275cc9384352ed523aa5bac73c75b6e8f",
+    "sun_windows_sha256": "f847e7050d82c743ffc31677d0c851a742f3871c7fd541e5c9ebf295054e91ca",
+    "targets_sha256": "6d136fc6688ef48cac09b784d29c232d4b753c35197add1a5d9083b99913e4b3",
+    "templates_sha256": "27a4fc2ea5f86b0a30d5b172af3871fb52478b44d4c5d3644dc60384910fe662"
+  },
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "role": "software testing only; not observations",
+      "url": "https://example.invalid/egiz/fixtures",
+      "version": "seed-42-v1"
+    }
+  ],
+  "runs": [],
+  "schema": "egiz.results",
+  "synthetic": true,
+  "version": "1.0.0"
+}

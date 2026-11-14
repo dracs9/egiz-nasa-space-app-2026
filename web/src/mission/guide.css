@@ -1,0 +1,330 @@
+/* A calm entry point for first-time explorers, within the mission workstation. */
+.ex-welcome,
+.ex-guide {
+  border-bottom: 1px solid #4b4030;
+  background: #171715;
+  color: #e4e3de;
+}
+.ex-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  padding: 18px 30px;
+  align-items: center;
+}
+.ex-guide-eyebrow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #d6b382;
+  font:
+    9px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 1px;
+}
+.ex-welcome h2,
+.ex-guide h2 {
+  font-size: 22px;
+  font-weight: 450;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  margin: 10px 0 8px;
+}
+.ex-welcome p,
+.ex-guide-copy > p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #b6b6b1;
+  margin: 0;
+  max-width: 730px;
+}
+.ex-welcome-actions,
+.ex-guide-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+}
+.ex-welcome-actions button,
+.ex-guide-actions button {
+  min-height: 36px;
+  font-size: 11px;
+  padding: 9px 14px;
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+  align-items: center;
+  color: #b9bab4;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 3px;
+}
+.ex-welcome-actions .ex-guide-primary,
+.ex-guide-actions .ex-guide-primary {
+  background: #dfbd8c;
+  border-color: #dfbd8c;
+  color: #191713;
+  font-weight: 600;
+}
+.ex-guide-primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+.ex-guide button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ex-guide {
+  padding: 8px 30px 15px;
+}
+.ex-guide-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.ex-guide-eyebrow b {
+  font-weight: 400;
+  color: #92948e;
+  padding-left: 10px;
+  border-left: 1px solid #464439;
+}
+.ex-guide-close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: #aaa99e;
+  background: none;
+  border: 0;
+}
+.ex-guide-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  display: flex;
+  border-bottom: 1px solid #37372f;
+}
+.ex-guide-steps li {
+  flex: 1;
+  min-width: 0;
+}
+.ex-guide-steps button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 9px 0;
+  color: #9b9d96;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  font-size: 11px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.ex-guide-steps button > span {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  border: 1px solid #414138;
+  border-radius: 50%;
+  font:
+    9px "IBM Plex Mono",
+    monospace;
+}
+.ex-guide-steps button[aria-current="step"] {
+  color: #f0d4ad;
+  border-bottom-color: #d1a873;
+}
+.ex-guide-steps button[aria-current="step"] > span {
+  border-color: #b49263;
+  background: #3b3021;
+}
+.ex-guide-steps button:disabled {
+  opacity: 0.65;
+}
+.ex-guide-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+}
+.ex-guide h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+}
+.ex-guide h2:focus {
+  outline: none;
+}
+.ex-guide-copy {
+  min-width: 0;
+}
+.ex-guide-copy > .ex-guide-hint {
+  color: #9a9d93;
+  margin-top: 8px;
+  font-size: 10px;
+}
+.ex-guide-actions {
+  min-width: 175px;
+  flex-shrink: 0;
+}
+.ex-guide-worlds {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.ex-guide-worlds button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e201e;
+  border: 1px solid #3d4039;
+  color: #babfb5;
+  border-radius: 3px;
+  padding: 7px 13px;
+  min-height: 32px;
+  font-size: 11px;
+}
+.ex-guide-worlds button[aria-pressed="true"] {
+  border-color: #b19063;
+  color: #f2d9b2;
+  background: #2f291e;
+}
+.ex-reading-definitions {
+  border-bottom: 1px solid #2b2e2e;
+  padding: 8px 0 12px;
+  margin-bottom: 13px;
+  font-size: 10px;
+}
+.ex-reading-definitions summary {
+  cursor: pointer;
+  color: #b7b9b1;
+  line-height: 1.6;
+}
+.ex-reading-definitions dl {
+  margin: 12px 0 0;
+}
+.ex-reading-definitions dl > div {
+  margin-top: 11px;
+}
+.ex-reading-definitions dt {
+  color: #e0c19b;
+}
+.ex-reading-definitions dd {
+  margin: 3px 0 0;
+  color: #a9aeaa;
+  line-height: 1.6;
+}
+.ex-env-label {
+  display: block;
+  font:
+    9px Inter,
+    sans-serif;
+  color: #959c98;
+  margin-bottom: 5px;
+}
+.ex-guide button:focus-visible,
+.ex-welcome button:focus-visible,
+.ex-reading-definitions summary:focus-visible {
+  outline: 2px solid #e7c793;
+  outline-offset: 3px;
+}
+.ex-mission .ml-results > .ex-guide {
+  border-top: 1px solid #4b4030;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 901px) {
+  .ex-mission[data-guide-step="2"] .ml-modes {
+    height: 58px;
+  }
+  .ex-mission[data-guide-step="2"] .ml-modes small {
+    display: block;
+    color: #90978e;
+    font-size: 9px;
+    margin-top: 4px;
+  }
+  .ex-mission:has(.ex-guide, .ex-welcome) .ml-workspace {
+    height: clamp(510px, calc(100dvh - 585px), 920px);
+  }
+}
+@media (max-width: 600px) {
+  .ex-mission-header .ex-title {
+    min-width: 0;
+    flex: 1;
+  }
+  .ex-welcome {
+    grid-template-columns: 1fr;
+    gap: 19px;
+    padding: 22px 18px;
+  }
+  .ex-welcome h2 {
+    font-size: 22px;
+  }
+  .ex-welcome-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+  .ex-welcome-actions button {
+    padding: 10px 12px;
+    min-height: 42px;
+  }
+  .ex-guide {
+    padding: 12px 18px 18px;
+  }
+  .ex-guide-steps {
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+  .ex-guide-steps button {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 7px 2px 10px 0;
+    font-size: 9px;
+    line-height: 1.5;
+    min-height: 55px;
+  }
+  .ex-guide-steps button > span {
+    width: 22px;
+  }
+  .ex-guide-body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .ex-guide-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .ex-guide-actions .ex-guide-primary {
+    flex: 1;
+  }
+  .ex-guide-actions button {
+    min-height: 42px;
+    padding: 10px;
+  }
+  .ex-guide-worlds button {
+    min-height: 40px;
+    flex: 1;
+    justify-content: center;
+  }
+  .ex-mission-header .ml-intro-actions > button.ex-guide-toggle {
+    display: flex;
+  }
+  .ex-mission-header .ml-intro-actions > button:nth-child(2) {
+    display: none;
+  }
+  .ex-mission-header .ml-intro-actions > button:nth-child(3) {
+    width: 28px;
+    padding: 6px;
+  }
+  .ex-mission-header .ml-intro-actions > button:nth-child(3) > span {
+    display: none;
+  }
+  .ex-mission-header .ml-intro-actions > button {
+    min-height: 34px;
+  }
+}

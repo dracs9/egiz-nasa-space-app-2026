@@ -1,0 +1,3 @@
+site_id,name,lat,lon,coord_source_key,objective_id,target_context,source_key,testable,exclusion_reason
+JETT_SP_CRATER,S P Crater vicinity / JETT3,35.5733252222,-111.628601417,AZGS_SP,O2,moon,NASA_JETT3,true,
+JETT_SP_CRATER,S P Crater vicinity / JETT3,35.5733252222,-111.628601417,AZGS_SP,O4,moon,NASA_JETT3,false,JETT3 simulated polar lighting with artificial lights; does not validate natural Earth solar windows

@@ -1,0 +1,70 @@
+{
+  "brand": {
+    "name": "Egiz",
+    "tagline": "Earth, before elsewhere.",
+    "version": "PLANETARY EXPERIMENTS / V0.2"
+  },
+  "nav": {
+    "brief": "Mission brief",
+    "campaign": "Campaign",
+    "matrix": "Fidelity matrix",
+    "evidence": "Evidence",
+    "twin": "Same Sun",
+    "lab": "Engineering lab"
+  },
+  "common": {
+    "synthetic": "SYNTHETIC DEMO DATA — not NASA observations",
+    "syntheticDetail": "Invented inputs demonstrate the workflow. These are not validated site recommendations.",
+    "suitability": "Suitability not assessed: access, permits, safety.",
+    "snow": "Snow not assessed.",
+    "independent": "Independent student project for NASA Space Apps Challenge 2026. Not affiliated with or endorsed by NASA.",
+    "loading": "Loading mission data…",
+    "retry": "Retry data loading",
+    "missing": "missing",
+    "offline": "Basemap unavailable · local data remain available"
+  },
+  "campaign": {
+    "eyebrow": "EARTH ANALOGUE CAMPAIGN PLANNER",
+    "title": "Your mission, rehearsed on Earth.",
+    "subtitle": "Find a small set of places to rehearse your mission. Know what each site can test — and what Earth cannot.",
+    "objectives": "Mission objectives",
+    "objectiveSubtitle": "How well Earth can rehearse each test",
+    "ceiling": "Earth ceiling",
+    "sites": "Campaign sites",
+    "coverage": "Campaign coverage",
+    "gaps": "What Earth cannot test",
+    "gapsSubtitle": "Plan these conditions in a lab.",
+    "method": "Exact within the shortlist. Checked against greedy search over the full candidate pool.",
+    "map": "Map",
+    "table": "Candidate table",
+    "fit": "Fit campaign",
+    "empty": "Select at least one objective to design a campaign.",
+    "noSites": "No eligible Earth sites for this selection.",
+    "live": "Re-optimized in your browser",
+    "global": "Global",
+    "kazakhstan": "Kazakhstan only",
+    "partial": "Partial data"
+  },
+  "brief": {
+    "eyebrow": "01 / MISSION BRIEF",
+    "title": "Start with the mission.",
+    "subtitle": "Choose your destination and the conditions your team needs to rehearse.",
+    "target": "Choose a target",
+    "mission": "Set your objectives",
+    "size": "Choose your campaign size",
+    "design": "Design campaign",
+    "disclaimer": "Fidelity measures similarity of test-relevant conditions, not suitability."
+  },
+  "evidence": {
+    "eyebrow": "METHOD / VALIDATION / PROVENANCE",
+    "title": "The reasoning behind the rehearsal.",
+    "subtitle": "A transparent chain from measured conditions to an explicit, limited campaign recommendation.",
+    "experiments": "Scientific validation",
+    "limitations": "What this model leaves out",
+    "sources": "Data & credits"
+  },
+  "matrix": {
+    "title": "Look inside the coverage.",
+    "subtitle": "Compare attribute fidelity across campaign sites and the leading alternatives. Select a cell to inspect its evidence."
+  }
+}

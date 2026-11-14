@@ -1,0 +1,70 @@
+{
+  "MARS_JEZERO": {
+    "2": {
+      "coverage_within_0_05": 0.72,
+      "jaccard_median": 1.0,
+      "mask_jaccard_median": 1.0,
+      "selection_freq": {
+        "GL_W116.820_N36.240": 0.095,
+        "KZ_E051.200_N43.400": 0.0,
+        "PILOT_ATACAMA": 0.12,
+        "PILOT_BOSZHIRA": 0.0,
+        "PILOT_ICELAND": 0.88,
+        "PILOT_RIO_TINTO": 0.0,
+        "PILOT_UTAH": 0.0,
+        "PILOT_WADI_RUM": 0.88,
+        "PR_JETT_SP_CRATER": 0.0
+      }
+    },
+    "3": {
+      "coverage_within_0_05": 0.76,
+      "jaccard_median": 1.0,
+      "mask_jaccard_median": 0.8333333333333333,
+      "selection_freq": {
+        "GL_W116.820_N36.240": 0.11,
+        "KZ_E051.200_N43.400": 0.0,
+        "PILOT_ATACAMA": 0.105,
+        "PILOT_BOSZHIRA": 0.0,
+        "PILOT_ICELAND": 0.88,
+        "PILOT_RIO_TINTO": 0.0,
+        "PILOT_UTAH": 0.12,
+        "PILOT_WADI_RUM": 0.88,
+        "PR_JETT_SP_CRATER": 0.0
+      }
+    }
+  },
+  "MOON_MONS_MOUTON": {
+    "2": {
+      "coverage_within_0_05": 0.75,
+      "jaccard_median": 1.0,
+      "mask_jaccard_median": 1.0,
+      "selection_freq": {
+        "GL_W116.820_N36.240": 0.885,
+        "KZ_E051.200_N43.400": 0.0,
+        "PILOT_ATACAMA": 0.0,
+        "PILOT_BOSZHIRA": 0.0,
+        "PILOT_ICELAND": 0.265,
+        "PILOT_RIO_TINTO": 0.84,
+        "PILOT_UTAH": 0.0,
+        "PILOT_WADI_RUM": 0.01,
+        "PR_JETT_SP_CRATER": 0.0
+      }
+    },
+    "3": {
+      "coverage_within_0_05": 0.67,
+      "jaccard_median": 1.0,
+      "mask_jaccard_median": 1.0,
+      "selection_freq": {
+        "GL_W116.820_N36.240": 0.885,
+        "KZ_E051.200_N43.400": 0.0,
+        "PILOT_ATACAMA": 0.0,
+        "PILOT_BOSZHIRA": 0.11,
+        "PILOT_ICELAND": 0.89,
+        "PILOT_RIO_TINTO": 0.89,
+        "PILOT_UTAH": 0.0,
+        "PILOT_WADI_RUM": 0.195,
+        "PR_JETT_SP_CRATER": 0.03
+      }
+    }
+  }
+}

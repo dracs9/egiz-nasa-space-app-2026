@@ -1,0 +1,1227 @@
+{
+  "engine_version": "1.0.0",
+  "generated_at": "2026-10-17T19:14:17.913506Z",
+  "inputs": {
+    "earth_candidates_sha256": "621cdb583a7bf526c58ef627063bf0c68a6653faa937edb26f02fbad2e971e45",
+    "sun_windows_sha256": "5535f8cd7ad4dca770e96837406ca7a004a2041f42a81d0f1c064a50054adcdc",
+    "targets_sha256": "1a01f9f3d33b932c53e4b690d8f1b9286cab98a58926918cee5ebcaa3e3d7f73",
+    "templates_sha256": "c5e7652145c728896da795a291da9cbc1e0bd8d29278fe90aa7017657ad06c67"
+  },
+  "provenance": [
+    {
+      "dataset": "Barker et al. 2021. Improved LOLA Elevation Maps for South Pole Landing Sites. DOI 10.1016/j.pss.2020.105119",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/products/78",
+      "version": "see product"
+    },
+    {
+      "dataset": "Bell et al. 2022. Geological, multispectral, and meteorological imaging results from the Mars 2020 Perseverance rover in Jezero crater. Landing coordinates 18.4446 N 77.4509 E",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://doi.org/10.1126/sciadv.abo4856",
+      "version": "see product"
+    },
+    {
+      "dataset": "Center of native Site20 5 m DEM extent: x=73000 m,y=118000 m; inverse raster CRS, MOON_ME DE421",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20/Site20_final_adj_5mpp_surf.tif",
+      "version": "see product"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_E035_00_DEM/Copernicus_DSM_COG_10_N29_00_E035_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E054_00_DEM/Copernicus_DSM_COG_10_N43_00_E054_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "role": "terrain",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S25_00_W070_00_DEM/Copernicus_DSM_COG_10_S25_00_W070_00_DEM.tif",
+      "version": "2021"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E033_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W009_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W117_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E051_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E054_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "ESA WorldCover 2021 v200",
+      "provider": "ESA / WorldCover consortium",
+      "role": "environment and land cover",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S27W072_Map.tif",
+      "version": "2021 v200"
+    },
+    {
+      "dataset": "Egiz mathematical specification",
+      "provider": "Egiz team",
+      "role": "provisional_method_parameters",
+      "url": "docs/science/MATHEMATICAL_SPECIFICATION.md",
+      "version": "1.0.0"
+    },
+    {
+      "dataset": "Fergason et al. 2018. Mars MGS MOLA - MEX HRSC Blended DEM Global 200 m v2",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m",
+      "version": "see product"
+    },
+    {
+      "dataset": "NASA 2024. Provides Update on Artemis III Moon Landing Regions (historical candidate list)",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/",
+      "version": "see product"
+    },
+    {
+      "dataset": "NASA PGDA Site20v2 extended LOLA 5m elevation raster (August 2022 update)",
+      "provider": "see source citation",
+      "role": "target definition and DEM",
+      "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+      "version": "see product"
+    },
+    {
+      "dataset": "NOAA Solar Calculator equations",
+      "provider": "NOAA GML",
+      "role": "derived solar geometry",
+      "url": "https://gml.noaa.gov/grad/solcalc/calcdetails.html",
+      "version": "Meeus/NOAA; Egiz implementation"
+    }
+  ],
+  "runs": [
+    {
+      "campaigns": [
+        {
+          "coverage": 0.5717668345905542,
+          "k": 1,
+          "method": {
+            "exact_coverage": 0.5717668345905542,
+            "greedy_coverage": 0.5717668345905542,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 0.9696372457557558,
+              "objective": "M1",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.7950534228646517,
+              "objective": "M2",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.5223766697418093,
+              "objective": "M3",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": null,
+              "objective": "M4",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": null,
+              "id": "PILOT_ICELAND",
+              "roles": [
+                "M1",
+                "M2",
+                "M3"
+              ]
+            }
+          ]
+        },
+        {
+          "coverage": 0.6438201274358639,
+          "k": 2,
+          "method": {
+            "exact_coverage": 0.6438201274358639,
+            "greedy_coverage": 0.6438201274358639,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 0.9696372457557558,
+              "objective": "M1",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.7950534228646517,
+              "objective": "M2",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.8105898411230484,
+              "objective": "M3",
+              "site": "PILOT_WADI_RUM"
+            },
+            {
+              "F": null,
+              "objective": "M4",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": null,
+              "id": "PILOT_ICELAND",
+              "roles": [
+                "M1",
+                "M2"
+              ]
+            },
+            {
+              "best_month": null,
+              "id": "PILOT_WADI_RUM",
+              "roles": [
+                "M3"
+              ]
+            }
+          ]
+        },
+        {
+          "coverage": 0.6438201274358639,
+          "k": 3,
+          "method": {
+            "exact_coverage": 0.6438201274358639,
+            "greedy_coverage": 0.6438201274358639,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 0.9696372457557558,
+              "objective": "M1",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.7950534228646517,
+              "objective": "M2",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": 0.8105898411230484,
+              "objective": "M3",
+              "site": "PILOT_WADI_RUM"
+            },
+            {
+              "F": null,
+              "objective": "M4",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": null,
+              "id": "PILOT_ICELAND",
+              "roles": [
+                "M1",
+                "M2"
+              ]
+            },
+            {
+              "best_month": null,
+              "id": "PILOT_WADI_RUM",
+              "roles": [
+                "M3"
+              ]
+            }
+          ]
+        }
+      ],
+      "fidelity": {
+        "M1": {
+          "GL_W116.820_N36.240": {
+            "F": 0.09065423539510091,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.8432194791526519,
+              "slope_f400_p90_deg": 0.962173412468648,
+              "tri_f400_m": 4.3652947994518813e-35
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.8338986564511229,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.9317525535787645,
+              "slope_f400_p90_deg": 0.7483248264522928,
+              "tri_f400_m": 0.7423309405653065
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.6085388019742815,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.9964782160797416,
+              "slope_f400_p90_deg": 0.9739185666374963,
+              "tri_f400_m": 0.05411042353960308
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.9696372457557558,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.9974113563315034,
+              "slope_f400_p90_deg": 0.9744767509923498,
+              "tri_f400_m": 0.8820431776799381
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.3600670322602887,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.7284706080561375,
+              "slope_f400_p90_deg": 0.4141871361428359,
+              "tri_f400_m": 0.03286024831595868
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.9285067510665755,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.9913258395063428,
+              "slope_f400_p90_deg": 0.8602591947733572,
+              "tri_f400_m": 0.8887967725399564
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 7.66492401887162e-05,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.000563855807282303,
+              "slope_f400_p90_deg": 5.6647946058732254e-08,
+              "tri_f400_m": 0.0011312092602171141
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.2779158007445836,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f400": 0.43403417662427135,
+              "slope_f400_p90_deg": 0.09853527303083372,
+              "tri_f400_m": 0.5803957207228294
+            }
+          }
+        },
+        "M2": {
+          "GL_W116.820_N36.240": {
+            "F": 0.6282819174468985,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 0.8018440010966607,
+              "relief_m": 0.16515496860910245,
+              "slope_f400_p50_deg": 0.626977424355933,
+              "slope_f400_p90_deg": 0.962173412468648
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.6781062916852159,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 0.12962124045197648,
+              "slope_f400_p50_deg": 0.953046231562885,
+              "slope_f400_p90_deg": 0.7483248264522928
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.556677471256289,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 0.023807933709636662,
+              "slope_f400_p50_deg": 0.8565037378656251,
+              "slope_f400_p90_deg": 0.9739185666374963
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.7950534228646517,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 0.21629386206533238,
+              "slope_f400_p50_deg": 0.9887659696586291,
+              "slope_f400_p90_deg": 0.9744767509923498
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.3760995157899654,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 0.02243134429975268,
+              "slope_f400_p50_deg": 0.5259390927683194,
+              "slope_f400_p90_deg": 0.4141871361428359
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.24596863976955224,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 7.375543010049014e-05,
+              "slope_f400_p50_deg": 0.9989707331605732,
+              "slope_f400_p90_deg": 0.8602591947733572
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.009631895591912515,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 0.999998000002,
+              "relief_m": 0.5326028299152069,
+              "slope_f400_p50_deg": 0.12016841021996189,
+              "slope_f400_p90_deg": 5.6647946058732254e-08
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.4418544998933509,
+            "partial": false,
+            "parts": {
+              "frac_lt20_r": 1.0,
+              "relief_m": 0.3875884051158396,
+              "slope_f400_p50_deg": 0.9347605498116484,
+              "slope_f400_p90_deg": 0.09853527303083372
+            }
+          }
+        },
+        "M3": {
+          "GL_W116.820_N36.240": {
+            "F": 0.5486523131992567,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "relief_m": 0.16515496860910245
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.5060872441076038,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "relief_m": 0.12962124045197648
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.2858462339480686,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.9904620950569483,
+              "relief_m": 0.023807933709636662
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.5223766697418093,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.8118084375695932,
+              "relief_m": 0.21629386206533238
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.0023184248217620112,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.0007453527807268197,
+              "relief_m": 0.02243134429975268
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.041937061836173635,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "relief_m": 7.375543010049014e-05
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.8105898411230484,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "relief_m": 0.5326028299152069
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.009743572588992682,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.0015448700340804345,
+              "relief_m": 0.3875884051158396
+            }
+          }
+        },
+        "M4": {
+          "GL_W116.820_N36.240": {
+            "F": null,
+            "reason": "missing"
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_BOSZHIRA": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_ICELAND": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_RIO_TINTO": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_UTAH": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_WADI_RUM": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": null,
+            "reason": "missing"
+          }
+        }
+      },
+      "gaps": {
+        "attribute": [],
+        "objective_ceiling": {
+          "M1": 0.9696372457557558,
+          "M2": 0.7950534228646517,
+          "M3": 0.8105898411230484,
+          "M4": null
+        },
+        "physical": [
+          {
+            "alternative": "Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g",
+            "gap": "Reduced gravity",
+            "source": "NASA_PARABOLIC"
+          },
+          {
+            "alternative": "Thermal vacuum or controlled pressure chamber",
+            "gap": "Vacuum or thin atmosphere",
+            "source": "NASA_TVAC"
+          },
+          {
+            "alternative": "Thermal vacuum chamber with controlled thermal boundary conditions",
+            "gap": "Extreme thermal environment",
+            "source": "NASA_TVAC"
+          },
+          {
+            "alternative": "Separate radiation qualification; terrestrial field ranking does not model radiation",
+            "gap": "Space radiation",
+            "source": "NASA_ANALOGS"
+          },
+          {
+            "alternative": "Characterized material testing and suitable regolith simulants; no composition claim from DEM",
+            "gap": "Regolith mechanical and chemical properties",
+            "source": "EGIZ_METHOD"
+          }
+        ]
+      },
+      "target": "MARS_JEZERO",
+      "template": "MARS_SURFACE_OPS"
+    },
+    {
+      "campaigns": [
+        {
+          "coverage": 0.185467046621475,
+          "k": 1,
+          "method": {
+            "exact_coverage": 0.185467046621475,
+            "greedy_coverage": 0.185467046621475,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 5.583728536260387e-06,
+              "objective": "O1",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": 0.5257676981465613,
+              "objective": "O2",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": 0.0013713789091491918,
+              "objective": "O3",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": 0.4001905723231282,
+              "objective": "O4",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": null,
+              "objective": "O5",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": 9,
+              "id": "GL_W116.820_N36.240",
+              "roles": [
+                "O1",
+                "O2",
+                "O3",
+                "O4"
+              ]
+            }
+          ]
+        },
+        {
+          "coverage": 0.24264528705821325,
+          "k": 2,
+          "method": {
+            "exact_coverage": 0.24264528705821325,
+            "greedy_coverage": 0.24264528705821325,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 0.10701020954136488,
+              "objective": "O1",
+              "site": "PILOT_RIO_TINTO"
+            },
+            {
+              "F": 0.5257676981465613,
+              "objective": "O2",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": 0.17780511549286865,
+              "objective": "O3",
+              "site": "PILOT_RIO_TINTO"
+            },
+            {
+              "F": 0.40264341211027127,
+              "objective": "O4",
+              "site": "PILOT_RIO_TINTO"
+            },
+            {
+              "F": null,
+              "objective": "O5",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": null,
+              "id": "GL_W116.820_N36.240",
+              "roles": [
+                "O2"
+              ]
+            },
+            {
+              "best_month": 3,
+              "id": "PILOT_RIO_TINTO",
+              "roles": [
+                "O1",
+                "O3",
+                "O4"
+              ]
+            }
+          ]
+        },
+        {
+          "coverage": 0.268203343970826,
+          "k": 3,
+          "method": {
+            "exact_coverage": 0.268203343970826,
+            "greedy_coverage": 0.268203343970826,
+            "merged_greedy": false,
+            "pool_size": 9,
+            "shortlist_size": 9
+          },
+          "per_objective": [
+            {
+              "F": 0.10701020954136488,
+              "objective": "O1",
+              "site": "PILOT_RIO_TINTO"
+            },
+            {
+              "F": 0.5257676981465613,
+              "objective": "O2",
+              "site": "GL_W116.820_N36.240"
+            },
+            {
+              "F": 0.17780511549286865,
+              "objective": "O3",
+              "site": "PILOT_RIO_TINTO"
+            },
+            {
+              "F": 0.5304336966733352,
+              "objective": "O4",
+              "site": "PILOT_ICELAND"
+            },
+            {
+              "F": null,
+              "objective": "O5",
+              "site": null
+            }
+          ],
+          "sites": [
+            {
+              "best_month": null,
+              "id": "GL_W116.820_N36.240",
+              "roles": [
+                "O2"
+              ]
+            },
+            {
+              "best_month": 9,
+              "id": "PILOT_ICELAND",
+              "roles": [
+                "O4"
+              ]
+            },
+            {
+              "best_month": null,
+              "id": "PILOT_RIO_TINTO",
+              "roles": [
+                "O1",
+                "O3"
+              ]
+            }
+          ]
+        }
+      ],
+      "fidelity": {
+        "O1": {
+          "GL_W116.820_N36.240": {
+            "F": 5.583728536260387e-06,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 4.0390160878821823e-07,
+              "slope_f100_p90_deg": 0.00017408962436027647,
+              "tri_f100_m": 8.117332086201491e-38
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 7.462441228055252e-05,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 2.109988364387074e-06,
+              "slope_f100_p90_deg": 0.008792314656870526,
+              "tri_f100_m": 0.00023781482116469346
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 7.818913520831697e-06,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 6.050599570584223e-07,
+              "slope_f100_p90_deg": 0.00047801247326569214,
+              "tri_f100_m": 1.4774252771451038e-11
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 4.683706669255525e-06,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 4.236410133332591e-08,
+              "slope_f100_p90_deg": 5.844028814995587e-05,
+              "tri_f100_m": 3.09110268612647e-06
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.10701020954136488,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 0.023157095802937438,
+              "slope_f100_p90_deg": 0.43369116425158594,
+              "tri_f100_m": 0.6428917628292551
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.00037211825401993866,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 1.4721172692157087e-05,
+              "slope_f100_p90_deg": 0.04310383551726919,
+              "tri_f100_m": 0.00044794716437690073
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.01625011012796197,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 0.1323158672420986,
+              "slope_f100_p90_deg": 0.0001982017269109316,
+              "tri_f100_m": 0.20234254130119458
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.00270465267564863,
+            "partial": false,
+            "parts": {
+              "frac_lt10_f100": 0.00012179192144912871,
+              "slope_f100_p90_deg": 0.389303427590076,
+              "tri_f100_m": 0.0014296743023955378
+            }
+          }
+        },
+        "O2": {
+          "GL_W116.820_N36.240": {
+            "F": 0.5257676981465613,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_r": 0.5668580473065015,
+              "relief_m": 0.24692620259248726
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.010166132232126486,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 1.6225010754521058e-07
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.010166132232126486,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 2.3397328829523252e-09
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.01013533129299939,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.9894359398288315,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 7.138102204554825e-07
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.0021552341774103536,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.004387180359023376,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 2.040120830014881e-09
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.010166132232126486,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 2.1659824170112672e-14
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.022685897159985216,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_r": 0.224663212467006,
+              "relief_m": 1.65138338080263e-05
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.004050795293997799,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.008239516470830195,
+              "frac_lt20_r": 0.22388762709111443,
+              "relief_m": 4.846678055426056e-06
+            }
+          }
+        },
+        "O3": {
+          "GL_W116.820_N36.240": {
+            "F": 0.0013713789091491918,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_f100": 0.548628346471142,
+              "slope_f100_p50_deg": 1.1527288677375437e-07,
+              "slope_f100_p90_deg": 0.00017408962436027647
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.013700083923302625,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_f100": 0.38962735369068124,
+              "slope_f100_p50_deg": 8.785745838892485e-05,
+              "slope_f100_p90_deg": 0.008792314656870526
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.0017833983075625128,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_f100": 0.40310750130086465,
+              "slope_f100_p50_deg": 1.2431087301454314e-06,
+              "slope_f100_p90_deg": 0.00047801247326569214
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.0018723048319698615,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.9894359398288315,
+              "frac_lt20_f100": 0.36669086154828123,
+              "slope_f100_p50_deg": 1.3323296017653089e-05,
+              "slope_f100_p90_deg": 5.844028814995587e-05
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.17780511549286865,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.004387180359023376,
+              "frac_lt20_f100": 0.6003139376116433,
+              "slope_f100_p50_deg": 0.1374526557294265,
+              "slope_f100_p90_deg": 0.43369116425158594
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.02082945108958292,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_f100": 0.4438914959083593,
+              "slope_f100_p50_deg": 6.81678578866234e-05,
+              "slope_f100_p90_deg": 0.04310383551726919
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.020422578654880265,
+            "partial": false,
+            "parts": {
+              "bare_frac": 1.0,
+              "frac_lt20_f100": 0.4429018764840171,
+              "slope_f100_p50_deg": 0.013866666361121827,
+              "slope_f100_p90_deg": 0.0001982017269109316
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.03047717670761031,
+            "partial": false,
+            "parts": {
+              "bare_frac": 0.008239516470830195,
+              "frac_lt20_f100": 0.6922088716595358,
+              "slope_f100_p50_deg": 0.00020203904833879853,
+              "slope_f100_p90_deg": 0.389303427590076
+            }
+          }
+        },
+        "O4": {
+          "GL_W116.820_N36.240": {
+            "F": 0.4001905723231282,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.40019057232312827
+            }
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": 0.38200682738157465,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.38200682738157465
+            }
+          },
+          "PILOT_BOSZHIRA": {
+            "F": 0.4157559164438793,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.41575591644387927
+            }
+          },
+          "PILOT_ICELAND": {
+            "F": 0.5304336966733352,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.5304336966733352
+            }
+          },
+          "PILOT_RIO_TINTO": {
+            "F": 0.40264341211027127,
+            "best_month": 3,
+            "partial": true,
+            "parts": {
+              "light": 0.40264341211027127
+            }
+          },
+          "PILOT_UTAH": {
+            "F": 0.4032207335854157,
+            "best_month": 3,
+            "partial": true,
+            "parts": {
+              "light": 0.4032207335854157
+            }
+          },
+          "PILOT_WADI_RUM": {
+            "F": 0.3931381914463496,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.3931381914463496
+            }
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": 0.398213621635466,
+            "best_month": 9,
+            "partial": true,
+            "parts": {
+              "light": 0.39821362163546603
+            }
+          }
+        },
+        "O5": {
+          "GL_W116.820_N36.240": {
+            "F": null,
+            "reason": "missing"
+          },
+          "KZ_E051.200_N43.400": {
+            "F": null,
+            "reason": "constraint"
+          },
+          "PILOT_ATACAMA": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_BOSZHIRA": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_ICELAND": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_RIO_TINTO": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_UTAH": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PILOT_WADI_RUM": {
+            "F": null,
+            "reason": "missing"
+          },
+          "PR_JETT_SP_CRATER": {
+            "F": null,
+            "reason": "missing"
+          }
+        }
+      },
+      "gaps": {
+        "attribute": [],
+        "objective_ceiling": {
+          "O1": 0.10701020954136488,
+          "O2": 0.5257676981465613,
+          "O3": 0.17780511549286865,
+          "O4": 0.5304336966733352,
+          "O5": null
+        },
+        "physical": [
+          {
+            "alternative": "Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g",
+            "gap": "Reduced gravity",
+            "source": "NASA_PARABOLIC"
+          },
+          {
+            "alternative": "Thermal vacuum or controlled pressure chamber",
+            "gap": "Vacuum or thin atmosphere",
+            "source": "NASA_TVAC"
+          },
+          {
+            "alternative": "Thermal vacuum chamber with controlled thermal boundary conditions",
+            "gap": "Extreme thermal environment",
+            "source": "NASA_TVAC"
+          },
+          {
+            "alternative": "Separate radiation qualification; terrestrial field ranking does not model radiation",
+            "gap": "Space radiation",
+            "source": "NASA_ANALOGS"
+          },
+          {
+            "alternative": "Artificial field lighting (JETT Sun cart); natural Earth windows remain incomplete",
+            "gap": "Polar lighting duration and horizon",
+            "source": "NASA_JETT3"
+          },
+          {
+            "alternative": "Characterized material testing and suitable regolith simulants; no composition claim from DEM",
+            "gap": "Regolith mechanical and chemical properties",
+            "source": "EGIZ_METHOD"
+          }
+        ]
+      },
+      "target": "MOON_MONS_MOUTON",
+      "template": "MOON_BASE_OPS"
+    }
+  ],
+  "schema": "egiz.results",
+  "synthetic": false,
+  "version": "1.0.0"
+}

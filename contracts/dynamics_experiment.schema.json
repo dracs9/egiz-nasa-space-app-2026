@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://egiz.local/contracts/dynamics_experiment.schema.json",
+  "title":"EGIZ native dynamics experiment 1.0.0",
+  "type":"object",
+  "required":["schema","version","id","adapter","request","engine","fidelity","inputSha256","coordinates","geometry","states","metrics","events","assumptions","solver"],
+  "properties":{
+    "schema":{"const":"egiz.dynamics_experiment"},"version":{"const":"1.0.0"},"fidelity":{"const":"RESEARCH"},
+    "inputSha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "engine":{"type":"string"},"id":{"type":"string"},"coordinates":{"type":"string"},
+    "request":{"type":"object","required":["kind","body","duration"],"properties":{"kind":{"enum":["rover","orbit"]},"body":{"enum":["earth","moon","mars"]},"duration":{"type":"number","minimum":2,"maximum":21600}}},
+    "states":{"type":"array","minItems":2,"maxItems":12000,"items":{"type":"object","required":["t","position","velocity","speed"],"properties":{"t":{"type":"number","minimum":0},"position":{"$ref":"#/$defs/vec3"},"velocity":{"$ref":"#/$defs/vec3"},"speed":{"type":"number","minimum":0}}}},
+    "geometry":{"type":"array","maxItems":300},"metrics":{"type":"object","additionalProperties":{"type":"number"}},"events":{"type":"array"},"assumptions":{"type":"array","items":{"type":"string"}},"solver":{"type":"object","required":["dt","integrator"]}
+  },
+  "$defs":{"vec3":{"type":"array","minItems":3,"maxItems":3,"items":{"type":"number"}}}
+}

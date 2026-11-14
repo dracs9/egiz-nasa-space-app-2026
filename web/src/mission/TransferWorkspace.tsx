@@ -1,0 +1,39 @@
+import { ContextHelp, DetailSection } from '../components/ContextHelp';
+import { t as localizeText, useLanguage } from '../i18n';
+import { useMemo, useState } from "react";
+import { downloadJson, downloadText } from "../lib/download";
+import { RobustTransfer } from "./RobustTransfer";
+import { buildTransfer, OBJECTIVES, transferPlan } from "./transfer";
+import type { RunResult } from "./types";
+
+export function TransferWorkspace({runs,busy,enabled,onGenerate,onReplay}: {
+  runs:RunResult[];busy:boolean;enabled:boolean;onGenerate():void;onReplay(r:RunResult):void;
+}) {
+  useLanguage();
+  const [budget,setBudget]=useState(2),[detail,setDetail]=useState<string|null>(null);
+  const target=runs.find(r=>r.scenario.kind==="native");
+  const result=useMemo(()=>{
+    if(!target) return null;
+    try{return {campaign:buildTransfer(target,runs,budget),error:null};}
+    catch(e){return {campaign:null,error:(e as Error).message};}
+  },[runs,target,budget]);
+  const campaign=result?.campaign,site=campaign?.sites.find(s=>s.id===detail);
+  return <div className="transfer-workspace">
+    <div className="eng-title"><div><span className="eng-kicker">{localizeText("EGIZ / MISSION-AWARE EARTH-TO-SPACE TRANSFER")}</span><h2>{localizeText("Earth validation")}</h2><ContextHelp label="Model & assumptions"><p>{localizeText("Execute the same rover on every eligible measured Earth window. Compare physical Earth loads with target-physics controls, then select complementary testing sites.")}</p></ContextHelp></div><button disabled={busy||!enabled} onClick={onGenerate}>{localizeText(busy?"Calculating observed sites…":"Build mission-aware campaign →")}</button></div>
+    {localizeText(!enabled && <p>{localizeText("Choose a planetary rover with its engineering model enabled to build a campaign.")}</p>)}
+    {localizeText(result?.error && <p role="alert">{localizeText(result.error)}</p>)}
+    {localizeText(campaign && target && <>
+      <div className="eng-presets"><label className="ml-field"><span>{localizeText("Maximum field sites")}</span><select aria-label={localizeText("Maximum field sites")} value={budget} onChange={e=>setBudget(Number(e.target.value))}>{localizeText([1,2,3].map(n=><option key={n} value={n}>{localizeText(n)}</option>))}</select></label>
+        <button onClick={()=>downloadText(transferPlan(campaign,target),"egiz-field-validation-plan.md")}>{localizeText("Export field validation plan")}</button>
+        <button onClick={()=>downloadJson({schema:"egiz.transfer_archive",version:"1.0.0",campaign,runs},"egiz-transfer-campaign.json")}>{localizeText("Export reproducible campaign")}</button></div>
+      <ContextHelp label="Model & assumptions"><p>{localizeText("Reference: ")}{localizeText(target.terrain.name)}, {localizeText(target.scenario.rover.mass)}{localizeText(" kg · target outcome ")}<strong>{localizeText(target.outcome.replaceAll("_"," "))}</strong>{localizeText(". Solar charging is excluded from all transfer runs to isolate terrain, gravity and drivetrain effects.")}</p></ContextHelp>
+      <div className="transfer-sites">{localizeText(campaign.selected.map(id=><span key={id}>{localizeText(campaign.sites.find(s=>s.id===id)!.name)}</span>))}</div>
+      <dl className="eng-readings"><div><dt>{localizeText("Mission-aware campaign coverage")}</dt><dd>{localizeText((campaign.score*100).toFixed(1))} / 100</dd></div><div><dt>{localizeText("Exact subsets evaluated · pilot pool")}</dt><dd>{localizeText(campaign.evaluatedCombinations)}</dd></div><div><dt>{localizeText("Terrain-only selection · same objective")}</dt><dd>{localizeText((campaign.baselines.geometry.score*100).toFixed(1))} / 100</dd></div><div><dt>{localizeText("Top individual sites · same objective")}</dt><dd>{localizeText((campaign.baselines.single.score*100).toFixed(1))} / 100</dd></div></dl>
+      <ContextHelp label="Model & assumptions"><p>{localizeText("Scores express coverage of declared experimental objectives. They are not mission-success probabilities. Exact search optimizes at most ")}{localizeText(budget)}{localizeText(" sites across ")}{localizeText(campaign.sites.length)}{localizeText(" measured windows. Greedy baseline: ")}{localizeText((campaign.baselines.greedy.score*100).toFixed(1))} / 100.</p></ContextHelp>
+      <table className="transfer-table"><thead><tr><th>{localizeText("Measured Earth window")}</th>{localizeText(OBJECTIVES.map(o=><th key={o.id} title={localizeText(o.definition)}>{localizeText(o.label)}</th>))}<th>{localizeText("Earth / target physics")}</th><th>{localizeText("Evidence")}</th></tr></thead><tbody>{localizeText([...campaign.sites].sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id)).map(s=><tr key={s.id} data-selected={campaign.selected.includes(s.id)}><td><strong>{localizeText(s.name)}</strong><p>{localizeText(s.lat.toFixed(3))}°, {localizeText(s.lon.toFixed(3))}°</p>{localizeText(campaign.selected.includes(s.id)&&<small>{localizeText("CAMPAIGN SITE")}</small>)}</td>{localizeText(OBJECTIVES.map(o=><td key={o.id} className="score-cell">{localizeText((s.coverage[o.id]*100).toFixed(0))}<div className="transfer-coverage"><i style={{width:`${s.coverage[o.id]*100}%`}}/></div></td>))}<td>{localizeText(s.earthOutcome.replaceAll("_"," "))}<br/>{localizeText(s.controlOutcome.replaceAll("_"," "))}</td><td><button onClick={()=>setDetail(s.id)}>{localizeText("Inspect")}</button></td></tr>))}</tbody></table>
+      {localizeText(site&&<article className="eng-science"><h3>{localizeText(site.name)}</h3><p>{localizeText("Physical Earth electrical consumption: ")}{localizeText(site.earthEnergyWh.toFixed(2))}{localizeText(" Wh. Target-physics control: ")}{localizeText(site.controlEnergyWh.toFixed(2))}{localizeText(" Wh.")}</p>{localizeText(site.notes.map(n=><p key={n}>{localizeText(n)}</p>))}<p><a href={site.source.url} target="_blank" rel="noreferrer">{localizeText("Measured terrain source ↗")}</a>{localizeText(" · SHA-256 ")}<code>{site.source.sha256}</code></p><div className="eng-presets"><button onClick={()=>onReplay(runs.find(r=>r.id===site.earthRunId)!)}>{localizeText("Replay physical Earth test")}</button><button onClick={()=>onReplay(runs.find(r=>r.id===site.controlRunId)!)}>{localizeText("Replay target-physics control")}</button></div></article>)}
+      <DetailSection label="Robustness analysis"><RobustTransfer runs={runs} budget={budget}/></DetailSection><DetailSection label="Field research plan"><div className="transfer-notes"><article><span className="eng-kicker">{localizeText("ACTIVE MEASUREMENT DESIGN")}</span><h3>{localizeText("What should the field team measure?")}</h3><p>{localizeText("Priority follows modeled stress and missing evidence. This heuristic is not Bayesian information gain.")}</p><ol>{localizeText(campaign.measurements.map(m=><li key={m.name}><strong>{localizeText(m.name)}</strong> · {localizeText(m.reason)}</li>))}</ol></article><article><span className="eng-kicker">{localizeText("TRANSPARENT TRANSFER CONTRACT")}</span><h3>{localizeText("What transfers, and what remains unknown?")}</h3><ul>{localizeText(campaign.limitations.map(l=><li key={l}>{localizeText(l)}</li>))}</ul><details><summary>{localizeText("Scoring equations and objective weights")}</summary>{localizeText(OBJECTIVES.map(o=><p key={o.id}><strong>{localizeText(o.label)} · {localizeText(o.weight)}</strong><br/>{localizeText(o.definition)}</p>))}</details></article></div></DetailSection>
+    </>)}
+    {localizeText(!campaign && <div className="eng-readings"><div><dt>{localizeText("01 / Engineering record")}</dt><dd>{localizeText("Design → run")}</dd></div><div><dt>{localizeText("02 / Measured evidence")}</dt><dd>{localizeText("Earth → control")}</dd></div><div><dt>{localizeText("03 / Complementary coverage")}</dt><dd>{localizeText("Exact search")}</dd></div><div><dt>{localizeText("04 / Reproducible experiment")}</dt><dd>{localizeText("Field plan")}</dd></div></div>)}
+  </div>;
+}

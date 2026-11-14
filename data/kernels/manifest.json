@@ -1,0 +1,27 @@
+[
+  {
+    "name": "naif0012.tls",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls",
+    "sha256": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b"
+  },
+  {
+    "name": "pck00011.tpc",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011.tpc",
+    "sha256": "3dff7b1dbeceaa01f25467767d3fa25816051c85d162d1edf04acb310ee28bb1"
+  },
+  {
+    "name": "de440s.bsp",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp",
+    "sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2"
+  },
+  {
+    "name": "moon_080317.tf",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/satellites/moon_080317.tf",
+    "sha256": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993"
+  },
+  {
+    "name": "moon_pa_de421_1900-2050.bpc",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/moon_pa_de421_1900-2050.bpc",
+    "sha256": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf"
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-10-15T00:00:00Z",
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "role": "software testing only; not observations",
+      "url": "https://example.invalid/egiz/fixtures",
+      "version": "seed-42-v1"
+    }
+  ],
+  "schema": "egiz.targets",
+  "synthetic": true,
+  "targets": [
+    {
+      "attr_sources": {
+        "bare_frac": "synthetic:seed-42",
+        "elev_min_m": "synthetic:seed-42",
+        "frac_lt10_f100": "synthetic:seed-42",
+        "frac_lt10_f400": "synthetic:seed-42",
+        "frac_lt20_f100": "synthetic:seed-42",
+        "frac_lt20_f400": "synthetic:seed-42",
+        "frac_lt20_r": "synthetic:seed-42",
+        "precip_mm": "synthetic:seed-42",
+        "relief_m": "synthetic:seed-42",
+        "slope_f100_p50_deg": "synthetic:seed-42",
+        "slope_f100_p90_deg": "synthetic:seed-42",
+        "slope_f400_p50_deg": "synthetic:seed-42",
+        "slope_f400_p90_deg": "synthetic:seed-42",
+        "slope_r_p50_deg": "synthetic:seed-42",
+        "slope_r_p90_deg": "synthetic:seed-42",
+        "t_max_c": "synthetic:seed-42",
+        "t_min_c": "synthetic:seed-42",
+        "tri_f100_m": "synthetic:seed-42",
+        "tri_f400_m": "synthetic:seed-42"
+      },
+      "attrs": {
+        "bare_frac": 1,
+        "elev_min_m": 100,
+        "frac_lt10_f100": 0.72,
+        "frac_lt10_f400": 0.875,
+        "frac_lt20_f100": 0.92,
+        "frac_lt20_f400": 0.9334,
+        "frac_lt20_r": 0.852,
+        "precip_mm": 0,
+        "relief_m": 850,
+        "slope_f100_p50_deg": 3.999,
+        "slope_f100_p90_deg": 19,
+        "slope_f400_p50_deg": 2.799,
+        "slope_f400_p90_deg": 5.57,
+        "slope_r_p50_deg": 1.599,
+        "slope_r_p90_deg": 3.183,
+        "t_max_c": -20,
+        "t_min_c": -173,
+        "tri_f100_m": 12,
+        "tri_f400_m": 6.031
+      },
+      "body": "moon",
+      "dem_product": "Synthetic fixture terrain \u2014 no DEM loaded",
+      "fine_baseline_m": 100,
+      "h_max_deg": 6.14,
+      "id": "FAKE_MOON_MONS_MOUTON",
+      "kind": "base_region",
+      "lat": -85.4,
+      "lon": 32.7,
+      "name": "Mons Mouton",
+      "templates": [
+        "FAKE_MOON_BASE_OPS"
+      ]
+    }
+  ],
+  "version": "1.0.0"
+}

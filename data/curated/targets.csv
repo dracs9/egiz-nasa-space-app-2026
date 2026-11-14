@@ -1,0 +1,3 @@
+id,body,name,lat,lon,kind,dem_product,fine_baseline_m,t_min_c,t_min_c_lo,t_min_c_hi,t_max_c,t_max_c_lo,t_max_c_hi,source_keys,templates
+MOON_MONS_MOUTON,moon,Mons Mouton / PGDA Site20 extent center,-85.4265772804,31.7427611534,base_region,PGDA LOLA 5mpp Site20v2,100,,,,,,,PGDA_78;PGDA_SITE20_CENTER;NASA_ARTEMIS_REGIONS;PGDA_SITE20V2,MOON_BASE_OPS
+MARS_JEZERO,mars,Jezero / Perseverance landing site,18.4446,77.4509,landing_site,MOLA-HRSC blend 200m v2,400,,,,,,,USGS_MARS_DEM;JEZERO_LANDING,MARS_SURFACE_OPS

@@ -1,0 +1,9 @@
+# Official rules recheck · 20 October 2026 · Asia/Almaty
+
+The [Team Formation Guide](https://www.spaceappschallenge.org/resources/team-formation-guide/) (page dated September 23) and [2026 Participant Terms and Conditions](https://www.spaceappschallenge.org/legal/) (updated August 7) were read directly in the browser. Search/extraction access to these pages returned 502 errors, so the browser-visible official content supplied the check. No form, account, submission or external message was sent.
+
+The current guide still prohibits project work before **14 November 2026, 09:00 local time**. It says advance challenge selection is allowed and fully developed projects are not expected at the end of the two-day event. There was no discovered exception authorizing this October EGIZ implementation. Existing prototype work and dates have not been hidden, reset or relabeled as hackathon-period contributions.
+
+The current terms require original content to be freely available or OSI licensed, with Apache-2.0 as the default when no qualifying license is specified. They require appropriate rights and license documentation for third-party materials and citation of every resource, including open-source resources. The terms expressly allow removal of nominations/awards/winner status for uncited resources. Original EGIZ code remains MIT; NASA Open MCT, SpiceyPy, CSPICE, kernels and observed datasets keep their own licenses/use rules. [The engine record](../engineering/SCIENTIFIC_ENGINES.md) distinguishes these components and records source links.
+
+The [prior detailed audit](CURRENT_RULES_AUDIT_2026_10_15.md) remains historical evidence. This recheck does not establish competition eligibility, claim organizer permission, or reverse existing chronology. The user explicitly requested independent continued product development; that technical authorization is not an organizer decision. No legal eligibility determination or automatic disqualification is asserted.

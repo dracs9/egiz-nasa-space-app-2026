@@ -1,0 +1,116 @@
+{
+  "schema": "egiz.validation",
+  "version": "1.0.0",
+  "synthetic": false,
+  "generated_at": "2026-10-15T13:12:39Z",
+  "provenance": [
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif",
+      "role": "terrain"
+    },
+    {
+      "dataset": "Copernicus DEM GLO-30 Public",
+      "provider": "Copernicus Programme / ESA / Airbus",
+      "version": "2021",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif",
+      "role": "terrain"
+    }
+  ],
+  "preregistration_commit": "not-supplied",
+  "experiments": [
+    {
+      "id": "E1",
+      "hypothesis": "Documented experiment E1 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E2",
+      "hypothesis": "Documented experiment E2 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E3",
+      "hypothesis": "Documented experiment E3 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E4",
+      "hypothesis": "Documented experiment E4 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E5",
+      "hypothesis": "Documented experiment E5 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E6",
+      "hypothesis": "Documented experiment E6 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E7",
+      "hypothesis": "Documented experiment E7 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E8",
+      "hypothesis": "Documented experiment E8 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E9",
+      "hypothesis": "Documented experiment E9 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    },
+    {
+      "id": "E10",
+      "hypothesis": "Documented experiment E10 pending reviewed execution",
+      "metric": "not run",
+      "value": null,
+      "status": "not_run",
+      "notes": "Measured terrain pilot only: no preregistration or independent scientific validation is claimed. Numerical E1 software checks are recorded separately in acquisition_report.json; they do not validate analog recommendations."
+    }
+  ],
+  "practice_pairs": [],
+  "baselines": [],
+  "controls": [],
+  "figures": []
+}

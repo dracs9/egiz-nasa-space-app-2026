@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/sun_windows.schema.json",
+  "title": "Egiz sun_windows 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.sun_windows"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "const": "NOAA"
+        },
+        "refraction": {
+          "const": true
+        },
+        "step_min": {
+          "const": 10
+        },
+        "year": {
+          "const": 2025
+        },
+        "lat_step_deg": {
+          "const": 0.1
+        }
+      },
+      "required": [
+        "algorithm",
+        "refraction",
+        "step_min",
+        "year",
+        "lat_step_deg"
+      ]
+    },
+    "lat_bins": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90
+      },
+      "minItems": 1800,
+      "maxItems": 1800
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "h_max_deg": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 90
+          },
+          "hours_low": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 24
+              },
+              "minItems": 12,
+              "maxItems": 12
+            }
+          },
+          "sweep_deg": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360
+              },
+              "minItems": 12,
+              "maxItems": 12
+            }
+          }
+        },
+        "required": [
+          "target",
+          "h_max_deg",
+          "hours_low",
+          "sweep_deg"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "model",
+    "lat_bins",
+    "targets"
+  ]
+}

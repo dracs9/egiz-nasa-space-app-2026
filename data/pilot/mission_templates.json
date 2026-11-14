@@ -1,0 +1,530 @@
+{
+  "schema": "egiz.mission_templates",
+  "version": "1.0.0",
+  "generated_at": "2026-10-15T13:12:39Z",
+  "synthetic": false,
+  "provenance": [
+    {
+      "dataset": "Egiz mathematical specification",
+      "provider": "Egiz team",
+      "version": "1.0.0",
+      "url": "docs/science/MATHEMATICAL_SPECIFICATION.md",
+      "role": "provisional_method_parameters"
+    }
+  ],
+  "params": {
+    "shortlist_per_objective": 20,
+    "missing_weight_max": 0.3,
+    "gap_threshold": 0.1,
+    "k_max": 3
+  },
+  "templates": [
+    {
+      "id": "MOON_BASE_OPS",
+      "body": "moon",
+      "name": "MOON BASE OPS",
+      "objectives": [
+        {
+          "id": "O1",
+          "name": "Landing hazard rehearsal",
+          "description": "Landing hazard rehearsal",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "frac_lt10_f100",
+              "fn": "match",
+              "params": {
+                "sigma": 0.1
+              },
+              "weight": 3.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "slope_f100_p90_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 4.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "tri_f100_m",
+              "fn": "logmatch",
+              "params": {
+                "sigma": 0.15
+              },
+              "weight": 1.0,
+              "needs_target": true,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "O2",
+          "name": "EVA and field geology",
+          "description": "EVA and field geology",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "frac_lt20_r",
+              "fn": "match",
+              "params": {
+                "sigma": 0.1
+              },
+              "weight": 3.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "relief_m",
+              "fn": "logmatch",
+              "params": {
+                "sigma": 0.15
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "bare_frac",
+              "fn": "at_least",
+              "params": {
+                "a": 0.7,
+                "tau": 0.2
+              },
+              "weight": 2.0,
+              "needs_target": false,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "O3",
+          "name": "LTV slope mobility",
+          "description": "LTV slope mobility",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "slope_f100_p50_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 2.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "slope_f100_p90_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 4.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "frac_lt20_f100",
+              "fn": "match",
+              "params": {
+                "sigma": 0.1
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "bare_frac",
+              "fn": "at_least",
+              "params": {
+                "a": 0.7,
+                "tau": 0.2
+              },
+              "weight": 1.0,
+              "needs_target": false,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "O4",
+          "name": "Low-Sun operations",
+          "description": "Low-Sun operations",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "light",
+              "fn": "light",
+              "params": {
+                "hours_a": 6.0,
+                "hours_tau": 3.0,
+                "sweep_a": 270.0,
+                "sweep_tau": 90.0
+              },
+              "weight": 3.0,
+              "needs_target": false,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            },
+            {
+              "attr": "snow_free_frac",
+              "op": ">=",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "id": "O5",
+          "name": "Cold dry surface",
+          "description": "Cold dry surface",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "t_min_c",
+              "fn": "colder",
+              "params": {
+                "tau": 30.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "precip_mm",
+              "fn": "at_most",
+              "params": {
+                "a": 50.0,
+                "tau": 100.0
+              },
+              "weight": 2.0,
+              "needs_target": false,
+              "priority": "P0"
+            },
+            {
+              "attr": "bare_frac",
+              "fn": "at_least",
+              "params": {
+                "a": 0.8,
+                "tau": 0.2
+              },
+              "weight": 2.0,
+              "needs_target": false,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MARS_SURFACE_OPS",
+      "body": "mars",
+      "name": "MARS SURFACE OPS",
+      "objectives": [
+        {
+          "id": "M1",
+          "name": "Landing hazard rehearsal",
+          "description": "Landing hazard rehearsal",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "frac_lt10_f400",
+              "fn": "match",
+              "params": {
+                "sigma": 0.1
+              },
+              "weight": 3.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "slope_f400_p90_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 4.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "tri_f400_m",
+              "fn": "logmatch",
+              "params": {
+                "sigma": 0.15
+              },
+              "weight": 1.0,
+              "needs_target": true,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "M2",
+          "name": "Rover routes",
+          "description": "Rover routes",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "slope_f400_p50_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 2.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "slope_f400_p90_deg",
+              "fn": "match",
+              "params": {
+                "sigma": 4.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "frac_lt20_r",
+              "fn": "match",
+              "params": {
+                "sigma": 0.1
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "relief_m",
+              "fn": "logmatch",
+              "params": {
+                "sigma": 0.15
+              },
+              "weight": 1.0,
+              "needs_target": true,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "M3",
+          "name": "Field geology",
+          "description": "Field geology",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "bare_frac",
+              "fn": "at_least",
+              "params": {
+                "a": 0.8,
+                "tau": 0.2
+              },
+              "weight": 2.0,
+              "needs_target": false,
+              "priority": "P0"
+            },
+            {
+              "attr": "relief_m",
+              "fn": "logmatch",
+              "params": {
+                "sigma": 0.15
+              },
+              "weight": 1.0,
+              "needs_target": true,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "id": "M4",
+          "name": "Cold dry surface and resources",
+          "description": "Cold dry surface and resources",
+          "weight_default": 1.0,
+          "attributes": [
+            {
+              "attr": "t_min_c",
+              "fn": "colder",
+              "params": {
+                "tau": 30.0
+              },
+              "weight": 2.0,
+              "needs_target": true,
+              "priority": "P0"
+            },
+            {
+              "attr": "precip_mm",
+              "fn": "at_most",
+              "params": {
+                "a": 50.0,
+                "tau": 100.0
+              },
+              "weight": 3.0,
+              "needs_target": false,
+              "priority": "P0"
+            },
+            {
+              "attr": "bare_frac",
+              "fn": "at_least",
+              "params": {
+                "a": 0.8,
+                "tau": 0.2
+              },
+              "weight": 1.0,
+              "needs_target": false,
+              "priority": "P0"
+            }
+          ],
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "value": 0.5
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "value": 0.2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "gap_alternatives": [
+    {
+      "gap": "Reduced gravity",
+      "body": "both",
+      "alternative": "Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g",
+      "source": "NASA_PARABOLIC"
+    },
+    {
+      "gap": "Vacuum or thin atmosphere",
+      "body": "both",
+      "alternative": "Thermal vacuum or controlled pressure chamber",
+      "source": "NASA_TVAC"
+    },
+    {
+      "gap": "Extreme thermal environment",
+      "body": "both",
+      "alternative": "Thermal vacuum chamber with controlled thermal boundary conditions",
+      "source": "NASA_TVAC"
+    },
+    {
+      "gap": "Space radiation",
+      "body": "both",
+      "alternative": "Separate radiation qualification; terrestrial field ranking does not model radiation",
+      "source": "NASA_ANALOGS"
+    },
+    {
+      "gap": "Polar lighting duration and horizon",
+      "body": "moon",
+      "alternative": "Artificial field lighting (JETT Sun cart); natural Earth windows remain incomplete",
+      "source": "NASA_JETT3"
+    },
+    {
+      "gap": "Regolith mechanical and chemical properties",
+      "body": "both",
+      "alternative": "Characterized material testing and suitable regolith simulants; no composition claim from DEM",
+      "source": "EGIZ_METHOD"
+    }
+  ]
+}

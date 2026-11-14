@@ -1,0 +1,19 @@
+{
+  "schema": "egiz.robustness",
+  "version": "1.0.0",
+  "generated_at": "2026-10-15T00:00:00Z",
+  "synthetic": true,
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "version": "seed-42-v1",
+      "url": "https://example.invalid/egiz/fixtures",
+      "role": "software testing only; not observations"
+    }
+  ],
+  "runs": 200,
+  "seed": 2026,
+  "selection_freq": {},
+  "jaccard_median": {}
+}

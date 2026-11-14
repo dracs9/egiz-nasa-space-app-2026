@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/mission_templates.schema.json",
+  "title": "Egiz mission_templates 1.x",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "egiz.mission_templates"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "provider",
+          "version",
+          "url",
+          "role"
+        ]
+      },
+      "minItems": 1
+    },
+    "params": {
+      "type": "object",
+      "properties": {
+        "shortlist_per_objective": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "missing_weight_max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "gap_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "k_max": {
+          "const": 3
+        }
+      },
+      "required": [
+        "shortlist_per_objective",
+        "missing_weight_max",
+        "gap_threshold",
+        "k_max"
+      ]
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_.-]*$"
+          },
+          "body": {
+            "enum": [
+              "moon",
+              "mars"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "objectives": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Z0-9_.-]*$"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "weight_default": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "attributes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "attr": {
+                        "enum": [
+                          "slope_f100_p50_deg",
+                          "slope_f100_p90_deg",
+                          "frac_lt10_f100",
+                          "frac_lt20_f100",
+                          "tri_f100_m",
+                          "slope_f400_p50_deg",
+                          "slope_f400_p90_deg",
+                          "frac_lt10_f400",
+                          "frac_lt20_f400",
+                          "tri_f400_m",
+                          "slope_r_p50_deg",
+                          "slope_r_p90_deg",
+                          "frac_lt20_r",
+                          "relief_m",
+                          "elev_min_m",
+                          "precip_mm",
+                          "bare_frac",
+                          "t_min_c",
+                          "t_max_c",
+                          "light",
+                          "shadow",
+                          "geology"
+                        ]
+                      },
+                      "fn": {
+                        "enum": [
+                          "match",
+                          "logmatch",
+                          "at_most",
+                          "at_least",
+                          "colder",
+                          "category",
+                          "light"
+                        ]
+                      },
+                      "params": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "number"
+                        }
+                      },
+                      "weight": {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      "needs_target": {
+                        "type": "boolean"
+                      },
+                      "priority": {
+                        "enum": [
+                          "P0",
+                          "P1"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "attr",
+                      "fn",
+                      "params",
+                      "weight",
+                      "needs_target",
+                      "priority"
+                    ]
+                  },
+                  "minItems": 1
+                },
+                "constraints": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "attr": {
+                        "type": "string"
+                      },
+                      "op": {
+                        "enum": [
+                          "<=",
+                          ">="
+                        ]
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "attr",
+                      "op",
+                      "value"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "description",
+                "weight_default",
+                "attributes",
+                "constraints"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "body",
+          "name",
+          "objectives"
+        ]
+      },
+      "minItems": 1
+    },
+    "gap_alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gap": {
+            "type": "string"
+          },
+          "body": {
+            "enum": [
+              "moon",
+              "mars",
+              "both"
+            ]
+          },
+          "alternative": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gap",
+          "body",
+          "alternative",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "generated_at",
+    "synthetic",
+    "provenance",
+    "params",
+    "templates",
+    "gap_alternatives"
+  ]
+}

@@ -1,0 +1,7 @@
+gap,body,alternative,source_key
+Reduced gravity,both,Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g,NASA_PARABOLIC
+Vacuum or thin atmosphere,both,Thermal vacuum or controlled pressure chamber,NASA_TVAC
+Extreme thermal environment,both,Thermal vacuum chamber with controlled thermal boundary conditions,NASA_TVAC
+Space radiation,both,Separate radiation qualification; terrestrial field ranking does not model radiation,NASA_ANALOGS
+Polar lighting duration and horizon,moon,Artificial field lighting (JETT Sun cart); natural Earth windows remain incomplete,NASA_JETT3
+Regolith mechanical and chemical properties,both,Characterized material testing and suitable regolith simulants; no composition claim from DEM,EGIZ_METHOD

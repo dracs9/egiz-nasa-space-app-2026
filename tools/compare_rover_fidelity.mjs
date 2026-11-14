@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {simulate} from '../web/src/mission/engine.ts';
+import {defaultScenario} from '../web/src/mission/environment.ts';
+const terrain={id:'SYNTHETIC_FLAT_REFERENCE',name:'Declared synthetic flat reference',body:'mars',lon:0,lat:0,source:{url:'urn:egiz:synthetic-flat',sha256:'0'.repeat(64),native_crs:'local Cartesian'},local_crs:'local Cartesian',local_origin:[0,0],source_pixel_m:1,grid:{side:201,cell_m:1,west_m:-100,north_m:100,elevation_m:Array(40401).fill(0),valid_fraction:1}};
+const scenario=defaultScenario(terrain);Object.assign(scenario,{start:{x:0,y:0},destination:{x:50,y:0},duration:12,dt:.5});Object.assign(scenario.rover,{speed:.65,rollingResistance:0,idlePower:120,efficiency:.75,traction:.65,route:'direct'});Object.assign(scenario.rover.design,{wheelRadius:.41,cgHeight:.65,trackWidth:2.58,wheelbase:2.24,wheelWidth:.33,stallTorque:120,noLoadRpm:60,motorPower:250,solarArea:0});
+const fast=simulate(scenario,terrain,{});
+const native=JSON.parse(execFileSync('.venv/bin/python',['-m','pipeline.dynamics','run'],{input:JSON.stringify({kind:'rover',course:'flat',duration:12}),maxBuffer:12000000,encoding:'utf8'}));
+const report={geometry:'Explicit synthetic flat plane',matching:'Mars gravity, 900 kg, 0.65 m/s command, 120 W idle, .75 efficiency, .41 m wheels; zero analytical rolling resistance. MuJoCo retains declared contact and joint dissipation, actuator transients and 1 s settling.',fast:{distance:fast.metrics.distance,energyWh:fast.metrics.energyWh,movingSpeed:fast.frames.find(f=>f.speed>0)?.speed},research:{distance:native.metrics.distance,energyWh:native.metrics.energyWh,speed:native.states.at(-1).speed},interpretation:'FAST prescribes steady motion without acceleration, contact, suspension or settling. RESEARCH integrates them. Agreement of steady flat rolling speed is a controlled consistency check; energy/distance differences are expected model differences, not evidence of field calibration.'};
+fs.writeFileSync('artifacts/fidelity-comparison.json',JSON.stringify({report,fast,research:native}));console.log(JSON.stringify(report,null,2));

@@ -1,0 +1,11 @@
+# Written with AI assistance (Codex); human review pending.
+numpy>=2,<3
+scipy>=1.14,<2
+jsonschema>=4.23,<5
+rasterio>=1.4,<2
+pyproj>=3.7,<4
+pillow>=11,<13
+earthengine-api>=1.5,<2
+pytest>=8,<10
+ruff>=0.11,<1
+astropy>=7,<9

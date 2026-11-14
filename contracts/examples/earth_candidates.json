@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-10-15T00:00:00Z",
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "role": "software testing only; not observations",
+      "url": "https://example.invalid/egiz/fixtures",
+      "version": "seed-42-v1"
+    }
+  ],
+  "schema": "egiz.earth_candidates",
+  "synthetic": true,
+  "tiles": [
+    {
+      "attrs": {
+        "bare_frac": 0.9009,
+        "elev_min_m": 100,
+        "frac_lt10_f100": 0.8172,
+        "frac_lt10_f400": 0.8629,
+        "frac_lt20_f100": 0.9122,
+        "frac_lt20_f400": 0.9269,
+        "frac_lt20_r": 0.9129,
+        "precip_mm": 42.48,
+        "relief_m": 193.21,
+        "slope_f100_p50_deg": 4.388,
+        "slope_f100_p90_deg": 7.463,
+        "slope_f400_p50_deg": 3.071,
+        "slope_f400_p90_deg": 5.224,
+        "slope_r_p50_deg": 1.755,
+        "slope_r_p90_deg": 2.985,
+        "t_max_c": 50.04,
+        "t_min_c": 0.04,
+        "tri_f100_m": 22.52,
+        "tri_f400_m": 6.695
+      },
+      "context": {
+        "built_frac": 0.01,
+        "crop_frac": 0.01,
+        "snow_frac": 0,
+        "tree_frac": 0.02,
+        "water_frac": 0.02
+      },
+      "country": "Chile",
+      "id": "FAKE_PR_000",
+      "lat": -24.221,
+      "lon": -70.625,
+      "missing": [],
+      "name": "Demo field site 1",
+      "pool": "practice",
+      "stratum": "hot_desert"
+    }
+  ],
+  "tiles_hash": "63ed5589b10a57db70c449554d9ca8d7d70ad5023edc782b9fd8f8b4a25d8538",
+  "version": "1.0.0"
+}

@@ -1,0 +1,115 @@
+{
+  "baselines": [
+    {
+      "median_pct": null,
+      "name": "aridity_only"
+    },
+    {
+      "median_pct": null,
+      "name": "random"
+    },
+    {
+      "median_pct": null,
+      "name": "v1_similarity"
+    }
+  ],
+  "controls": [],
+  "experiments": [
+    {
+      "hypothesis": "Solar-position accuracy",
+      "id": "E1",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Terrain attributes and cross-check",
+      "id": "E2",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Recovery of documented practice sites",
+      "id": "E3",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Optimizer exactness",
+      "id": "E4",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Campaign stability",
+      "id": "E5",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Attribute-group ablation",
+      "id": "E6",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Negative controls",
+      "id": "E7",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "DEM shadow accuracy",
+      "id": "E8",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Sensitivity to measurement baseline",
+      "id": "E9",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    },
+    {
+      "hypothesis": "Byte-identical reproduction",
+      "id": "E10",
+      "metric": "pending real-data experiment",
+      "notes": "Synthetic software demo. See implementation report for actual unit-test evidence; scientific validation has not run.",
+      "status": "not_run",
+      "value": null
+    }
+  ],
+  "figures": [],
+  "generated_at": "2026-10-15T00:00:00Z",
+  "practice_pairs": [],
+  "preregistration_commit": "not-preregistered-software-fixtures",
+  "provenance": [
+    {
+      "dataset": "Deterministic invented test fixtures",
+      "provider": "Egiz",
+      "role": "software testing only; not observations",
+      "url": "https://example.invalid/egiz/fixtures",
+      "version": "seed-42-v1"
+    }
+  ],
+  "schema": "egiz.validation",
+  "synthetic": true,
+  "version": "1.0.0"
+}

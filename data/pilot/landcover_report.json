@@ -1,0 +1,153 @@
+{
+  "synthetic": false,
+  "dataset": "ESA WorldCover 2021 v200",
+  "license": "CC BY 4.0",
+  "citation": "Zanaga et al. 2022, ESA WorldCover 10 m 2021 v200, https://doi.org/10.5281/zenodo.7254221",
+  "limitations": "Classification and resampling errors; 2021 snapshot, not present-day access or seasonal snow availability.",
+  "windows": [
+    {
+      "id": "PR_JETT_SP_CRATER",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif",
+      "sha256": "08ffebf4706e42942707e3e7578830aa5643212e9ec28351e7c8b6e4c4ec7b4c",
+      "fractions": {
+        "tree_frac": 0.0703285,
+        "crop_frac": 2e-06,
+        "built_frac": 0.001509,
+        "bare_frac": 0.08039925,
+        "snow_frac": 0.0,
+        "water_frac": 0.0013625
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "GL_W116.820_N36.240",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W117_Map.tif",
+      "sha256": "706ab9764943a85e84201f907cf91b7c63923795cc8374785caffbd72cc4f6c8",
+      "fractions": {
+        "tree_frac": 0.0011735,
+        "crop_frac": 0.00014375,
+        "built_frac": 4.1e-05,
+        "bare_frac": 0.9497865,
+        "snow_frac": 0.0,
+        "water_frac": 0.00082725
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "KZ_E051.200_N43.400",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E051_Map.tif",
+      "sha256": "2f45d1f6201869afaf71d95c5900a9042dbf88252049573575d9d92c9b2fc0d9",
+      "fractions": {
+        "tree_frac": 2.5e-07,
+        "crop_frac": 0.0,
+        "built_frac": 0.00154975,
+        "bare_frac": 0.0227655,
+        "snow_frac": 0.0,
+        "water_frac": 0.958658
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_ATACAMA",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S27W072_Map.tif",
+      "sha256": "1d90e607a9e82effdae34eeffc543c4db2c09a0be24de9997b3b6b37685091dd",
+      "fractions": {
+        "tree_frac": 0.0,
+        "crop_frac": 0.0,
+        "built_frac": 8.5e-05,
+        "bare_frac": 0.999807,
+        "snow_frac": 0.0,
+        "water_frac": 0.0
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_UTAH",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif",
+      "sha256": "2ff50111f1a08a68ee20d9ee203b5b02aa1d1180b6fbc76038337ac1486241db",
+      "fractions": {
+        "tree_frac": 0.000122,
+        "crop_frac": 0.0063895,
+        "built_frac": 0.000784,
+        "bare_frac": 0.941561,
+        "snow_frac": 0.0,
+        "water_frac": 0.00077075
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_ICELAND",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif",
+      "sha256": "eb0e0757549fab53903a67a551132dec087823dcc715d9816fe13885a145be5e",
+      "fractions": {
+        "tree_frac": 0.00336125,
+        "crop_frac": 0.0,
+        "built_frac": 0.0,
+        "bare_frac": 0.67085175,
+        "snow_frac": 7.5e-05,
+        "water_frac": 0.0
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_WADI_RUM",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E033_Map.tif",
+      "sha256": "e08886f4a46a2e2738deab98fae83203504610d29cb1f3ee17a6526b0df02c4f",
+      "fractions": {
+        "tree_frac": 0.00042175,
+        "crop_frac": 0.000319,
+        "built_frac": 0.0009715,
+        "bare_frac": 0.99292825,
+        "snow_frac": 0.0,
+        "water_frac": 4e-06
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_RIO_TINTO",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W009_Map.tif",
+      "sha256": "6c8065d3b7e5311be302d8450a0357d0d747183ba4593e3735d65308e4479239",
+      "fractions": {
+        "tree_frac": 0.34654075,
+        "crop_frac": 0.01267175,
+        "built_frac": 0.01282925,
+        "bare_frac": 0.04096625,
+        "snow_frac": 0.0,
+        "water_frac": 0.02213925
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    },
+    {
+      "id": "PILOT_BOSZHIRA",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E054_Map.tif",
+      "sha256": "df6fc1b18034c1a8655144224524814f6c443388236de3ee766b266777794a1b",
+      "fractions": {
+        "tree_frac": 0.0,
+        "crop_frac": 0.0,
+        "built_frac": 0.0,
+        "bare_frac": 0.77231075,
+        "snow_frac": 0.0,
+        "water_frac": 1.55e-05
+      },
+      "pixel_m": 10,
+      "side_m": 20000,
+      "method": "Nearest-neighbor categorical reprojection to metric UTM; fractions of classified pixels"
+    }
+  ]
+}

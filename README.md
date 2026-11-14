@@ -1,87 +1,83 @@
-# Egiz: кампания земных испытаний для Луны и Марса
+# Egiz
 
-Командный репозиторий для **NASA Space Apps Challenge 2026**. Egiz — рабочее название (каз. «егіз», близнец); финальное выбираем на хакатоне (STORY-01).
+**[Feature guide: what EGIZ includes and how to use it](docs/USER_GUIDE.md)**
 
-| | |
-| --- | --- |
-| **Хакатон** | 14–15 ноября 2026, Астана, Miras International School, очно (формат площадки гибридный) |
-| **Челлендж** | [Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars](https://www.spaceappschallenge.org/2026/challenges/identify-earth-locations-that-analog-the-permanent-moon-base-locations-and-mars/) |
-| **Команда** | 6 участников: MEMBER_A…MEMBER_F ([роли](docs/team/README.md)) |
-| **Статус** | Подготовка. Полное условие — 28 октября. До 14.11 09:00 в репозитории только план и инструменты координации |
+Design an Earth test campaign for a Moon base region or a Mars landing site. Egiz compares terrain and environmental attributes, scores mission objectives, and selects up to three complementary sites. Its gap ledger explains which conditions need laboratory testing. An exact priority frontier reveals when a different site becomes preferable, and measured terrain dossiers export field verification checklists.
 
-## Что делаем
+**Current state: a local prototype with an exploratory measured terrain pilot and an optional synthetic software demo; competition readiness is not established.** Fixtures are invented software inputs, not NASA observations. Real raster ingestion and Earth Engine adapters are separate. See [implementation status](docs/engineering/IMPLEMENTATION_STATUS.md) for prior verification and remaining dependencies.
 
-Планировщик испытаний для базы у южного полюса Луны или посадки на Марсе спрашивает: **на каких площадках Земли и в каком минимальном наборе отрепетировать задачи миссии — и чего Земля не даст вообще?** Egiz меряет цель (Mons Mouton, Jezero) и ~3 000 квадратов суши Земли на одних и тех же базах критериев NASA (уклон на 100 м для посадки, на 2 км для выходов), считает соответствие каждой задаче — посадка, выходы и геология, мобильность, низкое Солнце, холод — и находит кампанию из 1–3 площадок с наибольшим покрытием задач. Отдельно показывает потолки: что на Земле недостижимо (вакуум, гравитация, вечная тень) и чем это заменяют. Метод проверяется пререгистрированно: места, которые NASA использовала для конкретных задач, должны оказаться высоко именно для этих задач.
+**15 October rules review:** the official 2026 FAQ and Team Formation Guide prohibit beginning challenge work before **14 November, 09:00 local time**. The user subsequently explicitly authorized further local development (DEC-029). This is not organizer permission: competition eligibility of the October prototype remains unresolved. See the [verified rules audit](docs/competition/CURRENT_RULES_AUDIT_2026_10_15.md), [readiness findings](docs/audit/FINAL_READINESS_AUDIT_2026_10_15.md), and [unsent organizer questions](docs/competition/ORGANIZER_CLARIFICATION_DRAFT.md). Files and their actual chronology are preserved.
 
-Подробно: [решение и почему](docs/innovation/FINAL_CONCEPT_DECISION.md), [продукт](docs/product/COMPLETE_PRODUCT_SPEC.md), [математика](docs/science/MATHEMATICAL_SPECIFICATION.md), [архитектура](docs/engineering/FINAL_ARCHITECTURE.md). Как мы пришли от v1 к v2 — [критический разбор](docs/audit/EXISTING_PLAN_CRITICAL_REVIEW.md).
+## Run locally
 
-## Прочитать всем
+Requires Python 3.11+ and Node.js 24.14.1+ (the pinned optional Open MCT distribution requires this Node version; tested with Python 3.13 and Node 24.14.1).
 
-1. **До 14.11 09:00 по Астане над проектом не работаем:** ни кода, ни обработки данных, ни дизайна, ни текстов подачи. Можно учиться, заводить аккаунты и готовить план. Что требует письменного разрешения организаторов — [PRE_EVENT_AUTHORIZATION](docs/competition/PRE_EVENT_AUTHORIZATION.md).
-2. **Участники младше 18 лет:** в подаче, видео, слайдах, README и коммитах нет их имён, лиц и голосов; на площадке их сопровождает родитель или опекун. Поэтому в репозитории мы — MEMBER_A…MEMBER_F, а в git — ники.
-3. **Питч на площадке — 15.11 в 14:00.** Работы на площадке 9–11,5 часа (зависит от ответа организаторов); подача — до 13:30. Почасовой план — [HOUR_BY_HOUR_EXECUTION](docs/planning/HOUR_BY_HOUR_EXECUTION.md).
-4. **Демо — 7 слайдов** на английском (наше официальное демо); видео до 30 секунд — если успеем.
-5. **Данные NASA обязательны** для глобальных наград; каждый источник цитируем; лицензия кода — MIT.
-6. **ИИ можно**, но с раскрытием: [журнал ИИ](docs/ai-log.md), пометка «AI-generated» на ИИ-картинках, без символики NASA.
-7. **Ссылки открываются без входа**; к подаче репозиторий публичный.
-
-Все правила со ссылками и статусами — [OFFICIAL_RULES](docs/competition/OFFICIAL_RULES.md).
-
-## Как работать с Claude Code
-
-Откройте папку в Claude Code и скажите **«Выполни задачи MEMBER_X»** (или `/execute-member MEMBER_X`). Claude прочитает [CLAUDE.md](CLAUDE.md) и ваш документ, проверит время и правила и начнёт с самой важной доступной задачи. Другие команды: `/next-task MEMBER_X`, `/blocked`, `/integration-check`, `/submission-readiness`, `/project-status`.
-
-Без Claude:
+The exact tested Python 3.13 environment is recorded in requirements-lock.txt. Use `.venv/bin/python -m pip install -r requirements-lock.txt` to reproduce that environment; the general requirements.txt lets older supported Python versions select compatible packages.
 
 ```bash
-python3 tools/tasks.py next MEMBER_X
+make setup
+make dev
 ```
 
-Модель выполнимости расписания по сценариям:
+Open the address printed by Vite. New visitors open the measured Mons Mouton pilot; an explicit source link or saved source preference takes precedence. Change the site budget, choose objectives or Mars, inspect a site, and open Evidence. A persistent banner identifies the selected data and its limitations.
+
+The default **Measured terrain pilot** lets you inspect the actual NASA PGDA/USGS target measurements and nine Copernicus Earth windows. This mode is exploratory and unvalidated; ESA WorldCover 2021 land cover is included; climate, seasonal snow availability and target temperatures are missing. It has its own sources, results and missing-data explanations. Synthetic terrain images are unavailable in this mode. Source selection is explicit in shared URLs (`data=demo` or `data=pilot`) and can be changed at any time. A complete future `data/processed` bundle appears as a separate **Observed dataset** option.
 
 ```bash
-python3 tools/tasks.py schedule S1
+make check       # Python, contracts, input hashes, TypeScript, UI tests and build
+make data        # Reproduce complete real inputs if present, otherwise use demo fixtures
+make fixtures    # Explicitly rebuild synthetic files in data/fixtures only
+make offline     # Package artifacts/egiz-offline.zip with a local launcher
+make serve       # Serve web/dist at http://127.0.0.1:4173
 ```
 
-## Документы
+The browser application needs no backend, database, API key, or generative AI service. Offline packages include data, fonts, and code. Satellite imagery requires internet; the local map/table remains available. Serve the app over localhost rather than opening index.html directly.
 
-| Раздел | Документ | Что внутри |
-| --- | --- | --- |
-| Агентам | [CLAUDE.md](CLAUDE.md) | Протокол работы, правило № 1, разрешения, продолжение прерванной работы, владение файлами |
-| Аудит | [EXISTING_PLAN_CRITICAL_REVIEW](docs/audit/EXISTING_PLAN_CRITICAL_REVIEW.md) · [RED_TEAM_REVIEW](docs/audit/RED_TEAM_REVIEW.md) · [TRACEABILITY_AND_COMPLETENESS](docs/audit/TRACEABILITY_AND_COMPLETENESS.md) | Разбор v1, красная команда, трассировка требований |
-| Конкурс | [OFFICIAL_RULES](docs/competition/OFFICIAL_RULES.md) · [PRE_EVENT_AUTHORIZATION](docs/competition/PRE_EVENT_AUTHORIZATION.md) · [SUBMISSION](docs/competition/SUBMISSION.md) · [JUDGING_READINESS](docs/competition/JUDGING_READINESS.md) | Правила, что можно до старта, поля подачи, критерии и ворота |
-| Исследование | [DEEP_RESEARCH_REPORT](docs/research/DEEP_RESEARCH_REPORT.md) · [SCIENTIFIC_PRIOR_ART](docs/research/SCIENTIFIC_PRIOR_ART.md) · [COMPETITIVE_LANDSCAPE](docs/research/COMPETITIVE_LANDSCAPE.md) · [WINNER_BENCHMARK](docs/research/WINNER_BENCHMARK.md) · [IDEAS_ARCHIVE](docs/research/IDEAS_ARCHIVE.md) | Что известно, кто что делает, победители прошлых лет |
-| Инновация | [20_CONCEPTS](docs/innovation/20_CONCEPTS.md) · [CONCEPT_EVALUATION](docs/innovation/CONCEPT_EVALUATION.md) · [FINAL_CONCEPT_DECISION](docs/innovation/FINAL_CONCEPT_DECISION.md) | 20 концептов, взвешенная оценка, решение |
-| Продукт | [COMPLETE_PRODUCT_SPEC](docs/product/COMPLETE_PRODUCT_SPEC.md) · [SCREEN_BY_SCREEN_SPEC](docs/product/SCREEN_BY_SCREEN_SPEC.md) · [DESIGN_SYSTEM](docs/product/DESIGN_SYSTEM.md) · [SIGNATURE_DEMO](docs/product/SIGNATURE_DEMO.md) | Продукт, экраны, дизайн, демо и питч |
-| Наука | [MATHEMATICAL_SPECIFICATION](docs/science/MATHEMATICAL_SPECIFICATION.md) · [ALGORITHMS_AND_PSEUDOCODE](docs/science/ALGORITHMS_AND_PSEUDOCODE.md) · [DATASET_SPECIFICATION](docs/science/DATASET_SPECIFICATION.md) · [VALIDATION_PROTOCOL](docs/science/VALIDATION_PROTOCOL.md) · [SCIENTIFIC_CLAIMS_REGISTER](docs/science/SCIENTIFIC_CLAIMS_REGISTER.md) · [KAZAKHSTAN_CANDIDATES](docs/science/KAZAKHSTAN_CANDIDATES.md) | Формулы, алгоритмы, данные, проверки, утверждения |
-| Инженерия | [FINAL_ARCHITECTURE](docs/engineering/FINAL_ARCHITECTURE.md) · [API_AND_SCHEMA_CONTRACTS](docs/engineering/API_AND_SCHEMA_CONTRACTS.md) · [FUNCTION_SPECIFICATIONS](docs/engineering/FUNCTION_SPECIFICATIONS.md) · [FILE_BY_FILE_BUILD_PLAN](docs/engineering/FILE_BY_FILE_BUILD_PLAN.md) · [TESTING_STRATEGY](docs/engineering/TESTING_STRATEGY.md) · [DEVELOPMENT_WORKFLOW](docs/engineering/DEVELOPMENT_WORKFLOW.md) | Архитектура, контракты, функции, файлы, тесты, процесс |
-| План | [ULTRA_DETAILED_ROADMAP](docs/planning/ULTRA_DETAILED_ROADMAP.md) · [HOUR_BY_HOUR_EXECUTION](docs/planning/HOUR_BY_HOUR_EXECUTION.md) · [CRITICAL_PATH_AND_DEPENDENCIES](docs/planning/CRITICAL_PATH_AND_DEPENDENCIES.md) · [CONTINGENCY_PLAN](docs/planning/CONTINGENCY_PLAN.md) · [RISK_REGISTER](docs/planning/RISK_REGISTER.md) | Этапы, часы, зависимости, сценарии, сбои, риски |
-| | [DECISIONS](docs/planning/DECISIONS.md) · [PROGRESS](docs/planning/PROGRESS.md) · [BLOCKERS](docs/planning/BLOCKERS.md) · [INTEGRATION_STATUS](docs/planning/INTEGRATION_STATUS.md) | Решения, журнал, блокеры, интеграция |
-| Команда | [Роли](docs/team/README.md) · [MEMBER_A](docs/team/MEMBER_A.md) · [B](docs/team/MEMBER_B.md) · [C](docs/team/MEMBER_C.md) · [D](docs/team/MEMBER_D.md) · [E](docs/team/MEMBER_E.md) · [F](docs/team/MEMBER_F.md) | Задачи, интерфейсы и первые действия каждого |
-| Задачи | [project/tasks.json](project/tasks.json) | 94 задачи: владельцы, разрешения, шаги, файлы, критерии, тесты, запасные пути |
-| Архив | [docs/archive/v1/](docs/archive/v1/) | План v1 — только для истории |
+## Verified development update · 17–18 October 2026
 
-Как работаем с репозиторием: [CONTRIBUTING.md](CONTRIBUTING.md). К подаче этот README станет английским README для жюри (SUB-01), а командная версия переедет в `docs/README.md`.
+The measured pilot now includes **nine real Earth windows and two planetary targets**. In Campaign, explore **When does the best site change?** to inspect exact two-objective priority switches and apply them to the optimizer. Open a site for measured Earth–planet surfaces, shared-axis profiles, slope distributions and source hashes. Export the actual analysis or a Markdown field verification plan. Regional metrics now use matching 200 m sampling across bodies. Independent WorldCover land-cover data excludes the original water-dominated Kazakhstan window from all campaigns.
 
-## Ближайшие даты
+See [audit](docs/EGIZ_AUDIT.md), [method](docs/SCIENTIFIC_METHODOLOGY.md), [validation](docs/SCIENTIFIC_VALIDATION.md), [development record](docs/IMPLEMENTATION_PROGRESS.md), and [competition status / measured demo](docs/COMPETITION_READINESS.md). This is an exploratory pilot; missing environment, geological validation and global sampling remain open.
 
-| Дата | Событие | Что делаем |
-| --- | --- | --- |
-| до 20 октября | — | Письмо организаторам: 8 вопросов и разрешения A1–A3 (PREP-01) |
-| до 27 октября | — | Регистрация, аккаунты, окружение, учёба (PREP-задачи) |
-| 28 октября | Полное условие челленджа | Разбор в течение суток (RULE-01), созвон |
-| 2–3 ноября | Space Apps Connect | Вопросы экспертам (RULE-02) |
-| 13 ноября | Гайды подачи и судейства 2026 | Сверка правил, готовность IC-0 (RULE-03, RULE-04) |
-| 14 ноября, 09:00 | Старт | KICK-01 и почасовой план |
-| 15 ноября, 13:30 | Подача | Код заморожен в 13:00 |
-| 15 ноября, 14:00 | Питч на площадке | — |
-| 15 ноября, 23:59 | Глобальный дедлайн по Астане | Подаём заранее, после питча — только исправления |
+## Mission Lab · 18 October 2026
 
-## Ссылки
+Open **Mission Lab** from Campaign or use `/#/lab?data=pilot&target=MARS_JEZERO`. EGIZ now reconstructs the cached measured terrain into an interactive 3D scene and computes deterministic rover, launch, descent and regional EVA scenarios. Configuration, telemetry, events, replay, saved experiments, JSON reproduction, Markdown reports and five-run Earth/planet/counterfactual comparisons are implemented. The original ranking and evidence tools remain intact.
 
-- [Командный гугл-док](https://docs.google.com/document/d/1gxNd2MU0btmbEz6N4pfR1HdQ0by8VEPXf_jfSNsS3R0/edit) — короткая версия для чтения; обновляется из `docs/` ([промт для Codex](prompts/codex-google-doc.md))
-- [Страница площадки Astana](https://www.spaceappschallenge.org/2026/local-events/astana/)
-- [Participant FAQ 2026](https://www.spaceappschallenge.org/resources/participant-faqs/)
-- [NASA Planetary Analog Explorer](https://science.nasa.gov/solar-system/analog-explorer/)
+The flagship comparison holds mission inputs fixed while running actual Earth terrain under Earth parameters and explicitly substituted planetary parameters. It includes regional geometry statistics and result-backed explanations. This remains a simplified local research/education prototype: **200 m terrain, reference atmospheres, point-mass flight, regional kinematic traversal; no spacecraft or field certification.**
 
-Источник правды — этот репозиторий.
+Read the [implemented model, equations, workflow, sources and next steps](docs/MISSION_LAB.md), [execution audit](docs/ASCENSION_EXECUTION.md) and [verification record](docs/ASCENSION_VALIDATION.md). Rebuild terrain with `.venv/bin/python -m pipeline.common.mission_terrain`; reproduce 24 benchmark scenarios with `node tools/benchmark_mission.mjs` (Node 22.18+).
+
+## Observatory rendering update · 18 October 2026
+
+Mission Lab now opens at vehicle scale with original articulated rover, rocket, lander and EVA assemblies, PBR materials, body-specific lighting, recorded-state interpolation, cinematic and scientific cameras, event-based replay, explicit failure experiments and synchronized Earth/planet 3D comparison. The measured 200 m terrain and scientific solver remain intact; surface detail and mechanical animation are visibly illustrative. See [implemented scope, browser evidence and remaining work](docs/VISUAL_REVOLUTION.md).
+
+## Engineering evolution · 19–20 October 2026
+
+Mission Explorer now connects a configurable six-wheel drivetrain and dimensioned 3D assembly to recorded motor/power/stability telemetry, a real **NASA CSPICE / SpiceyPy** geometry adapter, **NASA Open MCT** Mission Control, nine-design trade studies, and a mission-aware Earth validation campaign. The latter executes 17 matched measured-terrain runs, optimizes complementary experimental coverage, benchmarks simpler baselines, and exports a reproducible field plan. Genuine SPICE records for all 11 sites and the Open MCT runtime are packaged for browser-only use; custom SPICE epochs use an optional loopback Python service.
+
+Open `/#/lab?data=pilot&target=MARS_JEZERO` and use **Rover engineering → Calculate → Mission Control → Earth validation**. Read the [implemented systems, equations, flagship workflow, numerical results and remaining priorities](docs/ENGINEERING_EVOLUTION.md), [engine sources/licenses](docs/engineering/SCIENTIFIC_ENGINES.md), and [verification record](docs/ENGINEERING_VERIFICATION.md). The regional model does not resolve wheel contact, soil, dynamic suspension or orbital mechanics. This is a working major increment; the full long-term vision remains unfinished.
+
+## Real data
+
+See [the data guide](docs/engineering/REAL_DATA_GUIDE.md). Global processing requires an authenticated Google Earth Engine project and verified planetary DEM inputs. Nothing automatically reads or prints credentials. Never put keys in the repository.
+
+The four engine inputs are earth_candidates.json, targets.json, mission_templates.json, and sun_windows.json. `make data` uses complete validated inputs in data/processed/ and records their SHA-256 hashes. It refuses incomplete real-data inputs. Scientific validation stays not_run until experiments actually run. Synthetic data cannot be written into data/processed/.
+
+## Method
+
+- Terrain uses central differences at matching metric baselines: 100 m for lunar comparisons, 400 m for Mars, and 2 km regionally.
+- Objective fidelity uses a weighted geometric mean, an explicit missing-weight limit, and suitability constraints.
+- Campaign coverage averages each objective's best site. The engine enumerates a shortlist and checks greedy selection across the full pool. This does not establish a global optimum over the full pool.
+- Similar test conditions do not establish field suitability, access, safety, or planetary equivalence.
+
+Read the [mathematics](docs/science/MATHEMATICAL_SPECIFICATION.md), [contracts](docs/engineering/API_AND_SCHEMA_CONTRACTS.md), and [validation protocol](docs/science/VALIDATION_PROTOCOL.md).
+
+## Chronology and disclosure
+
+The repository began as planning for NASA Space Apps Challenge 2026. Implementation began on **15 October 2026** at the repository user's explicit request, before the planned event. This does not constitute organizer authorization or a claim of competition eligibility. Existing authorization records remain unchanged. [Team planning guide](docs/README.md).
+
+Codex assisted with code, tests, fixtures, and draft text. Human scientific review remains pending. [AI disclosure](submission/ai_use.md), [references](submission/references.md). Egiz is independent and is not endorsed by NASA or ESA. Code is [MIT licensed](LICENSE).
+
+### Native engineering expansion (20 October 2026)
+
+[EGIZ 4 implementation and model limits](docs/EGIZ_4_ENGINEERING.md) · [exact verification](docs/EGIZ_4_VERIFICATION.md). MuJoCo contact dynamics, Basilisk orbit propagation, a measured 10 m lunar mesh atlas and robust mission-conditioned Earth testing extend the existing browser workflows. Optional runtime: `pip install -e '.[science,dynamics,dev]'`, then `make science-serve` and `npm --prefix web run dev`. Browser-only recorded references remain available.
