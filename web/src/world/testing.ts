@@ -1,10 +1,7 @@
 // Test helper: load the real world package from data/world via the filesystem (Vitest/Node only).
 // Node built-ins are available in Vitest; the app tsconfig intentionally has no @types/node.
-// @ts-expect-error untyped node built-in
 import { readFile } from 'node:fs/promises';
-// @ts-expect-error untyped node built-in
 import { existsSync } from 'node:fs';
-// @ts-expect-error untyped node built-in
 import { resolve, join } from 'node:path';
 import { World, type Fetcher } from './core/world';
 

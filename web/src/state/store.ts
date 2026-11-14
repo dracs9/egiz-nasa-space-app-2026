@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import type { AppData } from '../types/contracts';
 import { initialDataMode, isDataMode, rememberDataMode, type DataMode } from '../data/modes';
 
-export type Route = 'home' | 'brief' | 'campaign' | 'matrix' | 'evidence' | 'twin' | 'lab' | 'atlas' | 'studio' | 'astral' | 'discover' | 'planet';
+export type Route = 'home' | 'brief' | 'campaign' | 'matrix' | 'evidence' | 'twin' | 'lab' | 'atlas' | 'studio' | 'astral' | 'discover' | 'planet' | 'explore' | 'mission';
 export interface AppState {
   data: AppData | null; dataMode: DataMode; route: Route; targetId: string; templateId: string;
   enabledObjectives: string[]; weights: Record<string, number> | null;
@@ -13,7 +13,7 @@ export interface AppState {
   setTarget(id: string): void; toggleObjective(id: string): void; setWeights(weights: Record<string, number> | null): void;
   setK(k: 1 | 2 | 3): void; focus(id: string | null): void; selectSite(id: string | null): void; setLens(lens: 'global' | 'kazakhstan'): void;
 }
-const routes = ['home', 'brief', 'campaign', 'matrix', 'evidence', 'twin', 'lab', 'atlas', 'studio', 'astral', 'discover', 'planet'];
+const routes = ['home', 'brief', 'campaign', 'matrix', 'evidence', 'twin', 'lab', 'atlas', 'studio', 'astral', 'discover', 'planet', 'explore', 'mission'];
 export function parseRoute(hash: string): { route: Route; query: URLSearchParams } {
   const [raw, query = ''] = hash.replace(/^#\/?/, '').split('?');
   return { route: (routes.includes(raw) ? raw : raw === '' ? 'home' : 'campaign') as Route, query: new URLSearchParams(query) };
@@ -33,7 +33,7 @@ function urlState(data: AppData): Partial<AppState> {
   const site = query.get('site');
   return { route, targetId: target.id, templateId: template.id, enabledObjectives: enabled, weights: query.has('weights') ? weights : null, k: [1, 2, 3].includes(k) ? k as 1 | 2 | 3 : 3, focusObjective: objectives.includes(query.get('obj') ?? '') ? query.get('obj') : null, selectedSite: data.candidates.tiles.some(tile => tile.id === site) ? site : null, lens: query.get('lens') === 'kz' ? 'kazakhstan' : 'global' };
 }
-const ROUTE_KEYS: Partial<Record<Route, string[]>> = { discover: ['window', 'profile', 'region', 'target'], astral: ['world'] };
+const ROUTE_KEYS: Partial<Record<Route, string[]>> = { discover: ['window', 'profile', 'region', 'target'], astral: ['world'], explore: ['body', 'step', 'site'], mission: ['tab'] };
 export function stateUrl(state: AppState): string {
   const q = new URLSearchParams({ data: state.dataMode, k: String(state.k) });
   if (state.targetId) q.set('target', state.targetId);

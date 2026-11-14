@@ -2,9 +2,7 @@
 // Intelligence: copilot grammar, tool validation, grounded answers, NL mission parsing, registry, retrieval,
 // data quality, and the end-to-end mission rehearsal workflow with a reproducible dossier.
 import { beforeAll, describe, expect, it } from 'vitest';
-// @ts-expect-error untyped node built-in (app tsconfig has no @types/node)
 import { readFile } from 'node:fs/promises';
-// @ts-expect-error untyped node built-in
 import { join } from 'node:path';
 import { loadTestWorld, WORLD_DIR } from './testing';
 import type { World } from './core/world';

@@ -16,7 +16,9 @@
     "studio": "Lunar World",
     "astral": "Mission Studio",
     "discover": "Discover",
-    "planet": "Planetary Studio"
+    "planet": "Planetary Studio",
+    "explore": "Expedition",
+    "mission": "Mission Home"
   },
   "common": {
     "synthetic": "DEMO DATA — invented for illustration, not NASA observations",

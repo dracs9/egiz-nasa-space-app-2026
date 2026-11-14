@@ -1,7 +1,5 @@
 // Node built-ins are available in Vitest; the app tsconfig intentionally has no @types/node.
-// @ts-expect-error untyped node built-in
 import { existsSync, readFileSync } from 'node:fs';
-// @ts-expect-error untyped node built-in
 import { resolve } from 'node:path';
 declare const process: { cwd(): string };
 import { act } from 'react';

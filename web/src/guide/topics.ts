@@ -6,7 +6,7 @@ const shared=[
 ];
 export function topicsFor(route:Route):GuideTopic[] {
   const specific:Record<Route,GuideTopic[]>={
-    home:[],
+    home:[], explore:[], mission:[],
     planet:[],
     studio:[],
     astral:[],

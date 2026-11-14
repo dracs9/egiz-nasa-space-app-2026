@@ -5,18 +5,20 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Compass, Crosshair, Layers, MessageSquareText, Mountain, Pause, Play, Ruler, Sun, TriangleAlert } from 'lucide-react';
 import { aspectDeg, fieldRange, lineOfSight, pathLength, polygonArea, profile, slopeDeg, type XY } from '../../astral/world/field';
 import { telemetryAt } from '../../astral/sim/mission';
-import { dataModeInfo } from '../../data/modes';
 import { EgizMark } from '../../components/SiteHeader';
 import { useAppStore } from '../../state/store';
 import { Compute, computeSite } from '../compute';
 import type { IntelAction } from '../intel/engine';
 import { TerrainView, type CameraPose, type Mark, type PathDraw, type PickPoint, type RingDraw, type ViewStats } from '../render/terrainView';
 import { streamEarthSite } from '../terrain/earthStream';
-import { BODY_LABEL, listSites, loadSite, siteLatLon, type SiteRef } from '../terrain/site';
+import { BODY_LABEL, loadSite, siteLatLon, type SiteRef } from '../terrain/site';
 import { morningStart, sunAt } from '../terrain/solar';
 import { defaultConfig, mobilityLimits, type MissionPlan } from '../twin/twin';
 import { MARK_COLOR, MARK_LABEL, type MarkKind, type StreamRef } from '../workspace/investigation';
 import { STAGES, uid, usePlanet, type Stage, type Tool } from '../workspace/store';
+import { usePlanetData } from '../workspace/data';
+import { openWorkspace } from '../../expedition/nav';
+import { WorkspaceSwitcher } from '../../components/WorkspaceSwitcher';
 import { Legend, ProfileChart, SunDial } from './charts';
 import { CtlContext, emptyPlan, PanelShell, StudioBoundary, type Appearance, type Ctl } from './ctl';
 import { DiscoverStage } from './DiscoverStage';
@@ -39,24 +41,9 @@ function Workspace() {
   const [playT, setPlayT] = useState(0), [playing, setPlaying] = useState(false), [activeProfile, setActiveProfile] = useState<string | null>(null);
   const site = s.site, stage = s.stage, show3d = stage === 'inspect' || stage === 'simulate' || stage === 'compare';
 
-  // ── data: packaged sites, discovery index, validation, ATLAS-Π ────────────
-  useEffect(() => {
-    const c = new AbortController(), get = (p: string) => fetch(`${BASE}${p}`, { signal: c.signal, cache: 'no-cache' }).then(r => (r.ok ? r.json() : Promise.reject(new Error(`${p}: HTTP ${r.status}`))));
-    listSites(BASE, c.signal).then(refs => usePlanet.getState().set({ refs })).catch(() => undefined);
-    get('discovery/discovery.json').then(bundle => { if (bundle.schema !== 'egiz.discovery' || bundle.synthetic !== false) throw new Error('not a measured discovery bundle'); usePlanet.getState().set({ bundle, discoveryError: null }); })
-      .catch(e => { if (!c.signal.aborted) usePlanet.getState().set({ discoveryError: `The discovery index is not packaged in this build (${e.message}). Build it with python -m pipeline.discovery bundle.` }); });
-    get('discovery/validation.json').then(validation => usePlanet.getState().set({ validation })).catch(() => undefined);
-    get(`${dataModeInfo[dataMode].path}/atlas_pi.json`).then(atlas => { if (atlas.schema === 'egiz.atlas_pi') usePlanet.getState().set({ atlas }); }).catch(() => usePlanet.getState().set({ atlas: null }));
-    return () => c.abort();
-  }, [dataMode]);
+  // ── data: packaged sites, discovery index, validation, ATLAS-Π (shared with the expedition and Mission Home) ──
+  usePlanetData(dataMode);
   const target = s.target();
-  useEffect(() => {
-    if (!s.bundle || !target) return;
-    const c = new AbortController(); usePlanet.getState().set({ shard: null });
-    fetch(`${BASE}discovery/${target.shard}`, { signal: c.signal, cache: 'no-cache' }).then(r => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))).then(shard => usePlanet.getState().set({ shard }))
-      .catch(e => { if (!c.signal.aborted) usePlanet.getState().set({ discoveryError: `Scores for ${target.id} failed to load (${e.message}).` }); });
-    return () => c.abort();
-  }, [s.bundle, target?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── site lifecycle ────────────────────────────────────────────────────────
   const open = useCallback((t: { ref?: SiteRef; stream?: StreamRef }) => {
@@ -223,12 +210,12 @@ function Workspace() {
 
   return <CtlContext.Provider value={ctl}><div className={`pl-root stage-${stage} ${s.intelOpen ? 'intel-open' : ''} ${s.notesOn ? 'notes-on' : ''}`}>
     <header className="pl-top">
-      <button className="pl-brand" onClick={() => navigate('home')} aria-label="EGIZ home"><EgizMark /><span>EGIZ</span><em>Planetary Studio</em></button>
+      <button className="pl-brand" onClick={() => openWorkspace(usePlanet.getState().world() ? 'mission' : 'home')} aria-label={usePlanet.getState().world() ? 'EGIZ — Mission Home' : 'EGIZ home'}><EgizMark /><span>EGIZ</span><em>Planetary Studio</em></button>
       <nav className="pl-stages" aria-label="Workflow stages">{STAGES.map((st, i) => <button key={st.id} className={stage === st.id ? 'on' : ''} aria-current={stage === st.id ? 'step' : undefined} title={`${st.hint} (${i + 1})`} onClick={() => s.setStage(st.id)}><b>{i + 1}</b>{st.label}</button>)}</nav>
       <input className="pl-title" aria-label="Investigation title" value={s.inv.title} onChange={e => s.patchInv({ title: e.target.value })} />
       <span className="pl-context" title="Active context shared by every stage">{target ? target.id : 'no target'}{site ? ` · ${site.id}` : ''}{s.inv.candidates.length ? ` · ${s.inv.candidates.length} candidate${s.inv.candidates.length > 1 ? 's' : ''}` : ''}</span>
       <button className={`pl-ask-toggle ${s.intelOpen ? 'on' : ''}`} onClick={() => s.set({ intelOpen: !s.intelOpen })} aria-pressed={s.intelOpen} title="Research assistant (Ctrl+K or /)"><MessageSquareText size={15} />Ask</button>
-      <details className="pl-legacy"><summary>Tools</summary><div>{(['discover', 'atlas', 'astral', 'studio', 'lab', 'campaign', 'evidence'] as const).map(r => <button key={r} onClick={() => navigate(r)}>{({ discover: 'Discover index', atlas: 'ATLAS-Π transferability', astral: 'Mission Studio (Jezero)', studio: 'Lunar World', lab: 'Engineering Lab', campaign: 'Field campaign', evidence: 'Sources & limits' })[r]}</button>)}</div></details>
+      <WorkspaceSwitcher toggleClass="pl-ask-toggle" label="Tools" />
     </header>
     <div className="pl-body">
       <main className="pl-main">

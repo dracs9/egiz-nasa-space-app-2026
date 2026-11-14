@@ -19,6 +19,9 @@ import { analyzeScene, buildOverlay, detectRocksNear, inspectPoint, LAYERS, list
 import { runTool, type StudioHost } from "./tools";
 import { buildDossier, dossierMarkdown } from "./dossier";
 import "./studio.css";
+import { usePlanet } from "../../planet/workspace/store";
+import { openWorkspace } from "../../expedition/nav";
+import { WorkspaceSwitcher } from "../../components/WorkspaceSwitcher";
 
 type Panel = "explore" | "intelligence" | "mission" | "simulation" | "compare" | "evidence";
 type PickMode = "inspect" | "start" | "destination" | "waypoint" | "measure";
@@ -70,7 +73,8 @@ export default function MissionStudio() {
         const worlds = await listWorlds(base);
         if (!worlds.length) throw new Error("No measured world package is built. Run: python -m pipeline.world.scene mars-jezero, then restart the app.");
         const wanted = new URLSearchParams(window.location.hash.split("?")[1] ?? "").get("world");
-        const pick = worlds.find(w => w.dir === wanted) ?? worlds.find(w => w.body !== "earth") ?? worlds[0];
+        const missionBody = usePlanet.getState().world();
+        const pick = worlds.find(w => w.dir === wanted) ?? worlds.find(w => w.body === missionBody) ?? worlds.find(w => w.body !== "earth") ?? worlds[0];
         setWorldList(worlds);
         const s = await loadWorld(base, pick.dir, (label, done, total) => alive && setLoading({ label, done, total }));
         if (!alive) return;
@@ -201,7 +205,7 @@ export default function MissionStudio() {
   return (
     <main className="as-shell" data-panel={panel}>
       <header className="as-top">
-        <button className="as-brand" onClick={() => navigate("home")} aria-label="Back to EGIZ home"><Home size={14} /><strong>EGIZ</strong><span>ASTRAL</span></button>
+        <button className="as-brand" onClick={() => openWorkspace(usePlanet.getState().world() ? "mission" : "home")} aria-label="Back to EGIZ"><Home size={14} /><strong>EGIZ</strong><span>ASTRAL</span></button>
         <div className="as-site"><span className="as-chip">{m.site.body.toUpperCase()}</span><b>{m.site.name}</b><small>{Math.abs(m.site.lat).toFixed(4)}°{m.site.lat < 0 ? "S" : "N"} {Math.abs(m.site.lon).toFixed(4)}°{m.site.lon < 0 ? "W" : "E"}</small>
           {worldList.length > 1 && <select aria-label="Measured world" value={session.dir} onChange={e => { window.location.hash = `#/astral?world=${encodeURIComponent(e.target.value)}`; window.location.reload(); }}>
             {worldList.map(w => <option key={w.dir} value={w.dir}>{w.body.toUpperCase()} · {w.name}</option>)}</select>}</div>
@@ -211,6 +215,7 @@ export default function MissionStudio() {
         </form>
         <label className="as-quality">Quality<select value={quality} onChange={e => setQuality(e.target.value as Quality)} aria-label="Rendering quality"><option value="performance">Performance</option><option value="balanced">Balanced</option><option value="high">High</option></select></label>
         <button className="as-btn" onClick={() => void exportDossier()}><FileDown size={14} /> Dossier</button>
+        <WorkspaceSwitcher toggleClass="as-btn" compact />
       </header>
       <nav className="as-rail" aria-label="Studio sections">{PANELS.map(({ id, label, icon: Icon }) => <button key={id} aria-current={panel === id ? "page" : undefined} onClick={() => setPanel(id)}><Icon size={17} /><span>{label}</span></button>)}</nav>
 

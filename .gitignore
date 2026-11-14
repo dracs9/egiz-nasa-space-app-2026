@@ -46,6 +46,7 @@ data/kernels/*.bpc
 # Generated application copies, local verification and offline packages
 web/public/data/
 web/public/vendor/openmct/
+web/public/vendor/ort/
 artifacts/
 .pytest_cache/
 .ruff_cache/

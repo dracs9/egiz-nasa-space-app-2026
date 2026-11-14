@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Download, ExternalLink, FlaskConical, TriangleAlert } from 'lucide-react';
 import { t, useLanguage } from '../i18n';
 import { useAppStore } from '../state/store';
+import { usePlanet } from '../planet/workspace/store';
 import { dataModeInfo } from '../data/modes';
 import { decimal, safeUrl } from '../lib/format';
 import { downloadText } from '../lib/download';
@@ -54,7 +55,8 @@ function Intro() {
 
 function Workspace({ doc }: { doc: AtlasBundle }) {
   const missions = doc.registry.tasks.missions;
-  const [missionId, setMissionId] = useState(missions.find(m => m.target === 'MARS_JEZERO')?.id ?? missions[0].id);
+  // Start from the mission's site when ATLAS-Π covers it, else from a mission on the same world.
+  const [missionId, setMissionId] = useState(() => { const p = usePlanet.getState(), site = p.inv.target, w = p.world(); return (missions.find(m => m.target === site) ?? (w ? missions.find(m => doc.targets.find(x => x.id === m.target)?.body === w) : undefined) ?? missions.find(m => m.target === 'MARS_JEZERO') ?? missions[0]).id; });
   const [mode, setMode] = useState<Mode>('tensor');
   const mission = missions.find(m => m.id === missionId)!;
   const target = doc.targets.find(x => x.id === mission.target)!;

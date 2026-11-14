@@ -33,7 +33,7 @@ it('downloads the displayed fixture campaign with disclosure, correct roles and 
   await act(async () => { root!.render(<CampaignPage model={model} />); });
   const exportButton = [...document.querySelectorAll('button')].find(button => button.textContent === 'Export campaign JSON')!;
   expect(exportButton.disabled).toBe(false);
-  const timeout = vi.spyOn(window, 'setTimeout').mockImplementation(() => 123);
+  const timeout = vi.spyOn(window, 'setTimeout').mockImplementation((() => 123) as never);
   exportButton.click();
   expect(createObjectURL).toHaveBeenCalledOnce();
   const blob = createObjectURL.mock.calls[0][0] as unknown as Blob;

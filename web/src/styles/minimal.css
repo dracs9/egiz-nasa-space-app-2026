@@ -4,7 +4,7 @@
  * frames, and explanatory copy shown only when notes are switched on (the "i" in the header).
  * The cinematic home page keeps its own typography. Numbers and coordinates stay monospaced.
  */
-:root:not([data-route="home"]) {
+:root:not([data-route="home"]):not([data-route="explore"]):not([data-route="mission"]) {
   --font-display: Inter, system-ui, sans-serif;
   --ink: #0b0c0d; --ink-1: #0e0f11; --ink-2: #121416; --ink-3: #181a1d;
   --rule: rgba(240, 240, 245, .07); --rule-strong: rgba(240, 240, 245, .16);
@@ -14,20 +14,20 @@ html body { font-weight: 500; }
 html svg.lucide { stroke-width: 2.4; }
 
 /* sentence case, no tracking */
-html :where(#main-content:not(.route-home), .load-screen, .as-shell, .site-drawer, .interface-guide) :where(h1, h2, h3, h4, h5, button, summary, label, th, td, span, p, small, a, strong, em, dt, dd, legend, figcaption, div, li, b, option, select, input, time) {
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .load-screen, .as-shell, .site-drawer, .interface-guide) :where(h1, h2, h3, h4, h5, button, summary, label, th, td, span, p, small, a, strong, em, dt, dd, legend, figcaption, div, li, b, option, select, input, time) {
   text-transform: none !important; letter-spacing: normal !important;
 }
-html :where(#main-content:not(.route-home):not(.route-lab), .as-shell, .load-screen) h1 { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.2 !important; font-weight: 600 !important; max-width: 28ch; }
-html :where(#main-content:not(.route-home), .as-shell) :where(h2, h3, h4) { font-weight: 600 !important; }
-html :where(#main-content:not(.route-home), .as-shell) :where(h2) { font-size: clamp(15px, 1.2vw, 18px) !important; }
-html :where(#main-content:not(.route-home), .as-shell) :where(strong, b, th) { font-weight: 600; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission):not(.route-lab), .as-shell, .load-screen) h1 { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.2 !important; font-weight: 600 !important; max-width: 28ch; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell) :where(h2, h3, h4) { font-weight: 600 !important; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell) :where(h2) { font-size: clamp(15px, 1.2vw, 18px) !important; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell) :where(strong, b, th) { font-weight: 600; }
 
 /* controls: soft, rounded, quiet borders */
-html :where(#main-content:not(.route-home), .as-shell, .load-screen, .site-drawer) :where(button, select, textarea, input:not([type=range]):not([type=checkbox]):not([type=radio])) {
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell, .load-screen, .site-drawer) :where(button, select, textarea, input:not([type=range]):not([type=checkbox]):not([type=radio])) {
   border-radius: 8px !important; border-color: rgba(240, 240, 245, .1) !important; font-weight: 500;
 }
-html :where(#main-content:not(.route-home), .as-shell, .site-drawer) :where(section, article, aside, details, figure, fieldset, table, [class*="card"], [class*="panel"]) { border-color: rgba(240, 240, 245, .06) !important; }
-html :where(#main-content:not(.route-home), .as-shell) :where(th, td) { border-color: rgba(240, 240, 245, .05) !important; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell, .site-drawer) :where(section, article, aside, details, figure, fieldset, table, [class*="card"], [class*="panel"]) { border-color: rgba(240, 240, 245, .06) !important; }
+html :where(#main-content:not(.route-home):not(.route-explore):not(.route-mission), .as-shell) :where(th, td) { border-color: rgba(240, 240, 245, .05) !important; }
 
 /* header */
 html .eg-header { border-bottom-color: transparent !important; }
@@ -37,14 +37,14 @@ html .eg-notes-toggle { display: inline-grid; place-items: center; width: 30px; 
 html .eg-notes-toggle:hover, html .eg-notes-toggle[aria-pressed="true"] { color: var(--paper); background: rgba(240, 240, 245, .16); }
 
 /* explanatory copy appears only with notes on */
-html:not(.eg-notes) #main-content:not(.route-home) :where(
+html:not(.eg-notes) #main-content:not(.route-home):not(.route-explore):not(.route-mission) :where(
   .page-intro p, .page-intro .eyebrow, .eyebrow-dash, .eg-eyebrow,
   .dc-intro p, .dc-meta, .dc-note, .dc-caveats,
   .atlas-hint, .atlas-limits, .atlas-meta, .atlas-legend .muted,
   .panel-description, .map-caption, .map-bottom-notes, .coverage-data-note, .operational-note, .research-footnote,
   .destination-caption, .ml-start-note, .ex-welcome-intro, .astral-note, .small-copy, p.muted
 ) { display: none !important; }
-html #main-content:not(.route-home) .page-intro { margin-bottom: 18px; }
+html #main-content:not(.route-home):not(.route-explore):not(.route-mission) .page-intro { margin-bottom: 18px; }
 
 /* The Engineering Lab is laid out around the condensed face; it keeps it, with the shared case, weights and controls. */
 html #main-content.route-lab { --font-display: 'Sofia Sans Condensed', 'Arial Narrow', Inter, sans-serif; }

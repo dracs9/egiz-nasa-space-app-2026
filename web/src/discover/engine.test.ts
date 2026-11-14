@@ -1,9 +1,7 @@
 // Parity between the Python discovery engine (reference) and its browser port, on the real bundle:
 // aggregation of every shortlisted window, the computed gap ledger and the rover experiment.
 // Node built-ins are available in Vitest; the app tsconfig intentionally has no @types/node.
-// @ts-expect-error untyped node built-in
 import { readFileSync, existsSync } from 'node:fs';
-// @ts-expect-error untyped node built-in
 import { resolve } from 'node:path';
 declare const process: { cwd(): string };
 import { describe, expect, it } from 'vitest';

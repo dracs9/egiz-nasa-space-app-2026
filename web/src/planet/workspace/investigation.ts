@@ -27,7 +27,38 @@ export interface Investigation {
   siteKey: string | null; streamed: StreamRef | null; marks: MarkRecord[]; measurements: MeasureRecord[]; views: SavedView[];
   experiments: Experiment[]; answers: IntelAnswer[]; notes: string;
   software: { investigation: string; twin: string; ml: string };
+  // Expedition journey (optional and additive: records saved before the journey existed stay valid).
+  /** The world the visitor chose to explore. */
+  world?: 'moon' | 'mars';
+  /** Ordered log of decisions, so the dossier can say what was chosen, when and why. */
+  trail?: TrailEntry[];
+  /** Summary of the last analysis run, enough to detect staleness and to verify a re-run reproduces it. */
+  analysis?: AnalysisRecord | null;
+  /** Planetary targets examined as alternatives to the investigated one. */
+  considered?: string[];
+  /** The visitor's stated conclusion, written in the dossier. */
+  decision?: { text: string; utc: string } | null;
+  /** Guided first journey: the furthest step reached and when the visitor first entered Mission Home. */
+  journey?: { step: JourneyStep; reached: JourneyStep[]; homeUtc?: string | null };
+  /** The planetary target the kept Earth candidates were ranked for (to flag them when the site changes). */
+  analogsFor?: string | null;
+  /** Display name of the mission site, so every surface can name it without loading the discovery index. */
+  siteName?: string | null;
 }
+/** Steps of the guided expedition, in order (Mission Home follows the last one). */
+export const JOURNEY_STEPS = ['explore', 'site', 'analysis', 'alternatives', 'analogs'] as const;
+export type JourneyStep = typeof JOURNEY_STEPS[number];
+export const isJourneyStep = (v: unknown): v is JourneyStep => (JOURNEY_STEPS as readonly unknown[]).includes(v);
+export type TrailKind = 'world' | 'target' | 'profile' | 'analysis' | 'switch' | 'site' | 'candidate' | 'experiment' | 'decision';
+export interface TrailEntry { utc: string; kind: TrailKind; text: string; ref?: string }
+export interface AnalysisStepRecord { id: string; title: string; ms: number; summary: string; ok: boolean }
+export interface AnalysisRecord {
+  target: string; profile: string; weightsKey: string; ranUtc: string; bundleSha: string;
+  /** Top-10 Earth windows in rank order; a re-run must reproduce exactly this list for the same inputs. */
+  top10: string[]; verdict: string; steps: AnalysisStepRecord[]; findings: { severity: string; title: string; detail: string }[];
+}
+/** Stable key for a weight vector (sorted, 3 decimals) — identical weights give identical keys. */
+export const weightsKey = (w: Record<string, number>) => Object.keys(w).sort().map(k => `${k}:${(w[k] ?? 0).toFixed(3)}`).join(',');
 export function newInvestigation(title: string, nowUtc: string, id = `inv-${nowUtc.replace(/[^0-9]/g, '').slice(0, 14)}`): Investigation {
   return { schema: 'egiz.investigation', version: INVESTIGATION_VERSION, id, title, question: '', createdUtc: nowUtc, updatedUtc: nowUtc, target: null, profile: 'general', weights: null, candidates: [], siteKey: null, streamed: null, marks: [], measurements: [], views: [], experiments: [], answers: [], notes: '',
     software: { investigation: INVESTIGATION_VERSION, twin: TWIN_VERSION, ml: `${ML_MODEL.id} ${ML_MODEL.version}` } };
@@ -39,6 +70,9 @@ export function parseInvestigation(text: string): Investigation {
   if (!v || v.schema !== 'egiz.investigation') throw new Error('This file is not an EGIZ investigation record.');
   if (v.version !== INVESTIGATION_VERSION) throw new Error(`This investigation was saved with version ${v.version}; this build reads ${INVESTIGATION_VERSION}.`);
   for (const k of ['marks', 'measurements', 'views', 'experiments', 'answers', 'candidates'] as const) if (!Array.isArray(v[k])) throw new Error(`The investigation record is incomplete (${k}).`);
+  if (v.world !== undefined && v.world !== 'moon' && v.world !== 'mars') throw new Error('The investigation names an unknown world.');
+  for (const k of ['trail', 'considered'] as const) if (v[k] !== undefined && !Array.isArray(v[k])) throw new Error(`The investigation record is malformed (${k}).`);
+  if (v.journey !== undefined && (typeof v.journey !== 'object' || v.journey === null || !isJourneyStep(v.journey.step) || !Array.isArray(v.journey.reached))) throw new Error('The investigation record is malformed (journey).');
   return v;
 }
 
@@ -60,6 +94,18 @@ export function buildReport(inv: Investigation, ctx: { site: Site | null; layers
   const push = (...lines: string[]) => out.push(...lines), table = (head: string[], rows: string[][]) => push(`| ${head.join(' | ')} |`, `| ${head.map(() => '---').join(' | ')} |`, ...rows.map(r => `| ${r.join(' | ')} |`), '');
   push(`# ${inv.title}`, '', `_EGIZ investigation ${inv.id} · created ${inv.createdUtc} · report generated ${ctx.generatedUtc ?? inv.updatedUtc}_`, '', '> Exploratory research record. Simulated quantities are not validated against field, test-bed or flight data. Human scientific review is pending.', '');
   push('## Research question', '', inv.question || '_No question was recorded._', '');
+  if (inv.decision?.text) push('## Conclusion', '', inv.decision.text, '', `_Recorded ${inv.decision.utc}._`, '');
+  if (inv.world) push(`- **World:** ${BODY_LABEL[inv.world]}`, '');
+  const an = inv.analysis;
+  if (an) {
+    const stale = d ? an.target !== d.target.id || an.weightsKey !== weightsKey(inv.weights ?? d.weights) : false;
+    push('## Site analysis', '', `Run ${an.ranUtc} for ${an.target}, profile "${an.profile}", discovery index \`${an.bundleSha.slice(0, 16)}\`. Critic verdict: **${an.verdict}**.${stale ? ' ⚠ The site or priorities changed after this run; it is out of date.' : ''}`, '');
+    table(['Step', 'Time', 'Result'], an.steps.map(s => [s.title, `${s.ms} ms`, s.summary.replace(/\|/g, '/')]));
+    push(`Top-10 Earth windows: ${an.top10.join(', ')}.`, '');
+    if (an.findings.length) push(...an.findings.map(f => `- [${f.severity}] **${f.title}** — ${f.detail}`), '');
+  }
+  const alts = (inv.considered ?? []).filter(id => id !== inv.target);
+  if (alts.length) push('## Alternatives considered', '', ...alts.map(id => `- ${id}`), '');
   push('## Selected regions', '');
   if (d) push(`- **Target:** ${d.target.name} (${d.target.id}, ${BODY_LABEL[d.target.body]}) at ${n(d.target.lat, 4)}°, ${n(d.target.lon, 4)}° — ${d.target.significance}`);
   if (s) push(`- **3D site:** ${s.name} (${s.id}, ${BODY_LABEL[s.body]}), ${n(s.lat, 4)}°, ${n(s.lon, 4)}°, ${((s.extent.east - s.extent.west) / 1000).toFixed(1)} km window`);
@@ -95,5 +141,6 @@ export function buildReport(inv: Investigation, ctx: { site: Site | null; layers
   if (d) { const missing = d.bundle.dimensions.filter(x => d.target.dimension_status[x.id] !== 'measured'); push('## Recommended next measurements', '', ...(missing.length ? missing.map(x => `- **${x.label}** (${d.target.dimension_status[x.id].replace('_', ' ')})${x.integration_path ? ` — ${x.integration_path}` : ''}`) : ['- All similarity dimensions are measured for this target.']), '- Field verification of slope and roughness at the vehicle scale along any proposed route.', '- In-situ soil bearing and shear tests before treating simulated slip or sinkage as predictive.', ''); }
   push('## Reproducibility', '', `- Investigation schema ${inv.schema} ${inv.version}; twin ${inv.software.twin}; ML ${inv.software.ml}.`, ...(d ? [`- Priority profile "${inv.profile}"; weights ${JSON.stringify(inv.weights ?? d.weights)}.`, ...d.bundle.reproduce.map(c => `- \`${c}\``)] : []), ...inv.experiments.map(e => `- Experiment "${e.name}": site ${e.site.key} (${e.site.postingM} m, grid ${e.site.gridSide}), fingerprint \`${e.fingerprint}\`; re-run from the saved investigation to verify.`), '- Import the investigation JSON in the Planetary Studio to reopen this exact state.', '');
   if (inv.notes) push('## Notes', '', inv.notes, '');
+  if (inv.trail?.length) push('## Investigation trail', '', ...inv.trail.map(e => `- ${e.utc} · ${e.text}`), '');
   return out.join('\n');
 }

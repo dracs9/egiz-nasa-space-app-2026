@@ -1,52 +1,20 @@
 // EGIZ landing narrative. Every figure on this page is read from the loaded dataset.
 import { Fragment, isValidElement, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Crosshair, Earth, Globe2 } from 'lucide-react';
 import Lenis from 'lenis';
 import { Decode } from './Decode';
 import { t as tr, useLanguage } from '../i18n';
 import { useAppStore, type Route } from '../state/store';
 import type { AppData, Run, Target } from '../types/contracts';
 import { hasSyntheticData } from '../data/load';
-import { MissionGlyph } from '../mission/MissionGlyph';
 import { DestinationArtwork } from '../components/DestinationArtwork';
-import { setLaunchIntent, type LaunchOverrides } from '../mission/launchIntent';
-import type { Mode } from '../mission/types';
 import './home.css';
+import { startMission } from '../expedition/actions';
+import { openWorkspace } from '../expedition/nav';
+import { usePlanet } from '../planet/workspace/store';
 
-interface Param { key: string; group: 'rover' | 'vehicle'; en: string; ru: string; unit: string; min: number; max: number; step: number; value: number; maxFrom?: string }
-/** The few inputs that change each expedition the most; everything else stays in the lab. */
-const PARAMS: Record<Mode, Param[]> = {
-  rover: [
-    { key: 'speed', group: 'rover', en: 'Cruise speed', ru: 'Скорость', unit: 'm/s', min: 0.2, max: 2, step: 0.1, value: 0.8 },
-    { key: 'maxSlope', group: 'rover', en: 'Slope limit', ru: 'Предел уклона', unit: '°', min: 5, max: 30, step: 1, value: 15 },
-    { key: 'batteryWh', group: 'rover', en: 'Battery', ru: 'Батарея', unit: 'Wh', min: 1000, max: 10000, step: 500, value: 3000 },
-  ],
-  launch: [
-    { key: 'thrust', group: 'vehicle', en: 'Thrust', ru: 'Тяга', unit: 'N', min: 10000, max: 60000, step: 1000, value: 24000 },
-    { key: 'fuel', group: 'vehicle', en: 'Propellant', ru: 'Топливо', unit: 'kg', min: 200, max: 1500, step: 50, value: 600 },
-    { key: 'angle', group: 'vehicle', en: 'Tilt from vertical', ru: 'Наклон', unit: '°', min: 0, max: 30, step: 1, value: 0 },
-  ],
-  descent: [
-    { key: 'initialAltitude', group: 'vehicle', en: 'Start altitude', ru: 'Начальная высота', unit: 'm', min: 400, max: 3000, step: 100, value: 1200 },
-    { key: 'initialVelocity', group: 'vehicle', en: 'Vertical speed', ru: 'Вертикальная скорость', unit: 'm/s', min: -80, max: -5, step: 1, value: -35 },
-    { key: 'ignitionAltitude', group: 'vehicle', en: 'Engine ignition', ru: 'Включение двигателя', unit: 'm', min: 100, max: 2900, step: 50, value: 800, maxFrom: 'initialAltitude' },
-  ],
-  eva: [
-    { key: 'speed', group: 'rover', en: 'Walking speed', ru: 'Скорость', unit: 'm/s', min: 0.5, max: 2, step: 0.1, value: 1 },
-    { key: 'maxSlope', group: 'rover', en: 'Slope limit', ru: 'Предел уклона', unit: '°', min: 10, max: 30, step: 1, value: 20 },
-    { key: 'batteryWh', group: 'rover', en: 'Life-support energy', ru: 'Запас энергии', unit: 'Wh', min: 1000, max: 6000, step: 250, value: 3000 },
-  ],
-};
-const paramMax = (p: Param, values: Record<string, number>) => p.maxFrom ? Math.min(p.max, (values[p.maxFrom] ?? p.max) - p.step) : p.max;
-const paramValue = (p: Param, values: Record<string, number>) => Math.min(values[p.key] ?? p.value, paramMax(p, values));
-const defaultsFor = (mode: Mode) => Object.fromEntries(PARAMS[mode].map(p => [p.key, p.value]));
 
-const EXPEDITIONS: { mode: Mode; en: string; ru: string; textEn: string; textRu: string }[] = [
-  { mode: 'rover', en: 'Rover traverse', ru: 'Маршрут ровера', textEn: 'Drive across measured terrain', textRu: 'Проехать по измеренному рельефу' },
-  { mode: 'launch', en: 'Launch & flight', ru: 'Взлёт и полёт', textEn: 'Test a rocket launch', textRu: 'Испытать запуск ракеты' },
-  { mode: 'descent', en: 'Descent & landing', ru: 'Спуск и посадка', textEn: 'Try a surface landing', textRu: 'Попробовать посадку' },
-  { mode: 'eva', en: 'Habitat & EVA', ru: 'База и выход', textEn: 'Plan surface exploration', textRu: 'Спланировать выход на поверхность' },
-];
+
 
 type Lang = 'en' | 'ru';
 const L = <T,>(lang: Lang, en: T, ru: T) => (lang === 'ru' ? ru : en);
@@ -275,9 +243,7 @@ export function HomePage() {
   const { data, navigate, setTarget } = useAppStore();
   const root = useRef<HTMLElement>(null);
   const [destination, setDestination] = useState<'moon' | 'mars'>('moon');
-  const [mode, setMode] = useState<Mode>('rover');
-  const [params, setParams] = useState<Record<string, number>>(() => defaultsFor('rover'));
-  const chooseMode = (next: Mode) => { setMode(next); setParams(defaultsFor(next)); };
+  const resume = usePlanet(st => (st.world() ? `${st.world() === 'moon' ? L(lang, 'the Moon', 'Луна') : L(lang, 'Mars', 'Марс')}${st.inv.siteName ? ` · ${st.inv.siteName}` : ''}` : null));
   useReveal(root); useParallax(root); useSpatial(root);
   if (!data) return null;
 
@@ -296,17 +262,11 @@ export function HomePage() {
   const synthetic = hasSyntheticData(data);
   const currentTarget = destination === 'mars' ? mars : moon;
   const open = (route: Route, target?: Target) => { if (target) setTarget(target.id); navigate(route); };
-  const startExpedition = (autorun: boolean) => {
-    const overrides: LaunchOverrides = {};
-    for (const p of PARAMS[mode]) {
-      const group = (overrides[p.group] ??= {}) as Record<string, number>;
-      group[p.key] = paramValue(p, params);
-    }
-    setLaunchIntent(mode, overrides, autorun);
-    open('lab', destination === 'mars' ? mars : moon);
-  };
 
+  const hasMission = !!usePlanet.getState().world();
   const tools: { route: Route; title: string; ru: string; text: string; textRu: string }[] = [
+    ...(hasMission ? [{ route: 'mission' as Route, title: 'Mission Home', ru: 'Центр миссии', text: 'Your mission at a glance: site, findings, Earth analogs, open questions, next actions.', textRu: 'Ваша миссия целиком: место, выводы, земные аналоги, открытые вопросы, следующие шаги.' }] : []),
+    { route: 'explore', title: 'Expedition', ru: 'Экспедиция', text: 'Choose the Moon or Mars, explore the planet, investigate a site, find its Earth analogs.', textRu: 'Выберите Луну или Марс, изучите планету и место, найдите земные аналоги.' },
     { route: 'planet', title: 'Planetary Studio', ru: 'Планетарная студия', text: 'One investigation from start to finish: discover, inspect, simulate, compare, decide.', textRu: 'Одно исследование от начала до конца: найти, изучить, смоделировать, сравнить, решить.' },
     { route: 'discover', title: 'Discover', ru: 'Поиск аналогов', text: 'Search the whole Earth for analogue ground, and ask the assistant in plain words.', textRu: 'Поиск аналогов по всей Земле — и ассистент, которому можно задать вопрос словами.' },
     { route: 'astral', title: 'Mission Studio', ru: 'Студия миссий', text: 'Measured Jezero ground: terrain units, science targets and a rover you can plan.', textRu: 'Измеренный грунт Езеро: типы рельефа, научные цели и ровер, которым можно управлять.' },
@@ -373,28 +333,14 @@ export function HomePage() {
             </button>)}
           </div>
 
-          <p className="hm-panel-label">{L(lang, 'Expedition', 'Экспедиция')}</p>
-          <div className="hm-exp-list" role="radiogroup" aria-label={L(lang, 'Expedition', 'Экспедиция')}>
-            {EXPEDITIONS.map(exp => <button key={exp.mode} role="radio" aria-checked={mode === exp.mode} onClick={() => chooseMode(exp.mode)}>
-              <MissionGlyph mode={exp.mode} />
-              <span className="hm-exp-title">{L(lang, exp.en, exp.ru)}</span>
-            </button>)}
-          </div>
+          <ol className="hm-start-steps" aria-label={L(lang, 'What happens next', 'Что будет дальше')}>
+            {[[Globe2, L(lang, 'Explore the planet', 'Изучить планету')], [Crosshair, L(lang, 'Investigate a site', 'Исследовать место')], [Earth, L(lang, 'Find it on Earth', 'Найти его на Земле')]].map(([Icon, label], i) => { const I = Icon as typeof Globe2; return <li key={i}><I size={15} strokeWidth={1.6} aria-hidden="true" /><span>{label as string}</span></li>; })}
+          </ol>
 
-          <p className="hm-panel-label">{L(lang, 'Parameters', 'Параметры')}</p>
-          <div className="hm-params">
-            {PARAMS[mode].map(p => {
-              const max = paramMax(p, params);
-              const value = paramValue(p, params);
-              return <label key={p.key} className="hm-param">
-                <span className="hm-param-head"><span>{L(lang, p.en, p.ru)}</span><output>{value.toLocaleString(lang)}<small>{p.unit}</small></output></span>
-                <input type="range" min={p.min} max={max} step={p.step} value={value} onChange={e => setParams(v => ({ ...v, [p.key]: Number(e.target.value) }))} style={{ '--fill': `${((value - p.min) / (max - p.min)) * 100}%` } as React.CSSProperties} />
-              </label>;
-            })}
-          </div>
+          <button className="eg-button hm-launch-button" onClick={() => startMission(destination)}>{L(lang, `Start · ${destination === 'mars' ? 'Mars' : 'the Moon'}`, `Старт · ${destination === 'mars' ? 'Марс' : 'Луна'}`)}<ArrowRight size={16} strokeWidth={1.6} /></button>
+          {resume && <button className="hm-panel-link hm-resume" onClick={() => openWorkspace('mission')}>{L(lang, 'Continue your mission', 'Продолжить миссию')}: {resume}</button>}
 
-          <button className="eg-button hm-launch-button" onClick={() => startExpedition(true)}>{L(lang, 'Start simulation', 'Запустить моделирование')}<ArrowRight size={16} strokeWidth={1.6} /></button>
-          <button className="hm-panel-link" onClick={() => startExpedition(false)}>{L(lang, 'Open the lab without running', 'Открыть лабораторию без запуска')}</button>
+          <button className="hm-panel-link" onClick={() => open('lab', destination === 'mars' ? mars : moon)}>{L(lang, 'Or run a rover, launch, landing or EVA simulation →', 'Или моделирование: ровер, запуск, посадка, выход →')}</button>
         </aside>
       </div>
       <a className="hm-scroll" href="#hm-thesis" aria-label={L(lang, 'Scroll to story', 'Прокрутить вниз')}><span /></a>
@@ -546,7 +492,7 @@ export function HomePage() {
       </div>
     </section>
 
-    {/* 08 — Index of workspaces */}
+    {/* 09 — Index of workspaces */}
     <section className="hm-index hm-wrap" aria-labelledby="hm-index">
       <div className="hm-index-head">
         <p className="eg-eyebrow" data-reveal><DecodeView text={L(lang, '08 / Workspaces', '08 / Разделы')} /></p>
@@ -554,7 +500,7 @@ export function HomePage() {
       </div>
       <ul className="hm-index-list">
         {tools.map((tool, i) => <li key={tool.route} data-reveal>
-          <button onClick={() => open(tool.route)}>
+          <button onClick={() => (tool.route === 'explore' && !hasMission ? window.scrollTo({ top: 0, behavior: 'smooth' }) : openWorkspace(tool.route))}>
             <span className="hm-index-n">{String(i + 1).padStart(2, '0')}</span>
             <span className="hm-index-title">{L(lang, tool.title, tool.ru)}</span>
             <span className="hm-index-text">{L(lang, tool.text, tool.textRu)}</span>

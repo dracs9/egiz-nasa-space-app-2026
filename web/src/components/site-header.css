@@ -99,3 +99,55 @@ html.eg-menu-lock { overflow: hidden; }
   .eg-header .eg-nav button { transform: none; transition: color .35s, opacity .2s; }
   .eg-wordmark svg { transition: none; }
 }
+
+/* ---------- the mission: one chip in the bar, one line at the top of the index ---------- */
+.eg-mission-chip { display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 12px 0 10px; border: 1px solid var(--rule-strong); background: transparent; color: var(--paper-2); cursor: pointer;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; max-width: 280px; transition: color .3s, border-color .3s, background-color .3s; }
+.eg-mission-chip b { font-weight: 500; color: var(--paper); overflow: hidden; text-overflow: ellipsis; letter-spacing: .06em; }
+.eg-mission-chip span { color: var(--paper-3); }
+.eg-mission-chip:hover, .eg-mission-chip.on { border-color: var(--paper-2); color: var(--paper); }
+.eg-mission-chip i, .eg-nav-mission-line i { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--moon); box-shadow: 0 0 8px rgba(217, 201, 163, .6); }
+.eg-mission-chip i.b-mars, .eg-nav-mission-line i.b-mars { background: var(--mars); box-shadow: 0 0 8px rgba(208, 116, 80, .6); }
+.eg-header.over-hero:not(.scrolled) .eg-mission-chip { background: rgba(0, 0, 0, .35); }
+.eg-nav-mission { max-width: 1280px; margin-bottom: clamp(18px, 3vh, 36px); position: relative; z-index: 1; }
+.eg-nav-mission-line { display: flex; align-items: center; gap: 12px; margin: 0; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(20px, 2vw, 28px); letter-spacing: .04em; color: var(--paper-2); }
+.eg-nav-mission-line b { color: var(--paper); }
+.eg-nav-start { display: inline-flex; align-items: center; gap: 12px; padding: 0; border: 0; background: none; color: var(--paper); cursor: pointer; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(20px, 2vw, 28px); letter-spacing: .04em; }
+.eg-nav-start:hover svg { transform: translateX(4px); } .eg-nav-start svg { transition: transform .45s var(--ease-out); }
+.eg-nav-group { max-width: 1280px; margin-bottom: clamp(16px, 2.6vh, 32px); position: relative; z-index: 1; }
+.eg-nav-group .eg-nav-kicker { margin-bottom: 4px; }
+.eg-header .eg-nav-group button { padding: 16px 0; }
+.eg-nav-group .eg-nav-title { font-size: clamp(28px, 3.3vw, 50px); }
+.eg-nav-note { grid-column: 2; margin-top: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em; line-height: 1.45; color: var(--paper-4); text-transform: none; transition: color .35s; }
+.eg-header .eg-nav button:hover .eg-nav-note, .eg-header .eg-nav button[aria-current=page] .eg-nav-note { color: var(--paper-3); }
+@media (max-width: 1180px) { .eg-mission-chip b { max-width: 140px; } }
+@media (max-width: 760px) { .eg-mission-chip b { display: none; } }
+@media (max-width: 560px) { .eg-mission-chip { padding: 0 8px; } .eg-mission-chip span { display: none; } }
+
+/* ---------- workspace switcher inside full-screen studios ---------- */
+.eg-switch { position: relative; display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.eg-switch-toggle { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border: 1px solid var(--rule-strong); background: transparent; color: var(--paper-2); cursor: pointer; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
+.eg-switch-toggle:hover, .eg-switch-toggle[aria-expanded=true] { color: var(--paper); border-color: var(--paper-2); }
+.eg-switch-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 90; width: min(420px, calc(100vw - 24px)); max-height: min(78vh, 720px); overflow-y: auto; padding: 8px 0; background: #050506; border: 1px solid var(--rule-strong); box-shadow: 0 30px 60px rgba(0, 0, 0, .6); }
+.eg-switch-menu button { display: grid; grid-template-columns: 30px 1fr; gap: 2px 10px; width: 100%; padding: 10px 16px; border: 0; border-bottom: 1px solid var(--rule); background: none; text-align: left; color: var(--paper-2); cursor: pointer; }
+.eg-switch-menu button:last-child { border-bottom: 0; }
+.eg-switch-menu button:hover, .eg-switch-menu button[aria-current=page] { background: rgba(240, 240, 245, .04); color: var(--paper); }
+.eg-switch-n { grid-row: span 2; font-family: var(--font-mono); font-size: 10.5px; color: var(--paper-4); padding-top: 3px; }
+.eg-switch-menu button[aria-current=page] .eg-switch-n { color: #f2c58a; }
+.eg-switch-menu b { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 16px; }
+.eg-switch-menu em { font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--paper-4); line-height: 1.4; }
+@media (max-width: 760px) { .eg-switch .eg-mission-chip { display: none; } }
+.eg-switch .eg-switch-menu button { background: none !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; border-top: 0 !important; }
+.eg-switch .eg-switch-menu button:hover, .eg-switch .eg-switch-menu button[aria-current=page] { background: rgba(240, 240, 245, .04) !important; }
+.eg-switch .eg-switch-toggle { border-radius: 0 !important; }
+
+
+/* the mission line sits in one row above the index; the index keeps the full-screen table-of-contents look */
+.eg-header .eg-nav .eg-nav-start { display: inline-flex; grid-template-columns: none; align-items: center; gap: 12px; padding: 0; border: 0; opacity: 1; transform: none; color: var(--paper); font-size: clamp(18px, 1.6vw, 24px); }
+.eg-header .eg-nav-mission { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; margin-bottom: clamp(10px, 2vh, 22px); }
+.eg-header .eg-nav-mission .eg-nav-kicker { margin: 0; }
+.eg-header .eg-nav-mission-line { font-size: clamp(18px, 1.6vw, 24px); }
+.eg-header .eg-nav-group { margin-bottom: clamp(8px, 1.6vh, 18px); }
+.eg-header .eg-nav-group .eg-nav-kicker { margin: 0 0 2px; }
+.eg-header .eg-nav-group button { padding: clamp(9px, 1.4vh, 14px) 0; }
+.eg-nav-group .eg-nav-title { font-size: clamp(26px, min(3vw, 5.2vh), 46px); }

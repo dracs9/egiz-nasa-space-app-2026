@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { Type } from 'lucide-react';
+import { ArrowRight, Type } from 'lucide-react';
 import { t, LanguageSwitcher } from '../i18n';
 import { useAppStore, type Route } from '../state/store';
 import type { DataMode } from '../data/modes';
 import { DataModePicker } from './DataModePicker';
 import { DataNotes } from './DataNotes';
 import copy from '../content/copy.json';
+import { usePlanet } from '../planet/workspace/store';
+import { contextNote, openWorkspace, SECTION_OF, WORKSPACES, workspace } from '../expedition/nav';
 import './site-header.css';
 
-// Mission Studio and Lunar World are superseded by the Planetary Studio and stay reachable from its Tools menu.
-const links: Route[] = ['planet', 'discover', 'lab', 'campaign', 'atlas', 'evidence', 'twin'];
+/** The index, in order: the mission first, then every workspace, then reference. */
+const links: Route[] = WORKSPACES.map(w => w.route);
+const GROUPS: { id: 'mission' | 'workspace' | 'reference'; label: string }[] = [{ id: 'mission', label: 'Your mission' }, { id: 'workspace', label: 'Workspaces' }, { id: 'reference', label: 'Background' }];
+const titleOf = (r: Route) => workspace(r)?.title ?? copy.nav[r as keyof typeof copy.nav] ?? r;
 
 /** EGIZ mark: a world rising over a measured horizon, its orbit and a moon — Earth, before elsewhere. */
 export function EgizMark() {
@@ -26,10 +30,20 @@ export function EgizMark() {
   </svg>;
 }
 
-/** One quiet line: the mark, where you are, the tools you need. The header's bottom rule is a horizon
- *  that fills as you read, with a small sun riding its edge. The workspaces live in an index behind "Menu". */
+/** The mission in one line: world and site. Opens Mission Home. Rendered by every header, including full-screen studios. */
+export function MissionChip({ className = '' }: { className?: string }) {
+  const world = usePlanet(s => s.world()), siteName = usePlanet(s => (s.inv.target ? s.inv.siteName ?? s.target()?.name.split(' (')[0] ?? null : null)), route = useAppStore(a => a.route);
+  if (!world) return null;
+  return <button className={`eg-mission-chip ${route === 'mission' ? 'on' : ''} ${className}`} onClick={() => openWorkspace('mission')} title={t('Mission Home')} aria-label={`${t('Mission Home')}: ${t(world === 'moon' ? 'The Moon' : 'Mars')}${siteName ? `, ${siteName}` : ''}`}>
+    <i className={`b-${world}`} aria-hidden="true" /><span>{t(world === 'moon' ? 'Moon' : 'Mars')}</span>{siteName && <b>{siteName}</b>}
+  </button>;
+}
+
+/** One quiet line: the mark, where you are, the mission, the tools you need. The header's bottom rule is a horizon
+ *  that fills as you read, with a small sun riding its edge. Every workspace lives in an index behind "Menu". */
 export function SiteHeader({ availableModes }: { availableModes: DataMode[] }) {
-  const { route, navigate } = useAppStore();
+  const { route } = useAppStore();
+  const world = usePlanet(s => s.world()), siteName = usePlanet(s => (s.inv.target ? s.inv.siteName ?? s.target()?.name.split(' (')[0] ?? null : null));
   const [menuOpen, setMenuOpen] = useState(false);
   const [notes, setNotes] = useState(false);
   // Explanatory copy is hidden by default on every workspace page; this switch shows it (styles/minimal.css).
@@ -65,17 +79,19 @@ export function SiteHeader({ availableModes }: { availableModes: DataMode[] }) {
   useEffect(() => {
     if (!menuOpen) return;
     const close = (event: KeyboardEvent) => { if (event.key === 'Escape') { setMenuOpen(false); document.getElementById('navigation-toggle')?.focus(); } };
-    window.addEventListener('keydown', close);
+    const outside = (event: MouseEvent) => { if (!bar.current?.contains(event.target as Node)) setMenuOpen(false); };
+    window.addEventListener('keydown', close); document.addEventListener('mousedown', outside);
     document.documentElement.classList.add('eg-menu-lock');
-    return () => { window.removeEventListener('keydown', close); document.documentElement.classList.remove('eg-menu-lock'); };
+    return () => { window.removeEventListener('keydown', close); document.removeEventListener('mousedown', outside); document.documentElement.classList.remove('eg-menu-lock'); };
   }, [menuOpen]);
   useEffect(() => { setMenuOpen(false); }, [route]);
 
-  const here = links.indexOf(route);
+  const section = SECTION_OF[route] ?? route, here = links.indexOf(section);
   const classes = ['eg-header', overHero && 'over-hero', scrolled && 'scrolled', tucked && !menuOpen && 'tucked', menuOpen && 'menu-open'].filter(Boolean).join(' ');
+  const go = (r: Route) => { setMenuOpen(false); openWorkspace(r); };
   return <header ref={bar} className={classes}>
-    <button className="eg-wordmark" aria-label={t('Egiz campaign home')} onClick={() => navigate('home')}><EgizMark /><strong>{copy.brand.name}</strong></button>
-    {here >= 0 && <p className="eg-here" aria-hidden="true"><span>{String(here + 1).padStart(2, '0')}</span>{t(copy.nav[route as keyof typeof copy.nav])}</p>}
+    <button className="eg-wordmark" aria-label={t('Egiz campaign home')} onClick={() => useAppStore.getState().navigate('home')}><EgizMark /><strong>{copy.brand.name}</strong></button>
+    {here >= 0 && route !== 'home' ? <p className="eg-here" aria-hidden="true"><span>{String(here + 1).padStart(2, '0')}</span>{t(titleOf(section))}</p> : null}
     <div className="eg-header-tools">
       <DataModePicker available={availableModes} compact />
       <button className="eg-notes-toggle" aria-pressed={notes} aria-label={t('Show explanations')} title={t('Show explanations')} onClick={() => setNotes(!notes)}><Type size={15} /></button>
@@ -88,13 +104,22 @@ export function SiteHeader({ availableModes }: { availableModes: DataMode[] }) {
     </div>
     <span className="eg-horizon" aria-hidden="true"><i /></span>
     <nav id="primary-navigation" className={`eg-nav ${menuOpen ? 'open' : ''}`} aria-label={t('Main navigation')} data-lenis-prevent>
-      <p className="eg-nav-kicker" aria-hidden="true">{t('Index')}</p>
-      <div className="eg-nav-list">
-        {links.map((r, i) => <button key={r} aria-current={route === r ? 'page' : undefined} className={route === r ? 'active' : ''} style={{ '--i': i } as React.CSSProperties} onClick={() => { navigate(r); setMenuOpen(false); }}>
-          <span className="eg-nav-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <span className="eg-nav-title">{t(copy.nav[r as keyof typeof copy.nav])}</span>
-        </button>)}
-      </div>
+      {world ? <div className="eg-nav-mission">
+        <p className="eg-nav-kicker" aria-hidden="true">{t('Current mission')}</p>
+        <p className="eg-nav-mission-line"><i className={`b-${world}`} aria-hidden="true" />{t(world === 'moon' ? 'The Moon' : 'Mars')}{siteName && <> · <b>{siteName}</b></>}</p>
+      </div> : <div className="eg-nav-mission">
+        <p className="eg-nav-kicker" aria-hidden="true">{t('No mission yet')}</p>
+        <button className="eg-nav-start" onClick={() => { setMenuOpen(false); useAppStore.getState().navigate('explore'); }}>{t('The Moon or Mars? Start a mission')}<ArrowRight size={15} /></button>
+      </div>}
+      {GROUPS.map(g => <div key={g.id} className="eg-nav-group">
+        <p className="eg-nav-kicker" aria-hidden="true">{t(g.label)}</p>
+        <div className="eg-nav-list">
+          {WORKSPACES.filter(w => w.group === g.id).map(w => { const i = links.indexOf(w.route); return <button key={w.route} aria-current={section === w.route ? 'page' : undefined} className={section === w.route ? 'active' : ''} style={{ '--i': i } as React.CSSProperties} onClick={() => go(w.route)} title={t(contextNote(w.route) ?? w.text)}>
+            <span className="eg-nav-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span className="eg-nav-title">{t(w.title)}</span>
+          </button>; })}
+        </div>
+      </div>)}
     </nav>
   </header>;
 }

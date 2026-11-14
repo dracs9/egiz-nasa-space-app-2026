@@ -1,13 +1,14 @@
 // Candidate detail: dimension profile, evidence, uncertainty, rarity, operational axis,
 // computed gaps, rover experiment and a reproducible dossier export.
 import { useEffect, useMemo, useState } from 'react';
-import { Download, FlaskConical, GitCompareArrows, Mountain, TriangleAlert, X } from 'lucide-react';
+import { Check, Download, FlaskConical, GitCompareArrows, Mountain, Plus, TriangleAlert, X } from 'lucide-react';
 import { t } from '../i18n';
 import { downloadJson, downloadText } from '../lib/download';
 import { useAppStore } from '../state/store';
 import { CdfChart, IntervalBar, Radar, SHORT } from './charts';
 import { col, gapLedger, isWeakMatch, roverExperiment, sha256Hex, slopeCdf, text, type Aggregate } from './engine';
 import type { DiscoveryBundle, GapRow, RoverBodyModel, RoverExperiment, ScoreShard, ShortlistEntry, TargetEntry, ValidationDoc } from './types';
+import { usePlanet } from '../planet/workspace/store';
 
 export interface DetailProps {
   bundle: DiscoveryBundle; target: TargetEntry; shard: ScoreShard; agg: Aggregate; i: number; rank: number;
@@ -61,6 +62,7 @@ export function CandidateDetail(p: DetailProps) {
       </div>
       <div className="dc-actions">
         <button className="eg-button eg-button-ghost" onClick={p.onCompare} aria-pressed={p.inCompare}><GitCompareArrows size={15} />{p.inCompare ? t('In comparison') : t('Compare')}</button>
+        <MissionAnalogButton target={p.target.id} windowId={p.bundle.windows.id[p.i]} />
         <button className="eg-button eg-button-ghost" onClick={() => exportDossier(p, c, 'md')}><Download size={15} />{t('Dossier')} .md</button>
         <button className="eg-button eg-button-ghost" onClick={() => exportDossier(p, c, 'json')}><Download size={15} />.json</button>
         <button className="dc-icon" onClick={p.onClose} aria-label={t('Close candidate')}><X size={16} /></button>
@@ -244,4 +246,11 @@ export function ComparePanel({ bundle, shard, agg, ids, onRemove, target }: { bu
       </table></div>
     </div>
   </section>;
+}
+
+/** Keep this window as an Earth analog of the mission when the mission's site is the target being searched. */
+function MissionAnalogButton({ target, windowId }: { target: string; windowId: string }) {
+  const site = usePlanet(s => s.inv.target), kept = usePlanet(s => s.inv.candidates.includes(windowId) && s.inv.analogsFor === target);
+  if (site !== target) return null;
+  return <button className="eg-button eg-button-ghost" aria-pressed={kept} onClick={() => usePlanet.getState().toggleCandidate(windowId)}>{kept ? <Check size={15} /> : <Plus size={15} />}{t(kept ? 'Mission analog' : 'Keep as mission analog')}</button>;
 }

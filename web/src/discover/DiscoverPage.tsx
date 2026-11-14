@@ -13,6 +13,7 @@ import { IntervalBar } from './charts';
 import { KazakhstanPanel } from './KazakhstanPanel';
 import type { DiscoveryBundle, ScoreShard, TargetEntry, ValidationDoc, ValidationTarget } from './types';
 import './discover.css';
+import { usePlanet } from '../planet/workspace/store';
 
 const base = () => `${import.meta.env.BASE_URL}discovery/`;
 export async function loadBundle(fetcher: typeof fetch = fetch): Promise<DiscoveryBundle> {
@@ -78,7 +79,8 @@ function writeHash(p: Record<string, string | null>) {
 
 function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation: ValidationDoc | null }) {
   const init = useMemo(readHash, []);
-  const [targetId, setTargetId] = useState(bundle.targets.find(x => x.id === init.target)?.id ?? bundle.targets.find(x => x.id === 'MARS_JEZERO')?.id ?? bundle.targets[0].id);
+  const missionSite = usePlanet.getState().inv.target;
+  const [targetId, setTargetId] = useState(bundle.targets.find(x => x.id === init.target)?.id ?? bundle.targets.find(x => x.id === missionSite)?.id ?? bundle.targets.find(x => x.id === 'MARS_JEZERO')?.id ?? bundle.targets[0].id);
   const [profile, setProfile] = useState(init.profile && bundle.profiles[init.profile] ? init.profile : 'general');
   const [weights, setWeights] = useState<Record<string, number>>(() => ({ ...bundle.profiles[profile].weights }));
   const initRegion = init.region === 'kz' ? 'kaz' : init.region;  // #/discover?region=kz
