@@ -7,6 +7,7 @@ const shared=[
 ];
 export function topicsFor(route:Route):GuideTopic[] {
   const specific:Record<Route,GuideTopic[]>={
+    home:[],
     brief:[
       topic('target','.target-choices','Mission destination','Choose the Moon or Mars and its measured research region. The destination determines the terrain and reference environment.','Select a destination card.'),
       topic('objectives','.brief-objectives','Mission objectives','Enable the experiments you want to rehearse on Earth. Priority weights determine how much each objective contributes to campaign coverage.','Enable an objective, then adjust its priority.'),

@@ -5,6 +5,7 @@
     "version": "PLANETARY EXPERIMENTS / V0.2"
   },
   "nav": {
+    "home": "Home",
     "brief": "Mission brief",
     "campaign": "Campaign",
     "matrix": "Fidelity matrix",

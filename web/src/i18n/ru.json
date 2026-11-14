@@ -1677,5 +1677,21 @@
   "Local study storage is unavailable. Complete JSON export remains available.": "Локальное хранилище исследований недоступно. Полный экспорт JSON остаётся доступным.",
   "Three complete studies are already stored. Export existing studies before saving a new one.": "На устройстве уже сохранены три полных исследования. Экспортируйте записи; для новых исследований используйте полный JSON.",
   "Close other EGIZ tabs to upgrade local archive storage.": "Закройте другие вкладки EGIZ для обновления локального архива.",
-  "Local storage is limited to three complete studies. Export new studies as JSON to preserve existing records.": "Локальное хранилище ограничено тремя полными исследованиями. Экспортируйте новые исследования в JSON; существующие записи сохраняются."
+  "Local storage is limited to three complete studies. Export new studies as JSON to preserve existing records.": "Локальное хранилище ограничено тремя полными исследованиями. Экспортируйте новые исследования в JSON; существующие записи сохраняются.",
+  "Reduced gravity": "Пониженная гравитация",
+  "Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g": "Параболический полёт или разгрузка веса для конкретной задачи; на земной площадке гравитация остаётся 1 g",
+  "Vacuum or thin atmosphere": "Вакуум или разреженная атмосфера",
+  "Thermal vacuum or controlled pressure chamber": "Термовакуумная камера или камера с контролируемым давлением",
+  "Extreme thermal environment": "Экстремальный тепловой режим",
+  "Thermal vacuum chamber with controlled thermal boundary conditions": "Термовакуумная камера с контролируемыми тепловыми граничными условиями",
+  "Space radiation": "Космическая радиация",
+  "Separate radiation qualification; terrestrial field ranking does not model radiation": "Отдельная радиационная квалификация; ранжирование земных площадок радиацию не моделирует",
+  "Regolith mechanical and chemical properties": "Механические и химические свойства реголита",
+  "Characterized material testing and suitable regolith simulants; no composition claim from DEM": "Испытания охарактеризованных материалов и подходящие имитаторы реголита; состав по ЦМР не оценивается",
+  "Polar lighting duration and horizon": "Длительность полярного освещения и горизонт",
+  "Artificial field lighting (JETT Sun cart); natural Earth windows remain incomplete": "Искусственное полевое освещение (JETT Sun cart); естественные земные окна остаются неполными",
+  "Death Valley": "Долина Смерти",
+  "Iceland volcanic": "Вулканическая Исландия",
+  "Rio Tinto": "Рио-Тинто",
+  "Wadi Rum": "Вади-Рам"
 }

@@ -32,9 +32,9 @@
   gap:8px;
   min-height:34px;
   padding:6px 9px;
-  border:1px solid #40514c;
-  border-radius:6px;
-  color:#bed2c8;
+  border:1px solid #474747;
+  border-radius:0;
+  color:#cdcdcd;
   font-size:11px;
   white-space:nowrap;
   background:#a0ccb009
@@ -42,7 +42,7 @@
 
 .dataset-switch.example-mode>summary {
   color:#e8bf91;
-  border-color:#67523d
+  border-color:#4e4e4e
 }
 
 .dataset-switch[open]>summary {
@@ -56,16 +56,16 @@
   width:340px;
   max-width:calc(100vw - 32px);
   padding:16px;
-  border:1px solid #43524c;
-  border-radius:10px;
-  background:#151d22;
+  border:1px solid #484848;
+  border-radius:0;
+  background:#19191b;
   box-shadow:0 18px 50px #0008;
   z-index:90
 }
 
 .dataset-menu h3 {
   font-size:13px;
-  color:#aebbb5;
+  color:#b8b8b8;
   font-weight:500;
   margin:0 0 12px;
   padding:0 6px
@@ -79,15 +79,15 @@
   text-align:left;
   padding:16px 12px;
   border:1px solid transparent;
-  border-radius:7px;
+  border-radius:0;
   margin-top:5px;
-  color:#acbdb8
+  color:#b9b9b9
 }
 
 .dataset-menu>button[aria-checked=true] {
   border-color:#779f8a77;
   background:#7fa58e14;
-  color:#d7e6dc
+  color:#e2e2e2
 }
 
 .dataset-menu>button:hover {
@@ -110,18 +110,18 @@
   display:block;
   font-size:12px;
   line-height:1.6;
-  color:#8ea39c
+  color:#9e9e9e
 }
 
 .dataset-menu button:last-child small {
-  color:#a69c8c
+  color:#9d9d9d
 }
 
 .header-right .data-notes>summary {
   width:34px;
   height:34px;
   justify-content:center;
-  border-radius:5px;
+  border-radius:0;
   border:1px solid transparent;
   padding:0
 }
@@ -149,12 +149,12 @@
   height:30px;
   border:1px solid transparent;
   border-radius:50%;
-  color:#8fa49c;
+  color:#9f9f9f;
   padding:0
 }
 
 .focused-workspace .context-help>summary:hover,.focused-workspace .context-help[open]>summary {
-  color:#dce8e0;
+  color:#e5e5e5;
   background:#ffffff08;
   border-color:#6e8a7c66
 }
@@ -167,26 +167,26 @@
   width:min(440px,calc(100vw - 32px));
   max-height:70vh;
   overflow:auto;
-  background:#162026;
-  border:1px solid #43554e;
-  border-radius:10px;
+  background:#1c1c1e;
+  border:1px solid #4a4a4a;
+  border-radius:0;
   box-shadow:0 20px 65px #0009;
   padding:25px;
-  color:#c5d0cb;
+  color:#cdcdcd;
   font-size:13px;
   line-height:1.8
 }
 
 .focused-workspace .context-help-body h3 {
   font-size:17px;
-  color:#e3eae4;
+  color:#e8e8e8;
   margin:0 0 16px
 }
 
 .focused-workspace .context-help-body p,.focused-workspace .context-help-body .ml-tiny,.focused-workspace .context-help-body .small-copy {
   font-size:13px!important;
   line-height:1.8!important;
-  color:#b0beb6!important;
+  color:#bababa!important;
   margin:12px 0
 }
 
@@ -237,8 +237,8 @@
 }
 
 .focused-workspace .detail-section {
-  border:1px solid var(--border,#35413e);
-  border-radius:8px;
+  border:1px solid var(--border,#393939);
+  border-radius:0;
   background:#ffffff02;
   margin:16px 0;
   overflow:visible
@@ -252,11 +252,11 @@
   padding:17px 20px;
   font-size:14px;
   font-weight:500;
-  color:var(--text,#d4ddd7)
+  color:var(--text,#dbdbdb)
 }
 
 .focused-workspace .detail-section>summary>svg:first-child {
-  color:#96afa2
+  color:#a9a9a9
 }
 
 .focused-workspace .detail-section>summary>span {
@@ -265,9 +265,9 @@
 
 .focused-workspace .detail-section>summary>b {
   font:12px"IBM Plex Mono",monospace;
-  color:#9ab7a8;
+  color:#b0b0b0;
   padding:3px 7px;
-  border-radius:4px;
+  border-radius:0;
   background:#91ba9b0c
 }
 
@@ -277,7 +277,7 @@
 
 .focused-workspace .detail-section-body {
   padding:8px 22px 24px;
-  border-top:1px solid var(--border,#35413e)
+  border-top:1px solid var(--border,#393939)
 }
 
 .focused-workspace .detail-section-body>.panel {
@@ -435,7 +435,7 @@
 }
 
 .focused-workspace .coverage-ring-track {
-  stroke:#31433f
+  stroke:#3a3a3a
 }
 
 .focused-workspace .coverage-ring-value {
@@ -451,12 +451,12 @@
   justify-content:center;
   gap:2px;
   font:29px"IBM Plex Mono",monospace;
-  color:#bdd8cd
+  color:#d1d1d1
 }
 
 .focused-workspace .coverage-ring small {
   font-size:12px;
-  color:#91a99c;
+  color:#a3a3a3;
   align-self:center;
   margin-top:10px
 }
@@ -564,13 +564,13 @@
   align-items:center;
   padding:24px;
   border:1px solid var(--border);
-  border-radius:8px;
+  border-radius:0;
   background:#ffffff02
 }
 
 .focused-workspace .research-overview svg {
   grid-row:1/3;
-  color:#8ab2a4
+  color:#a8a8a8
 }
 
 .focused-workspace .research-overview strong {
@@ -672,10 +672,10 @@
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:0;
-  border-block:1px solid #29332f;
+  border-block:1px solid #2d2d2d;
   padding:0;
   margin:0;
-  background:#101716
+  background:#141416
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button {
@@ -685,15 +685,15 @@
   justify-content:flex-start;
   min-height:68px;
   padding:16px 24px;
-  color:#bbc9c1;
+  color:#c5c5c5;
   font-size:13px;
   letter-spacing:0;
   text-transform:none;
-  border-right:1px solid #29332f
+  border-right:1px solid #2d2d2d
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button>svg:first-child {
-  color:#c2b48f
+  color:#b4b4b4
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button>span {
@@ -701,7 +701,7 @@
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button>svg:last-child {
-  color:#61776d
+  color:#727272
 }
 
 .focused-workspace .ex-mission .clear-stepbar>button:hover {
@@ -766,7 +766,7 @@
   font-size:11px;
   letter-spacing:0;
   gap:7px;
-  color:#9ab7a8
+  color:#b0b0b0
 }
 
 .focused-workspace .ex-mission .ex-schematic>.ex-overline,.focused-workspace .ex-mission .ex-schematic-image>i {
@@ -817,7 +817,7 @@
 .focused-workspace .ex-mission .ml-readouts>div {
   padding:14px 10px;
   min-height:92px;
-  border-color:#28372f
+  border-color:#2f2f2f
 }
 
 .focused-workspace .ex-mission .ml-readouts>div>span {
@@ -838,7 +838,7 @@
 
 .focused-workspace .ex-mission .ml-telemetry>.detail-section {
   margin-top:20px;
-  border-color:#2b3830
+  border-color:#303030
 }
 
 .focused-workspace .ex-mission .ml-telemetry>.detail-section>summary {
@@ -910,19 +910,19 @@
 
 .focused-workspace .system-metric-grid dt {
   font-size:11px;
-  color:#8b9f92;
+  color:#9a9a9a;
   margin-bottom:5px
 }
 
 .focused-workspace .system-metric-grid dd {
   font:15px"IBM Plex Mono",monospace;
-  color:#cfdbd2;
+  color:#d8d8d8;
   margin:0
 }
 
 .focused-workspace .system-metric-grid small {
   font-size:9px;
-  color:#829e8e
+  color:#979797
 }
 
 .focused-workspace .ex-mission .ex-bookmark-label {
@@ -972,8 +972,8 @@
   padding:12px;
   gap:6px;
   flex-wrap:wrap;
-  border:1px solid #304036;
-  background:#111a16
+  border:1px solid #373737;
+  background:#161618
 }
 
 .focused-workspace .ex-mission .ml-results>nav>button {
@@ -1052,7 +1052,7 @@
 .focused-workspace .ready-orbit {
   font-size:80px;
   font-weight:200;
-  color:#899b86;
+  color:#969696;
   line-height:1
 }
 
@@ -1066,9 +1066,8 @@
 .focused-workspace .native-quick-actions button {
   padding:13px 18px;
   font-size:13px;
-  border:1px solid #496055;
-  border-radius:5px
-}
+  border:1px solid #535353;
+  border-radius:0}
 
 .focused-workspace .dyn-metrics>div {
   padding:18px
@@ -1309,7 +1308,7 @@
 }
 
 .focused-workspace .ml-results>nav>button>svg {
-  color:#9bb4a7
+  color:#aeaeae
 }
 
 .focused-workspace .ex-mission .eng-title h2,.focused-workspace .ex-mission .dyn-title h2 {
@@ -1586,7 +1585,7 @@
 .focused-workspace .twin-empty>.context-help>.context-help-body {
   text-align:left
 }
-.focused-workspace .matrix-scale{display:flex;align-items:center;gap:8px;font:11px 'IBM Plex Mono',monospace;color:var(--text-muted);margin-left:auto;margin-right:12px}.focused-workspace .matrix-scale>i{display:block;width:96px;height:7px;border-radius:2px}.focused-workspace .matrix-topline{gap:18px}.focused-workspace .matrix-table th>button span{font-size:12px;line-height:1.5;display:block}.focused-workspace .matrix-table th>button em{font-size:10px;line-height:1.8;font-style:normal;font-weight:400;color:#8da39c}.focused-workspace .matrix-table th>button small{font-size:9px}.focused-workspace .twin-empty{display:flex;flex-direction:column;align-items:center;gap:22px;position:relative}.focused-workspace .twin-empty>.context-help{position:absolute;right:20px;top:20px}.focused-workspace .dyn-title>div:first-child>.eng-kicker,.focused-workspace .eng-title>div>.eng-kicker{display:none}.focused-workspace .eng-title h2,.focused-workspace .dyn-title h2{line-height:1.5}@media(max-width:767px){.focused-workspace .matrix-topline{flex-wrap:wrap}.focused-workspace .matrix-scale{margin-left:0}}
+.focused-workspace .matrix-scale{display:flex;align-items:center;gap:8px;font:11px 'IBM Plex Mono',monospace;color:var(--text-muted);margin-left:auto;margin-right:12px}.focused-workspace .matrix-scale>i{display:block;width:96px;height:7px;border-radius:0}.focused-workspace .matrix-topline{gap:18px}.focused-workspace .matrix-table th>button span{font-size:12px;line-height:1.5;display:block}.focused-workspace .matrix-table th>button em{font-size:10px;line-height:1.8;font-style:normal;font-weight:400;color:#9e9e9e}.focused-workspace .matrix-table th>button small{font-size:9px}.focused-workspace .twin-empty{display:flex;flex-direction:column;align-items:center;gap:22px;position:relative}.focused-workspace .twin-empty>.context-help{position:absolute;right:20px;top:20px}.focused-workspace .dyn-title>div:first-child>.eng-kicker,.focused-workspace .eng-title>div>.eng-kicker{display:none}.focused-workspace .eng-title h2,.focused-workspace .dyn-title h2{line-height:1.5}@media(max-width:767px){.focused-workspace .matrix-topline{flex-wrap:wrap}.focused-workspace .matrix-scale{margin-left:0}}
 
 /* Keep campaign ranks inline with site names, separate from column headings. */
 .focused-workspace .matrix-page .matrix-table tbody th button .tiny-number {
@@ -1596,7 +1595,7 @@
   vertical-align: middle;
 }
 .focused-workspace .matrix-scroll {
-  scrollbar-color: #40534f #141e23;
+  scrollbar-color: #484848 #1a1a1c;
   scrollbar-width: thin;
 }
 
@@ -1645,5 +1644,5 @@
     padding:14px 24px 0 !important;
   }
 }
-.focused-workspace .method-cards .science-plate{display:block;width:100%;height:106px;margin:20px 0 24px;color:#92b6aa;opacity:.9}
-.focused-workspace .twin-empty-icon>.science-plate{width:210px;height:88px;color:#9ab8ab}
+.focused-workspace .method-cards .science-plate{display:block;width:100%;height:106px;margin:20px 0 24px;color:#adadad;opacity:.9}
+.focused-workspace .twin-empty-icon>.science-plate{width:210px;height:88px;color:#b1b1b1}

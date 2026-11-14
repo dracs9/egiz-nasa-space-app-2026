@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import type { AppData } from '../types/contracts';
 import { initialDataMode, isDataMode, rememberDataMode, type DataMode } from '../data/modes';
 
-export type Route = 'brief' | 'campaign' | 'matrix' | 'evidence' | 'twin' | 'lab';
+export type Route = 'home' | 'brief' | 'campaign' | 'matrix' | 'evidence' | 'twin' | 'lab';
 export interface AppState {
   data: AppData | null; dataMode: DataMode; route: Route; targetId: string; templateId: string;
   enabledObjectives: string[]; weights: Record<string, number> | null;
@@ -13,10 +13,10 @@ export interface AppState {
   setTarget(id: string): void; toggleObjective(id: string): void; setWeights(weights: Record<string, number> | null): void;
   setK(k: 1 | 2 | 3): void; focus(id: string | null): void; selectSite(id: string | null): void; setLens(lens: 'global' | 'kazakhstan'): void;
 }
-const routes = ['brief', 'campaign', 'matrix', 'evidence', 'twin', 'lab'];
+const routes = ['home', 'brief', 'campaign', 'matrix', 'evidence', 'twin', 'lab'];
 export function parseRoute(hash: string): { route: Route; query: URLSearchParams } {
   const [raw, query = ''] = hash.replace(/^#\/?/, '').split('?');
-  return { route: (routes.includes(raw) ? raw : raw === '' ? 'lab' : 'campaign') as Route, query: new URLSearchParams(query) };
+  return { route: (routes.includes(raw) ? raw : raw === '' ? 'home' : 'campaign') as Route, query: new URLSearchParams(query) };
 }
 function urlState(data: AppData): Partial<AppState> {
   const { route, query } = parseRoute(window.location.hash);
@@ -50,7 +50,7 @@ export const useAppStore = create<AppState>((set, get) => {
     if (push) window.history.pushState(null, '', url); else window.history.replaceState(null, '', url);
   };
   return {
-    ...clearedMission, dataMode: initialDataMode(), route: 'lab',
+    ...clearedMission, dataMode: initialDataMode(), route: 'home',
     initialize(data, mode = get().dataMode) {
       if (mode !== get().dataMode) return; // A slower, superseded request cannot restore old observations.
       set({ data, ...urlState(data) }); rememberDataMode(mode); window.history.replaceState(null, '', stateUrl(get()));
