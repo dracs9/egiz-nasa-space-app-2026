@@ -1,0 +1,5828 @@
+{
+  "meta": {
+    "schema_version": "2.0",
+    "project": "Egiz v2 — проектировщик кампании аналоговых испытаний (NASA Space Apps Challenge 2026)",
+    "updated": "2026-10-10",
+    "timezone": "Asia/Almaty (UTC+5). Окна времени — по Астане, сценарий S1 (HOUR_BY_HOUR_EXECUTION)",
+    "hackathon_start_utc": "2026-11-14T04:00:00Z",
+    "local_pitch_utc": "2026-11-15T09:00:00Z",
+    "global_deadline_utc": "2026-11-15T18:59:00Z",
+    "effort_unit": "часы (включая тесты и интеграцию)",
+    "rules": [
+      "Единственный источник статусов — этот файл; меняйте его командами `python3 tools/tasks.py set|authorize`.",
+      "phase=HACK ⇔ authorization=DEFER_UNTIL_EVENT: до hackathon_start_utc такие задачи нельзя начинать.",
+      "authorization=CLARIFICATION_REQUIRED: начинать только после записи письменного разрешения организаторов (`tools/tasks.py authorize`).",
+      "DONE — только с доказательствами в actual_evidence (команда и вывод, хэш коммита, ссылка).",
+      "Окно со словом «черновик» разрешает начать черновик до готовности зависимостей; DONE — только после них.",
+      "Модель выполнимости расписания: `python3 tools/tasks.py schedule [S1|S1_STRICT|S2|S3]` (сценарии — meta.scenarios; объяснение — docs/planning/CRITICAL_PATH_AND_DEPENDENCIES.md)."
+    ],
+    "statuses": [
+      "BACKLOG",
+      "READY",
+      "IN_PROGRESS",
+      "BLOCKED",
+      "IN_REVIEW",
+      "DONE"
+    ],
+    "authorizations": {
+      "PERMITTED": "Можно сейчас (PRE_EVENT_AUTHORIZATION §2)",
+      "CLARIFICATION_REQUIRED": "Только после письменного разрешения организаторов (§4)",
+      "DEFER_UNTIL_EVENT": "Только с 14.11.2026 09:00 по Астане"
+    },
+    "priorities": {
+      "P0": "Нужно для валидной подачи",
+      "P1": "Сильная подача (сценарий S2)",
+      "P2": "Усиление",
+      "P3": "Необязательное"
+    },
+    "flags": {
+      "CRITICAL_PATH": "На критическом пути P0",
+      "HIGH_RISK": "Высокая неопределённость — начинать первой",
+      "PARALLELIZABLE": "Можно параллельно, без ожидания",
+      "OPTIONAL": "Отрезаем первой"
+    },
+    "milestones": {
+      "M0": "Правила, условие, подготовка (до 13.11)",
+      "M1": "Решения и пререгистрация (Сб 09:00–09:30)",
+      "M2": "Каркас, контракты, фикстуры (Сб 09:30–11:30)",
+      "M3": "Данные целей и пула, общие функции (Сб 09:30–14:45; ворота данных 13:30/15:00)",
+      "M4": "Сквозной срез данные → движок → сайт (Сб 17:30, IC-1)",
+      "M5": "Научное ядро: кампании и проверка (Сб 17:30 / S2: 22:30, IC-2)",
+      "M6": "P1-функции: «То же Солнце», матрица, живой пересчёт, Казахстан (S2)",
+      "M7": "UI/UX и тексты (Вс 09:00–11:00)",
+      "M8": "Интеграция и заморозка функций (Вс 11:00, IC-3)",
+      "M9": "Надёжность и QA (Вс 11:00–12:30)",
+      "M10": "Демо и питч (Вс 09:00–13:15)",
+      "M11": "Подача (Вс 13:30 или до 21:00)"
+    },
+    "members": {
+      "MEMBER_A": "Тех-лид: контракты, каркас сайта, карта, Brief, «То же Солнце», деплой, интеграция, публикация и подача",
+      "MEMBER_B": "Земля: пул кандидатов и атрибуты в Earth Engine; страница Evidence; реестр источников",
+      "MEMBER_C": "Луна и Марс, освещение: цели, Солнце, тени; панель кампании; README для жюри",
+      "MEMBER_D": "Движок: рельеф, соответствие, оптимизатор кампании, проверки; панель площадки",
+      "MEMBER_E": "Геолог: цели, шаблоны задач, практика NASA, разрывы, научная подпись",
+      "MEMBER_F": "Продукт и питч: название, слайды, тексты страницы проекта, видео, питч, связь с организаторами"
+    },
+    "productivity": 0.75,
+    "scenarios": {
+      "S1": {
+        "title": "площадка; работа и во время брифинга (кроме слушателя)",
+        "priorities": [
+          "P0"
+        ],
+        "segments": [
+          [
+            "2026-11-14T04:00:00Z",
+            "2026-11-14T07:00:00Z"
+          ],
+          [
+            "2026-11-14T08:00:00Z",
+            "2026-11-14T13:00:00Z"
+          ],
+          [
+            "2026-11-15T04:00:00Z",
+            "2026-11-15T08:30:00Z"
+          ]
+        ]
+      },
+      "S1_STRICT": {
+        "title": "только официальные блоки работы",
+        "priorities": [
+          "P0"
+        ],
+        "segments": [
+          [
+            "2026-11-14T08:00:00Z",
+            "2026-11-14T13:00:00Z"
+          ],
+          [
+            "2026-11-15T04:00:00Z",
+            "2026-11-15T08:30:00Z"
+          ]
+        ]
+      },
+      "S2": {
+        "title": "плюс вечер субботы и раннее утро воскресенья",
+        "priorities": [
+          "P0",
+          "P1"
+        ],
+        "segments": [
+          [
+            "2026-11-14T04:00:00Z",
+            "2026-11-14T07:00:00Z"
+          ],
+          [
+            "2026-11-14T08:00:00Z",
+            "2026-11-14T13:00:00Z"
+          ],
+          [
+            "2026-11-14T14:30:00Z",
+            "2026-11-14T18:00:00Z"
+          ],
+          [
+            "2026-11-15T03:00:00Z",
+            "2026-11-15T08:30:00Z"
+          ]
+        ]
+      },
+      "S3": {
+        "title": "аварийный объём на календаре S1-строгий (CONTINGENCY_PLAN §3)",
+        "priorities": [
+          "P0"
+        ],
+        "segments": [
+          [
+            "2026-11-14T08:00:00Z",
+            "2026-11-14T13:00:00Z"
+          ],
+          [
+            "2026-11-15T04:00:00Z",
+            "2026-11-15T08:30:00Z"
+          ]
+        ],
+        "exclude": [
+          "VAL-02",
+          "WEB-02",
+          "WEB-05",
+          "WEB-06",
+          "QA-03",
+          "STORY-04"
+        ],
+        "effort_overrides": {
+          "PLNT-01": 0.75,
+          "PLNT-02": 1.0,
+          "SCI-01": 0.25,
+          "SCI-04": 0.5,
+          "EARTH-02": 1.0,
+          "EARTH-03": 0.75,
+          "ENG-02": 1.0,
+          "VAL-01": 0.75,
+          "WEB-03": 0.5,
+          "WEB-04": 1.0,
+          "INFRA-05": 0.5,
+          "INFRA-06": 0.5,
+          "SCI-09": 0.5,
+          "STORY-03": 1.0,
+          "SUB-02": 0.75,
+          "SUB-04": 0.25
+        }
+      }
+    }
+  },
+  "ownership": {
+    "CLAUDE.md": [
+      "MEMBER_A"
+    ],
+    "CONTRIBUTING.md": [
+      "MEMBER_A"
+    ],
+    "LICENSE": [
+      "MEMBER_A"
+    ],
+    "Makefile": [
+      "MEMBER_A"
+    ],
+    "pyproject.toml": [
+      "MEMBER_A"
+    ],
+    "requirements.txt": [
+      "MEMBER_A"
+    ],
+    "vercel.json": [
+      "MEMBER_A"
+    ],
+    ".gitignore": [
+      "MEMBER_A"
+    ],
+    ".github/": [
+      "MEMBER_A"
+    ],
+    ".claude/": [
+      "MEMBER_A"
+    ],
+    "tools/": [
+      "MEMBER_A"
+    ],
+    "prompts/": [
+      "MEMBER_A"
+    ],
+    "README.md": [
+      "MEMBER_A",
+      "MEMBER_C"
+    ],
+    "project/tasks.json": [
+      "MEMBER_A",
+      "MEMBER_B",
+      "MEMBER_C",
+      "MEMBER_D",
+      "MEMBER_E",
+      "MEMBER_F"
+    ],
+    "docs/": [
+      "MEMBER_A",
+      "MEMBER_B",
+      "MEMBER_C",
+      "MEMBER_D",
+      "MEMBER_E",
+      "MEMBER_F"
+    ],
+    "contracts/": [
+      "MEMBER_A"
+    ],
+    "pipeline/": [
+      "MEMBER_A"
+    ],
+    "pipeline/contracts/": [
+      "MEMBER_A"
+    ],
+    "pipeline/common/": [
+      "MEMBER_C",
+      "MEMBER_D"
+    ],
+    "pipeline/common/__init__.py": [
+      "MEMBER_A"
+    ],
+    "pipeline/common/terrain.py": [
+      "MEMBER_D"
+    ],
+    "pipeline/common/tests/test_terrain.py": [
+      "MEMBER_D"
+    ],
+    "pipeline/common/sun.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/common/shadows.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/common/render.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/common/tests/test_sun.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/common/tests/test_shadows.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/common/tests/test_render.py": [
+      "MEMBER_C"
+    ],
+    "pipeline/earth/": [
+      "MEMBER_B"
+    ],
+    "pipeline/planets/": [
+      "MEMBER_C"
+    ],
+    "pipeline/lighting/": [
+      "MEMBER_C"
+    ],
+    "pipeline/engine/": [
+      "MEMBER_D"
+    ],
+    "data/fixtures/": [
+      "MEMBER_A"
+    ],
+    "data/fixtures/golden_fidelity.json": [
+      "MEMBER_D"
+    ],
+    "data/fixtures/golden_campaign.json": [
+      "MEMBER_D"
+    ],
+    "data/curated/": [
+      "MEMBER_E"
+    ],
+    "data/processed/": [
+      "MEMBER_B",
+      "MEMBER_C",
+      "MEMBER_D"
+    ],
+    "data/processed/earth_candidates.json": [
+      "MEMBER_B"
+    ],
+    "data/processed/targets.json": [
+      "MEMBER_C"
+    ],
+    "data/processed/sun_windows.json": [
+      "MEMBER_C"
+    ],
+    "data/processed/shadows.json": [
+      "MEMBER_C"
+    ],
+    "data/processed/results.json": [
+      "MEMBER_D"
+    ],
+    "data/processed/validation.json": [
+      "MEMBER_D"
+    ],
+    "data/processed/mission_templates.json": [
+      "MEMBER_D"
+    ],
+    "data/processed/robustness.json": [
+      "MEMBER_D"
+    ],
+    "data/processed/figures/": [
+      "MEMBER_D"
+    ],
+    "web/": [
+      "MEMBER_A"
+    ],
+    "web/src/components/campaign/": [
+      "MEMBER_C"
+    ],
+    "web/src/components/site/": [
+      "MEMBER_D"
+    ],
+    "web/src/components/matrix/": [
+      "MEMBER_D"
+    ],
+    "web/src/components/evidence/": [
+      "MEMBER_B"
+    ],
+    "web/src/pages/EvidencePage.tsx": [
+      "MEMBER_B"
+    ],
+    "web/src/lib/": [
+      "MEMBER_D"
+    ],
+    "web/src/workers/": [
+      "MEMBER_D"
+    ],
+    "web/src/content/copy.json": [
+      "MEMBER_F"
+    ],
+    "web/public/img/twin/": [
+      "MEMBER_C"
+    ],
+    "submission/": [
+      "MEMBER_F"
+    ],
+    "submission/claims.md": [
+      "MEMBER_E"
+    ],
+    "submission/qa.md": [
+      "MEMBER_E"
+    ],
+    "submission/ai_use.md": [
+      "MEMBER_C",
+      "MEMBER_F"
+    ],
+    "submission/references.md": [
+      "MEMBER_B",
+      "MEMBER_A",
+      "MEMBER_C",
+      "MEMBER_E",
+      "MEMBER_F"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "PREP-01",
+      "title": "Вопросы организаторам, включая разрешения A1–A3",
+      "objective": "Получить письменные ответы на 8 организационных вопросов и вопросы A1–A3 о подготовке до старта.",
+      "why": "От ответов зависят сценарий расписания (S1 или S2), дедлайн подачи и разрешённые до старта действия.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 20.10",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Отправить письмо по шаблону из docs/team/MEMBER_F.md на a.assylkhan@miras-astana.kz и продублировать в Telegram @NASASpaceAppAstana",
+        "Ответы на вопросы 1–8 внести в OFFICIAL_RULES.md §7, ответы A1–A3 — в PRE_EVENT_AUTHORIZATION.md §4 с датой и цитатой",
+        "Если разрешение A2 или A3 получено — сообщить MEMBER_A для `tools/tasks.py authorize`",
+        "Если к 01.11 ответа нет — повторить в Telegram и записать в BLOCKERS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/competition/OFFICIAL_RULES.md",
+        "docs/competition/PRE_EVENT_AUTHORIZATION.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Ответы организаторов в документах"
+      ],
+      "acceptance_criteria": [
+        "Сообщение отправлено со всеми вопросами",
+        "Есть ответы минимум на вопросы 1, 2, 4 и A1–A3 или записан блокер",
+        "Ответы с датой и цитатой в двух документах"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "В OFFICIAL_RULES §7 и PRE_EVENT_AUTHORIZATION §4 есть ответы с датами"
+      ],
+      "verification_commands": [
+        "manual: таблица ответов заполнена"
+      ],
+      "completion_evidence": "Дата отправки, дата и суть ответов",
+      "failure_modes": [
+        "Организаторы не отвечают"
+      ],
+      "fallback": "Считаем сценарий S1 и запрет на подготовку данных; подача до 13:30",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-02",
+      "title": "Регистрация команды и сопровождение несовершеннолетних",
+      "objective": "Все шестеро подтверждены на площадке Astana в одной команде; несовершеннолетних регистрируют родители, родители знают расписание.",
+      "why": "Иначе команда не допускается к наградам; правило о сопровождении несовершеннолетних обязательно.",
+      "owner": "MEMBER_F",
+      "collaborators": [
+        "MEMBER_A",
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 27.10",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Проверить вкладку Members страницы команды",
+        "Попросить родителей несовершеннолетних завершить регистрацию",
+        "Проверить Full Name у каждого (для сертификата) и отсутствие фото несовершеннолетних",
+        "Отметить готовность в PROGRESS.md без имён"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отметка о готовности регистрации"
+      ],
+      "acceptance_criteria": [
+        "6/6 подтверждены на Astana",
+        "Челлендж выбран на странице команды",
+        "Родители подтвердили сопровождение 14–15.11"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Скриншот вкладки Members — вне репозитория"
+      ],
+      "verification_commands": [
+        "manual: отметка в PROGRESS.md"
+      ],
+      "completion_evidence": "Дата проверки, 6/6",
+      "failure_modes": [
+        "Участник в листе ожидания"
+      ],
+      "fallback": "Писать Local Lead; при отказе вся команда переходит на одно событие",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-03",
+      "title": "GitHub, Discord, защита main, ники в git",
+      "objective": "Доступ всем, защита main, у всех git user.name — ник и noreply-почта, каналы Discord.",
+      "why": "Безопасная параллельная работа и приватность несовершеннолетних в истории git.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 20.10",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Пригласить участников в репозиторий",
+        "Settings → Branches: правило для main (только PR, без force push)",
+        "Каждому выполнить `git config --global user.name <ник>` и `user.email <id>+<ник>@users.noreply.github.com`",
+        "Создать каналы Discord: #general, #blockers, #web, #earth, #planets, #engine, #science, #pitch",
+        "Таблицу «MEMBER → ник» заполнить в docs/team/README.md §2 (только ники)"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/team/README.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Таблица ников",
+        "Правило защиты main"
+      ],
+      "acceptance_criteria": [
+        "6/6 с доступом",
+        "Правило для main включено",
+        "У всех ник и noreply в git config",
+        "Каналы созданы"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Settings → Branches"
+      ],
+      "verification_commands": [
+        "git config user.name && git config user.email"
+      ],
+      "completion_evidence": "Скриншот правила (вне репозитория), таблица ников",
+      "failure_modes": [
+        "У участника нет аккаунта GitHub"
+      ],
+      "fallback": "Создать аккаунт с ником без имени",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-04",
+      "title": "Аккаунты: Earthdata, Earth Engine, Vercel",
+      "objective": "Рабочие учётные записи: Earthdata (A, B, C, D), некоммерческий проект GEE (B + запасной у A), Vercel (A).",
+      "why": "Без них конвейер Земли и деплой не стартуют в день хакатона.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 27.10",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Зарегистрировать Earthdata Login",
+        "Создать облачный проект и зарегистрировать его в GEE как noncommercial (Community tier); проверить условия для несовершеннолетних",
+        "Проверить `earthengine authenticate` и тестовый запрос на постороннем регионе",
+        "Создать аккаунт Vercel; если условия не позволяют — записать в DECISIONS.md (DEC-014)",
+        "Выдать доступ к Vercel MEMBER_C и MEMBER_D как заместителям"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/DECISIONS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Рабочие аккаунты"
+      ],
+      "acceptance_criteria": [
+        "4 входа в Earthdata",
+        "GEE-проект работает у B и запасной у A",
+        "Vercel создан или выбран запасной хостинг",
+        "Ключей в репозитории нет"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Вход на urs.earthdata.nasa.gov"
+      ],
+      "verification_commands": [
+        "python3 -c \"import ee; ee.Initialize(project='<id>'); print(ee.Number(1).getInfo())\""
+      ],
+      "completion_evidence": "Отметка «работает» с датой для каждого аккаунта",
+      "failure_modes": [
+        "GEE не одобряет проект"
+      ],
+      "fallback": "Запасной путь Земли: Copernicus DEM на AWS Open Data и Planetary Computer (R04)",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-05",
+      "title": "Тренировка Earth Engine на постороннем районе с замером скорости",
+      "objective": "Освоить reduceRegions по зонам UTM, reduceResolution, getInfo порциями; замерить время на 200 квадратов в постороннем районе.",
+      "why": "Расчёт в GEE — критический путь; замер даёт реальную оценку для EARTH-02.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [
+        "PREP-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Взять посторонний район (Южная Америка) и сетку 200 квадратов 20 км",
+        "Посчитать перцентили уклона на 200 м и время",
+        "Попробовать 50 м на центральных 10 км",
+        "Записать время и лимиты в PROGRESS.md (раздел MEMBER_B)"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Замер скорости GEE"
+      ],
+      "acceptance_criteria": [
+        "Есть замер времени для 200 квадратов на 200 м и 50 м",
+        "Учебный код не в этом репозитории"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Запись в PROGRESS.md"
+      ],
+      "verification_commands": [
+        "manual: замер записан"
+      ],
+      "completion_evidence": "Время в минутах и число квадратов",
+      "failure_modes": [
+        "Квоты Community tier малы"
+      ],
+      "fallback": "Сократить пул до 1 500 кандидатов в EARTH-01",
+      "estimated_effort": 3.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-06",
+      "title": "Тренировка: rasterio, окна COG, проекции тел; чтение документации PGDA и USGS",
+      "objective": "Освоить чтение окна из удалённого COG, перепроекцию в AEQD с радиусом тела, полярную стереографию; изучить описания product 78 и MOLA/HRSC.",
+      "why": "PLNT-01 — первый высокорисковый шаг субботы.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Прочитать окно из постороннего COG (Landsat) через /vsicurl/ и замерить время",
+        "Перепроецировать в +proj=aeqd с +R=3396190",
+        "Прочитать страницы PGDA product 78 и USGS Astropedia (без скачивания)",
+        "Записать заметку в PROGRESS.md (раздел MEMBER_C)"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметка о продуктах и приёмах"
+      ],
+      "acceptance_criteria": [
+        "Умею читать окно и перепроецировать",
+        "Знаю имена файлов и проекции продуктов",
+        "Данные челленджа не скачивались"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Заметка в PROGRESS.md"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Заметка с датой",
+      "failure_modes": [
+        "Нет GDAL на ноутбуке"
+      ],
+      "fallback": "Установить rasterio из колёс в PREP-12",
+      "estimated_effort": 3.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-07",
+      "title": "Тренировка: numpy, pytest, Vitest, задача максимального покрытия",
+      "objective": "Отработать векторные вычисления, параметризованные тесты и перебор сочетаний на игрушечной задаче покрытия.",
+      "why": "Движок и оптимизатор — критический путь MEMBER_D.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Решить игрушечную задачу покрытия: точный перебор против жадного",
+        "Написать тесты pytest и Vitest на игрушечных функциях",
+        "Повторить биномиальный тест и ранговые метрики",
+        "Заметка в PROGRESS.md (раздел MEMBER_D)"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметка"
+      ],
+      "acceptance_criteria": [
+        "Есть заметка с выводами",
+        "Учебный код не в репозитории"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Заметка"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Заметка с датой",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 3.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-08",
+      "title": "Тренировка: Vite + React + TS + MapLibre + Web Worker в учебном репозитории",
+      "objective": "Собрать игрушечную карту с подложкой NASA GIBS, слоем точек с feature-state и воркером в отдельном репозитории.",
+      "why": "Каркас и карта — путь к IC-1.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [
+        "PREP-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Учебный репозиторий: карта MapLibre с WMTS GIBS",
+        "3 000 случайных точек с перекраской по feature-state и замер",
+        "Web Worker с тяжёлым циклом и таймаутом",
+        "Деплой на Vercel"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметка и ссылка"
+      ],
+      "acceptance_criteria": [
+        "Учебная карта открывается по ссылке",
+        "Замер перекраски записан",
+        "Код не в этом репозитории"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Ссылка на учебный деплой"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Замер перекраски в мс",
+      "failure_modes": [
+        "URL GIBS не работает"
+      ],
+      "fallback": "Проверить шаблон по документации GIBS; запасная подложка — без тайлов",
+      "estimated_effort": 3.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-09",
+      "title": "Чтение: аналоги, критерии NASA, южный полюс, Марс",
+      "objective": "Изучить источники из docs/team/MEMBER_E.md §2 и составить вопросы экспертам.",
+      "why": "Научные решения на KICK-01 должны опираться на прочитанное.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Прочитать список MEMBER_E §2",
+        "Выписать вопросы к экспертам и передать MEMBER_F до 02.11",
+        "Отметить в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Список вопросов"
+      ],
+      "acceptance_criteria": [
+        "Прочитано",
+        "Вопросы переданы"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Отметка"
+      ],
+      "verification_commands": [
+        "manual: отметка"
+      ],
+      "completion_evidence": "Дата",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 4.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-10",
+      "title": "Разбор демо победителей и практика слайдов на посторонней теме",
+      "objective": "Посмотреть демо победителей 2023–2025 и собрать тренировочную колоду из 7 слайдов на постороннюю тему.",
+      "why": "Слайды — официальное демо в P0.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Посмотреть демо из WINNER_BENCHMARK",
+        "Собрать 7 слайдов на постороннюю тему",
+        "Записать приёмы в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметки"
+      ],
+      "acceptance_criteria": [
+        "Тренировочная колода собрана (не публиковать)",
+        "Заметки записаны"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Заметка"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Дата",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-11",
+      "title": "Тренировка команды: Git и Claude Code",
+      "objective": "60–90 минут практики PR-процесса и команд `/execute-member`, `tools/tasks.py next` на учебном репозитории.",
+      "why": "Меньше потерь времени на git в день хакатона.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P2",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "до 08.11",
+      "dependencies": [
+        "PREP-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Учебный репозиторий: ветка → PR → ревью → merge у каждого",
+        "Запуск `python3 tools/tasks.py next MEMBER_X` у каждого"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отметка"
+      ],
+      "acceptance_criteria": [
+        "У каждого по одному PR",
+        "Каждый запускал next"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Отметка"
+      ],
+      "verification_commands": [
+        "manual: отметка"
+      ],
+      "completion_evidence": "Дата",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-12",
+      "title": "Окружение на шести ноутбуках",
+      "objective": "Python 3.11+, Node LTS, Git, Claude Code; у кодеров — rasterio, numpy, pandas, pyproj, earthengine-api, astropy.",
+      "why": "Установка в день хакатона съедает час и больше.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Установить инструменты по списку",
+        "Проверить импорты",
+        "Проверить `python3 tools/tasks.py validate`",
+        "Записать проблемы в BLOCKERS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отметка 6/6"
+      ],
+      "acceptance_criteria": [
+        "6/6: tools validate проходит",
+        "4/4 кодера: импорты без ошибок",
+        "A и D: node ≥ 20"
+      ],
+      "automated_tests": [
+        "python3 tools/tasks.py validate"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -c \"import rasterio, numpy, pandas, pyproj, ee, astropy\""
+      ],
+      "completion_evidence": "6/6 с датой",
+      "failure_modes": [
+        "Колёса rasterio не ставятся"
+      ],
+      "fallback": "Conda или Docker с GDAL",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-13",
+      "title": "Логистика дня хакатона",
+      "objective": "Ноутбуки, зарядки, удлинитель, две точки доступа, расписание родителей, еда.",
+      "why": "Слабый Wi‑Fi и сопровождение несовершеннолетних — известные риски.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 12.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Составить чек-лист",
+        "Согласовать с командой",
+        "Отметить 13.11"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Чек-лист"
+      ],
+      "acceptance_criteria": [
+        "Две точки доступа",
+        "Родители знают расписание"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Чек-лист отмечен"
+      ],
+      "verification_commands": [
+        "manual: чек-лист"
+      ],
+      "completion_evidence": "Дата",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-14",
+      "title": "Самоподготовка: алгоритм Солнца NOAA и тени по DEM на посторонних данных",
+      "objective": "Разобрать алгоритм NOAA и приём «поворот + бегущий максимум» для теней на постороннем DEM.",
+      "why": "LIGHT-01 и LIGHT-03 должны пойти без исследований.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Прочитать описание алгоритма NOAA",
+        "На постороннем DEM попробовать тени (в учебной папке)",
+        "Заметка в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметка"
+      ],
+      "acceptance_criteria": [
+        "Заметка с формулами и подводными камнями",
+        "Код не в репозитории"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Заметка"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Дата",
+      "failure_modes": [
+        "—"
+      ],
+      "fallback": "—",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PREP-15",
+      "title": "Научные заметки: документированные площадки по задачам испытаний",
+      "objective": "Собрать в заметке со ссылками, какие площадки NASA и агентства использовали для каких задач (EVA, мобильность, реголит, холод и сухость, освещение).",
+      "why": "На хакатоне SCI-03 превратит заметку в таблицу за 1 час вместо 3.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "READY",
+      "flags": [],
+      "window": "до 08.11",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Пройти источники из DATASET_SPECIFICATION §5",
+        "Для каждой площадки: задача, контекст цели, источник (URL или DOI), координаты из источника",
+        "Записать в docs/research/PRACTICE_NOTES.md (текст, не таблица данных проекта)"
+      ],
+      "files_create": [
+        "docs/research/PRACTICE_NOTES.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Заметка со ссылками"
+      ],
+      "acceptance_criteria": [
+        "≥ 15 площадок со ссылками",
+        "Для каждой — задача и источник"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "MEMBER_D проверяет 3 ссылки"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Число площадок",
+      "failure_modes": [
+        "Источник не связывает площадку с задачей"
+      ],
+      "fallback": "Отметить «непроверяемо» — пара будет исключена по правилам E3",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "AUTH-01",
+      "title": "Проверка доступа и заблаговременная загрузка DEM челленджа (только с разрешением A2)",
+      "objective": "Проверить, что DEM PGDA (участки 20 и 23) и MOLA/HRSC отдаются по HTTP с частичной загрузкой; при разрешении — скачать DEM PGDA на 2 ноутбука.",
+      "why": "Снимает главный риск субботы — доступ к данным через Wi‑Fi площадки.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "CLARIFICATION_REQUIRED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "после ответа A2",
+      "dependencies": [
+        "PREP-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Убедиться, что разрешение A2 записано (`tools/tasks.py show AUTH-01` → authorization_evidence)",
+        "HEAD-запросы и `gdalinfo /vsicurl/…` без сохранения результатов в репозиторий",
+        "Если разрешено скачивание — сохранить файлы в data/raw/ вне git на 2 ноутбуках",
+        "Записать размеры и время в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [
+        "PGDA product 78 (участки 20, 23)",
+        "MOLA/HRSC blend 200 m"
+      ],
+      "expected_output": [
+        "Заметка о доступе",
+        "Локальные копии (если разрешено)"
+      ],
+      "acceptance_criteria": [
+        "Есть authorization_evidence",
+        "Известны размеры и поддержка частичной загрузки",
+        "В git нет ни данных, ни результатов обработки"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Заметка"
+      ],
+      "verification_commands": [
+        "manual: заметка"
+      ],
+      "completion_evidence": "Разрешение A2 и размеры файлов",
+      "failure_modes": [
+        "Разрешения нет"
+      ],
+      "fallback": "Всё делается в PLNT-01 в первые 30 минут субботы",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "AUTH-02",
+      "title": "Общий шаблон веб-приложения в отдельном репозитории (только с разрешением A3)",
+      "objective": "Подготовить шаблон Vite + React + TS + MapLibre без логики Egiz в отдельном публичном репозитории.",
+      "why": "Экономит ~0,5 ч INFRA-01, если разрешено.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "PREP",
+      "authorization": "CLARIFICATION_REQUIRED",
+      "authorization_evidence": null,
+      "priority": "P2",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "после ответа A3",
+      "dependencies": [
+        "PREP-01",
+        "PREP-08"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Проверить authorization_evidence (A3)",
+        "Создать шаблон без логики проекта",
+        "Записать ссылку в DECISIONS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/DECISIONS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Ссылка на шаблон"
+      ],
+      "acceptance_criteria": [
+        "Есть разрешение",
+        "В шаблоне нет ничего от Egiz"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Проверка содержимого"
+      ],
+      "verification_commands": [
+        "manual: ссылка"
+      ],
+      "completion_evidence": "Разрешение A3 и ссылка",
+      "failure_modes": [
+        "Разрешения нет"
+      ],
+      "fallback": "INFRA-01 с нуля",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "RULE-01",
+      "title": "28.10: разбор полного условия, обновление трассировки",
+      "objective": "За сутки перенести требования полного условия в OFFICIAL_RULES §2 и TRACEABILITY, пересмотреть цели и задачи.",
+      "why": "Решения могут измениться; требование без задачи — ошибка плана.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "28–29.10",
+      "not_before": "2026-10-27T19:00:00Z",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Прочитать условие вместе с E и F",
+        "Ключевые требования — короткими цитатами и пересказом в OFFICIAL_RULES §2",
+        "Каждое требование → строка в docs/audit/TRACEABILITY_AND_COMPLETENESS.md §1",
+        "При необходимости изменить задачи в project/tasks.json, затем render и validate",
+        "Созвон; решения в DECISIONS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/competition/OFFICIAL_RULES.md",
+        "docs/audit/TRACEABILITY_AND_COMPLETENESS.md",
+        "docs/planning/DECISIONS.md",
+        "project/tasks.json"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Обновлённые требования и трассировка"
+      ],
+      "acceptance_criteria": [
+        "Все требования связаны с задачами или отмечены «вне объёма»",
+        "tools validate без ошибок",
+        "Решения записаны"
+      ],
+      "automated_tests": [
+        "python3 tools/tasks.py validate"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python3 tools/tasks.py validate"
+      ],
+      "completion_evidence": "Коммит с обновлением",
+      "failure_modes": [
+        "Условие сильно отличается"
+      ],
+      "fallback": "Внеочередной пересмотр концепции на созвоне 29.10",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "RULE-02",
+      "title": "Space Apps Connect: вопросы экспертам",
+      "objective": "Задать экспертам вопросы MEMBER_E о целях, задачах и проверке.",
+      "why": "Сверка научной постановки с экспертами.",
+      "owner": "MEMBER_F",
+      "collaborators": [
+        "MEMBER_E"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "02–13.11",
+      "not_before": "2026-11-01T19:00:00Z",
+      "dependencies": [
+        "RULE-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Задать ≥ 3 вопроса",
+        "Записать ответы в OFFICIAL_RULES §8"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/competition/OFFICIAL_RULES.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Ответы экспертов"
+      ],
+      "acceptance_criteria": [
+        "≥ 3 вопроса",
+        "Ответы записаны"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Раздел §8"
+      ],
+      "verification_commands": [
+        "manual: раздел §8"
+      ],
+      "completion_evidence": "Даты вопросов и ответов",
+      "failure_modes": [
+        "Нет ответов"
+      ],
+      "fallback": "—",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "RULE-03",
+      "title": "13.11: гайды подачи и судейства 2026",
+      "objective": "Сверить правила, поля формы и критерии с гайдами 2026.",
+      "why": "Правила демо и подачи могли измениться.",
+      "owner": "MEMBER_F",
+      "collaborators": [
+        "MEMBER_A"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "13.11",
+      "not_before": "2026-11-12T19:00:00Z",
+      "dependencies": [],
+      "blocked_by": [],
+      "steps": [
+        "Прочитать оба гайда",
+        "Обновить OFFICIAL_RULES, SUBMISSION, JUDGING_READINESS",
+        "Сообщить команде до 21:00"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/competition/OFFICIAL_RULES.md",
+        "docs/competition/SUBMISSION.md",
+        "docs/competition/JUDGING_READINESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Обновлённые документы"
+      ],
+      "acceptance_criteria": [
+        "Пункты HISTORICAL-2025 перепроверены",
+        "Поля формы совпадают"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Сверка полей формы с гайдом подачи"
+      ],
+      "verification_commands": [
+        "grep -rn 'HISTORICAL-2025' docs/competition"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Гайды задерживаются"
+      ],
+      "fallback": "Работаем по гайду 2025",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "RULE-04",
+      "title": "13.11 вечер: готовность к старту (IC-0)",
+      "objective": "Короткий созвон: аккаунты, ноутбуки, прочитанные документы, план первого часа.",
+      "why": "Чистый старт в 09:00.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "PREP",
+      "authorization": "PERMITTED",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M0",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "13.11 вечер",
+      "not_before": "2026-11-12T19:00:00Z",
+      "dependencies": [
+        "RULE-01",
+        "RULE-03",
+        "PREP-02",
+        "PREP-04",
+        "PREP-12"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Пройти чек-лист IC-0 в INTEGRATION_STATUS",
+        "Записать отметку"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/INTEGRATION_STATUS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "IC-0"
+      ],
+      "acceptance_criteria": [
+        "6/6 готовы",
+        "tools validate без ошибок"
+      ],
+      "automated_tests": [
+        "python3 tools/tasks.py validate"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python3 tools/tasks.py validate"
+      ],
+      "completion_evidence": "Отметка IC-0",
+      "failure_modes": [
+        "Кто-то не готов"
+      ],
+      "fallback": "Пара заменяет участника (CONTINGENCY_PLAN)",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "KICK-01",
+      "title": "Старт 09:00: решения и пререгистрация",
+      "objective": "Перевести решения PROPOSED в ACCEPTED, закоммитить пререгистрацию проверок до любой обработки данных, раздать первые задачи.",
+      "why": "Пререгистрация — основа научной честности; без неё E3 бесполезен.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M1",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 09:00–09:30",
+      "dependencies": [
+        "RULE-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "2 мин: правила (несовершеннолетние, заморозки 11:00 и 13:00)",
+        "5 мин: DEC-019…DEC-024 → ACCEPTED с временем",
+        "5 мин: подтвердить VALIDATION_PROTOCOL §0 и параметры §12 MATHEMATICAL_SPECIFICATION; коммит `KICK-01: preregister`; хэш в DEC-010",
+        "Назначить слушателя брифинга (MEMBER_F)",
+        "Каждый называет первые две задачи"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/DECISIONS.md",
+        "docs/science/VALIDATION_PROTOCOL.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Коммит пререгистрации"
+      ],
+      "acceptance_criteria": [
+        "Решения ACCEPTED",
+        "Коммит пререгистрации раньше первого запуска обработки",
+        "Хэш в DEC-010"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "git log показывает порядок коммитов"
+      ],
+      "verification_commands": [
+        "git log --format='%h %ad %s' --date=iso | head"
+      ],
+      "completion_evidence": "Хэш коммита пререгистрации",
+      "failure_modes": [
+        "Кто-то опоздал"
+      ],
+      "fallback": "Решения фиксирует A, отсутствующие читают DECISIONS",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-01",
+      "title": "Каркас репозитория",
+      "objective": "Создать структуру из FILE_BY_FILE_BUILD_PLAN §1 и §8: Makefile, pyproject, requirements, LICENSE, пакеты pipeline, Vite-приложение.",
+      "why": "Все остальные начинают с каркаса.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M2",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 09:30–10:15",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "`npm create vite@latest web -- --template react-ts`; добавить maplibre-gl, zustand, vitest",
+        "pyproject (ruff, pytest testpaths=pipeline), requirements.txt по плану файлов",
+        "Makefile: check, test, fixtures, earth, data, web, offline",
+        "LICENSE MIT («<team> contributors»), .gitignore: web/public/data/, data/raw/, *.mp4",
+        "`make check` на чистом клоне"
+      ],
+      "files_create": [
+        "Makefile",
+        "pyproject.toml",
+        "requirements.txt",
+        "LICENSE",
+        "pipeline/__init__.py",
+        "pipeline/common/__init__.py",
+        "web/package.json",
+        "web/vite.config.ts",
+        "web/tsconfig.json",
+        "web/index.html",
+        "web/src/main.tsx"
+      ],
+      "files_modify": [
+        ".gitignore",
+        "README.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Собирающийся каркас"
+      ],
+      "acceptance_criteria": [
+        "`make check` выполняется",
+        "`npm --prefix web run build` собирает",
+        "LICENSE на месте"
+      ],
+      "automated_tests": [
+        "make check",
+        "npm --prefix web run build"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "make check"
+      ],
+      "completion_evidence": "Вывод make check",
+      "failure_modes": [
+        "Версии пакетов конфликтуют"
+      ],
+      "fallback": "Зафиксировать версии из учебного репозитория PREP-08",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-02",
+      "title": "Контракты v1: схемы, валидатор, типы",
+      "objective": "JSON Schema для 6 файлов (API_AND_SCHEMA_CONTRACTS §2), валидатор с проверкой версии и запретом синтетики, TS-типы.",
+      "why": "Контракт — граница между шестью участниками.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M2",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 10:15–11:00",
+      "dependencies": [
+        "INFRA-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Схемы earth_candidates, targets, mission_templates, sun_windows, results, validation",
+        "Примеры в contracts/examples/",
+        "pipeline/contracts/validate.py: выбор схемы по полю schema, major-версия, check_no_synthetic",
+        "web/src/types/contracts.ts",
+        "Ревью B, C, D по 5 минут; объявить заморозку v1 в #general; INTEGRATION_STATUS §1"
+      ],
+      "files_create": [
+        "contracts/",
+        "pipeline/contracts/__init__.py",
+        "pipeline/contracts/validate.py",
+        "pipeline/contracts/models.py",
+        "pipeline/contracts/tests/test_validate.py",
+        "web/src/types/contracts.ts"
+      ],
+      "files_modify": [
+        "docs/planning/INTEGRATION_STATUS.md"
+      ],
+      "interfaces": [
+        "API_AND_SCHEMA_CONTRACTS §2–§4"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "contracts v1"
+      ],
+      "acceptance_criteria": [
+        "Примеры проходят",
+        "Файл версии 2.0.0 отклоняется",
+        "TS-типы компилируются",
+        "Заморозка объявлена"
+      ],
+      "automated_tests": [
+        "pytest pipeline/contracts -q",
+        "npm --prefix web run typecheck"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.contracts.validate contracts/examples/*.json"
+      ],
+      "completion_evidence": "Вывод тестов и хэш заморозки",
+      "failure_modes": [
+        "Разногласия о полях"
+      ],
+      "fallback": "Решает A по API_AND_SCHEMA_CONTRACTS; спорные поля — необязательные",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-03",
+      "title": "Синтетические фикстуры",
+      "objective": "`python -m pipeline.contracts.fixtures`: синтетика по всем схемам (FAKE_, synthetic=true), ~500 кандидатов всех пулов, включая FAKE_PR_ и FAKE_CT_, 2 цели.",
+      "why": "Сайт и движок начинают работать до реальных данных.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M2",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH",
+        "PARALLELIZABLE"
+      ],
+      "window": "Сб 11:00–11:30",
+      "dependencies": [
+        "INFRA-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Генератор с seed 42",
+        "Реалистичные диапазоны атрибутов",
+        "results/validation по формулам спецификации (упрощённо)",
+        "Валидация всех файлов"
+      ],
+      "files_create": [
+        "pipeline/contracts/fixtures.py",
+        "data/fixtures/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "data/fixtures/*.json"
+      ],
+      "acceptance_criteria": [
+        "Все фикстуры проходят схемы",
+        "Везде FAKE_ и synthetic=true",
+        "Детерминированно"
+      ],
+      "automated_tests": [
+        "python -m pipeline.contracts.fixtures && python -m pipeline.contracts.validate data/fixtures/*.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "make fixtures"
+      ],
+      "completion_evidence": "Вывод валидатора",
+      "failure_modes": [
+        "Фикстуры не похожи на реальность"
+      ],
+      "fallback": "Достаточно, чтобы сайт рисовался; реальные данные с IC-1",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-04",
+      "title": "CI в GitHub Actions",
+      "objective": "Workflow из TESTING_STRATEGY §4.",
+      "why": "Ловит сломанный main до демо.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M9",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 16:15–16:45",
+      "dependencies": [
+        "INFRA-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "ci.yml с двумя заданиями",
+        "Поиск секретов",
+        "Сделать проверку обязательной"
+      ],
+      "files_create": [
+        ".github/workflows/ci.yml"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "CI"
+      ],
+      "acceptance_criteria": [
+        "Зелёный прогон",
+        "Падение блокирует merge",
+        "< 5 мин"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Тестовый PR"
+      ],
+      "verification_commands": [
+        "manual: зелёный прогон"
+      ],
+      "completion_evidence": "Ссылка на прогон",
+      "failure_modes": [
+        "rasterio долго ставится"
+      ],
+      "fallback": "Кэш pip; иначе CI без конвейера, только web и tools",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-05",
+      "title": "Деплой и офлайн-сборка",
+      "objective": "Vercel (превью PR, прод из main) и `make offline` (сборка + архив dist).",
+      "why": "Ссылка для судей и запас для питча.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 15:30–16:15",
+      "dependencies": [
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "vercel.json по FINAL_ARCHITECTURE §8",
+        "web/scripts/copy-data.mjs: processed → public/data, иначе фикстуры",
+        "Подключить репозиторий в Vercel",
+        "Цель `make offline`",
+        "Проверить ссылку в инкогнито"
+      ],
+      "files_create": [
+        "vercel.json",
+        "web/scripts/copy-data.mjs"
+      ],
+      "files_modify": [
+        "web/package.json",
+        "Makefile"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Прод-ссылка",
+        "dist.zip"
+      ],
+      "acceptance_criteria": [
+        "Ссылка открывается без входа",
+        "Merge в main → обновление ≤ 5 мин",
+        "Офлайн-сборка открывается при выключенном Wi‑Fi"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Инкогнито",
+        "Офлайн"
+      ],
+      "verification_commands": [
+        "npm --prefix web run build && npx serve web/dist"
+      ],
+      "completion_evidence": "URL и время деплоя",
+      "failure_modes": [
+        "Vercel недоступен"
+      ],
+      "fallback": "GitHub Pages после публикации; офлайн-сборка",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "INFRA-06",
+      "title": "Точки интеграции IC-1, IC-2, IC-3, снимок данных и релиз",
+      "objective": "Провести IC-1 (Сб 17:30), IC-2 (S1: Вс 09:30; S2: Сб 22:30), IC-3 (Вс 11:00); снимок data/processed с хэшами; тег v1.0; `make check` на main.",
+      "why": "Без этого параллельная работа не превращается в один продукт.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 17:30 · Вс 09:30 · Вс 11:00 · Вс 13:00",
+      "dependencies": [
+        "INFRA-05",
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Слить готовые PR в порядке контракты → данные → движок → сайт",
+        "`make check` на main",
+        "Сквозной сценарий из INTEGRATION_STATUS",
+        "Записать результат и что не вошло",
+        "IC-3: заморозка функций; `sha256sum data/processed/*` в INTEGRATION_STATUS; тег v1.0 в 13:00"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/INTEGRATION_STATUS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Записи IC",
+        "Тег v1.0"
+      ],
+      "acceptance_criteria": [
+        "Три записи IC с временем",
+        "На IC-1 реальные данные (synthetic=false) на прод-ссылке",
+        "Хэши данных и тег v1.0"
+      ],
+      "automated_tests": [
+        "make check"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python3 tools/tasks.py status"
+      ],
+      "completion_evidence": "Записи IC, хэши, тег",
+      "failure_modes": [
+        "Конфликт при слиянии"
+      ],
+      "fallback": "Откат к последней зелёной точке; владелец файла решает конфликт",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-01",
+      "title": "Пул кандидатов: страты, места практики",
+      "objective": "Построить ~3 000 квадратов 20 км: 4 страты (горячие пустыни, холодные и полярные, вулканические, прочая открытая суша) + места практики PR_.",
+      "why": "От состава пула зависят и находки, и честность проверки.",
+      "owner": "MEMBER_B",
+      "collaborators": [
+        "MEMBER_E"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH",
+        "HIGH_RISK"
+      ],
+      "window": "Сб 09:30–10:30 (повтор с PR_ ~11:15)",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/pool.py: суша LSIB, страты, randomPoints(seed=2026)",
+        "Фильтр голой поверхности ≥ 0,5 (полярные — MCD12Q1 barren)",
+        "Квадраты 20 км в UTM центра; ID GL_E…_N…",
+        "Контроли для E7: по 20 квадратов CT_ из леса, пашни и постоянного снега (доля класса > 0,7), pool = control",
+        "Добавить PR_ из data/curated/practice_sites.csv (повторный запуск после SCI-03)",
+        "Счётчики по стратам и контролям — в PR"
+      ],
+      "files_create": [
+        "pipeline/earth/__init__.py",
+        "pipeline/earth/pool.py",
+        "pipeline/earth/tests/test_pool.py"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "EarthTile.id, pool, stratum"
+      ],
+      "datasets": [
+        "USDOS/LSIB_SIMPLE/2017",
+        "ESA/WorldCover/v200",
+        "MODIS/061/MCD12Q1"
+      ],
+      "expected_output": [
+        "Пул в GEE и список ID"
+      ],
+      "acceptance_criteria": [
+        "≥ 2 500 GL_, все PR_ и 60 CT_",
+        "Стороны 20 км ± 1 %",
+        "Seed воспроизводит пул",
+        "≥ 5 континентов и полярная страта"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth/tests/test_pool.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.earth.pool --dry-run"
+      ],
+      "completion_evidence": "Счётчики по стратам",
+      "failure_modes": [
+        "Мало полярных точек",
+        "GEE не отвечает"
+      ],
+      "fallback": "Увеличить выборку страты; при отказе GEE — R04 (AWS для PR_ и 300 GL_)",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-02",
+      "title": "Атрибуты рельефа в GEE: ступени A и B",
+      "objective": "Ступень A (200 м, весь квадрат 20 км): _f400, _r, relief, tri_f400, elev_min; ступень B (50 м, центральные 10 км): _f100, tri_f100 — по MATHEMATICAL_SPECIFICATION §3.",
+      "why": "Рельеф на базах NASA — основа задач посадки, EVA и мобильности.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH",
+        "HIGH_RISK"
+      ],
+      "window": "Сб 10:30–12:00 и 13:00–13:15",
+      "dependencies": [
+        "EARTH-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/gee_terrain.py: stage_a и stage_b по зонам UTM (ALGORITHMS A3)",
+        "getInfo порциями ≤ 4 000 квадратов, повтор ×3 с паузой",
+        "Пока считается ступень B — запускать EARTH-03 (расчёт идёт на сервере GEE)",
+        "Сохранить сырые результаты в data/raw/earth/ (вне git)"
+      ],
+      "files_create": [
+        "pipeline/earth/gee_terrain.py",
+        "pipeline/earth/tests/test_gee_terrain.py"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Ключи атрибутов API_AND_SCHEMA_CONTRACTS §1"
+      ],
+      "datasets": [
+        "COPERNICUS/DEM/GLO30"
+      ],
+      "expected_output": [
+        "Атрибуты рельефа пула (data/raw/earth/)"
+      ],
+      "acceptance_criteria": [
+        "Атрибуты ступени A для ≥ 95 % пула",
+        "Ступень B для ≥ 80 % пула или отметка proxy",
+        "Пропуски = null, ноль не подставляется"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth -q"
+      ],
+      "manual_verification": [
+        "Доля покрытия ступеней A и B — в PR"
+      ],
+      "verification_commands": [
+        "python -m pipeline.earth.gee_terrain --stage a --dry-run"
+      ],
+      "completion_evidence": "Доля покрытия ступеней A и B, время расчёта",
+      "failure_modes": [
+        "Таймауты GEE",
+        "Ступень B не успевает",
+        "Квоты Community tier"
+      ],
+      "fallback": "Ступень B только для 600 кандидатов холодной и вулканической страт; иначе proxy baseline 400 м с пометкой (R04)",
+      "estimated_effort": 1.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-03",
+      "title": "Атрибуты среды в GEE",
+      "objective": "precip_mm, bare_frac, t_min_c, t_max_c и контекст по MATHEMATICAL_SPECIFICATION §4.",
+      "why": "Холод, сухость и открытость поверхности — атрибуты задач O2, O5, M3, M4.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "PARALLELIZABLE"
+      ],
+      "window": "Сб 13:15–14:30 (запуски — пока считается EARTH-02)",
+      "dependencies": [
+        "EARTH-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/gee_env.py: LST P5 ночь и P95 день за 2015–2024",
+        "IMERG: мм/ч × часы → год → среднее 2001–2024",
+        "WorldCover доли классов; вне покрытия MCD12Q1",
+        "Единицы — тестом на известных числах"
+      ],
+      "files_create": [
+        "pipeline/earth/gee_env.py",
+        "pipeline/earth/tests/test_units.py"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [
+        "MODIS/061/MOD11A2",
+        "MODIS/061/MYD11A2",
+        "NASA/GPM_L3/IMERG_MONTHLY_V07",
+        "ESA/WorldCover/v200",
+        "MODIS/061/MCD12Q1"
+      ],
+      "expected_output": [
+        "Атрибуты среды"
+      ],
+      "acceptance_criteria": [
+        "Масштабные коэффициенты верны (тест)",
+        "Пропуски = null",
+        "provenance с периодами"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth/tests/test_units.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.earth.gee_env --sample 20"
+      ],
+      "completion_evidence": "Вывод тестов и выборка 20 квадратов",
+      "failure_modes": [
+        "LST пусты над льдом"
+      ],
+      "fallback": "null и исключение из задач с холодом",
+      "estimated_effort": 1.25,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-04",
+      "title": "Экспорт earth_candidates.json",
+      "objective": "Собрать атрибуты в файл по контракту с tiles_hash и provenance.",
+      "why": "Вход движка и сайта.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 14:30–15:15",
+      "dependencies": [
+        "EARTH-02",
+        "EARTH-03",
+        "INFRA-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/export.py",
+        "Округление по контракту",
+        "missing по null",
+        "Валидация"
+      ],
+      "files_create": [
+        "pipeline/earth/export.py",
+        "data/processed/earth_candidates.json"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "EarthCandidates"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "data/processed/earth_candidates.json"
+      ],
+      "acceptance_criteria": [
+        "Файл проходит схему",
+        "synthetic=false, нет FAKE_",
+        "≤ 3 МБ"
+      ],
+      "automated_tests": [
+        "python -m pipeline.contracts.validate data/processed/earth_candidates.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.earth.export && python -m pipeline.contracts.validate data/processed/earth_candidates.json"
+      ],
+      "completion_evidence": "Вывод валидатора, размер, число кандидатов",
+      "failure_modes": [
+        "Файл > 3 МБ"
+      ],
+      "fallback": "Убрать контекстные поля кроме нужных ограничениям",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-05",
+      "title": "Сверка GEE с terrain.py (E2b) и проверки здравого смысла",
+      "objective": "Сверить атрибуты GEE с terrain_attributes на 3 квадратах (E2b); проверить известные значения: Badwater ≈ −86 ± 15 м, Карагие ≈ −132 ± 15 м (если в пуле), Атакама < 50 мм/год, лес — bare_frac < 0,1, Сухие долины — t_min < −40 °C.",
+      "why": "Ловит ошибки единиц, проекций и формул до того, как на данных построят кампании и их увидят судьи.",
+      "owner": "MEMBER_B",
+      "collaborators": [
+        "MEMBER_E"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 15:15–16:00",
+      "dependencies": [
+        "EARTH-04",
+        "TERR-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "crosscheck.py: скачать DEM 30 м трёх квадратов (getDownloadURL), посчитать terrain_attributes, сравнить с GEE",
+        "sanity.py по PR_ и известным координатам",
+        "Таблицы — в PR и PROGRESS.md; результат E2b передать D для validation.json"
+      ],
+      "files_create": [
+        "pipeline/earth/crosscheck.py",
+        "pipeline/earth/tests/test_crosscheck.py",
+        "pipeline/earth/sanity.py"
+      ],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [
+        "terrain_attributes() из pipeline/common/terrain.py"
+      ],
+      "datasets": [
+        "COPERNICUS/DEM/GLO30"
+      ],
+      "expected_output": [
+        "Таблица сверки E2b",
+        "Отчёт проверок здравого смысла"
+      ],
+      "acceptance_criteria": [
+        "|Δ slope_f400_p50| ≤ 0,5° или ≤ 10 % на 3 квадратах",
+        "Все проверки здравого смысла выполнены",
+        "Провалы разобраны: исправлены или записаны в ограничения"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth/tests/test_crosscheck.py -q",
+        "python -m pipeline.earth.sanity"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.earth.crosscheck --n 3",
+        "python -m pipeline.earth.sanity"
+      ],
+      "completion_evidence": "Таблица сверки и таблица значений",
+      "failure_modes": [
+        "Расхождение из-за разной проекции или масштаба",
+        "Badwater не в пуле"
+      ],
+      "fallback": "Проверить UTM-зону и масштаб пикселя; добавить точку практики PR_DEATH_VALLEY",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-06",
+      "title": "Доля дней без снега по месяцам (MOD10A1)",
+      "objective": "snow_free_frac[12] для всех кандидатов (minor 1.1 контракта).",
+      "why": "Делает окна освещения реалистичными.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 19:30–20:30",
+      "dependencies": [
+        "EARTH-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/gee_snow.py",
+        "NDSI_Snow_Cover < 10 → без снега",
+        "Добавить поле в экспорт"
+      ],
+      "files_create": [
+        "pipeline/earth/gee_snow.py"
+      ],
+      "files_modify": [
+        "pipeline/earth/export.py"
+      ],
+      "interfaces": [],
+      "datasets": [
+        "MODIS/061/MOD10A1"
+      ],
+      "expected_output": [
+        "snow_free_frac"
+      ],
+      "acceptance_criteria": [
+        "Поле есть у ≥ 90 % кандидатов",
+        "Значения в [0,1]"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.contracts.validate data/processed/earth_candidates.json"
+      ],
+      "completion_evidence": "Покрытие поля",
+      "failure_modes": [
+        "Пропуски полярной ночью"
+      ],
+      "fallback": "null — месяц не рассматривается",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-07",
+      "title": "Режим «Казахстан»: квадраты KZ_",
+      "objective": "Добавить квадраты Казахстана с долей голой поверхности ≥ 0,3 и теми же атрибутами (pool=kazakhstan).",
+      "why": "Локальная польза.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 20:30–21:30",
+      "dependencies": [
+        "EARTH-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/kz.py: граница LSIB, решётка 20 км, фильтр",
+        "Ступени A и B, среда",
+        "Добавить в экспорт"
+      ],
+      "files_create": [
+        "pipeline/earth/kz.py"
+      ],
+      "files_modify": [
+        "pipeline/earth/export.py"
+      ],
+      "interfaces": [],
+      "datasets": [
+        "USDOS/LSIB_SIMPLE/2017"
+      ],
+      "expected_output": [
+        "KZ_ в earth_candidates.json"
+      ],
+      "acceptance_criteria": [
+        "KZ_ проходят схему",
+        "Счётчик в PR"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.contracts.validate data/processed/earth_candidates.json"
+      ],
+      "completion_evidence": "Число KZ_",
+      "failure_modes": [
+        "Файл растёт > 3 МБ"
+      ],
+      "fallback": "Только KZ_ с bare ≥ 0,5",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-08",
+      "title": "DEM 30 м для коротких списков",
+      "objective": "Скачать окна Copernicus 30 м (20 км + 5 км) для топ-30 кандидатов по задачам Луны и площадок кампаний.",
+      "why": "Вход теней и «То же Солнце».",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 16:45–17:45",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/earth/dem_windows.py: список из results.json",
+        "getDownloadURL в UTM, 30 м",
+        "Сохранить в data/raw/earth_dem30/"
+      ],
+      "files_create": [
+        "pipeline/earth/dem_windows.py"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [
+        "COPERNICUS/DEM/GLO30"
+      ],
+      "expected_output": [
+        "Окна DEM 30 м"
+      ],
+      "acceptance_criteria": [
+        "≥ 25 окон",
+        "Проекция и размер проверены"
+      ],
+      "automated_tests": [
+        "pytest pipeline/earth -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "ls data/raw/earth_dem30 | wc -l"
+      ],
+      "completion_evidence": "Число окон",
+      "failure_modes": [
+        "Лимит getDownloadURL"
+      ],
+      "fallback": "Уменьшить окно до 15 км",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "EARTH-09",
+      "title": "Перекрёстная проверка NASADEM",
+      "objective": "slope_f400_p50 по NASADEM для ≥ 100 кандидатов; медиана и P90 |Δ|.",
+      "why": "Устойчивость к выбору DEM.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P2",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "",
+      "dependencies": [
+        "EARTH-05"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "crosscheck.py --dem nasadem --n 100",
+        "Передать D для validation.json"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "pipeline/earth/crosscheck.py"
+      ],
+      "interfaces": [],
+      "datasets": [
+        "NASA/NASADEM_HGT/001"
+      ],
+      "expected_output": [
+        "Таблица сравнения"
+      ],
+      "acceptance_criteria": [
+        "Таблица ≥ 100",
+        "Числа переданы"
+      ],
+      "automated_tests": [
+        "python -m pipeline.earth.crosscheck --dem nasadem --n 100"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.earth.crosscheck --dem nasadem --n 100"
+      ],
+      "completion_evidence": "Медиана и P90",
+      "failure_modes": [
+        "Квадраты вне покрытия NASADEM (севернее 60° с. ш.)"
+      ],
+      "fallback": "Не публикуем; в ограничениях — только Copernicus",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-03",
+      "title": "Реестр источников и лицензий",
+      "objective": "submission/references.md: наборы (ID, версия, лицензия, ссылка), библиотеки, статьи, шрифты, иконки, музыка.",
+      "why": "Без ссылок и лицензий могут снять награду (Terms & Conditions).",
+      "owner": "MEMBER_B",
+      "collaborators": [
+        "MEMBER_A",
+        "MEMBER_C",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 16:00–16:45; сверка с кодом — Вс до 11:00",
+      "dependencies": [
+        "EARTH-04",
+        "PLNT-03",
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Собрать ID наборов из pipeline/ (grep)",
+        "Лицензии из requirements.txt и web/package.json",
+        "Атрибуции Copernicus, WorldCover, GIBS, PGDA (Barker et al. 2021)"
+      ],
+      "files_create": [
+        "submission/references.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "references.md"
+      ],
+      "acceptance_criteria": [
+        "Все ID из кода есть в реестре",
+        "У каждой библиотеки лицензия"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Сверка grep"
+      ],
+      "verification_commands": [
+        "grep -rhoE \"(COPERNICUS|NASA|MODIS|ESA|USDOS|CIESIN)/[A-Za-z0-9_/]+\" pipeline | sort -u"
+      ],
+      "completion_evidence": "Число записей",
+      "failure_modes": [
+        "Неизвестна лицензия пакета"
+      ],
+      "fallback": "Заменить пакет или указать «unknown — removed»",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-06",
+      "title": "Страница Evidence",
+      "objective": "Экран S6: таблица E1–E10 из validation.json, график E3, ограничения, источники, раскрытие подготовки, ИИ.",
+      "why": "Главное доказательство для критерия Validity и Best Use of Science.",
+      "owner": "MEMBER_B",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 09:00–09:45 (каркас на фикстурах — Сб 16:45–17:30)",
+      "dependencies": [
+        "WEB-01",
+        "VAL-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/pages/EvidencePage.tsx и web/src/components/evidence/",
+        "Таблица экспериментов со статусами",
+        "SVG-график pct с линиями 10 % и 50 %",
+        "Тексты: limitations.md, раскрытие (PRE_EVENT_AUTHORIZATION §3), ai_use.md",
+        "Vitest: статусы из данных"
+      ],
+      "files_create": [
+        "web/src/pages/EvidencePage.tsx",
+        "web/src/components/evidence/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Validation"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Экран Evidence"
+      ],
+      "acceptance_criteria": [
+        "Все числа из validation.json",
+        "Отрицательные результаты видны",
+        "Источники и раскрытие есть"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [
+        "Проверка на прод-ссылке"
+      ],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот и вывод тестов",
+      "failure_modes": [
+        "validation.json не готов"
+      ],
+      "fallback": "Показать таблицу со статусом not_run",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "TERR-01",
+      "title": "terrain.py: атрибуты рельефа на базах",
+      "objective": "slope_at_offset, terrain_attributes, tri по FUNCTION_SPECIFICATIONS §1.",
+      "why": "Одна функция для трёх тел и сверки с GEE.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 09:30–10:30",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Реализовать по ALGORITHMS_AND_PSEUDOCODE A2 параллельно с INFRA-01 (PR — после слияния каркаса)",
+        "Тесты на аналитических поверхностях (плоскость 10°, горизонталь, NaN, доли, TRI)",
+        "Объявить сигнатуру terrain_attributes в #engine к 10:30 — её ждут C и B"
+      ],
+      "files_create": [
+        "pipeline/common/terrain.py",
+        "pipeline/common/tests/test_terrain.py"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "terrain_attributes(z, p, fine_offset, regional_baseline_m)"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "terrain.py"
+      ],
+      "acceptance_criteria": [
+        "Тесты E2a зелёные",
+        "Скорость: 1 000×1 000 < 50 мс"
+      ],
+      "automated_tests": [
+        "pytest pipeline/common/tests/test_terrain.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "pytest pipeline/common/tests/test_terrain.py -q"
+      ],
+      "completion_evidence": "Вывод pytest",
+      "failure_modes": [
+        "Краевые эффекты"
+      ],
+      "fallback": "Шире рамка исключения",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "ENG-01",
+      "title": "fidelity.py и templates.py",
+      "objective": "Функции соответствия §6, соответствие задачи §7, правила пропусков и ограничений, загрузка шаблонов из CSV.",
+      "why": "Ядро оценки по задачам.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 10:30–12:00",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "fidelity.py: attribute_fidelity, objective_fidelity, fidelity_table (MATHEMATICAL_SPECIFICATION §6–§7)",
+        "templates.py: CSV MEMBER_E → mission_templates.json; до готовности CSV — стартовые веса §7.3",
+        "Тесты всех функций и правил пропусков и ограничений",
+        "Прогон на фикстурах после INFRA-03"
+      ],
+      "files_create": [
+        "pipeline/engine/__init__.py",
+        "pipeline/engine/templates.py",
+        "pipeline/engine/fidelity.py",
+        "pipeline/engine/tests/test_fidelity.py",
+        "data/processed/mission_templates.json"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "MissionTemplates",
+        "FidelityCell"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "fidelity.py, templates.py"
+      ],
+      "acceptance_criteria": [
+        "Тесты зелёные",
+        "Ошибки CSV с номером строки"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine/tests/test_fidelity.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "pytest pipeline/engine -q"
+      ],
+      "completion_evidence": "Вывод pytest",
+      "failure_modes": [
+        "CSV шаблонов запаздывает"
+      ],
+      "fallback": "Стартовые веса из MATHEMATICAL_SPECIFICATION §7.3",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "ENG-02",
+      "title": "campaign.py: короткий список, точный перебор, жадный поиск, разрывы",
+      "objective": "shortlist, exact_best, greedy, design, gap_ledger по §8–§9 и A9–A10.",
+      "why": "Главная инновация — кампания.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 13:00–14:30",
+      "dependencies": [
+        "ENG-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Векторный перебор блоками",
+        "Жадный поиск и объединение при превосходстве",
+        "Роли, per_objective, method",
+        "Реестр разрывов",
+        "Тесты E4 против itertools"
+      ],
+      "files_create": [
+        "pipeline/engine/campaign.py",
+        "pipeline/engine/tests/test_campaign.py"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Campaign",
+        "gaps"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "campaign.py"
+      ],
+      "acceptance_criteria": [
+        "E4: 100 % совпадений",
+        "|U|=120, k=3 < 2 с",
+        "Детерминированно"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine/tests/test_campaign.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "pytest pipeline/engine -q -k exact"
+      ],
+      "completion_evidence": "Вывод pytest с E4",
+      "failure_modes": [
+        "Медленно"
+      ],
+      "fallback": "|U| ≤ 80",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "ENG-03",
+      "title": "run.py: results.json",
+      "objective": "Посчитать fidelity, кампании k=1–3 и разрывы для всех целей и шаблонов; хэши входов; E10.",
+      "why": "Вход сайта и проверок.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M4",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 15:15–16:00",
+      "dependencies": [
+        "ENG-02",
+        "EARTH-04",
+        "PLNT-03",
+        "LIGHT-02",
+        "SCI-02",
+        "INFRA-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Загрузить и проверить входы валидатором",
+        "fidelity_table; light — по широте кандидата из sun_windows",
+        "design() и gap_ledger() для каждой пары цель × шаблон; квадраты pool = control не входят в короткий список и кампании",
+        "Записать results.json с хэшами входов",
+        "Повторить и сравнить байты (E10)"
+      ],
+      "files_create": [
+        "pipeline/engine/run.py",
+        "data/processed/results.json"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Results"
+      ],
+      "datasets": [
+        "earth_candidates.json",
+        "targets.json",
+        "sun_windows.json",
+        "mission_templates.json"
+      ],
+      "expected_output": [
+        "data/processed/results.json"
+      ],
+      "acceptance_criteria": [
+        "results.json проходит схему",
+        "E10: идентичные байты",
+        "≤ 2 мин"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q",
+        "python -m pipeline.contracts.validate data/processed/results.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.run && python -m pipeline.contracts.validate data/processed/results.json"
+      ],
+      "completion_evidence": "Вывод валидатора и sha256 двух запусков",
+      "failure_modes": [
+        "Входы опаздывают"
+      ],
+      "fallback": "Срез на одной цели для IC-1",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "VAL-01",
+      "title": "Проверки: E3 с базовыми линиями и сводка E1, E2, E4 → validation.json",
+      "objective": "Восстановление практики NASA по задачам (E3) против трёх базовых линий, сводка проверок E1, E2, E4, графики; хэш пререгистрации.",
+      "why": "Доказательства для критерия Validity; от этих чисел зависят слайды, страница проекта и подпись утверждений.",
+      "owner": "MEMBER_D",
+      "collaborators": [
+        "MEMBER_E"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M5",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 16:00–17:00",
+      "dependencies": [
+        "ENG-03",
+        "SCI-03",
+        "LIGHT-01",
+        "EARTH-05"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "validate_practice.py по ALGORITHMS A11 на парах из practice_sites.csv (исключения — по правилам, до расчёта)",
+        "Базовые линии: только сухость, случайная, v1-сходство",
+        "Внести результаты E1 (test_sun), E2 (test_terrain + EARTH-05), E4 (test_campaign)",
+        "validation.json + figures/; хэш пререгистрации; сообщить F и E в #pitch"
+      ],
+      "files_create": [
+        "pipeline/engine/validate_practice.py",
+        "pipeline/engine/tests/test_validate_practice.py",
+        "data/processed/validation.json",
+        "data/processed/figures/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Validation"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "validation.json",
+        "графики"
+      ],
+      "acceptance_criteria": [
+        "validation.json проходит схему",
+        "Каждая пара в отчёте, включая исключённые, с причиной",
+        "Хэш пререгистрации совпадает с DEC-010"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q -k practice"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.validate_practice && python -m pipeline.contracts.validate data/processed/validation.json"
+      ],
+      "completion_evidence": "Сводка E3 (медиана pct, n, базовые линии) и хэш пререгистрации",
+      "failure_modes": [
+        "Мало проверяемых пар"
+      ],
+      "fallback": "Отчёт «недостаточно пар», утверждение C3 снимается",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "VAL-02",
+      "title": "Отрицательные контроли E7",
+      "objective": "Отрицательные контроли по VALIDATION_PROTOCOL E7: квадраты CT_ (лес, пашня, ледник) не входят в топ-5 % ни одной задачи; ограничения по воде и застройке срабатывают. Сравнение со случайными кампаниями — только проверка здравого смысла.",
+      "why": "Отвечает на возражение «модель выбирает что попало»; честно отделяет настоящую проверку от проверки, которая выполняется по построению.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M5",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 17:00–17:30",
+      "dependencies": [
+        "VAL-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "controls.py: ранги квадратов CT_ среди допущенных кандидатов по каждой задаче (seed 2026)",
+        "Тест ограничений на синтетических значениях (вода > 0,5, застройка > 0,2 → constraint)",
+        "Проверка здравого смысла: точная ≥ жадной ≥ медианы 1 000 случайных кампаний — в notes, не в утверждения",
+        "Раздел controls и эксперимент E7 в validation.json"
+      ],
+      "files_create": [
+        "pipeline/engine/controls.py",
+        "pipeline/engine/tests/test_controls.py"
+      ],
+      "files_modify": [
+        "data/processed/validation.json"
+      ],
+      "interfaces": [
+        "Validation.controls",
+        "coverage() из campaign.py"
+      ],
+      "datasets": [
+        "earth_candidates.json",
+        "results.json"
+      ],
+      "expected_output": [
+        "E7 в validation.json"
+      ],
+      "acceptance_criteria": [
+        "E7 в validation.json со статусом по пререгистрированному критерию (a)",
+        "seed воспроизводит числа",
+        "Схема проходит"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q -k controls"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.controls --seed 2026 && python -m pipeline.contracts.validate data/processed/validation.json"
+      ],
+      "completion_evidence": "Доля контролей в топ-5 % по задачам и число нарушений ограничений",
+      "failure_modes": [
+        "Мало контролей какого-то класса в данных",
+        "Контроль попал в топ из-за ошибки данных"
+      ],
+      "fallback": "Контроли по двум классам с пометкой; каждый случай попадания в топ разбирает MEMBER_E",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-05",
+      "title": "Панель площадки",
+      "objective": "Экран S3: роль, атрибуты с значениями цели и кандидата, функция и допуск, источник; столбики окон освещения.",
+      "why": "Объяснимость каждого числа.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 09:00–10:00",
+      "dependencies": [
+        "WEB-01",
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/site/: SitePanel, AttributeRow, LightingMonths",
+        "Данные из results (parts) и sun_windows",
+        "Состояние «не найдено»",
+        "Vitest"
+      ],
+      "files_create": [
+        "web/src/components/site/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Results.fidelity",
+        "SunWindows"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Панель площадки"
+      ],
+      "acceptance_criteria": [
+        "Числа из данных",
+        "Пропуски помечены",
+        "Доступно с клавиатуры"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот и тесты",
+      "failure_modes": [
+        "parts нет для кандидата вне короткого списка"
+      ],
+      "fallback": "Показать F без разложения",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "ENG-04",
+      "title": "Детерминированные объяснения",
+      "objective": "Фразы «matches / differs» по шаблонам с числами для площадок кампании.",
+      "why": "Понятность для судей.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:00–10:30",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "explain.py",
+        "Поле explain в Campaign",
+        "Тест: числа во фразах = данным"
+      ],
+      "files_create": [
+        "pipeline/engine/explain.py",
+        "pipeline/engine/tests/test_explain.py"
+      ],
+      "files_modify": [
+        "pipeline/engine/run.py"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "explain"
+      ],
+      "acceptance_criteria": [
+        "Фразы есть",
+        "Нет LLM"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q -k explain"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "pytest pipeline/engine -q -k explain"
+      ],
+      "completion_evidence": "Вывод pytest",
+      "failure_modes": [
+        "Фразы расходятся с числами после пересчёта"
+      ],
+      "fallback": "Без фраз: только числа и функции соответствия",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "ENG-05",
+      "title": "TypeScript-копия движка, golden-тесты, Web Worker",
+      "objective": "fidelity.ts, campaign.ts, campaign.worker.ts; golden-файлы из Python; бюджет 300 мс.",
+      "why": "Живой пересчёт без сервера.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 19:30–21:00",
+      "dependencies": [
+        "ENG-02",
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "golden.py → data/fixtures/golden_fidelity.json и golden_campaign.json",
+        "TS-реализации",
+        "Worker с таймаутом 2 с",
+        "Vitest и бенчмарк"
+      ],
+      "files_create": [
+        "pipeline/engine/golden.py",
+        "data/fixtures/golden_fidelity.json",
+        "data/fixtures/golden_campaign.json",
+        "web/src/lib/",
+        "web/src/workers/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "WorkerRequest/WorkerResponse"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "TS-движок"
+      ],
+      "acceptance_criteria": [
+        "|Δ| < 1e-6",
+        "≤ 300 мс"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.golden && npm --prefix web test -- --run"
+      ],
+      "completion_evidence": "Вывод Vitest и время",
+      "failure_modes": [
+        "Расхождения float"
+      ],
+      "fallback": "Только предрасчитанные кампании",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-08",
+      "title": "Матрица соответствия",
+      "objective": "Экран S4.",
+      "why": "Глубина анализа для учёных.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Вс 10:00–11:00",
+      "dependencies": [
+        "WEB-05"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/matrix/",
+        "Сортировка и всплывающее доказательство"
+      ],
+      "files_create": [
+        "web/src/components/matrix/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Матрица"
+      ],
+      "acceptance_criteria": [
+        "Числа из данных"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот",
+      "failure_modes": [
+        "Таблица 120 × 9 тормозит на телефоне"
+      ],
+      "fallback": "Матрица только для площадок кампании и топ-10",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-09",
+      "title": "Живой пересчёт в интерфейсе",
+      "objective": "Флажки задач и веса на Brief и Campaign → Worker → обновление кампании.",
+      "why": "Пользователь проверяет устойчивость сам.",
+      "owner": "MEMBER_D",
+      "collaborators": [
+        "MEMBER_A",
+        "MEMBER_C"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Вс 08:00–08:30",
+      "dependencies": [
+        "ENG-05",
+        "WEB-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/lib/useLiveCampaign.ts: хук подписки на store и вызова воркера",
+        "Индикатор пересчёта и таймаут",
+        "A подключает хук в store, C — в панели кампании (по 10 минут, в своих файлах)",
+        "Совпадение с предрасчётом при исходных весах"
+      ],
+      "files_create": [
+        "web/src/lib/useLiveCampaign.ts"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "WorkerRequest/WorkerResponse",
+        "AppState"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Живой пересчёт"
+      ],
+      "acceptance_criteria": [
+        "≤ 300 мс",
+        "Таймаут обработан"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Видео экрана или скриншоты",
+      "failure_modes": [
+        "Медленно на телефоне"
+      ],
+      "fallback": "Отключить на ширине < 768",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "VAL-03",
+      "title": "Устойчивость кампании (E5)",
+      "objective": "200 запусков с возмущением весов, допусков и пула; частоты выбора; robustness.json.",
+      "why": "Проверка утверждения C10.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 21:00–22:00 (в S1 — Вс 10:30–11:00, если есть запас)",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "robustness.py по A12",
+        "Записать robustness.json",
+        "Фраза-вывод для Evidence"
+      ],
+      "files_create": [
+        "pipeline/engine/robustness.py",
+        "data/processed/robustness.json"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "robustness.json"
+      ],
+      "acceptance_criteria": [
+        "seed воспроизводит",
+        "Схема проходит"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q -k robust"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.robustness --runs 200 --seed 2026"
+      ],
+      "completion_evidence": "Медиана Жаккара и частоты лидеров",
+      "failure_modes": [
+        "Долго"
+      ],
+      "fallback": "100 запусков",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "VAL-04",
+      "title": "Абляция и альтернативное «И» (E6)",
+      "objective": "Убрать группы атрибутов и заменить среднее на минимум; записать изменения кампаний.",
+      "why": "Показывает, что решает каждый вид данных.",
+      "owner": "MEMBER_D",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 22:00–22:30",
+      "dependencies": [
+        "VAL-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "ablation.py",
+        "Раздел в validation.json"
+      ],
+      "files_create": [
+        "pipeline/engine/ablation.py"
+      ],
+      "files_modify": [
+        "data/processed/validation.json"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "E6"
+      ],
+      "acceptance_criteria": [
+        "Результаты записаны"
+      ],
+      "automated_tests": [
+        "pytest pipeline/engine -q -k ablation"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.ablation"
+      ],
+      "completion_evidence": "Таблица ΔC",
+      "failure_modes": [
+        "Слишком много пересчётов — долго"
+      ],
+      "fallback": "Только альтернативное «И» (минимум) без абляции групп",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PLNT-01",
+      "title": "Спайк доступа к DEM целей и решение",
+      "objective": "Прочитать участок PGDA 20 (Mons Mouton) и окно MOLA/HRSC вокруг Jezero; замерить; выбрать уровень лестницы данных.",
+      "why": "Самый рискованный шаг: без него нет целей.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH",
+        "HIGH_RISK"
+      ],
+      "window": "Сб 09:30–10:45 (решение не позже 13:30)",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "access.py: read_window для локального файла (если скачан по AUTH-01) или URL",
+        "Замер времени и объёма",
+        "При неудаче — мозаика PGDA 20 м (Луна), MEGDR 463 м (Марс)",
+        "Решение — новой записью DEC в DECISIONS.md до 13:30"
+      ],
+      "files_create": [
+        "pipeline/planets/__init__.py",
+        "pipeline/planets/access.py",
+        "pipeline/planets/tests/test_access.py"
+      ],
+      "files_modify": [
+        "docs/planning/DECISIONS.md"
+      ],
+      "interfaces": [],
+      "datasets": [
+        "PGDA product 78, участок 20",
+        "MOLA/HRSC blend 200 m"
+      ],
+      "expected_output": [
+        "Окна в data/raw/targets/",
+        "Запись DEC"
+      ],
+      "acceptance_criteria": [
+        "Окна обеих целей прочитаны",
+        "Решение записано с продуктами и версиями"
+      ],
+      "automated_tests": [
+        "pytest pipeline/planets -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.planets.access spike --target MOON_MONS_MOUTON --target MARS_JEZERO"
+      ],
+      "completion_evidence": "Время, размеры, DEC",
+      "failure_modes": [
+        "Медленный сервер",
+        "Неверная проекция"
+      ],
+      "fallback": "Лестница MATHEMATICAL_SPECIFICATION §3 / DATASET_SPECIFICATION",
+      "estimated_effort": 1.25,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "LIGHT-01",
+      "title": "sun.py: положение Солнца, окна низкого Солнца, проверка E1",
+      "objective": "sun_position (NOAA), lowsun_windows, h_max_moon; тест против astropy.",
+      "why": "Атрибут освещения и утверждения C2, C6.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "PARALLELIZABLE"
+      ],
+      "window": "Сб 10:45–11:45",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Реализовать A5 (NOAA) и A6 (окна низкого Солнца) параллельно с INFRA-01; PR — после каркаса",
+        "Тест E1 против astropy: 7 широт × 4 даты",
+        "Кэш по широтной полосе 0,1°"
+      ],
+      "files_create": [
+        "pipeline/common/sun.py",
+        "pipeline/common/tests/test_sun.py"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "lowsun_windows(lat, h_max)"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "sun.py"
+      ],
+      "acceptance_criteria": [
+        "max|Δh| ≤ 0,1° при h > 1°",
+        "1 800 широтных полос < 30 с"
+      ],
+      "automated_tests": [
+        "pytest pipeline/common/tests/test_sun.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "pytest pipeline/common/tests/test_sun.py -q"
+      ],
+      "completion_evidence": "Вывод E1: max|Δh|",
+      "failure_modes": [
+        "Ошибка рефракции у горизонта"
+      ],
+      "fallback": "Геометрическая высота без рефракции с пометкой",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PLNT-02",
+      "title": "Атрибуты целей на базах NASA",
+      "objective": "Mons Mouton: сетка 50 м (_f100 по 10 км, _r и relief по 20 км); Jezero: 200 м (_f400, _r); таблица баз E9 (100/200/400 м/2 км).",
+      "why": "Цели меряются той же линейкой, что Земля.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 11:45–12:00 и 13:00–14:00",
+      "dependencies": [
+        "PLNT-01",
+        "TERR-01",
+        "SCI-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "to_local_grid: AEQD с радиусом тела",
+        "terrain_attributes",
+        "Проверить квадратный пиксель",
+        "Сверка диапазона высот с источником"
+      ],
+      "files_create": [
+        "pipeline/planets/targets.py"
+      ],
+      "files_modify": [
+        "pipeline/planets/access.py"
+      ],
+      "interfaces": [
+        "terrain_attributes"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Атрибуты целей"
+      ],
+      "acceptance_criteria": [
+        "Атрибуты обеих целей",
+        "Пиксель квадратный ± 0,1 %"
+      ],
+      "automated_tests": [
+        "pytest pipeline/planets -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.planets.targets --attrs-only"
+      ],
+      "completion_evidence": "Таблица атрибутов и баз",
+      "failure_modes": [
+        "Проекция PGDA"
+      ],
+      "fallback": "Читать CRS из GeoTIFF; при сомнении — сверка с картой уклонов PGDA",
+      "estimated_effort": 1.25,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PLNT-03",
+      "title": "targets.json",
+      "objective": "Атрибуты + курируемые значения (SCI-04) + h_max для Луны → файл по контракту.",
+      "why": "Вход движка.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 14:30–15:00",
+      "dependencies": [
+        "PLNT-02",
+        "SCI-04",
+        "INFRA-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "build_targets",
+        "attr_sources для каждого значения",
+        "Валидация"
+      ],
+      "files_create": [
+        "data/processed/targets.json"
+      ],
+      "files_modify": [
+        "pipeline/planets/targets.py"
+      ],
+      "interfaces": [
+        "Targets"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "targets.json"
+      ],
+      "acceptance_criteria": [
+        "Схема проходит",
+        "У каждого курируемого значения источник"
+      ],
+      "automated_tests": [
+        "python -m pipeline.contracts.validate data/processed/targets.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.planets.targets && python -m pipeline.contracts.validate data/processed/targets.json"
+      ],
+      "completion_evidence": "Вывод валидатора",
+      "failure_modes": [
+        "Нет значения от E"
+      ],
+      "fallback": "null с пометкой «not assessed»",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "LIGHT-02",
+      "title": "sun_windows.json по широтным полосам",
+      "objective": "H_low и A_low по месяцам для широтных полос 0,1° (−89,95…89,95) и каждой цели Луны; h_max цели — из её широты (targets.csv).",
+      "why": "Атрибут light задачи O4; окна зависят только от широты, поэтому файл не ждёт данных Земли.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "PARALLELIZABLE"
+      ],
+      "window": "Сб 14:00–14:30",
+      "dependencies": [
+        "LIGHT-01",
+        "SCI-01",
+        "INFRA-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "pipeline/lighting/windows.py: lowsun_windows для 1 800 полос",
+        "h_max_moon по широте цели из data/curated/targets.csv",
+        "Валидация и размер"
+      ],
+      "files_create": [
+        "pipeline/lighting/__init__.py",
+        "pipeline/lighting/windows.py",
+        "data/processed/sun_windows.json"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "SunWindows"
+      ],
+      "datasets": [
+        "targets.csv (широта цели)"
+      ],
+      "expected_output": [
+        "sun_windows.json"
+      ],
+      "acceptance_criteria": [
+        "Схема проходит",
+        "≤ 1 МБ на цель",
+        "Движок находит окно для любого кандидата по его широте"
+      ],
+      "automated_tests": [
+        "python -m pipeline.contracts.validate data/processed/sun_windows.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.lighting.windows && python -m pipeline.contracts.validate data/processed/sun_windows.json"
+      ],
+      "completion_evidence": "Вывод валидатора, размер",
+      "failure_modes": [
+        "Долго"
+      ],
+      "fallback": "Шаг 20 минут",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-04",
+      "title": "Панели кампании: задачи, фронт, карточка, разрывы",
+      "objective": "Экран S2 (кроме карты): ObjectivesPanel, Frontier, CampaignCard, GapLedger.",
+      "why": "Главный ответ продукта.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M4",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 15:00–16:30",
+      "dependencies": [
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/campaign/",
+        "Данные из results.runs[].campaigns и gaps",
+        "Пустые состояния",
+        "Vitest: числа из данных"
+      ],
+      "files_create": [
+        "web/src/components/campaign/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "Results.runs[].campaigns",
+        "gaps"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Панели кампании"
+      ],
+      "acceptance_criteria": [
+        "Числа из данных",
+        "Пустые состояния",
+        "Клавиатура",
+        "Карточка кампании видна без прокрутки на 1280 px, на телефоне — первой",
+        "Подписи простыми словами, термины — в подсказках"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот и тесты",
+      "failure_modes": [
+        "Данные опаздывают"
+      ],
+      "fallback": "Работа на фикстурах до IC-1",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PLNT-04",
+      "title": "Дополнительные цели",
+      "objective": "Malapert (участок 23), de Gerlache rim (11), Gale, Utopia VL2 — атрибуты и targets.json.",
+      "why": "Широта демо.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Вс 08:00–09:30",
+      "dependencies": [
+        "PLNT-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Те же шаги PLNT-01…03",
+        "Курируемые значения от E"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "pipeline/planets/targets.py",
+        "data/processed/targets.json"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Новые цели"
+      ],
+      "acceptance_criteria": [
+        "Цели в targets.json"
+      ],
+      "automated_tests": [
+        "python -m pipeline.contracts.validate data/processed/targets.json"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.planets.targets"
+      ],
+      "completion_evidence": "Число целей",
+      "failure_modes": [
+        "Медленный доступ"
+      ],
+      "fallback": "Только Луна",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "LIGHT-03",
+      "title": "Тени: shadows.py и кривые sf",
+      "objective": "cast_shadow, shadow_fraction_curve; sf для цели Луны (30 м) и коротких списков; тесты E8a; shadows.json.",
+      "why": "Атрибут shadow и научная основа «То же Солнце».",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 17:45–18:00 и 19:30–21:15",
+      "dependencies": [
+        "LIGHT-01",
+        "EARTH-08",
+        "PLNT-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Реализовать A7",
+        "Аналитические тесты",
+        "Посчитать sf",
+        "Валидация"
+      ],
+      "files_create": [
+        "pipeline/common/shadows.py",
+        "pipeline/common/tests/test_shadows.py",
+        "pipeline/lighting/shadow_curves.py",
+        "data/processed/shadows.json"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "shadows.json"
+      ],
+      "acceptance_criteria": [
+        "E8a зелёные",
+        "shadows.json проходит"
+      ],
+      "automated_tests": [
+        "pytest pipeline/common/tests/test_shadows.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.lighting.shadow_curves && python -m pipeline.contracts.validate data/processed/shadows.json"
+      ],
+      "completion_evidence": "Вывод тестов",
+      "failure_modes": [
+        "Медленно"
+      ],
+      "fallback": "Меньше азимутов (4)",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "LIGHT-04",
+      "title": "Картинки «То же Солнце»",
+      "objective": "render.py; WebP цели и площадок кампании при h ∈ {1,2,3,5,7}, az ∈ {0…315}; manifest.json.",
+      "why": "WOW-визуализация.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 21:15–22:15",
+      "dependencies": [
+        "LIGHT-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "render_same_sun",
+        "Генерация и манифест",
+        "Проверка размера ≤ 150 КБ на кадр"
+      ],
+      "files_create": [
+        "pipeline/common/render.py",
+        "pipeline/common/tests/test_render.py",
+        "pipeline/lighting/renders.py",
+        "web/public/img/twin/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Кадры"
+      ],
+      "acceptance_criteria": [
+        "Кадры для цели и ≥ 2 площадок"
+      ],
+      "automated_tests": [
+        "pytest pipeline/common/tests/test_render.py -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.lighting.renders"
+      ],
+      "completion_evidence": "Число кадров",
+      "failure_modes": [
+        "Тяжёлые файлы"
+      ],
+      "fallback": "Только h=2°, 4 азимута",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "LIGHT-05",
+      "title": "Сверка освещённости с PGDA (E8b)",
+      "objective": "Средняя освещённость в N точках участка по нашему модулю против PGDA.",
+      "why": "Независимая проверка физики.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P2",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "",
+      "dependencies": [
+        "LIGHT-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "illum_check.py",
+        "Отчёт без заранее заданного порога"
+      ],
+      "files_create": [
+        "pipeline/lighting/illum_check.py"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отчёт E8b"
+      ],
+      "acceptance_criteria": [
+        "Отчёт записан"
+      ],
+      "automated_tests": [
+        "python -m pipeline.lighting.illum_check"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.lighting.illum_check"
+      ],
+      "completion_evidence": "MAE в п. п.",
+      "failure_modes": [
+        "Дальний горизонт"
+      ],
+      "fallback": "Не публикуем",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "PLNT-05",
+      "title": "Неопределённость атрибутов целей по клонам PGDA",
+      "objective": "Разброс атрибутов на 100 клонах.",
+      "why": "Интервалы для утверждений.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P2",
+      "milestone": "M8",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "",
+      "dependencies": [
+        "PLNT-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "clones.py"
+      ],
+      "files_create": [
+        "pipeline/planets/clones.py"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Разброс"
+      ],
+      "acceptance_criteria": [
+        "Разброс P5–P95"
+      ],
+      "automated_tests": [
+        "pytest pipeline/planets -q"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.planets.clones"
+      ],
+      "completion_evidence": "Таблица",
+      "failure_modes": [
+        "Объём клонов"
+      ],
+      "fallback": "10 клонов",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-01",
+      "title": "README для жюри",
+      "objective": "Корневой README на английском по структуре MEMBER_C.md; командный README переносится в docs/README.md.",
+      "why": "Судьи начинают с репозитория.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 16:30–17:15",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Перенести текущий командный README в docs/README.md",
+        "Структура: what, why, how, data, method, results (ссылка на Evidence и validation.json — числа не копируются), limitations, reproduce, AI, license, timeline, team (ники)",
+        "Раскрытие подготовки (PRE_EVENT_AUTHORIZATION §3)",
+        "Проверка ссылок в инкогнито"
+      ],
+      "files_create": [
+        "docs/README.md"
+      ],
+      "files_modify": [
+        "README.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "README.md для жюри",
+        "docs/README.md для команды"
+      ],
+      "acceptance_criteria": [
+        "Ссылки работают",
+        "Нет имён несовершеннолетних",
+        "Результаты — ссылкой на Evidence и validation.json, без копий чисел"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Открыть в инкогнито, пройти все ссылки"
+      ],
+      "verification_commands": [
+        "grep -n -E 'FAKE_|synthetic' README.md"
+      ],
+      "completion_evidence": "Коммит и результат проверки ссылок",
+      "failure_modes": [
+        "Ссылки на ещё не опубликованный сайт",
+        "Устаревшие команды запуска"
+      ],
+      "fallback": "Временная ссылка на превью Vercel; команды проверить на чистом клоне перед SUB-05",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-04",
+      "title": "Раскрытие использования ИИ",
+      "objective": "submission/ai_use.md из docs/ai-log.md; проверка пометок в коде и картинках.",
+      "why": "Обязательное правило.",
+      "owner": "MEMBER_C",
+      "collaborators": [
+        "MEMBER_A",
+        "MEMBER_B",
+        "MEMBER_D",
+        "MEMBER_E",
+        "MEMBER_F"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:45–11:15",
+      "dependencies": [
+        "ENG-03",
+        "WEB-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Собрать текст из docs/ai-log.md",
+        "grep пометок в коде",
+        "Проверить водяные знаки на картинках, созданных ИИ"
+      ],
+      "files_create": [
+        "submission/ai_use.md"
+      ],
+      "files_modify": [
+        "docs/ai-log.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "ai_use.md"
+      ],
+      "acceptance_criteria": [
+        "Текст готов",
+        "Пометки есть во всех файлах, написанных с ИИ"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Выборочно 5 файлов: пометка есть"
+      ],
+      "verification_commands": [
+        "grep -rn 'Written with AI assistance' pipeline web/src | wc -l"
+      ],
+      "completion_evidence": "Число пометок и ссылка на ai_use.md",
+      "failure_modes": [
+        "Нет пометок в части файлов"
+      ],
+      "fallback": "Добавить пометки перед заморозкой кода",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "QA-02",
+      "title": "Тест на свежем пользователе",
+      "objective": "2 человека вне команды объясняют выбор кампании за 2 минуты.",
+      "why": "Ворота G7.",
+      "owner": "MEMBER_C",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M9",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:00–10:45",
+      "dependencies": [
+        "WEB-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Сценарий теста",
+        "Наблюдение",
+        "Топ-3 проблемы → A и D"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отчёт"
+      ],
+      "acceptance_criteria": [
+        "2 теста",
+        "Проблемы записаны"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Отчёт в PROGRESS"
+      ],
+      "verification_commands": [
+        "manual: отчёт"
+      ],
+      "completion_evidence": "Итог теста",
+      "failure_modes": [
+        "Нет людей"
+      ],
+      "fallback": "Ментор площадки",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-01",
+      "title": "Каркас приложения: маршруты, загрузка, store, токены",
+      "objective": "S0: маршруты #/…, load.ts с ошибками версии и схемы, store по контракту, токены дизайна, плашка synthetic, индикатор Offline.",
+      "why": "Основа всех экранов.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M4",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 11:30–12:00 и 13:00–14:00",
+      "dependencies": [
+        "INFRA-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "routes.ts, App.tsx; маршрут по умолчанию `#/` → Campaign с Mons Mouton, шаблоном по умолчанию и k = 3",
+        "load.ts + DataLoadError",
+        "store.ts (Zustand)",
+        "tokens.css и шрифты; простые подписи по глобальным правилам SCREEN_BY_SCREEN_SPEC",
+        "Vitest: версия, синтетика, маршрут по умолчанию"
+      ],
+      "files_create": [
+        "web/src/App.tsx",
+        "web/src/routes.ts",
+        "web/src/state/store.ts",
+        "web/src/data/load.ts",
+        "web/src/styles/tokens.css",
+        "web/src/styles/global.css",
+        "web/src/components/layout/",
+        "web/public/fonts/"
+      ],
+      "files_modify": [],
+      "interfaces": [
+        "AppState",
+        "DataLoadError"
+      ],
+      "datasets": [],
+      "expected_output": [
+        "Каркас приложения"
+      ],
+      "acceptance_criteria": [
+        "Без ошибок в консоли",
+        "Плашка на фикстурах",
+        "Понятные ошибки данных"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run typecheck && npm --prefix web run build"
+      ],
+      "completion_evidence": "Вывод тестов",
+      "failure_modes": [
+        "Шрифты не грузятся офлайн"
+      ],
+      "fallback": "Системные шрифты",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-02",
+      "title": "Экран Mission Brief",
+      "objective": "S1: карточки целей, шаблон и задачи, k, кнопка Design campaign.",
+      "why": "Вход в продукт.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M4",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 14:00–14:30",
+      "dependencies": [
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/brief/",
+        "Синхронизация с адресом",
+        "Неактивная кнопка без задач"
+      ],
+      "files_create": [
+        "web/src/components/brief/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Brief"
+      ],
+      "acceptance_criteria": [
+        "Поведение по спецификации"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот",
+      "failure_modes": [
+        "Состояние Brief и адрес расходятся"
+      ],
+      "fallback": "Без синхронизации с адресом: выбор только в store",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-03",
+      "title": "Карта Земли",
+      "objective": "S2-карта: подложка GIBS, точки кандидатов по F выбранной задачи, маркеры кампании, таблица-альтернатива, офлайн-фон.",
+      "why": "Ответ «где».",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M4",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 14:30–15:30",
+      "dependencies": [
+        "WEB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/map/",
+        "feature-state для раскраски",
+        "Маркеры 1–3 и «Fit campaign»",
+        "Переключатель Map/Table",
+        "Обработка ошибок тайлов"
+      ],
+      "files_create": [
+        "web/src/components/map/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Карта"
+      ],
+      "acceptance_criteria": [
+        "Перекраска ≤ 200 мс",
+        "Атрибуция GIBS",
+        "Работает без подложки"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [
+        "Профилирование"
+      ],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Замер перекраски",
+      "failure_modes": [
+        "URL GIBS"
+      ],
+      "fallback": "Фон без подложки",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-05",
+      "title": "Приватность и публикация репозитория",
+      "objective": "Нет имён несовершеннолетних, авторы коммитов — ники (DEC-004), нет секретов, LICENSE; репозиторий публичный; ссылки в инкогнито.",
+      "why": "Правила подачи и Terms & Conditions.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 11:45–12:15",
+      "dependencies": [
+        "SUB-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "grep по списку имён вне репозитория",
+        "`git log --format='%an <%ae>' | sort -u`",
+        "Вариант DEC-004 при необходимости",
+        "Сделать публичным",
+        "Инкогнито"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "README.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Публичный репозиторий"
+      ],
+      "acceptance_criteria": [
+        "0 совпадений имён",
+        "Только ники и noreply",
+        "Публичный"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Инкогнито"
+      ],
+      "verification_commands": [
+        "git log --format='%an <%ae>' | sort -u"
+      ],
+      "completion_evidence": "Вывод git log и ссылка",
+      "failure_modes": [
+        "Имя в истории"
+      ],
+      "fallback": "Новый публичный репозиторий после очистки истории (DEC-004)",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "QA-03",
+      "title": "Офлайн-комплект для питча",
+      "objective": "dist.zip на 2 ноутбуках и флешке, 5 скриншотов, слайды PDF.",
+      "why": "Демо не зависит от интернета.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M9",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 11:15–11:45",
+      "dependencies": [
+        "WEB-04",
+        "INFRA-05"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "make offline",
+        "Проверка при выключенном Wi‑Fi",
+        "Скриншоты S1, S2, S3, S6, (S5)"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/INTEGRATION_STATUS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Офлайн-комплект"
+      ],
+      "acceptance_criteria": [
+        "Открывается офлайн",
+        "Копии на 2 устройствах"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Проверка без Wi‑Fi"
+      ],
+      "verification_commands": [
+        "manual: проверка"
+      ],
+      "completion_evidence": "Отметка",
+      "failure_modes": [
+        "Шрифты или данные грузятся из сети",
+        "Нет флешки"
+      ],
+      "fallback": "Скриншоты и PDF слайдов на двух ноутбуках",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-07",
+      "title": "Экран «То же Солнце»",
+      "objective": "S5: две панели кадров, ползунок высоты, анимация азимута, график sf, подпись окна.",
+      "why": "WOW-момент.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Вс 08:00–10:00 (если LIGHT-04 готов)",
+      "dependencies": [
+        "WEB-03",
+        "LIGHT-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/twin/ и pages/TwinPage.tsx",
+        "Манифест кадров",
+        "reduced-motion"
+      ],
+      "files_create": [
+        "web/src/components/twin/",
+        "web/src/pages/TwinPage.tsx"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Экран Twin"
+      ],
+      "acceptance_criteria": [
+        "Кадры одинаковых h и az",
+        "Пауза по клику"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Запись экрана",
+      "failure_modes": [
+        "Нет кадров"
+      ],
+      "fallback": "Календарь окон в панели площадки",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-10",
+      "title": "Переключатель «Казахстан»",
+      "objective": "S7: кампания только по KZ_ и сравнение с глобальной.",
+      "why": "Локальная польза.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 21:30–22:00",
+      "dependencies": [
+        "EARTH-07",
+        "WEB-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "web/src/components/kz/",
+        "Фильтр пула в store"
+      ],
+      "files_create": [
+        "web/src/components/kz/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Режим KZ"
+      ],
+      "acceptance_criteria": [
+        "Работает с KZ_ и без них"
+      ],
+      "automated_tests": [
+        "npm --prefix web test -- --run"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот",
+      "failure_modes": [
+        "Нет KZ_"
+      ],
+      "fallback": "Подпись «data not loaded»",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-11",
+      "title": "Адаптивность, доступность, скорость",
+      "objective": "375–1920 px, клавиатура, контраст, Lighthouse ≥ 90, данные ≤ 3 МБ gzip.",
+      "why": "UX и ворота G4, G7.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:00–11:00",
+      "dependencies": [
+        "WEB-04"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Брейкпоинты",
+        "Фокус и aria",
+        "Lighthouse"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "web/src/styles/global.css"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отчёт Lighthouse"
+      ],
+      "acceptance_criteria": [
+        "Скриншоты 375 и 1440",
+        "Lighthouse ≥ 90"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Lighthouse"
+      ],
+      "verification_commands": [
+        "manual: Lighthouse"
+      ],
+      "completion_evidence": "Оценки Lighthouse",
+      "failure_modes": [
+        "Lighthouse < 90 из-за карты",
+        "Контраст на подложке"
+      ],
+      "fallback": "Ленивая загрузка карты; таблица-альтернатива по умолчанию на телефоне",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "WEB-12",
+      "title": "3D-рельеф (необязательно)",
+      "objective": "3D цели и площадки.",
+      "why": "Эффект, без научной пользы.",
+      "owner": "MEMBER_A",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P3",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [
+        "OPTIONAL"
+      ],
+      "window": "",
+      "dependencies": [
+        "WEB-07"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "three.js по кадрам DEM"
+      ],
+      "files_create": [
+        "web/src/components/twin3d/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "3D"
+      ],
+      "acceptance_criteria": [
+        "Не ломает сборку"
+      ],
+      "automated_tests": [
+        "npm --prefix web run build"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Скриншот 3D-сцены и замер FPS",
+      "failure_modes": [
+        "Тяжёлая сцена ломает телефон"
+      ],
+      "fallback": "Не делаем",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-01",
+      "title": "targets.csv: цели и координаты",
+      "objective": "Mons Mouton (PGDA 20) и Jezero: координаты, продукт DEM, источники; P1-цели — заготовкой.",
+      "why": "Нужно C к 13:00.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 09:30–10:00",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Координаты из NASA, PGDA, USGS",
+        "sources.csv",
+        "Коммит и сообщение в #planets"
+      ],
+      "files_create": [
+        "data/curated/targets.csv",
+        "data/curated/sources.csv"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "targets.csv"
+      ],
+      "acceptance_criteria": [
+        "2 P0-цели с источниками",
+        "Файл читается скриптом"
+      ],
+      "automated_tests": [
+        "python -c \"import pandas as pd; pd.read_csv('data/curated/targets.csv')\""
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -c \"import pandas as pd; print(pd.read_csv('data/curated/targets.csv'))\""
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Неоднозначный центр района"
+      ],
+      "fallback": "Центр участка PGDA 20",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-03",
+      "title": "practice_sites.csv из заметок PREP-15, пререгистрированно",
+      "objective": "Таблица площадок практики: задача, контекст цели, источник, проверяемость и причина исключения по правилам E3.",
+      "why": "Вход E3 и пула (PR_).",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Сб 10:00–11:00",
+      "dependencies": [
+        "KICK-01",
+        "SCI-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Перенести из docs/research/PRACTICE_NOTES.md",
+        "Применить правила исключения до расчётов",
+        "Коммит до первого запуска VAL-01"
+      ],
+      "files_create": [
+        "data/curated/practice_sites.csv"
+      ],
+      "files_modify": [
+        "data/curated/sources.csv"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "practice_sites.csv"
+      ],
+      "acceptance_criteria": [
+        "≥ 12 площадок",
+        "Коммит раньше VAL-01 (git log)"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "MEMBER_D проверяет 3 источника"
+      ],
+      "verification_commands": [
+        "git log --format='%h %ad' --date=iso -- data/curated/practice_sites.csv"
+      ],
+      "completion_evidence": "Хэш коммита",
+      "failure_modes": [
+        "Мало проверяемых пар"
+      ],
+      "fallback": "Честный отчёт «недостаточно пар»",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-02",
+      "title": "mission_templates.csv и gap_alternatives.csv",
+      "objective": "Задачи, атрибуты, функции, параметры, веса и обоснование (старт — §7.3 спецификации); физические разрывы и альтернативы со ссылками.",
+      "why": "Научная постановка задач — ваша ответственность.",
+      "owner": "MEMBER_E",
+      "collaborators": [
+        "MEMBER_D"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 11:00–12:00 и 13:00–13:30",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Заполнить по §7.3 и §12",
+        "Обосновать каждый допуск строкой",
+        "gap_alternatives: гравитация, вакуум, радиация, холод PSR, реголит",
+        "Согласовать с D, коммит"
+      ],
+      "files_create": [
+        "data/curated/mission_templates.csv",
+        "data/curated/gap_alternatives.csv"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Шаблоны и разрывы"
+      ],
+      "acceptance_criteria": [
+        "Все задачи P0 заполнены",
+        "Каждый допуск обоснован",
+        "Альтернативы со ссылками"
+      ],
+      "automated_tests": [
+        "python -m pipeline.engine.templates --check"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "python -m pipeline.engine.templates --check"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Спор о допусках"
+      ],
+      "fallback": "Стартовые значения спецификации",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-04",
+      "title": "Курируемые значения целей",
+      "objective": "t_min_c, t_max_c с диапазоном (поверхность) и источники для обеих целей.",
+      "why": "Атрибуты холода.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M3",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 13:30–14:15",
+      "dependencies": [
+        "SCI-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Diviner и статьи для Луны; MCD или ровер для Марса",
+        "Внести в targets.csv"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "data/curated/targets.csv",
+        "data/curated/sources.csv"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Температуры целей"
+      ],
+      "acceptance_criteria": [
+        "Значения со ссылками",
+        "Ничего от ИИ без первоисточника"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "MEMBER_D проверяет ссылку"
+      ],
+      "verification_commands": [
+        "manual: проверка ссылки"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Нет надёжного значения"
+      ],
+      "fallback": "null → атрибут «not assessed»",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-06",
+      "title": "limitations.md",
+      "objective": "≤ 250 слов (EN): физические разрывы и пределы метода, со ссылками.",
+      "why": "Честность для судей.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 14:15–14:45",
+      "dependencies": [
+        "SCI-02"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Написать",
+        "Вычитка F"
+      ],
+      "files_create": [
+        "data/curated/limitations.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "limitations.md"
+      ],
+      "acceptance_criteria": [
+        "≤ 250 слов",
+        "Ссылки"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Вычитка"
+      ],
+      "verification_commands": [
+        "wc -w data/curated/limitations.md"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Длиннее 250 слов",
+        "Нет источника для разрыва"
+      ],
+      "fallback": "Короткий список разрывов из gap_alternatives.csv со ссылками",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-05",
+      "title": "Научная проверка кампаний и кандидатов",
+      "objective": "Просмотреть кампании и топ-5 по задачам: артефакты (вода, снег, края покрытия), правдоподобие.",
+      "why": "Ловит ошибки до судей.",
+      "owner": "MEMBER_E",
+      "collaborators": [
+        "MEMBER_B",
+        "MEMBER_D"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M5",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 16:00–17:00",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Открыть сайт или results.json",
+        "Проблемы — B и D с ID",
+        "Отметка в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Отметка «научно проверено»"
+      ],
+      "acceptance_criteria": [
+        "Все P0-задачи просмотрены",
+        "Проблемы переданы"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Запись в PROGRESS"
+      ],
+      "verification_commands": [
+        "manual: запись"
+      ],
+      "completion_evidence": "Время отметки",
+      "failure_modes": [
+        "Найдены артефакты"
+      ],
+      "fallback": "Исправить ограничения §7.2",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-09",
+      "title": "Подпись реестра утверждений",
+      "objective": "submission/claims.md: каждое утверждение страницы, слайдов, сайта → доказательство → статус по SCIENTIFIC_CLAIMS_REGISTER.",
+      "why": "Ни одного неподтверждённого утверждения в подаче.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Вс 11:00–11:45",
+      "dependencies": [
+        "VAL-01",
+        "VAL-02",
+        "SUB-02",
+        "STORY-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Собрать утверждения из черновиков страницы и слайдов (SUB-02, STORY-03) и экрана Evidence",
+        "Каждому — число и источник из validation.json или results.json по SCIENTIFIC_CLAIMS_REGISTER",
+        "Подпись с временем; F вставляет числа по claims.md, A сверяет при SUB-06"
+      ],
+      "files_create": [
+        "submission/claims.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "claims.md"
+      ],
+      "acceptance_criteria": [
+        "0 утверждений без доказательства",
+        "Подпись"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Сверка"
+      ],
+      "verification_commands": [
+        "manual: подпись"
+      ],
+      "completion_evidence": "Подпись и время",
+      "failure_modes": [
+        "Расхождение чисел"
+      ],
+      "fallback": "Удалить утверждение",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-07",
+      "title": "Геология коротких списков и целей",
+      "objective": "geology_tags.csv и матрица category для задач O2, O5, M3.",
+      "why": "Атрибут geology (P1).",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 19:30–21:00",
+      "dependencies": [
+        "ENG-03"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Теги по картам и статьям",
+        "Матрица соответствия классов с обоснованием"
+      ],
+      "files_create": [
+        "data/curated/geology_tags.csv"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Теги"
+      ],
+      "acceptance_criteria": [
+        "Теги со ссылками"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Проверка ссылок"
+      ],
+      "verification_commands": [
+        "manual: проверка"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Нет надёжных геологических карт для квадрата"
+      ],
+      "fallback": "Геология «not assessed»",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-08",
+      "title": "Досье площадок кампании",
+      "objective": "Досье (EN) для площадок кампании Mons Mouton, одно — Казахстан (если есть).",
+      "why": "Шаг к полевой проверке.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M6",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "S2: Сб 21:00–22:00",
+      "dependencies": [
+        "SCI-05"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Шаблон KAZAKHSTAN_CANDIDATES §4",
+        "Числа только из results.json"
+      ],
+      "files_create": [
+        "data/curated/dossiers/"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Досье"
+      ],
+      "acceptance_criteria": [
+        "Числа совпадают",
+        "Пометка «requires field verification»"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Сверка D"
+      ],
+      "verification_commands": [
+        "manual: сверка"
+      ],
+      "completion_evidence": "Число досье",
+      "failure_modes": [
+        "Числа досье расходятся с results.json"
+      ],
+      "fallback": "Без досье; ссылки на панель площадки",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SCI-10",
+      "title": "Ответы на трудные вопросы жюри",
+      "objective": "10 вопросов из JUDGING_READINESS §4 с ответами на основе validation.json.",
+      "why": "Питч.",
+      "owner": "MEMBER_E",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M10",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:00–10:45",
+      "dependencies": [
+        "VAL-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Ответы по 2–3 предложения",
+        "Распределить, кто отвечает"
+      ],
+      "files_create": [
+        "submission/qa.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "qa.md"
+      ],
+      "acceptance_criteria": [
+        "10 ответов"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Репетиция"
+      ],
+      "verification_commands": [
+        "manual: репетиция"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Ответ без опоры на данные"
+      ],
+      "fallback": "Ответ «мы это проверили так-то, вот число» или честное «не проверяли»",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-01",
+      "title": "Название, слоган, ценностное предложение",
+      "objective": "submission/brand.md: название (рабочее Egiz), слоган ≤ 10 слов, фраза ценности (EN).",
+      "why": "Нужно всем текстам.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M1",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 09:30–10:00",
+      "dependencies": [
+        "KICK-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Варианты из FINAL_CONCEPT_DECISION §2",
+        "Проверка конфликтов названия",
+        "Голосование в #pitch"
+      ],
+      "files_create": [
+        "submission/brand.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "brand.md"
+      ],
+      "acceptance_criteria": [
+        "Согласовано",
+        "Нет слова NASA"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Поиск конфликтов"
+      ],
+      "verification_commands": [
+        "manual: brand.md"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Конфликт названия"
+      ],
+      "fallback": "Egiz",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-03",
+      "title": "Слайды: структура и черновик",
+      "objective": "7 слайдов по SIGNATURE_DEMO §4 с заглушками чисел.",
+      "why": "Официальное демо в P0.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M10",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 13:00–14:30 черновик",
+      "dependencies": [
+        "STORY-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Шаблон и сетка",
+        "Тексты и схемы",
+        "Места под скриншоты и числа"
+      ],
+      "files_create": [
+        "submission/slides_draft.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Черновик"
+      ],
+      "acceptance_criteria": [
+        "7 слайдов, включая титул",
+        "Без имён несовершеннолетних и логотипов NASA"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Ревью A и E"
+      ],
+      "verification_commands": [
+        "manual: ревью"
+      ],
+      "completion_evidence": "Ссылка на черновик",
+      "failure_modes": [
+        "Слайды перегружены текстом",
+        "Скриншоты устаревают"
+      ],
+      "fallback": "Заглушки скриншотов до IC-1; правило «одна мысль — один слайд»",
+      "estimated_effort": 1.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-02",
+      "title": "Страница проекта: черновик",
+      "objective": "submission/project_page.md: все поля SUBMISSION §2, кроме чисел.",
+      "why": "Большая часть оценки — по странице.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 14:30–15:30 черновик",
+      "dependencies": [
+        "STORY-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Поля по SUBMISSION §2",
+        "NASA Data — наборы и роли",
+        "Раскрытие подготовки"
+      ],
+      "files_create": [
+        "submission/project_page.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Черновик страницы"
+      ],
+      "acceptance_criteria": [
+        "Все поля",
+        "Английский"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Ревью E"
+      ],
+      "verification_commands": [
+        "manual: ревью"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Поля длиннее лимитов формы",
+        "Нет раздела NASA Data"
+      ],
+      "fallback": "Сокращённые формулировки из COMPLETE_PRODUCT_SPEC §1",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-06",
+      "title": "Слайды: числа и экспорт",
+      "objective": "Подставить числа из validation.json и results.json, скриншоты, экспорт PDF и публичная ссылка.",
+      "why": "Готовое демо.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M10",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Вс 09:00–09:30",
+      "dependencies": [
+        "STORY-03",
+        "VAL-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Числа по реестру утверждений",
+        "Скриншоты с прод-ссылки",
+        "PDF и ссылка в submission/links.md",
+        "Инкогнито"
+      ],
+      "files_create": [
+        "submission/slides.pdf",
+        "submission/links.md"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Слайды PDF и ссылка"
+      ],
+      "acceptance_criteria": [
+        "Числа совпадают с JSON",
+        "Ссылка открывается без входа"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Инкогнито"
+      ],
+      "verification_commands": [
+        "manual: инкогнито"
+      ],
+      "completion_evidence": "Ссылка",
+      "failure_modes": [
+        "Числа меняются"
+      ],
+      "fallback": "Пересчитать до IC-3",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-07",
+      "title": "Страница проекта: числа и перенос на сайт",
+      "objective": "Числа из validation.json, перенос на spaceappschallenge.org (Lock, Save Progress).",
+      "why": "Подача.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Вс 09:30–10:00",
+      "dependencies": [
+        "SUB-02",
+        "VAL-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Подставить числа",
+        "Перенести поля",
+        "Save Progress"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "submission/project_page.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Страница на сайте"
+      ],
+      "acceptance_criteria": [
+        "Все поля сохранены",
+        "Числа совпадают"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Скриншот Save Progress"
+      ],
+      "verification_commands": [
+        "manual: сохранено"
+      ],
+      "completion_evidence": "Время сохранения",
+      "failure_modes": [
+        "Вкладка Project не открыта"
+      ],
+      "fallback": "Связаться с Local Lead",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-04",
+      "title": "Репетиция питча",
+      "objective": "Два прогона по SIGNATURE_DEMO §3 в лимите времени, один — без интернета.",
+      "why": "Питч в 14:00.",
+      "owner": "MEMBER_F",
+      "collaborators": [
+        "MEMBER_A",
+        "MEMBER_B",
+        "MEMBER_C",
+        "MEMBER_D",
+        "MEMBER_E"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M10",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 12:15–13:00",
+      "dependencies": [
+        "STORY-06"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Роли",
+        "Прогон 1",
+        "Прогон 2 офлайн"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Время прогонов"
+      ],
+      "acceptance_criteria": [
+        "2 прогона в лимите"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Таймер"
+      ],
+      "verification_commands": [
+        "manual: таймер"
+      ],
+      "completion_evidence": "Время прогонов",
+      "failure_modes": [
+        "Демо зависло"
+      ],
+      "fallback": "Слайды 5–6",
+      "estimated_effort": 0.75,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "SUB-06",
+      "title": "Финальная подача",
+      "objective": "Чек-лист SUBMISSION §5, чекбоксы, Submit for Judging, скриншот подтверждения; MEMBER_F сверяет тексты рядом.",
+      "why": "Без нажатия Submit проекта нет; подаёт тот, кто отвечает за репозиторий и ссылки, — так «хвост» MEMBER_F после проверок короче на 0,5 ч.",
+      "owner": "MEMBER_A",
+      "collaborators": [
+        "MEMBER_F"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P0",
+      "milestone": "M11",
+      "status": "BACKLOG",
+      "flags": [
+        "CRITICAL_PATH"
+      ],
+      "window": "Вс 13:00–13:30 или до 21:00 (по ответу PREP-01)",
+      "dependencies": [
+        "SUB-07",
+        "SUB-03",
+        "SUB-04",
+        "SUB-05",
+        "STORY-06",
+        "SCI-09",
+        "INFRA-06"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Пройти чек-лист SUBMISSION §5 вместе с F (числа на странице = submission/claims.md)",
+        "Submit for Judging",
+        "Скриншот подтверждения — вне репозитория",
+        "Отметка в PROGRESS.md"
+      ],
+      "files_create": [],
+      "files_modify": [
+        "docs/planning/PROGRESS.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Подтверждение"
+      ],
+      "acceptance_criteria": [
+        "Подтверждение получено",
+        "Не позже Вс 13:30 (или ≥ 3 ч до дедлайна, если локальный срок позже)"
+      ],
+      "automated_tests": [],
+      "manual_verification": [
+        "Баннер подтверждения"
+      ],
+      "verification_commands": [
+        "manual: баннер"
+      ],
+      "completion_evidence": "Время подачи",
+      "failure_modes": [
+        "Поле не заполнено"
+      ],
+      "fallback": "Заполнить и подать немедленно",
+      "estimated_effort": 0.5,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-02",
+      "title": "Тексты интерфейса",
+      "objective": "web/src/content/copy.json по ключам SCREEN_BY_SCREEN_SPEC.",
+      "why": "Ясность интерфейса.",
+      "owner": "MEMBER_F",
+      "collaborators": [],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M7",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Сб 15:30–16:30",
+      "dependencies": [
+        "WEB-01",
+        "STORY-01"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Ключи от A",
+        "Тексты ≤ 20 слов на подсказку"
+      ],
+      "files_create": [
+        "web/src/content/copy.json"
+      ],
+      "files_modify": [],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "copy.json"
+      ],
+      "acceptance_criteria": [
+        "Все строки из copy.json"
+      ],
+      "automated_tests": [
+        "npm --prefix web run build"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "npm --prefix web run build"
+      ],
+      "completion_evidence": "Коммит",
+      "failure_modes": [
+        "Строки расходятся с ключами интерфейса"
+      ],
+      "fallback": "Тексты A по спецификации экранов",
+      "estimated_effort": 1.0,
+      "actual_evidence": [],
+      "related_issues": []
+    },
+    {
+      "id": "STORY-05",
+      "title": "Видео 30 секунд",
+      "objective": "Ролик по SIGNATURE_DEMO §5: ≤ 30,0 с, субтитры EN, без лиц и голосов несовершеннолетних.",
+      "why": "Сильнее Presentation.",
+      "owner": "MEMBER_F",
+      "collaborators": [
+        "MEMBER_A"
+      ],
+      "phase": "HACK",
+      "authorization": "DEFER_UNTIL_EVENT",
+      "authorization_evidence": null,
+      "priority": "P1",
+      "milestone": "M10",
+      "status": "BACKLOG",
+      "flags": [],
+      "window": "Вс 10:00–12:00 (S2)",
+      "dependencies": [
+        "WEB-04",
+        "STORY-01",
+        "STORY-06"
+      ],
+      "blocked_by": [],
+      "steps": [
+        "Запись экрана (A управляет)",
+        "Монтаж и субтитры",
+        "ffprobe",
+        "Загрузка, ссылка в links.md"
+      ],
+      "files_create": [
+        "submission/video_script.md",
+        "submission/video.srt"
+      ],
+      "files_modify": [
+        "submission/links.md"
+      ],
+      "interfaces": [],
+      "datasets": [],
+      "expected_output": [
+        "Видео"
+      ],
+      "acceptance_criteria": [
+        "≤ 30,0 с",
+        "Ссылка в инкогнито"
+      ],
+      "automated_tests": [
+        "ffprobe -v error -show_entries format=duration -of csv=p=0 video.mp4"
+      ],
+      "manual_verification": [],
+      "verification_commands": [
+        "manual: инкогнито"
+      ],
+      "completion_evidence": "Длительность и ссылка",
+      "failure_modes": [
+        "Длиннее 30 с"
+      ],
+      "fallback": "Подаём слайды",
+      "estimated_effort": 2.0,
+      "actual_evidence": [],
+      "related_issues": []
+    }
+  ]
+}

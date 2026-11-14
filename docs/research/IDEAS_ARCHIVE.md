@@ -1,6 +1,6 @@
-# 09 · Архив идей
+# Архив идей
 
-Всё, что обсуждали до выбора темы. Перенесено из гугл-дока и чата, ничего не потеряно.
+Всё, что обсуждали до выбора темы. Перенесено из гугл-дока и чата, ничего не потеряно. Что из брейншторма вошло в проект — в v1 [WINNING_STRATEGY §7–8](../archive/v1/WINNING_STRATEGY.md), в v2 — [20_CONCEPTS](../innovation/20_CONCEPTS.md) и [FINAL_CONCEPT_DECISION](../innovation/FINAL_CONCEPT_DECISION.md).
 
 ## Челленджи, которые рассматривали
 
@@ -10,7 +10,7 @@
 | 2 | [Be an Earth System Trend Detective](https://www.spaceappschallenge.org/2026/challenges/be-an-earth-system-trend-detective/) | Поиск и визуализация трендов в экосистеме Земли (изменение рельефа, таяние льдов и т. д.) по данным спутников NASA | Не выбран |
 | 3 | [Abandoned but not Forgotten](https://www.spaceappschallenge.org/2026/challenges/abandoned-but-not-forgotten-storytelling-about-nasas-discarded-equipment-on-the-moon-and-mars/) | Интерактивная карта-история оборудования NASA на Марсе и Луне | Не выбран |
 | 4 | [Build a Junior Astronaut Mission Trainer](https://www.spaceappschallenge.org/2026/challenges/build-a-junior-astronaut-mission-trainer/) | Игра-симулятор базы на Луне или Марсе с учётом ресурсов и внешней среды | Не выбран |
-| 5 | Предложения Алима | Dancing with the SARs; Identify Earth Locations…; Be an Earth System Trend Detective | Выбран второй вариант |
+| 5 | Предложения участника команды | Dancing with the SARs; Identify Earth Locations…; Be an Earth System Trend Detective | Выбран второй вариант |
 | 6 | [Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars](https://www.spaceappschallenge.org/2026/challenges/identify-earth-locations-that-analog-the-permanent-moon-base-locations-and-mars/) | Земные аналоги мест для баз на Луне и Марсе | **Выбран** |
 
 Ещё предлагали в чате: [Field Shift: Adapting Farms with NASA Data](https://www.spaceappschallenge.org/2026/challenges/field-shift-adapting-farms-with-nasa-data/), [Harmonization of MODIS and VIIRS Hot Spots](https://www.spaceappschallenge.org/2026/challenges/harmonization-of-modis-and-viirs-hot-spots/), [The Earth Information Jukebox](https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/).
