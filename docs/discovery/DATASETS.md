@@ -37,6 +37,18 @@ Exact URLs, versions, access dates and SHA-256 of every acquisition are in
 | Target mineralogy | CRISM, OMEGA, M3 | per-site product selection needed |
 | Site-specific target temperatures | Diviner (Moon), MCD / THEMIS (Mars) | body-level literature references used instead, labelled as such |
 
+## Blocked by missing credentials (checked 2026-11-14) — what is needed to enable each
+
+No NASA Earthdata credentials were present (`EARTHDATA_TOKEN`, `EARTHDATA_USERNAME`/`EARTHDATA_PASSWORD`
+and `~/.netrc` all absent), so these stay **not assessed**. Nothing was imputed.
+
+| Item | Product and endpoint | What is needed | Scope when enabled |
+|---|---|---|---|
+| Mineralogy dimension (Earth, `evidence: observed`) | NASA EMIT L2B Mineral Identification (`EMITL2BMIN` v001, LP DAAC) via CMR search `https://cmr.earthdata.nasa.gov/search/granules.json?short_name=EMITL2BMIN` and `https://data.lpdaac.earthdatacloud.nasa.gov/` | Earthdata Login: `EARTHDATA_TOKEN` (bearer) or a `~/.netrc` entry for `urs.earthdata.nasa.gov` | Kazakhstan candidates, top 20 of each target shortlist and benchmark positives only (not global). Features: carbonate, sulfate, clay, iron-oxide group fractions + granule IDs and acquisition dates. EMIT covers ±52° latitude only. |
+| Mineralogy (Mars targets, `evidence: literature`) | CRISM/OMEGA literature classifications (e.g. sulfates at Gale, clays at Oxia Planum) | per-site citation check | not added: each classification must be read from the cited paper, not from memory |
+| Observed land-surface temperature | MODIS MOD11A2 v061 via NASA AppEEARS `https://appeears.earthdatacloud.nasa.gov/api/` | Earthdata Login (AppEEARS token from `POST /login`) | shortlists + Kazakhstan, next to NASA POWER air temperature, not replacing it |
+| Aralkum desiccation time series 1985–now | Landsat Collection 2 Level-2 SR (`s3://usgs-landsat`, `collection02/level-2/`) | the AWS bucket is **requester-pays** (anonymous request returned `AccessDenied`, 2026-11-14); USGS STAC search is open but asset download needs a USGS EROS (ERS) login, or AWS credentials that accept requester-pays charges | annual dry-season water/bare mask for the Aral basin as an Earth analog of lake desiccation (Jezero, Gale). TODO — no imagery is drawn or substituted. |
+
 ## Synthetic data
 
 None in the discovery bundle (`synthetic: false` is enforced by `web/scripts/copy-data.mjs` and the

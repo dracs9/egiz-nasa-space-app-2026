@@ -1,3 +1,4 @@
+import 'maplibre-gl/dist/maplibre-gl.css'; // only on routes that show a map
 import { t as localizeText, useLanguage } from '../i18n';
 // AI-assisted implementation; human review pending.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';

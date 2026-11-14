@@ -14,6 +14,7 @@ simulator use:
 from __future__ import annotations
 
 import math
+from typing import cast
 
 import numpy as np
 from scipy.ndimage import (
@@ -79,6 +80,8 @@ def kmeans(x, k, seed, iterations=60, restarts=4):
         inertia = float(((x - c[lab]) ** 2).sum())
         if best is None or inertia < best[2]:
             best = (c, lab, inertia)
+    if best is None:
+        raise ValueError("restarts must be >= 1")
     return best
 
 
@@ -252,7 +255,7 @@ def anomaly_regions(features, cell_m, quantile=0.998, min_cells=4, border_m=500.
     d2[valid] = np.einsum("ij,jk,ik->i", diff, inv, diff)
     threshold = float(np.quantile(d2[valid], quantile))
     mask = valid & (d2 >= threshold)
-    labels, n = label(mask)
+    labels, n = cast("tuple[np.ndarray, int]", label(mask))
     sd = np.sqrt(np.diag(cov))
     regions = []
     for j in range(1, n + 1):

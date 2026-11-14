@@ -150,3 +150,28 @@
 .dc-page > *, .dc-detail > *, .dc-compare > *, .dc-detail-head > div, .dc-cols > * { min-width: 0; }
 .dc-mono, .dc-detail-head h2, .dc-item-main small { overflow-wrap: anywhere; }
 @media (max-width: 560px) { .dc-table { display: block; overflow-x: auto; } .dc-detail, .dc-compare, .dc-copilot, .dc-validation { padding: 14px; } }
+
+/* How far to trust this ranking (validation next to the ranking) and the weak-match wording rule. */
+.dc-trust { padding: 16px 18px; border: 1px solid var(--rule); border-left: 3px solid var(--paper-3); border-radius: 6px; background: var(--ink-1); display: grid; gap: 10px; }
+.dc-trust h2 { margin: 0; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+.dc-trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px 20px; margin: 0; }
+.dc-trust-grid dt { font-size: 11.5px; color: var(--paper-3); }
+.dc-trust-grid dd { margin: 2px 0 0; font-size: 15px; color: var(--paper); }
+.dc-weak { display: inline-block; margin-left: 8px; font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--mars); border: 1px solid currentColor; border-radius: 999px; padding: 0 7px; vertical-align: 1px; }
+.dc-weak-note { margin: 4px 0 0; color: var(--mars); font-size: 12.5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.dc-rover-body { border-left: 2px solid var(--rule-strong); padding-left: 10px; margin-bottom: 10px; }
+
+/* Kazakhstan refinement chapter */
+.dc-kz { padding: 16px 18px; border: 1px solid var(--rule); border-left: 3px solid var(--mars); border-radius: 6px; background: var(--ink-1); display: grid; gap: 10px; }
+.dc-kz h2 { margin: 0; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+.dc-kz-map { width: 100%; height: auto; max-height: 260px; background: var(--ink-0, #000); border: 1px solid var(--rule); border-radius: 4px; }
+.dc-kz-map .seed { fill: none; stroke: var(--paper-3); stroke-width: 1.5; }
+.dc-kz-map .refined { fill: var(--mars); } .dc-kz-map .seed-top { fill: var(--paper); }
+.dc-kz-map text { fill: var(--paper-2); font: 11px var(--font-mono); }
+.dc-kz-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+.dc-kz-card { border: 1px solid var(--rule); border-radius: 6px; padding: 12px; display: grid; gap: 8px; min-width: 0; }
+.dc-kz-card header { display: flex; gap: 10px; align-items: baseline; } .dc-kz-card header small { display: block; color: var(--paper-3); font-size: 11.5px; }
+.dc-kz-card .dc-mono { overflow-wrap: anywhere; }
+.dc-kz-card .dc-dl { display: block; margin: 0; }
+.dc-kz-card .dc-dl dt { font-size: 11px; color: var(--paper-3); margin-top: 8px; font-family: var(--font-mono); letter-spacing: .04em; }
+.dc-kz-card .dc-dl dd { margin: 2px 0 0; font-size: 13px; color: var(--paper-2); overflow-wrap: anywhere; }

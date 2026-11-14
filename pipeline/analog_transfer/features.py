@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 from dataclasses import dataclass, field
+from typing import Any
 
 import numpy as np
 
@@ -114,7 +115,7 @@ class Descriptors:
     source_pixel_m: float
     fields: dict
     point: dict
-    boot: dict
+    boot: list[dict]
     valid_fraction: float
 
 
@@ -134,7 +135,7 @@ def describe(entry: dict, n_boot: int = 200, seed: int = 20261113) -> Descriptor
     fields["slope_trav"] = fields["slope_200"]
 
     def stats(sample: dict) -> dict:
-        out = {f"q_slope_{s}": quantile_function(sample[f"slope_{s}"]) for s in SCALES}
+        out: dict[str, Any] = {f"q_slope_{s}": quantile_function(sample[f"slope_{s}"]) for s in SCALES}
         out["q_roughness"] = quantile_function(sample["roughness"])
         elev = sample["elevation"]
         out["relief_m"] = float(np.quantile(elev, 0.95) - np.quantile(elev, 0.05)) if elev.size else np.nan

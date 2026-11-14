@@ -803,7 +803,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
           label: "Estimated energy",
           value: frame?.energyWh,
           unit: "Wh",
-          help: "Estimated energy used (Wh), not a certified battery prediction.",
+          help: "Cumulative energy used up to the current replay time (Wh), not the mission total and not a certified battery prediction.",
         },
         {
           label: "Ground slope",
@@ -1624,7 +1624,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
           <div className="ml-readouts">
             {localizeText(telemetry.map((t) => (
               <div key={t.label} title={localizeText(t.help)}>
-                <span>{localizeText(({"Distance traveled":"Distance","Ground speed":"Speed","Estimated energy":"Energy","Ground slope":"Slope","Height above ground":"Altitude","Net acceleration":"Acceleration","Propellant left":"Propellant","Engine thrust":"Thrust"} as Record<string,string>)[t.label]??t.label)}</span>
+                <span>{localizeText(({"Distance traveled":"Distance","Ground speed":"Speed","Estimated energy":"Energy so far","Ground slope":"Slope","Height above ground":"Altitude","Net acceleration":"Acceleration","Propellant left":"Propellant","Engine thrust":"Thrust"} as Record<string,string>)[t.label]??t.label)}</span>
                 <strong>
                   {localizeText(display(t.value))}
                   <small>{localizeText(t.unit)}</small>

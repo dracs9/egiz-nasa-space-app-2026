@@ -8,4 +8,4 @@ pillow>=11,<13
 earthengine-api>=1.5,<2
 pytest>=8,<10
 ruff>=0.11,<1
-astropy>=7,<9
+# astropy is optional (test cross-check only, needs Python >= 3.11): pip install -e .[validation]

@@ -52,13 +52,16 @@ def test_known_fraction_fine_window_and_valid_denominator():
     assert a["frac_lt10_f"] == pytest.approx(198 / 200)
     z[150:155, 150:155] = np.nan
     # A nodata patch must not become artificial slope=0 observations.
-    assert terrain_attributes(z, 50)["frac_lt10_f"] < 1
+    frac = terrain_attributes(z, 50)["frac_lt10_f"]
+    assert frac is not None and frac < 1
 
 
 def test_missingness_tristate_and_tri_scale():
     rng = np.random.default_rng(2026)
     z = rng.normal(size=(440, 440))
-    assert terrain_attributes(2 * z, 50)["tri_f_m"] == pytest.approx(2 * terrain_attributes(z, 50)["tri_f_m"])
+    tri = terrain_attributes(z, 50)["tri_f_m"]
+    assert tri is not None
+    assert terrain_attributes(2 * z, 50)["tri_f_m"] == pytest.approx(2 * tri)
     z[:300, :] = np.nan
     assert all(v is None for v in terrain_attributes(z, 50).values())
     with pytest.raises(ValueError, match="margin"):

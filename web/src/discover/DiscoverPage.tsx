@@ -5,12 +5,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ChevronDown, Info, Search, TriangleAlert } from 'lucide-react';
 import { t, useLanguage } from '../i18n';
-import { aggregate, diverseTop, percentileFn } from './engine';
+import { aggregate, diverseTop, isWeakMatch, percentileFn } from './engine';
 import { DiscoverMap } from './DiscoverMap';
 import { CandidateDetail, ComparePanel } from './CandidateDetail';
 import { CopilotPanel } from './CopilotPanel';
 import { IntervalBar } from './charts';
-import type { DiscoveryBundle, ScoreShard, TargetEntry, ValidationDoc } from './types';
+import { KazakhstanPanel } from './KazakhstanPanel';
+import type { DiscoveryBundle, ScoreShard, TargetEntry, ValidationDoc, ValidationTarget } from './types';
 import './discover.css';
 
 const base = () => `${import.meta.env.BASE_URL}discovery/`;
@@ -80,7 +81,8 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
   const [targetId, setTargetId] = useState(bundle.targets.find(x => x.id === init.target)?.id ?? bundle.targets.find(x => x.id === 'MARS_JEZERO')?.id ?? bundle.targets[0].id);
   const [profile, setProfile] = useState(init.profile && bundle.profiles[init.profile] ? init.profile : 'general');
   const [weights, setWeights] = useState<Record<string, number>>(() => ({ ...bundle.profiles[profile].weights }));
-  const [region, setRegion] = useState(REGIONS.some(r => r.id === init.region) ? init.region! : 'world');
+  const initRegion = init.region === 'kz' ? 'kaz' : init.region;  // #/discover?region=kz
+  const [region, setRegion] = useState(REGIONS.some(r => r.id === initRegion) ? initRegion! : 'world');
   const [rankBy, setRankBy] = useState<typeof RANK_BY[number][0]>('score');
   const [evidence, setEvidence] = useState<'all' | 'strong' | 'no_missing'>('all');
   const [diverse, setDiverse] = useState(true);
@@ -163,6 +165,7 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
     </section>}
 
     <TargetCard target={target} />
+    <TrustCard val={val} />
     {shardError && <div className="dc-notice" role="alert"><TriangleAlert size={16} /><p>{shardError}</p></div>}
 
     <div className="dc-main">
@@ -175,7 +178,7 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
           {list.map((i, n) => <li key={W.id[i]}>
             <button className={`dc-item ${selected === W.id[i] ? 'active' : ''}`} onClick={() => setSelected(W.id[i])}>
               <span className="dc-rank">{n + 1}</span>
-              <span className="dc-item-main"><b>{String(W.name[i])}</b><small>{String(W.country[i] ?? '—')} · {W.lat[i].toFixed(2)}°, {W.lon[i].toFixed(2)}° · {t(String(W.novelty_class[i]).replace('_', ' '))}</small>
+              <span className="dc-item-main"><b>{String(W.name[i])}</b>{isWeakMatch(agg.fidelity[i], agg.lo[i]) && <em className="dc-weak" title={t('Fidelity or its lower 90 % bound is below 0.3')}>{n === 0 ? t('closest found — weak match') : t('weak match')}</em>}<small>{String(W.country[i] ?? '—')} · {W.lat[i].toFixed(2)}°, {W.lon[i].toFixed(2)}° · {t(String(W.novelty_class[i]).replace('_', ' '))}</small>
                 <IntervalBar s50={agg.fidelity[i]} lo={agg.lo[i]} hi={agg.hi[i]} label={String(W.name[i])} /></span>
               <span className="dc-item-score"><b>{agg.score[i].toFixed(3)}</b><small>{t('cov')} {agg.coverage[i].toFixed(2)}</small><i className={`dc-cat dc-cat-${agg.category[i]}`}>{t(agg.category[i].replace('_', ' '))}</i></span>
             </button></li>)}
@@ -183,6 +186,7 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
       </section>
     </div>
 
+    {region === 'kaz' && <KazakhstanPanel target={target} onSelect={setSelected} />}
     {agg && shard && selIndex >= 0 && <CandidateDetail bundle={bundle} target={target} shard={shard} agg={agg} i={selIndex} rank={globalRank.get(selIndex) ?? 0}
       weights={weights} profile={profile} dimPct={dimPct} scorePct={scorePct} entry={entry} validation={validation}
       inCompare={compare.includes(selected!)} onCompare={() => toggleCompare(selected!)} onClose={() => setSelected(null)} />}
@@ -208,6 +212,26 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
       </section>
     </div>
   </main>;
+}
+
+const fmtCi = (ci: unknown) => Array.isArray(ci) ? `[90 % ${ci.join('–')}]` : '';
+
+/** "How far to trust this ranking": the validation numbers a judge needs, next to the ranking itself. */
+function TrustCard({ val }: { val: ValidationTarget | undefined }) {
+  if (!val) return null;
+  const m = val.metrics, h = m.hard_negative;
+  const r50 = typeof m['recall@50'] === 'number' ? m['recall@50'] : null;
+  return <section className="dc-trust" aria-labelledby="dc-trust-title">
+    <h2 id="dc-trust-title"><Info size={15} /> {t('How far to trust this ranking')}</h2>
+    <dl className="dc-trust-grid">
+      <div><dt>{t('AUC vs typical Earth land')}</dt><dd className="dc-mono">{String(m.auc)} <small>{fmtCi(m.auc_90ci)}</small></dd></div>
+      <div><dt>{t('AUC vs bare, arid, latitude-matched land')}</dt><dd className="dc-mono">{h?.auc == null ? '—' : String(h.auc)} <small>{fmtCi(h?.auc_90ci)}</small></dd></div>
+      <div><dt>{t('Known analogs found in the top 50 (recall@50)')}</dt><dd className="dc-mono">{r50 == null ? '—' : `${(r50 * 100).toFixed(0)} %`}</dd></div>
+      <div><dt>{t('Positive sites')}</dt><dd className="dc-mono">{val.positives.length}</dd></div>
+    </dl>
+    <p className="dc-note">{t('The positive labels are places where past analog campaigns ran — chosen for logistics and training as much as similarity — not ground truth. An AUC of 0.5 means no better than chance.')}</p>
+    {h && <p className="dc-note">{t('Hard control')}: {h.n_hard_negative} {t('windows')}; {h.n_positive_matched}/{val.positives.length} {t('positives have latitude-matched controls')} ({t('per positive')}: {h.n_per_positive.join(', ')}).</p>}
+  </section>;
 }
 
 function TargetCard({ target }: { target: TargetEntry }) {

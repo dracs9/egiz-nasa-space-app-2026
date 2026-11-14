@@ -163,8 +163,10 @@ def extra_terrain(z50: np.ndarray, p: float, prefix: str) -> dict:
 
 # ----------------------------------------------------------------------------- stages
 
-def stage_dem_earth(record, aoi: AOI, tile_names: set[str]):
+def stage_dem_earth(record, aoi: AOI, tile_names: set[str] | None):
     lon, lat = aoi.lon, aoi.lat
+    if lon is None or lat is None:
+        raise ValueError(f"{aoi.aoi_id}: Earth AOI needs lon/lat")
     bounds = geographic_bounds(lon, lat, HALF_M)
     native = RAW / "copernicus_glo30" / "windows" / f"{aoi.aoi_id}.tif"
     if not native.exists():
@@ -207,6 +209,8 @@ def stage_dem_earth(record, aoi: AOI, tile_names: set[str]):
 def stage_dem_planet(record, aoi: AOI):
     body = aoi.body
     is_moon = body == "moon"
+    if aoi.product is None or aoi.fine_baseline_m is None:
+        raise ValueError(f"{aoi.aoi_id}: planetary AOI needs a DEM product and fine baseline")
     if is_moon:
         native = RAW / "pgda_lola_5mpp" / aoi.product.rsplit("/", 1)[-1]
         fetch(aoi.product, native, timeout=600)
@@ -261,6 +265,8 @@ def crs_str(crs):
 
 def stage_landcover(record, aoi: AOI):
     lon, lat = aoi.lon, aoi.lat
+    if lon is None or lat is None:
+        raise ValueError(f"{aoi.aoi_id}: Earth AOI needs lon/lat")
     bounds = geographic_bounds(lon, lat, HALF_M)
     native = RAW / "esa_worldcover_v200" / "windows" / f"{aoi.aoi_id}.tif"
     urls = worldcover_tile_urls(bounds)
@@ -298,18 +304,22 @@ def stage_climate(record, aoi: AOI):
         values = [params[name].get(m) for m in MONTHS]
         return [None if v is None or v == fill else float(v) for v in values]
 
+    def complete(values: list[float | None]) -> list[float] | None:
+        known = [v for v in values if v is not None]
+        return known if len(known) == len(values) else None
+
     tmax, tmin, tmean, prate = (series(n) for n in ["T2M_MAX", "T2M_MIN", "T2M", "PRECTOTCORR"])
     days = [31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     out = {}
-    if None not in tmax:
-        out["t2m_max_warmest_month_c"] = max(tmax)
-    if None not in tmin:
-        out["t2m_min_coldest_month_c"] = min(tmin)
-    if None not in tmean:
-        out["t2m_mean_annual_c"] = sum(tmean) / 12
-        out["t2m_seasonal_range_c"] = max(tmean) - min(tmean)
-    if None not in prate:
-        out["precip_annual_mm"] = sum(r * d for r, d in zip(prate, days))
+    if (full := complete(tmax)) is not None:
+        out["t2m_max_warmest_month_c"] = max(full)
+    if (full := complete(tmin)) is not None:
+        out["t2m_min_coldest_month_c"] = min(full)
+    if (full := complete(tmean)) is not None:
+        out["t2m_mean_annual_c"] = sum(full) / 12
+        out["t2m_seasonal_range_c"] = max(full) - min(full)
+    if (full := complete(prate)) is not None:
+        out["precip_annual_mm"] = sum(r * d for r, d in zip(full, days))
     period = payload["header"].get("range", "")
     version = payload["header"].get("api", {}).get("version")
     return out, {"monthly": {"t2m_max_c": tmax, "t2m_min_c": tmin, "t2m_c": tmean, "precip_rate_mm_per_day": prate},
@@ -375,6 +385,7 @@ def process(aoi: AOI, *, tile_names: set[str] | None = None, stages=("dem", "lan
         else:
             attrs, extra, asset, patches = stage_dem_planet(record, aoi)
             fb = aoi.fine_baseline_m
+            assert fb is not None  # checked in stage_dem_planet
             grids = {f"f{fb}": f"{fb // 2} m local AEQD", "r": "200 m local AEQD"}
             src = asset["source_id"]
         record["assets"] = [a for a in record["assets"] if a["role"] not in {"native_window", "native_product"}] + [asset]

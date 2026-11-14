@@ -45,7 +45,7 @@ def test_controls_low_rank_and_deterministic_random_sanity():
         *[{"id": f"GL_{i:02}", "pool": "global", "context": {"water_frac": 0}} for i in range(30)],
         {"id": "CT_FOREST", "pool": "control", "context": {"water_frac": 0}},
         {"id": "CT_WATER", "pool": "control", "context": {"water_frac": 0.9}}]}
-    cells = {tile["id"]: {"F": 0.7} for tile in candidates["tiles"]}
+    cells: dict[str, dict[str, object]] = {tile["id"]: {"F": 0.7} for tile in candidates["tiles"]}
     cells["CT_FOREST"] = {"F": 0.01}
     cells["CT_WATER"] = {"F": None, "reason": "constraint"}
     results = {"synthetic": True, "runs": [{"target": "MOON_TARGET", "fidelity": {"O1": cells},

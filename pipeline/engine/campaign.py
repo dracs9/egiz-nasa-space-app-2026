@@ -103,7 +103,7 @@ def design(F, W, k_max: int = 3, *, site_ids=None, objective_ids=None, best_mont
     objective_ids = list(objective_ids) if objective_ids is not None else [str(i) for i in range(m)]
     if len(site_ids) != n or len(set(site_ids)) != n or len(objective_ids) != m:
         raise ValueError("Site and objective IDs must match the matrix and site IDs must be unique")
-    order = np.array(sorted(range(n), key=lambda i: site_ids[i]), dtype=int)
+    order = np.array(sorted(range(n), key=site_ids.__getitem__), dtype=int)
     F = F[order]
     known = known[order]
     site_ids = [site_ids[i] for i in order]

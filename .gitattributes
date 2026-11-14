@@ -1,0 +1,50 @@
+# Normalise text to LF in the repository so Windows checkouts stop showing CRLF-only diffs.
+* text=auto eol=lf
+
+# Files committed with CRLF before this file existed. Several pipeline stages hash source
+# files for provenance, so their bytes are preserved exactly (no renormalisation).
+contracts/ml/examples/*.json -text
+data/curated/gap_alternatives.csv -text
+data/curated/mission_templates.csv -text
+data/curated/practice_sites.csv -text
+data/curated/sources.csv -text
+data/curated/targets.csv -text
+data/pilot/earth_manifest.csv -text
+
+# Binary formats
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.avif binary
+*.ktx2 binary
+*.glb binary
+*.gltf binary
+*.bin binary
+*.egt binary
+*.egr binary
+*.tif binary
+*.tiff binary
+*.npy binary
+*.npz binary
+*.parquet binary
+*.mp4 binary
+*.webm binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.pdf binary
+*.pptx binary
+*.docx binary
+*.xlsx binary
+*.zip binary
+*.gz binary
+*.bsp binary
+*.bc binary
+*.bds binary

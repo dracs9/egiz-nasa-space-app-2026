@@ -6,23 +6,25 @@ import { DataLoadError, loadData, loadDatasetCatalog } from './data/load';
 import { dataModeInfo, type DataMode } from './data/modes';
 import { useAppStore } from './state/store';
 import { useLiveCampaign } from './lib/useLiveCampaign';
-import { BriefPage } from './components/BriefPage';
-import { CampaignPage } from './components/CampaignPage';
-import { MatrixPage } from './components/MatrixPage';
-import { EvidencePage } from './components/EvidencePage';
-import { SiteDrawer } from './components/SiteDrawer';
-import { TwinPage } from './components/TwinPage';
 import { SkipLink } from './components/SkipLink';
+import { ScopeNote } from './components/ScopeNote';
 import copy from './content/copy.json';
 import { SiteHeader, EgizMark } from './components/SiteHeader';
 import { HomePage } from './home/HomePage';
-import { InterfaceGuide } from './guide/InterfaceGuide';
 import './styles/workspace.css';
 import './styles/clarity.css';
 import './styles/theme.css';
 import './styles/minimal.css';
 
 const MissionLab = lazy(() => import('./mission/MissionLab'));
+// Pages other than the landing load on demand, so the landing bundle carries only the landing.
+const BriefPage = lazy(() => import('./components/BriefPage').then(m => ({ default: m.BriefPage })));
+const CampaignPage = lazy(() => import('./components/CampaignPage').then(m => ({ default: m.CampaignPage })));
+const MatrixPage = lazy(() => import('./components/MatrixPage').then(m => ({ default: m.MatrixPage })));
+const EvidencePage = lazy(() => import('./components/EvidencePage').then(m => ({ default: m.EvidencePage })));
+const TwinPage = lazy(() => import('./components/TwinPage').then(m => ({ default: m.TwinPage })));
+const SiteDrawer = lazy(() => import('./components/SiteDrawer').then(m => ({ default: m.SiteDrawer })));
+const InterfaceGuide = lazy(() => import('./guide/InterfaceGuide').then(m => ({ default: m.InterfaceGuide })));
 const AtlasLab = lazy(() => import('./atlas/AtlasLab'));
 const AstralStudio = lazy(() => import('./studio/AstralStudio'));
 const MissionStudio = lazy(() => import('./astral/studio/MissionStudio'));
@@ -38,9 +40,10 @@ function Workspace({ availableModes }: { availableModes: DataMode[] }) {
   if (route === 'planet') return <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Planetary Studio…")}</h1></main>}><PlanetWorkspace /></Suspense>;
   if (route === 'astral') return <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Mission Studio…")}</h1></main>}><MissionStudio /></Suspense>;
   return <><SkipLink /><SiteHeader availableModes={availableModes} />
-    <div id="main-content" className={`focused-workspace route-${route}`} tabIndex={-1}>{localizeText(route === 'home' ? <HomePage /> : route === 'lab' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Mission Lab…")}</h1></main>}><MissionLab model={model} /></Suspense> : route === 'studio' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Mission Studio…")}</h1></main>}><AstralStudio /></Suspense> : route === 'discover' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading the Earth-wide index…")}</h1></main>}><DiscoverPage /></Suspense> : route === 'atlas' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading ATLAS-Π…")}</h1></main>}><AtlasLab /></Suspense> : route === 'brief' ? <BriefPage /> : route === 'matrix' ? <MatrixPage model={model} /> : route === 'evidence' ? <EvidencePage /> : route === 'twin' ? <TwinPage /> : <CampaignPage model={model} />)}</div>
-    {route !== 'home' && route !== 'studio' && <InterfaceGuide route={route}/>}
-    {localizeText(selectedSite && route !== 'home' && <SiteDrawer model={model} />)}
+    {route !== 'home' && <ScopeNote route={route} />}
+    <div id="main-content" className={`focused-workspace route-${route}`} tabIndex={-1}>{localizeText(route === 'home' ? <HomePage /> : route === 'lab' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Mission Lab…")}</h1></main>}><MissionLab model={model} /></Suspense> : route === 'studio' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading Mission Studio…")}</h1></main>}><AstralStudio /></Suspense> : route === 'discover' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading the Earth-wide index…")}</h1></main>}><DiscoverPage /></Suspense> : route === 'atlas' ? <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /><h1>{localizeText("Loading ATLAS-Π…")}</h1></main>}><AtlasLab /></Suspense> : <Suspense fallback={<main className="page eg-loading"><span className="eg-loading-bar" aria-hidden="true" /></main>}>{route === 'brief' ? <BriefPage /> : route === 'matrix' ? <MatrixPage model={model} /> : route === 'evidence' ? <EvidencePage /> : route === 'twin' ? <TwinPage /> : <CampaignPage model={model} />}</Suspense>)}</div>
+    {route !== 'home' && route !== 'studio' && <Suspense fallback={null}><InterfaceGuide route={route}/></Suspense>}
+    {localizeText(selectedSite && route !== 'home' && <Suspense fallback={null}><SiteDrawer model={model} /></Suspense>)}
   </>;
 }
 export default function App() {

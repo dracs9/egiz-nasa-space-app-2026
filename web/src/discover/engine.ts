@@ -101,6 +101,14 @@ export function isaPressurePa(elevationM: number) {
   return 101325 * (1 - 2.25577e-5 * h) ** 5.25588;
 }
 
+// ----------------------------------------------------------------------------- wording rule
+
+/** A candidate whose fidelity or lower 90 % bound is below this is "closest found — weak match", never a "best analog". */
+export const WEAK_MATCH_THRESHOLD = 0.3;
+export function isWeakMatch(fidelity: number, lo: number): boolean {
+  return !(fidelity >= WEAK_MATCH_THRESHOLD) || !(lo >= WEAK_MATCH_THRESHOLD);
+}
+
 // ----------------------------------------------------------------------------- window accessors
 
 export function col(b: DiscoveryBundle, name: string, i: number): number | null {
@@ -163,10 +171,23 @@ function climbingEnergy(cdf: number[], limit: number, mass: number, g: number, r
 
 const r = (v: number, nd: number) => Math.round(v * 10 ** nd) / 10 ** nd;
 
+export const ROVER_BODY_LABEL = 'body-level, model estimate';
+export const ROVER_BODY_KEYS = ['slope_limit_deg', 'sinkage_mm', 'd_slope_limit_deg', 'sinkage_ratio'];
+export const ROVER_WINDOW_KEYS = ['traversable_frac', 'climbing_energy_j_per_m', 'd_traversable_frac', 'energy_ratio'];
+export const MARS_SOIL_NOTE = 'Mars runs reuse the Apollo-era LUNAR soil parameters: Mars regolith Bekker parameters are not measured or estimated here, so Mars slope-limit and sinkage values are lunar soil at Mars gravity';
+const roverTm = (body: Body) => terramechanics(body, { name: 'EGIZ demonstration rover', mass_kg: 900, wheels: 6, wheel_diameter_m: 0.82, wheel_width_m: 0.33 },
+  { name: 'Apollo-era lunar soil design estimate', kc: 1400, kphi: 820000, n: 1, phi_deg: 35, c_pa: 0 });
+
+/** Body-level rover numbers: depend on gravity, rover and assumed soil only (pipeline.discovery.rover.body_rover_model). */
+export function roverBodyNumbers(body: Body) {
+  const tm = roverTm(body);
+  const lim = (k: 'target' | 'earth_mass_matched') => r(tm[k].slope_limit_deg, 3), sink = (k: 'target' | 'earth_mass_matched') => r(tm[k].sinkage_m * 1000, 3);
+  return { target: { slope_limit_deg: lim('target'), sinkage_mm: sink('target') }, earth_mass_matched: { slope_limit_deg: lim('earth_mass_matched'), sinkage_mm: sink('earth_mass_matched') } };
+}
+
 /** Candidate-conditioned rover experiment (pipeline.discovery.rover.rover_experiment). */
 export function roverExperiment(cdf: number[], body: Body, windowId: string): RoverExperiment {
-  const tm = terramechanics(body, { name: 'EGIZ demonstration rover', mass_kg: 900, wheels: 6, wheel_diameter_m: 0.82, wheel_width_m: 0.33 },
-    { name: 'Apollo-era lunar soil design estimate', kc: 1400, kphi: 820000, n: 1, phi_deg: 35, c_pa: 0 });
+  const tm = roverTm(body);
   const cases = {} as RoverExperiment['cases'];
   for (const key of ['target', 'earth_load_matched', 'earth_mass_matched'] as const) {
     const c = tm[key];
@@ -185,8 +206,11 @@ export function roverExperiment(cdf: number[], body: Body, windowId: string): Ro
   return { model: 'CF_TERRAMECHANICS on candidate slope CDF', status: 'MODEL_ESTIMATE', window: windowId, body, baseline_m: 100,
     rover: { mass_kg: 900, wheels: 6, wheel_diameter_m: 0.82, wheel_width_m: 0.33 }, soil: { kc: 1400, kphi: 820000, n: 1, phi_deg: 35, c_pa: 0 },
     cases, deltas,
+    levels: { body: ROVER_BODY_KEYS, window: ROVER_WINDOW_KEYS, body_label: ROVER_BODY_LABEL,
+      note: "slope_limit_deg and sinkage_mm (and their deltas) are body-level: identical for every window on this body. Only traversable_frac and climbing energy use this window's terrain." },
+    soil_reused_from_moon: body === 'mars', soil_note: body === 'mars' ? MARS_SOIL_NOTE : null,
     assumptions: ['Static Bekker rigid-wheel model, equal wheel loads, uphill traverse (conservative)',
-      'Soil parameters are Apollo-era lunar estimates applied to Earth and target alike',
+      'Soil parameters are Apollo-era lunar estimates applied to Earth and target alike' + (body === 'mars' ? '; for Mars they are REUSED lunar values (Mars soil unmeasured)' : ''),
       'Candidate terrain = measured slope distribution at 100 m baseline; rover-scale (< 10 m) roughness is not resolved',
       'No gravity-dependent soil strength: the direction of the transfer error is contested'],
     limitations: [], references: ['WONG_2012', 'NASA_LSDB'] };
@@ -228,6 +252,12 @@ export function gapLedger(b: DiscoveryBundle, body: Body, targetLat: number, i: 
   const veg = ['tree_frac', 'crop_frac', 'grass_shrub_frac'].map(k => col(b, k, i));
   rows.push(row('vegetation', 'Vegetated fraction of the window', 'fraction', 0, veg.some(v => v == null) ? null : r(veg.reduce((a: number, v) => a + (v ?? 0), 0), 4),
     { earth_evidence: 'proxy (ESA WorldCover 2021 classes)', target_evidence: 'physical constraint', measurable: !veg.some(v => v == null) }));
+  const rb = roverBodyNumbers(body);
+  let bodyNote = "body-level, model estimate: identical for every Earth candidate on this body (gravity, rover and assumed soil only; not this window's terrain); Earth value = mass-matched Earth test";
+  if (body === 'mars') bodyNote += `; ${MARS_SOIL_NOTE}`;
+  for (const [key, parameter, unit, field] of [['rover_slope_limit', 'Rover traction-limited slope (body-level)', 'deg', 'slope_limit_deg'], ['rover_sinkage', 'Rover wheel sinkage (body-level)', 'mm', 'sinkage_mm']] as const)
+    rows.push(row(key, parameter, unit, r(rb.target[field], 2), r(rb.earth_mass_matched[field], 2),
+      { earth_evidence: 'modelled (CF_TERRAMECHANICS, body-level)', target_evidence: 'modelled (CF_TERRAMECHANICS, body-level)', note: bodyNote }));
   if (w1 != null) rows.push(row('slope_distribution', 'Slope-distribution mismatch (1-Wasserstein)', 'deg', 0, r(w1, 3), { earth_evidence: 'derived (Copernicus GLO-30)', target_evidence: 'derived' }));
   return rows;
 }

@@ -30,7 +30,7 @@ from pipeline.discovery.fingerprint import (
     target_fingerprint,
 )
 from pipeline.discovery.gaps import gap_ledger, ledger_summary
-from pipeline.discovery.rover import rover_experiment
+from pipeline.discovery.rover import body_rover_model, rover_experiment
 from pipeline.discovery.similarity import EarthTable, earth_geology_classes
 from pipeline.discovery.sites import BENCHMARK, TARGETS, benchmark_window
 
@@ -56,7 +56,7 @@ def _r(x, nd=4):
     return x
 
 
-def _sha(path) -> str:
+def _sha(path) -> str | None:
     return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
 
 
@@ -215,10 +215,10 @@ def build(draws: int = 64, write: bool = True) -> str:
         "country": [w.context.get("country_iso") for w in E],
         "volcano_km": [_r(w.context.get("volcano_km"), 1) for w in E],
         "impact_km": [_r(w.context.get("impact_km"), 1) for w in E],
-        "impact_name": [w.context.get("impact_name") if isinstance(w.context.get("impact_km"), float)
-                        and w.context["impact_km"] <= 60 else None for w in E],
+        "impact_name": [w.context.get("impact_name") if isinstance(km := w.context.get("impact_km"), float)
+                        and km <= 60 else None for w in E],
         **{c: [_r(w.f(c), 4) for w in E] for c in WINDOW_COLUMNS},
-        **{c: [w.features.get(c) if isinstance(w.features.get(c), str) else None for w in E] for c in TEXT_COLUMNS},
+        **{c: [v if isinstance(v := w.features.get(c), str) else None for w in E] for c in TEXT_COLUMNS},
         "geology_classes": geo_classes,
         "rarity_terrain_pct": [_r(v, 2) for v in t_pct], "rarity_env_pct": [_r(v, 2) for v in e_pct],
         "novelty_km": [_r(v, 1) for v in nov_km], "novelty_class": nov_label, "nearest_established": nov_near,
@@ -245,6 +245,8 @@ def build(draws: int = 64, write: bool = True) -> str:
         "aggregation": R.__doc__,
         "windows": cols,
         "targets": target_out,
+        # Window-independent rover terramechanics, once per body (see pipeline.discovery.rover).
+        "rover_body_level": {body: body_rover_model(body) for body in sorted({t.body for t in targets})},
         "unavailable_targets": unavailable,
         "benchmark_sites": [b.to_dict() for b in BENCHMARK],
         "reproduce": ["python -m pipeline.discovery acquire --set global --set kz --set benchmark --set targets",

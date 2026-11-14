@@ -11,9 +11,12 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import rasterio
+import rasterio.enums
+import rasterio.errors
 from rasterio.crs import CRS
 from rasterio.merge import merge
 
@@ -22,7 +25,7 @@ from pipeline.earth.public_dem import public_tile_url
 from pipeline.geodata.cache import fetch, write_meta
 from pipeline.planets.access import AccessError, _source_bounds
 
-GDAL_ENV = dict(GDAL_HTTP_TIMEOUT="90", GDAL_HTTP_MAX_RETRY="3", GDAL_HTTP_RETRY_DELAY="2",
+GDAL_ENV: dict[str, Any] = dict(GDAL_HTTP_TIMEOUT="90", GDAL_HTTP_MAX_RETRY="3", GDAL_HTTP_RETRY_DELAY="2",
                 GDAL_DISABLE_READDIR_ON_OPEN="EMPTY_DIR", CPL_VSIL_CURL_ALLOWED_EXTENSIONS=".tif",
                 VSI_CACHE="TRUE")
 COP_TILE_LIST = "https://copernicus-dem-30m.s3.amazonaws.com/tileList.txt"

@@ -71,7 +71,7 @@ def _sample_factor(f: dict, measurement: dict, rng, n_boot: int, reg) -> dict | 
     return g
 
 
-def _paired(measurement: dict, measurements: list[dict]) -> dict:
+def _paired(measurement: dict, measurements: list[dict]) -> dict | None:
     """Combined measurement used when one side alone cannot resolve a factor."""
     partner = next((m for m in measurements if m["id"] != measurement["id"]
                     and set(m["resolves"]) == set(measurement["resolves"]) and m["side"] != measurement["side"]), None)
@@ -86,7 +86,8 @@ def evpi(raw: dict, mission: dict, sites: list[str], measurement: dict, reg, k: 
          site_filter: str | None = None) -> dict:
     """raw: {(site, task): (task, factors_with_boot, physics, failed, unknown)} for the mission target."""
     rng = np.random.default_rng(seed)
-    base_cells = [assess(reg.rules, *raw[key][:5], key[0], mission["target"]) for key in raw]
+    base_cells = [assess(reg.rules, task, factors, physics, failed, unknown, key[0], mission["target"])
+                  for key, (task, factors, physics, failed, unknown, *_) in raw.items()]
     reqs, _ = requirements(base_cells, mission)
     w = np.array([r["weight"] for r in reqs])
     w = w / w.sum()

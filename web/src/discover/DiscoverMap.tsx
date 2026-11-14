@@ -1,5 +1,6 @@
 // Earth-wide candidate map: every window of the index as a point coloured by its score
 // for the active target (sequential blue). Established analog sites are outlined.
+import 'maplibre-gl/dist/maplibre-gl.css'; // only on routes that show a map
 import { useEffect, useRef, useState } from 'react';
 import type { Map as GLMap, GeoJSONSource } from 'maplibre-gl';
 import type { FeatureCollection } from 'geojson';

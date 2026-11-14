@@ -7,11 +7,12 @@ from __future__ import annotations
 
 import math
 from numbers import Real
+from typing import TypeGuard
 
 FUNCTIONS = {"match", "logmatch", "at_most", "at_least", "colder", "category", "light", "impossible"}
 
 
-def _number(value):
+def _number(value) -> TypeGuard[float]:
     return isinstance(value, Real) and not isinstance(value, bool) and math.isfinite(value)
 
 
@@ -81,6 +82,8 @@ def light_fidelity(light: dict | float | None, snow_free=None, params=None) -> t
         return None, None
     if _number(light):
         return attribute_fidelity({"fn": "light", "needs_target": False}, light), None
+    if not isinstance(light, dict):
+        raise TypeError(f"light must be a finite number or a mapping, not {light!r}")
     if "F" in light:
         return light_fidelity(light["F"])[0], light.get("best_month")
     hours = light.get("hours_low", light.get("hours"))

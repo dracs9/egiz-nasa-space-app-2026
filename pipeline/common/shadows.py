@@ -18,14 +18,14 @@ def cast_shadow(z, p, h_deg, az_deg):
     numerator = rotate(np.where(valid, z, 0), angle, reshape=True, order=1, cval=0, prefilter=False)
     rotated = np.full(weight.shape, -np.inf)
     np.divide(numerator, weight, out=rotated, where=weight > .999)
-    w = rotated + np.arange(rotated.shape[1])*p*np.tan(np.deg2rad(h_deg))
+    w = rotated + np.arange(rotated.shape[-1])*p*np.tan(np.deg2rad(h_deg))
     skyline = np.maximum.accumulate(w, axis=1)
     previous = np.full(w.shape, -np.inf)
     previous[:, 1:] = skyline[:, :-1]
     mask = (previous > w + 1e-8) & np.isfinite(rotated)
     back = rotate(mask.astype(np.uint8), -angle, reshape=True, order=0, cval=0, prefilter=False)
     r = (back.shape[0] - z.shape[0])//2
-    c = (back.shape[1] - z.shape[1])//2
+    c = (back.shape[-1] - z.shape[1])//2
     shadow = back[r:r+z.shape[0], c:c+z.shape[1]].astype(bool)
     gy, gx = np.gradient(z, p)
     h, az = np.deg2rad([h_deg, az_deg])

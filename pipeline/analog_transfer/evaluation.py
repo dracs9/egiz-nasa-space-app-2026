@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 from itertools import combinations
 from pathlib import Path
+from typing import cast
 
 import numpy as np
 from scipy.stats import kendalltau
@@ -25,7 +26,7 @@ def _rank_tau(a: dict, b: dict) -> tuple[float | None, bool]:
     keys = sorted(k for k in a if a[k] is not None and b.get(k) is not None)
     if len(keys) < 3:
         return None, False
-    tau = kendalltau([a[k] for k in keys], [b[k] for k in keys]).statistic
+    tau = cast(float, kendalltau([a[k] for k in keys], [b[k] for k in keys])[0])
     top_a = max(keys, key=lambda k: (a[k], k))
     top_b = max(keys, key=lambda k: (b[k], k))
     return (None if np.isnan(tau) else float(tau)), top_a != top_b
@@ -97,7 +98,7 @@ def h3_resolution(terrain_evidence: dict) -> dict:
     for target, tbase, mismatch_base in (("MARS_JEZERO", "400", "100"), ("MOON_MONS_MOUTON", "100", "400")):
         matched = {s: _binned_w1(hist[(s, tbase)], hist[(target, tbase)]) for s in earth}
         mism = {s: _binned_w1(hist[(s, mismatch_base)], hist[(target, tbase)]) for s in earth}
-        tau = kendalltau([matched[s] for s in earth], [mism[s] for s in earth]).statistic
+        tau = cast(float, kendalltau([matched[s] for s in earth], [mism[s] for s in earth])[0])
         false_similar = [s for s in earth if mism[s] < 2.0 <= matched[s]]
         false_dissimilar = [s for s in earth if matched[s] < 2.0 <= mism[s]]
         top_matched = sorted(earth, key=lambda s: matched[s])[:3]

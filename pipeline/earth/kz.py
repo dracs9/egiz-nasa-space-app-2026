@@ -1,12 +1,14 @@
 # Written with AI assistance (Codex); human review pending.
 """Kazakhstan candidate sampling clipped to the documented LSIB country boundary."""
+from typing import cast
+
 from pipeline.earth.pool import initialize_ee, square_coordinates, tile_id, utm_epsg
 
 
 def build_kazakhstan_pool(count=200, seed=2026, *, project=None):
     ee = initialize_ee(project)
     country = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017").filter(ee.Filter.eq("country_na", "Kazakhstan")).geometry()
-    points = ee.FeatureCollection.randomPoints(country, count*4, seed).getInfo()["features"]
+    points = cast(dict, ee.FeatureCollection.randomPoints(country, count*4, seed).getInfo())["features"]
     tiles = []
     for point in points:
         lon, lat = point["geometry"]["coordinates"]

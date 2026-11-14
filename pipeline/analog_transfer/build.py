@@ -7,10 +7,14 @@ from __future__ import annotations
 
 import hashlib
 import json
-import resource
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Literal, cast
+
+if sys.platform != "win32":  # POSIX-only module; peak RSS is not recorded on Windows
+    import resource
 
 import numpy as np
 
@@ -123,9 +127,10 @@ def strip(obj):
     return obj
 
 
-def build(pilot: Path = PILOT, out: Path | None = None, n_boot: int = 200, planner_draws: int = 150,
-          with_evaluation: bool = True) -> dict:
-    timings = {}
+def build(pilot: Path = PILOT, out: Path | Literal[False] | None = None, n_boot: int = 200,
+          planner_draws: int = 150, with_evaluation: bool = True) -> dict:
+    """out=None writes to pilot/atlas_pi.json; out=False builds in memory only."""
+    timings: dict[str, float | None] = {}
     t0 = time.perf_counter()
     ctx, meta = load_context(pilot, n_boot)
     timings["features_s"] = time.perf_counter() - t0
@@ -177,7 +182,10 @@ def build(pilot: Path = PILOT, out: Path | None = None, n_boot: int = 200, plann
         evaluation = ev.run_all(ctx, tensor, constellations, sens, plans, stability, meta)
         timings["evaluation_s"] = time.perf_counter() - t4
     timings["total_s"] = time.perf_counter() - t0
-    timings["peak_rss_mb"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 * 1024)
+    if sys.platform != "win32":
+        timings["peak_rss_mb"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 * 1024)
+    else:
+        timings["peak_rss_mb"] = None
     site_rows = []
     for s in sites:
         tile = ctx.tiles[s]
@@ -209,7 +217,7 @@ def build(pilot: Path = PILOT, out: Path | None = None, n_boot: int = 200, plann
             "No field validation of any recommendation has been performed.",
         ],
     }
-    doc = strip(doc)
+    doc = cast("dict[str, Any]", strip(doc))  # strip() preserves the top-level dict
     content = {k: v for k, v in doc.items() if k not in ("generated_at", "performance")}
     doc["content_sha256"] = hashlib.sha256(json.dumps(content, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     # Rendered dossiers cite the content hash, so they are derived after it and excluded from it.

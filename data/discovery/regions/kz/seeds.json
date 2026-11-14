@@ -1,0 +1,239 @@
+{
+ "schema": "egiz.kz_refine_seeds",
+ "bundle_sha256": "866f4a4fd70d05817ec9e7c8862ec11dd53132a63542aaa3e205f643bcd8a494",
+ "top_k": 100,
+ "profile": "general",
+ "step_km": 20.0,
+ "seeds": [
+  {
+   "window": "GX_E052.422_N44.129",
+   "lon": 52.422,
+   "lat": 44.129,
+   "ranks": {
+    "MARS_JEZERO": {
+     "rank": 43,
+     "score": 0.4003
+    },
+    "MARS_GALE": {
+     "rank": 43,
+     "score": 0.3471
+    }
+   }
+  },
+  {
+   "window": "KZX_E052.246_N44.113",
+   "lon": 52.246,
+   "lat": 44.113,
+   "ranks": {
+    "MARS_JEZERO": {
+     "rank": 49,
+     "score": 0.3926
+    },
+    "MARS_GALE": {
+     "rank": 76,
+     "score": 0.3313
+    }
+   }
+  },
+  {
+   "window": "KZX_E053.185_N44.113",
+   "lon": 53.185,
+   "lat": 44.113,
+   "ranks": {
+    "MARS_GALE": {
+     "rank": 74,
+     "score": 0.3317
+    }
+   }
+  },
+  {
+   "window": "KZX_E053.586_N43.529",
+   "lon": 53.586,
+   "lat": 43.529,
+   "ranks": {
+    "MARS_OXIA_PLANUM": {
+     "rank": 88,
+     "score": 0.3683
+    },
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 64,
+     "score": 0.2894
+    }
+   }
+  },
+  {
+   "window": "KZX_E053.981_N42.945",
+   "lon": 53.981,
+   "lat": 42.945,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 23,
+     "score": 0.3137
+    }
+   }
+  },
+  {
+   "window": "KZX_E054.517_N43.529",
+   "lon": 54.517,
+   "lat": 43.529,
+   "ranks": {
+    "MARS_JEZERO": {
+     "rank": 68,
+     "score": 0.3846
+    },
+    "MARS_GALE": {
+     "rank": 89,
+     "score": 0.3245
+    },
+    "MARS_OXIA_PLANUM": {
+     "rank": 82,
+     "score": 0.372
+    },
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 25,
+     "score": 0.3118
+    }
+   }
+  },
+  {
+   "window": "KZX_E054.675_N44.698",
+   "lon": 54.675,
+   "lat": 44.698,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 83,
+     "score": 0.2821
+    }
+   }
+  },
+  {
+   "window": "KZX_E054.902_N42.945",
+   "lon": 54.902,
+   "lat": 42.945,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 81,
+     "score": 0.2834
+    }
+   }
+  },
+  {
+   "window": "KZX_E055.420_N46.450",
+   "lon": 55.42,
+   "lat": 46.45,
+   "ranks": {
+    "MARS_JEZERO": {
+     "rank": 71,
+     "score": 0.3838
+    },
+    "MARS_GALE": {
+     "rank": 96,
+     "score": 0.3199
+    }
+   }
+  },
+  {
+   "window": "KZX_E055.654_N41.777",
+   "lon": 55.654,
+   "lat": 41.777,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 40,
+     "score": 0.3029
+    }
+   }
+  },
+  {
+   "window": "KZX_E055.811_N45.866",
+   "lon": 55.811,
+   "lat": 45.866,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 87,
+     "score": 0.2812
+    }
+   }
+  },
+  {
+   "window": "KZX_E055.823_N42.945",
+   "lon": 55.823,
+   "lat": 42.945,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 78,
+     "score": 0.2842
+    }
+   }
+  },
+  {
+   "window": "KZX_E059.686_N45.866",
+   "lon": 59.686,
+   "lat": 45.866,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 65,
+     "score": 0.2892
+    }
+   }
+  },
+  {
+   "window": "KZX_E064.529_N45.866",
+   "lon": 64.529,
+   "lat": 45.866,
+   "ranks": {
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 34,
+     "score": 0.3071
+    }
+   }
+  },
+  {
+   "window": "KZX_E065.398_N44.113",
+   "lon": 65.398,
+   "lat": 44.113,
+   "ranks": {
+    "MARS_OXIA_PLANUM": {
+     "rank": 89,
+     "score": 0.3682
+    }
+   }
+  },
+  {
+   "window": "KZX_E065.680_N43.529",
+   "lon": 65.68,
+   "lat": 43.529,
+   "ranks": {
+    "MARS_OXIA_PLANUM": {
+     "rank": 99,
+     "score": 0.3629
+    }
+   }
+  },
+  {
+   "window": "KZX_E065.959_N42.945",
+   "lon": 65.959,
+   "lat": 42.945,
+   "ranks": {
+    "MARS_OXIA_PLANUM": {
+     "rank": 70,
+     "score": 0.3768
+    },
+    "MARS_UTOPIA_ZHURONG": {
+     "rank": 97,
+     "score": 0.2784
+    }
+   }
+  },
+  {
+   "window": "KZX_E079.490_N44.113",
+   "lon": 79.49,
+   "lat": 44.113,
+   "ranks": {
+    "MARS_GALE": {
+     "rank": 47,
+     "score": 0.3455
+    }
+   }
+  }
+ ]
+}

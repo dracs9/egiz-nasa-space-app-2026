@@ -69,12 +69,13 @@ def process_one(aoi: AOI, tile_names: set[str], *, purge: bool = True) -> dict:
     return record
 
 
-def run(aois: list[AOI], *, workers: int = 8, purge: bool = True, log: Path | None = None) -> dict:
+def run(aois: list[AOI], *, workers: int = 8, purge: bool = True, log: Path | None = None,
+        derived: Path = INDEX_DERIVED) -> dict:
     from pipeline.geodata import RAW
     from pipeline.geodata.rasters import copernicus_tiles
-    F.DERIVED = INDEX_DERIVED  # redirect per-AOI records and grids to the index release
+    F.DERIVED = derived  # redirect per-AOI records and grids to the index (or refinement) release
     tiles = copernicus_tiles(RAW)
-    log = log or INDEX_DERIVED / "acquire_log.jsonl"
+    log = log or derived / "acquire_log.jsonl"
     log.parent.mkdir(parents=True, exist_ok=True)
     started, counts = time.time(), {"ok": 0, "with_failures": 0}
     planets = [a for a in aois if a.body != "earth"]

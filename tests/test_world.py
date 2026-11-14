@@ -101,7 +101,7 @@ def test_crater_detector_rejects_flat_and_sloped_ground():
 def test_kmeans_is_deterministic_and_separates_clusters():
     rng = np.random.default_rng(0)
     x = np.vstack([rng.normal(0, 0.1, (200, 2)), rng.normal(3, 0.1, (200, 2))])
-    c1, l1, _ = perception.kmeans(x, 2, seed=5)
+    c1, l1, _ = perception.kmeans(x, 2, seed=5)  # never None now: raises for restarts < 1
     c2, l2, _ = perception.kmeans(x, 2, seed=5)
     assert np.array_equal(l1, l2) and np.allclose(c1, c2)
     assert len(set(l1[:200])) == 1 and l1[0] != l1[-1]

@@ -82,7 +82,7 @@ def terrain_attributes(
     if min(z.shape) < core_side + 2 * required_offset:
         raise ValueError("DEM must cover 20 km plus the required terrain margin")
     core = _central(z, core_side)
-    empty = dict.fromkeys(TERRAIN_KEYS)
+    empty: dict[str, float | None] = dict.fromkeys(TERRAIN_KEYS)
     if np.isfinite(core).mean() < 0.5:
         return empty
     sf = _central(slope_at_offset(z, p, fine_offset), fine_side)

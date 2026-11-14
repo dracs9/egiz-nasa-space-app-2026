@@ -7,11 +7,14 @@ downloaded implicitly. The CLI can explicitly cache a remote product.
 import argparse
 import json
 import math
+import urllib.error
 import urllib.request
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import rasterio
+import rasterio.errors
 from pyproj import CRS, Transformer
 from rasterio.enums import Resampling
 from rasterio.transform import from_origin
@@ -78,7 +81,8 @@ def read_window(product, lon, lat, half_m, body):
                 c0, r0 = math.floor(float_window.col_off), math.floor(float_window.row_off)
                 c1 = math.ceil(float_window.col_off + float_window.width)
                 r1 = math.ceil(float_window.row_off + float_window.height)
-                window = Window(c0, r0, c1-c0, r1-r0)
+                # rasterio's legacy attr.s class is opaque to static checkers.
+                window = Window(c0, r0, c1-c0, r1-r0)  # pyright: ignore[reportCallIssue]
                 if window.width*window.height > 100_000_000:
                     raise AccessError("requested source window exceeds 100 million pixels")
                 z = src.read(1, window=window, boundless=True, masked=True, out_dtype="float32")
@@ -104,7 +108,7 @@ def to_local_grid(z, transform, crs, center, body, p, half_m):
     dst_transform = from_origin(x0-half_m, y0+half_m, p, p)
     dst_crs = local_crs(center, body)
     z = np.asarray(z, dtype=np.float32)
-    kwargs = dict(src_transform=transform, src_crs=crs,
+    kwargs: dict[str, Any] = dict(src_transform=transform, src_crs=crs,
                   dst_transform=dst_transform, dst_crs=dst_crs,
                   resampling=Resampling.average)
     reproject(z, destination, src_nodata=np.nan, dst_nodata=np.nan, **kwargs)
@@ -118,7 +122,7 @@ def to_local_grid(z, transform, crs, center, body, p, half_m):
 
 def download_product(product, out):
     """Explicitly cache a product with atomic replacement and bounded timeout."""
-    source = PRODUCTS.get(product, product)
+    source = PRODUCTS.get(str(product), str(product))
     if not source.startswith("https://"):
         raise AccessError("downloads require an HTTPS product URL")
     out = Path(out)

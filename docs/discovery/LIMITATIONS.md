@@ -32,3 +32,17 @@ Written with AI assistance (Claude); human scientific review pending.
 * **Optional language model** integration (`api/copilot.ts`) was not exercised here (no key, no
   Vercel runtime). The offline tool planner is keyword-based.
 * **Impact structures** come from Wikidata (community-curated; may include unconfirmed structures).
+
+## Added 2026-11-14
+
+* **Hard negative control.** Against bare (WorldCover ≥ 0.5), arid (POWER ≤ 250 mm/yr), latitude-matched
+  windows the benchmark AUC is 0.39–0.74 (Moon) and 0.21–0.51 (Mars), versus 0.64–0.91 against typical
+  land: the ranking separates known analogs from forests and farmland, not from generic bare desert.
+  Several Mars positives have a single matched control; one lunar positive has none (counts in RESULTS.md).
+* **Weak matches.** Every lunar rank-1 window has fidelity or its lower 90 % bound below 0.3 and is
+  labelled "closest found — weak match".
+* **Rover model.** Slope limit and sinkage are body-level (gravity + assumed soil); Mars runs reuse the
+  Apollo-era lunar soil parameters. Only traversable fraction and climbing energy depend on the window;
+  for Oxia Planum and Utopia every top window is 100 % traversable, so the rover number does not separate them.
+* **Kazakhstan refinement.** Choosing the best of 144 neighbouring windows favours chance highs; refined
+  windows are field-check leads, not demonstrated analogs. Nearest town and season are not in the data.

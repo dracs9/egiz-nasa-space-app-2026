@@ -1,0 +1,142 @@
+{
+ "index_version": "egiz-index-1.0.0",
+ "generated_at": "2026-11-14T14:11:10Z",
+ "synthetic": false,
+ "n_windows": 144,
+ "by_body": {
+  "earth": 144
+ },
+ "by_pool": {
+  "kz_refine": 144
+ },
+ "by_coverage_level": {
+  "L4_validated": 144
+ },
+ "stage_status": {
+  "dem": {
+   "ok": 144
+  },
+  "landcover": {
+   "ok": 144
+  },
+  "climate": {
+   "ok": 144
+  },
+  "geology": {
+   "ok": 144
+  }
+ },
+ "failures": {},
+ "sources": [
+  {
+   "source_id": "COP_GLO30",
+   "name": "Copernicus DEM GLO-30 Public",
+   "provider": "Copernicus Programme / ESA / Airbus (AWS Open Data mirror)",
+   "product_id": "Copernicus_DSM_COG_10 (GLO-30)",
+   "version": "2021 release",
+   "url": "https://registry.opendata.aws/copernicus-dem/",
+   "access": "https://copernicus-dem-30m.s3.amazonaws.com/<tile>/<tile>.tif (public COG, HTTP range reads)",
+   "license": "Copernicus DEM licence: free use with mandatory attribution ('produced using Copernicus WorldDEM-30 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved')",
+   "period": "TanDEM-X acquisitions 2011-2015",
+   "body": "earth",
+   "evidence_class": "observed",
+   "kind": "digital surface model (includes vegetation/buildings)",
+   "crs": "EPSG:4326 (horizontal), EGM2008 geoid heights (vertical), metres",
+   "native_resolution": "1 arc-second (~30 m); longitude spacing widens poleward of 50 deg",
+   "citation": "European Space Agency, Sinergise (2021). Copernicus Global Digital Elevation Model. Distributed by OpenTopography/AWS. https://doi.org/10.5069/G9028PQB"
+  },
+  {
+   "source_id": "ESA_WC_V200",
+   "name": "ESA WorldCover 10 m 2021 v200",
+   "provider": "ESA / WorldCover consortium",
+   "product_id": "ESA_WorldCover_10m_2021_v200",
+   "version": "v200",
+   "url": "https://esa-worldcover.org/",
+   "access": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ (public COG)",
+   "license": "CC BY 4.0",
+   "period": "2021",
+   "body": "earth",
+   "evidence_class": "observed",
+   "kind": "land-cover classification (Sentinel-1/2 derived map)",
+   "crs": "EPSG:4326",
+   "native_resolution": "10 m (1/12000 deg)",
+   "citation": "Zanaga, D. et al. (2022). ESA WorldCover 10 m 2021 v200. https://doi.org/10.5281/zenodo.7254221"
+  },
+  {
+   "source_id": "MACROSTRAT",
+   "name": "Macrostrat geologic map compilation",
+   "provider": "Macrostrat (UW-Madison) and cited map sources",
+   "product_id": "API v2 geologic_units/map",
+   "version": "API v2 (live; map source_id recorded per AOI)",
+   "url": "https://macrostrat.org/",
+   "access": "https://macrostrat.org/api/v2/geologic_units/map",
+   "license": "CC BY 4.0 (plus attribution of the original map source)",
+   "period": "compiled maps of differing publication dates",
+   "body": "earth",
+   "evidence_class": "proxy",
+   "kind": "geologic map unit at the AOI centre (categorical; map scale varies by source)",
+   "crs": "EPSG:4326",
+   "native_resolution": "map scale of source (recorded)",
+   "citation": "Peters, S.E., Husson, J.M., Czaplewski, J. (2018). Macrostrat: a platform for geological data integration and deep-time Earth crust research. G-cubed 19. https://doi.org/10.1029/2018GC007467"
+  },
+  {
+   "source_id": "NASA_POWER_CLIM",
+   "name": "NASA POWER climatology (MERRA-2 based)",
+   "provider": "NASA Langley Research Center POWER Project",
+   "product_id": "POWER Climatology API, community RE",
+   "version": "API v2.x (recorded per response)",
+   "url": "https://power.larc.nasa.gov/",
+   "access": "https://power.larc.nasa.gov/api/temporal/climatology/point",
+   "license": "Public (NASA open data); acknowledge the NASA POWER Project",
+   "period": "climatology period stated in each response header (2001-2025 at time of access)",
+   "body": "earth",
+   "evidence_class": "modelled",
+   "kind": "reanalysis-based near-surface (2 m) AIR temperature and corrected precipitation; NOT land-surface temperature",
+   "crs": "EPSG:4326",
+   "native_resolution": "0.5 x 0.625 deg (MERRA-2 grid)",
+   "citation": "NASA Langley Research Center (LaRC) POWER Project, funded through the NASA Earth Science/Applied Science Program. https://power.larc.nasa.gov/"
+  },
+  {
+   "source_id": "GVP_VOTW",
+   "provider": "Smithsonian Institution Global Volcanism Program",
+   "product": "Volcanoes of the World, Holocene volcano list (WFS)",
+   "url": "https://webservices.volcano.si.edu/geoserver/GVP-VOTW/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes&outputFormat=application/json",
+   "citation": "Global Volcanism Program (2024) Volcanoes of the World v5.2.x. Smithsonian Institution. doi:10.5479/si.GVP.VOTW5-2024.5.2",
+   "licence": "Smithsonian terms of use (attribution)",
+   "n": 1214,
+   "sha256": "74a2186b29cb87524b69f42a9109095cfd23099c3f2fb8ce7c893ccaef1e02e9",
+   "accessed": "2026-11-14T14:11:03Z"
+  },
+  {
+   "source_id": "WIKIDATA_IMPACTS",
+   "provider": "Wikidata (Wikimedia Foundation)",
+   "product": "Instances of impact crater (Q55818) on Earth with coordinates (SPARQL)",
+   "url": "https://query.wikidata.org/",
+   "citation": "Wikidata contributors; CC0",
+   "licence": "CC0",
+   "caveat": "community-curated; may include unconfirmed structures",
+   "n": 202,
+   "sha256": "22318fa18fd07c3b51bc2df854c02ebc7ae233dce96efe56d29f4c9d90a32f02",
+   "accessed": "2026-11-14T14:11:06Z"
+  },
+  {
+   "source_id": "NATURAL_EARTH",
+   "provider": "Natural Earth",
+   "product": "Admin 0 countries 1:50m",
+   "url": "https://www.naturalearthdata.com/",
+   "citation": "Natural Earth (public domain)",
+   "licence": "public domain",
+   "n": 242
+  }
+ ],
+ "record_digest_sha256": "80f17f2690c0b6477daeebb698041f055a64cb9b3fe41069548171bb9e009788",
+ "windows_csv_sha256": "e6417050f054f16e2a1528716bcf233f71433cf55a77573c939cfe0084fc4a60",
+ "reproduce": [
+  "python -m pipeline.discovery acquire --set global --set kz --set benchmark --set targets",
+  "python -m pipeline.discovery index"
+ ],
+ "notes": [
+  "Native source windows were deleted after feature extraction; their SHA-256 are in the per-window records under data/derived (not committed). Re-running acquire restores them from the public COGs.",
+  "Windows on the same 22 km footprint are never duplicated; geo-0.1.0 windows are pooled at build time."
+ ]
+}

@@ -1,5 +1,7 @@
 # Written with AI assistance (Codex); human review pending.
 """Monthly observed snow-free fractions; invalid MODIS flags are excluded."""
+from typing import cast
+
 from pipeline.earth.pool import initialize_ee
 
 
@@ -13,5 +15,5 @@ def snow_free_frac(fc, *, project=None, start_year=2001, end_year=2024):
 
     months = [collection.filter(ee.Filter.calendarRange(m, m, "month")).map(observed).mean().rename(f"m{m}") for m in range(1, 13)]
     image = ee.Image.cat(months)
-    rows = image.reduceRegions(fc, ee.Reducer.mean(), scale=500).getInfo()["features"]
+    rows = cast(dict, image.reduceRegions(fc, ee.Reducer.mean(), scale=500).getInfo())["features"]
     return [{"id": f["properties"]["id"], "snow_free_frac": [f["properties"].get(f"m{m}") for m in range(1, 13)]} for f in rows]

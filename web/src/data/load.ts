@@ -1,4 +1,5 @@
 // AI-assisted implementation; human review pending.
+import { applyHonestObjectiveNames } from '../lib/honesty';
 import { ATTR_KEYS, type AppData, type Envelope } from '../types/contracts';
 import { dataModeInfo, isDataMode, type DataMode } from './modes';
 
@@ -165,6 +166,7 @@ export async function loadData(fetcher: typeof fetch = fetch, mode: DataMode = '
     for (const objective of template.objectives) if (!run.fidelity[objective.id] || !Object.hasOwn(run.gaps.objective_ceiling, objective.id) || (run.gaps.objective_ceiling[objective.id] !== null && !number(run.gaps.objective_ceiling[objective.id]))) throw new DataLoadError('schema', 'results.json', `fidelity.${objective.id}`);
     for (const campaign of run.campaigns) if (campaign.sites.some(s => !tileIds.has(s.id) || data.candidates.tiles.find(t => t.id === s.id)?.pool === 'control')) throw new DataLoadError('schema', 'results.json', 'campaigns.sites (unknown/control site)');
   }
+  applyHonestObjectiveNames(data.templates);
   return data;
 }
 export const hasSyntheticData = (data: AppData) => Object.values(data).some(file => file?.synthetic === true);

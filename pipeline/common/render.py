@@ -19,5 +19,5 @@ def render_same_sun(z, p, h, az, out):
     brightness = np.nan_to_num(brightness, nan=0)
     path = Path(out)
     path.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(np.uint8(255*np.clip(brightness, 0, 1))).save(path)
+    Image.fromarray((255*np.clip(brightness, 0, 1)).astype(np.uint8)).save(path)
     return path

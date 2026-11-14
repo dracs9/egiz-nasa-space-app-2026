@@ -54,7 +54,7 @@ def validate(request):
         if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or not low <= value <= high:
             raise ValueError(f"{key} must be {low}–{high}")
         p[key] = float(value)
-    controls = [("duration", 2, 90 if is_rover else 21600, 30 if is_rover else 7200)]
+    controls: list[tuple[str, float, float, float]] = [("duration", 2, 90 if is_rover else 21600, 30 if is_rover else 7200)]
     if is_rover:
         controls.append(("step", .001, .005, .002))
     for key, low, high, default in controls:
@@ -136,7 +136,7 @@ def rover_xml(p):
 
 
 def rover(p):
-    import mujoco as mj
+    import mujoco as mj  # pyright: ignore[reportMissingImports]  # optional dependency
     xml = rover_xml(p)
     model = mj.MjModel.from_xml_string(xml)
     data = mj.MjData(model)
@@ -234,8 +234,8 @@ def rover(p):
 
 
 def orbit(p):
-    from Basilisk.simulation import spacecraft
-    from Basilisk.utilities import SimulationBaseClass, macros, simIncludeGravBody
+    from Basilisk.simulation import spacecraft  # pyright: ignore[reportMissingImports]  # optional dependency
+    from Basilisk.utilities import SimulationBaseClass, macros, simIncludeGravBody  # pyright: ignore[reportMissingImports]
     # All C++ owners remain strongly referenced for the duration of the simulation.
     sim = SimulationBaseClass.SimBaseClass()
     process = sim.CreateNewProcess('dynamics')

@@ -56,7 +56,7 @@ def geometry(site: dict, epoch: str, duration: float = 86400, step: float = 600)
     No light-time correction (NONE), terrain occultation, refraction or weather.
     """
     import numpy as np
-    import spiceypy as spice
+    import spiceypy as spice  # pyright: ignore[reportMissingImports]  # optional dependency
 
     if site.get("body") not in BODIES:
         raise ValueError("Unsupported body")

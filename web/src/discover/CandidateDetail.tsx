@@ -6,8 +6,8 @@ import { t } from '../i18n';
 import { downloadJson, downloadText } from '../lib/download';
 import { useAppStore } from '../state/store';
 import { CdfChart, IntervalBar, Radar, SHORT } from './charts';
-import { col, gapLedger, roverExperiment, sha256Hex, slopeCdf, text, type Aggregate } from './engine';
-import type { DiscoveryBundle, GapRow, RoverExperiment, ScoreShard, ShortlistEntry, TargetEntry, ValidationDoc } from './types';
+import { col, gapLedger, isWeakMatch, roverExperiment, sha256Hex, slopeCdf, text, type Aggregate } from './engine';
+import type { DiscoveryBundle, GapRow, RoverBodyModel, RoverExperiment, ScoreShard, ShortlistEntry, TargetEntry, ValidationDoc } from './types';
 
 export interface DetailProps {
   bundle: DiscoveryBundle; target: TargetEntry; shard: ScoreShard; agg: Aggregate; i: number; rank: number;
@@ -56,6 +56,7 @@ export function CandidateDetail(p: DetailProps) {
       <div>
         <p className="eg-eyebrow">{t('Candidate')} #{rank} · {pool.replace('_', ' ')} · {String(W.country[i] ?? '—')}</p>
         <h2 id="dc-detail-title">{String(W.name[i])}</h2>
+        {isWeakMatch(agg.fidelity[i], agg.lo[i]) && <p className="dc-weak-note"><TriangleAlert size={13} /> {rank === 1 ? t('Closest found — weak match.') : t('Weak match.')} {t('Fidelity')} {agg.fidelity[i].toFixed(2)} [90 % {agg.lo[i].toFixed(2)}–{agg.hi[i].toFixed(2)}]: {t('this is the nearest Earth window found, not a demonstrated analog.')}</p>}
         <p className="dc-mono">{id} · {W.lat[i].toFixed(3)}°, {W.lon[i].toFixed(3)}° · {t('22 km window')} · {String(W.coverage_level[i])} · QA {String(W.quality[i])}</p>
       </div>
       <div className="dc-actions">
@@ -128,9 +129,9 @@ export function CandidateDetail(p: DetailProps) {
       </div>
       <div>
         <h3><FlaskConical size={15} /> {t('Rover experiment')} <small>— {t('model estimate')}</small></h3>
-        {c.rover ? <RoverTable ex={c.rover} /> : <p className="dc-muted">{t('No 100 m slope distribution for this window.')}</p>}
+        {c.rover ? <RoverTable ex={c.rover} bodyModel={bundle.rover_body_level?.[target.body]} /> : <p className="dc-muted">{t('No 100 m slope distribution for this window.')}</p>}
         <div className="dc-links">
-          <button className="eg-button eg-button-ghost" onClick={() => navigate('lab')}>{t('Open Mission Lab')}</button>
+          <button className="eg-button eg-button-ghost" onClick={() => navigate('lab')}>{t('Test it in Mission Lab')}</button>
           <button className="eg-button eg-button-ghost" onClick={() => navigate(target.body === 'mars' ? 'astral' : 'studio')}><Mountain size={15} />{target.body === 'mars' ? t('Jezero world (ASTRAL)') : t('Lunar 5 m world')}</button>
           {hasWorld && <button className="eg-button eg-button-ghost" onClick={() => { window.location.hash = `#/astral?world=${worldDir}`; }}><Mountain size={15} />{t('This window in 3D (ASTRAL)')}</button>}
         </div>
@@ -157,17 +158,23 @@ function categoryNote(c: string) {
   return c === 'strong' ? 'high coverage, narrow interval' : c === 'weak' ? 'wide interval or partial coverage' : 'similarity rests on few measured dimensions';
 }
 
-function RoverTable({ ex }: { ex: RoverExperiment }) {
-  const cs = ex.cases;
+function RoverTable({ ex, bodyModel }: { ex: RoverExperiment; bodyModel: RoverBodyModel | undefined }) {
+  const cs = ex.cases, dm = ex.deltas.earth_mass_matched;
   return <>
+    <div className="dc-rover-body">
+      <p className="eg-eyebrow">{t('Body-level, model estimate')} · {t(ex.body === 'mars' ? 'same for every Earth candidate for Mars' : 'same for every Earth candidate for the Moon')}</p>
+      <p className="dc-note">{t('Traction-limited slope')}: {cs.target.slope_limit_deg.toFixed(1)}° {t('at target gravity')} vs {cs.earth_mass_matched.slope_limit_deg.toFixed(1)}° {t('in a mass-matched Earth test')} (Δ {dm.d_slope_limit_deg.toFixed(1)}°) · {t('wheel sinkage')} ×{f(dm.sinkage_ratio)}. {t('Depends on gravity, rover and assumed soil only — not on this window. Also listed in the gap ledger.')}</p>
+      {(ex.soil_reused_from_moon ?? bodyModel?.soil_reused_from_moon) && <p className="dc-note dc-warn"><TriangleAlert size={13} /> {t('Mars runs reuse the Apollo-era lunar soil parameters; Mars soil is unmeasured here.')}</p>}
+    </div>
+    <p className="eg-eyebrow">{t('Window-level')} · {t("uses this window's measured slope distribution (GLO-30, 100 m)")}</p>
     <table className="dc-table">
-      <thead><tr><th /><th>{t('Slope limit')}</th><th>{t('Traversable')}</th><th>{t('Sinkage')}</th><th>{t('Climb energy')}</th></tr></thead>
+      <thead><tr><th /><th>{t('Traversable')}</th><th>{t('Climb energy')}</th></tr></thead>
       <tbody>{(['target', 'earth_load_matched', 'earth_mass_matched'] as const).map(k => <tr key={k}>
-        <th scope="row">{t(cs[k].label)}</th><td className="dc-mono">{cs[k].slope_limit_deg.toFixed(1)}°</td>
-        <td className="dc-mono">{(cs[k].traversable_frac * 100).toFixed(1)} %</td><td className="dc-mono">{cs[k].sinkage_mm.toFixed(1)} mm</td>
+        <th scope="row">{t(cs[k].label)}</th>
+        <td className="dc-mono">{(cs[k].traversable_frac * 100).toFixed(1)} %</td>
         <td className="dc-mono">{cs[k].climbing_energy_j_per_m == null ? '—' : `${cs[k].climbing_energy_j_per_m.toFixed(0)} J/m`}</td></tr>)}</tbody>
     </table>
-    <p className="dc-note">{t('A mass-matched Earth test on this terrain mis-states the target by')} Δ {ex.deltas.earth_mass_matched.d_slope_limit_deg.toFixed(1)}° {t('slope limit')}, Δ {(ex.deltas.earth_mass_matched.d_traversable_frac * 100).toFixed(1)} {t('points traversable')}, ×{f(ex.deltas.earth_mass_matched.sinkage_ratio)} {t('sinkage')}, ×{f(ex.deltas.earth_mass_matched.energy_ratio)} {t('energy')}. {t('Static Bekker model with assumed soil; not a hardware result.')}</p>
+    <p className="dc-note">{t('On this terrain a mass-matched Earth test mis-states the traversable fraction by')} {(dm.d_traversable_frac * 100).toFixed(1)} {t('points and climbing energy by')} ×{f(dm.energy_ratio)}. {t('Static Bekker model with assumed soil; not a hardware result.')}</p>
   </>;
 }
 
@@ -201,7 +208,11 @@ async function exportDossier(p: DetailProps, c: ReturnType<typeof useCandidate>,
     ...(p.entry ? ['## Explanation', '', ...p.entry.explanation.map(e => `- ${e.text}`), ''] : []),
     '## Computed gap ledger', '', '| Parameter | Target | Earth window | Unit | Evidence |', '|---|---|---|---|---|',
     ...c.gaps.map(g => `| ${g.parameter} | ${show(g.target_value)} | ${show(g.earth_value)} | ${g.unit} | ${g.earth_evidence}${g.note ? `; ${g.note}` : ''} |`), '',
-    ...(c.rover ? ['## Rover experiment (model estimate)', '', ...(['target', 'earth_load_matched', 'earth_mass_matched'] as const).map(k => `- ${c.rover!.cases[k].label}: slope limit ${c.rover!.cases[k].slope_limit_deg.toFixed(1)}°, traversable ${(c.rover!.cases[k].traversable_frac * 100).toFixed(1)} %, sinkage ${c.rover!.cases[k].sinkage_mm.toFixed(1)} mm`), ...c.rover.assumptions.map(a => `- Assumption: ${a}`), ''] : []),
+    ...(c.rover ? ['## Rover experiment (model estimate)', '',
+      `Body-level (identical for every Earth candidate on this body): slope limit ${c.rover.cases.target.slope_limit_deg.toFixed(1)}° at target gravity vs ${c.rover.cases.earth_mass_matched.slope_limit_deg.toFixed(1)}° in a mass-matched Earth test; sinkage ×${f(c.rover.deltas.earth_mass_matched.sinkage_ratio)}.`, '',
+      "Window-level (this window's measured slope distribution):", '',
+      ...(['target', 'earth_load_matched', 'earth_mass_matched'] as const).map(k => `- ${c.rover!.cases[k].label}: traversable ${(c.rover!.cases[k].traversable_frac * 100).toFixed(1)} %, climbing energy ${c.rover!.cases[k].climbing_energy_j_per_m == null ? '—' : c.rover!.cases[k].climbing_energy_j_per_m!.toFixed(0) + ' J/m'}`),
+      ...(c.rover.soil_note ? [`- Soil: ${c.rover.soil_note}`] : []), ...c.rover.assumptions.map(a => `- Assumption: ${a}`), ''] : []),
     ...(v ? ['## Validation of the method for this target', '', `ROC AUC ${v.metrics.auc} (90 % CI ${JSON.stringify(v.metrics.auc_90ci)}) for ${v.positives.length} published analog sites.`, ...p.validation!.caveats.map(x => `- ${x}`), ''] : []),
     '## Reproduce', '', ...bundle.reproduce.map(r => `    ${r}`), '',
   ];

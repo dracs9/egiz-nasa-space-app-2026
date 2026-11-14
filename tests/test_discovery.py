@@ -215,11 +215,61 @@ def test_rover_experiment_on_candidate_terrain():
     from pipeline.discovery.rover import rover_experiment
     flat = rover_experiment(_window(**_stats(2, 6, 0.97, 1.0, 0.8, 0.18, 0.02)), "moon")
     rough = rover_experiment(_window(**_stats(12, 25, 0.4, 0.75, 0.15, 0.4, 0.35)), "moon")
+    assert flat is not None and rough is not None
     assert flat["status"] == "MODEL_ESTIMATE" and flat["assumptions"]
     assert flat["cases"]["target"]["traversable_frac"] >= rough["cases"]["target"]["traversable_frac"]
     d = rough["deltas"]["earth_load_matched"]
     assert d["sinkage_ratio"] == pytest.approx(1.0, abs=1e-3)  # Bekker: load-matched test reproduces sinkage
     assert rover_experiment(_window(), "mars") is None
+
+
+def test_rover_levels_body_vs_window():
+    """Slope limit and sinkage are body-level (same for every window); traversability/energy are window-level."""
+    from pipeline.discovery.rover import (
+        BODY_LEVEL_KEYS,
+        WINDOW_LEVEL_KEYS,
+        body_rover_model,
+        rover_experiment,
+    )
+    flat = _window(**_stats(2, 6, 0.97, 1.0, 0.8, 0.18, 0.02))
+    rough = _window(**_stats(12, 25, 0.4, 0.75, 0.15, 0.4, 0.35))
+    for body in ("moon", "mars"):
+        a, b, m = rover_experiment(flat, body), rover_experiment(rough, body), body_rover_model(body)
+        assert a["levels"]["body"] == list(BODY_LEVEL_KEYS) and a["levels"]["window"] == list(WINDOW_LEVEL_KEYS)
+        assert not set(BODY_LEVEL_KEYS) & set(WINDOW_LEVEL_KEYS)
+        for case in ("target", "earth_load_matched", "earth_mass_matched"):
+            for k in ("slope_limit_deg", "sinkage_mm"):  # identical across windows and equal to the body model
+                assert a["cases"][case][k] == b["cases"][case][k] == m["cases"][case][k]
+            for k in ("traversable_frac", "climbing_energy_j_per_m"):
+                assert k not in m["cases"][case]  # window-level quantities never in the body block
+        for key in ("earth_load_matched", "earth_mass_matched"):
+            for k in ("d_slope_limit_deg", "sinkage_ratio"):
+                assert a["deltas"][key][k] == b["deltas"][key][k] == m["deltas"][key][k]
+        assert a["cases"]["target"]["traversable_frac"] != b["cases"]["target"]["traversable_frac"]
+        assert m["label"] == "body-level, model estimate"
+    # Mars reuses the lunar soil, and every Mars output says so.
+    mars, moon = body_rover_model("mars"), body_rover_model("moon")
+    assert mars["soil"] == moon["soil"] and "lunar" in mars["soil"]["name"].lower()
+    assert mars["soil_reused_from_moon"] is True and "LUNAR" in mars["soil_note"]
+    assert moon["soil_reused_from_moon"] is False and moon["soil_note"] is None
+    ex = rover_experiment(flat, "mars")
+    assert ex["soil_reused_from_moon"] is True and any("REUSED" in s for s in ex["assumptions"])
+
+
+def test_gap_ledger_rover_rows_are_body_level():
+    from pipeline.discovery.fingerprint import Target
+    from pipeline.discovery.gaps import gap_ledger
+    from pipeline.discovery.rover import body_rover_model
+    spec = next(t for t in S.TARGETS if t.body == "mars")
+    tw = _window()
+    target = Target(spec, tw, 200)
+    r1 = {r["key"]: r for r in gap_ledger(target, _window(elev_p50_m=100.0))}
+    r2 = {r["key"]: r for r in gap_ledger(target, _window(elev_p50_m=3000.0))}
+    m = body_rover_model("mars")
+    for key, field in (("rover_slope_limit", "slope_limit_deg"), ("rover_sinkage", "sinkage_mm")):
+        assert r1[key]["target_value"] == r2[key]["target_value"] == round(m["cases"]["target"][field], 2)
+        assert r1[key]["earth_value"] == r2[key]["earth_value"] == round(m["cases"]["earth_mass_matched"][field], 2)
+        assert "body-level" in r1[key]["note"] and "LUNAR" in r1[key]["note"]
 
 
 # ----------------------------------------------------------------------------- validation metric
@@ -228,6 +278,43 @@ def test_auc():
     assert auc(np.array([3.0, 4.0]), np.array([1.0, 2.0])) == 1.0
     assert auc(np.array([1.0]), np.array([1.0])) == 0.5
     assert auc(np.array([0.0]), np.array([1.0, 2.0])) == 0.0
+
+
+def test_hard_negative_control_is_bare_arid_and_latitude_matched():
+    from pipeline.discovery.fingerprint import Window
+    from pipeline.discovery.validation import (
+        HARD_NEG,
+        evaluate_hard_negative,
+        hard_negative_bands,
+        matched_auc,
+    )
+
+    def w(lat, bare, prec):
+        return Window(f"W{lat}_{bare}_{prec}", "earth", "global_lattice", "W", 0.0, lat, "L4_validated", "pass", "index",
+                      {"bare_frac": bare, "precip_annual_mm": prec})
+    E = [w(20, 0.9, 50), w(-25, 0.8, 100), w(60, 0.9, 50),   # bare+arid at |lat| 20, 25 (south) and 60
+         w(22, 0.1, 50), w(21, 0.9, 900), w(23, None, 50),   # vegetated, wet, missing -> excluded
+         w(24, 0.9, 50)]                                     # the positive itself (excluded even if bare/arid)
+    pop = np.ones(len(E), bool)
+    cand, bands = hard_negative_bands(E, [6], pop)
+    assert set(cand) == {0, 1, 2}
+    assert set(bands[0]) == {0, 1}  # |lat| within 10 deg of 24, either hemisphere; 60 N excluded
+    assert HARD_NEG["bare_frac_min"] == 0.5 and HARD_NEG["precip_annual_mm_max"] == 250.0
+    score = np.array([0.1, 0.9, 0.0, 0.0, 0.0, 0.0, 0.5])
+    assert matched_auc(score, [6], bands) == pytest.approx(0.5)
+    out = evaluate_hard_negative(score, E, [6], pop, np.random.default_rng(0))
+    assert out["n_hard_negative"] == 3 and out["n_per_positive"] == [2] and out["auc"] == 0.5
+    assert out["auc_90ci"] is None  # a single matched positive gives no interval rather than a fake one
+    none = evaluate_hard_negative(score, [w(80, 0.1, 900)] + E[6:], [1], np.ones(2, bool), np.random.default_rng(0))
+    assert none["auc"] is None and none["n_positive_matched"] == 0
+
+
+def test_weak_match_wording_rule():
+    from pipeline.discovery.report import weak_match
+    assert weak_match(0.39, 0.20)       # Mons Mouton-like: fidelity above 0.3 but lower bound below
+    assert weak_match(0.22, 0.12)
+    assert weak_match(None, None)
+    assert not weak_match(0.63, 0.42)
 
 
 # ----------------------------------------------------------------------------- committed bundle
@@ -276,3 +363,22 @@ def test_earth_world_site_and_tiling(tmp_path):
     assert manifest["encoding"]["scale_m"] == 0.05 and manifest["encoding"]["image_px"] is None
     assert len(manifest["tiles"]) == 1 + 4 + 16 and manifest["site"]["body"] == "earth"
     assert max(t["max_m"] for t in manifest["tiles"]) == pytest.approx(1100, abs=15)
+
+
+def test_kz_refinement_lattice_is_separate_from_the_bundle():
+    from pipeline.discovery import refine as RF
+    from pipeline.discovery.sites import haversine_km
+    seeds = [{"window": "KZX_A", "lon": 54.5, "lat": 43.5}, {"window": "KZX_B", "lon": 65.0, "lat": 45.0}]
+    aois = RF.refine_aois(seeds)
+    assert len(aois) == 16 and len({a.aoi_id for a in aois}) == 16
+    assert all(a.pool == RF.POOL == "kz_refine" for a in aois)
+    for a in aois:
+        s = next(x for x in seeds if f"parent={x['window']}" in a.notes)
+        d = haversine_km((s["lon"], s["lat"]), (a.lon, a.lat))
+        assert 18 < d < 30  # 20 km edge or ~28 km diagonal neighbour
+    # refinement windows never enter the Earth-wide reference population
+    from pipeline.discovery.bundle import population_mask
+    from pipeline.discovery.fingerprint import Window
+    ws = [Window(a.aoi_id, "earth", a.pool, a.name, a.lon, a.lat, "L4_validated", "pass", "x", {}) for a in aois]
+    pop, _ = population_mask(ws + [Window("G", "earth", "global_lattice", "G", 0, 0, "L4_validated", "pass", "x", {})] * 200)
+    assert not pop[: len(ws)].any()

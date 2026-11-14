@@ -7,7 +7,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 declare const process: { cwd(): string };
 import { describe, expect, it } from 'vitest';
-import { aggregate, col, diverseTop, gapLedger, isaPressurePa, noonElevationRange, percentileFn, roverExperiment, slopeCdf, somiglianaGravity } from './engine';
+import { aggregate, col, diverseTop, gapLedger, isaPressurePa, isWeakMatch, noonElevationRange, percentileFn, roverExperiment, slopeCdf, somiglianaGravity } from './engine';
 import { answerOffline, callTool, plan, type ToolContext } from './copilot';
 import type { DiscoveryBundle, ScoreShard } from './types';
 
@@ -22,6 +22,16 @@ describe('physics helpers (Python twins in pipeline/discovery/dimensions.py)', (
     expect(noonElevationRange(-85.4, 1.54)).toEqual([expect.closeTo(3.06, 6), expect.closeTo(6.14, 6)]);
     expect(somiglianaGravity(0)).toBeCloseTo(9.7803, 4);
     expect(isaPressurePa(5000)).toBeCloseTo(54020, -2);
+  });
+  it('applies the weak-match wording rule (fidelity or lower 90 % bound below 0.3)', () => {
+    expect(isWeakMatch(0.39, 0.20)).toBe(true);
+    expect(isWeakMatch(0.22, 0.12)).toBe(true);
+    expect(isWeakMatch(NaN, NaN)).toBe(true);
+    expect(isWeakMatch(0.63, 0.42)).toBe(false);
+    if (bundle) for (const t of bundle.targets) {
+      const e = t.shortlist[0];
+      expect(isWeakMatch(e.fidelity, e.lo), t.id).toBe(t.body === 'moon');  // committed bundle: every lunar rank 1 is weak
+    }
   });
   it('builds a monotone slope CDF without zero-filling missing knots', () => {
     const cdf = slopeCdf(n => ({ slope_f100_p50_deg: 3, slope_f100_p90_deg: 8 } as Record<string, number>)[n] ?? null)!;
@@ -81,6 +91,24 @@ describe.skipIf(!has)('parity with the Python bundle', () => {
         expect(ex.cases[k].sinkage_mm).toBeCloseTo(e.rover!.cases[k].sinkage_mm, 2);
         if (e.rover!.cases[k].climbing_energy_j_per_m != null) expect(ex.cases[k].climbing_energy_j_per_m!).toBeCloseTo(e.rover!.cases[k].climbing_energy_j_per_m!, 0);
       }
+    }
+  });
+  it('separates body-level rover outputs from window-level ones', () => {
+    for (const t of b.targets) {
+      const withRover = t.shortlist.filter(x => x.rover);
+      for (const e of withRover) {
+        const ex = roverExperiment(slopeCdf(n => col(b, n, b.windows.id.indexOf(e.window)))!, t.body, e.window);
+        expect(ex.levels!.body).toEqual(['slope_limit_deg', 'sinkage_mm', 'd_slope_limit_deg', 'sinkage_ratio']);
+        expect(ex.levels!.window).toEqual(['traversable_frac', 'climbing_energy_j_per_m', 'd_traversable_frac', 'energy_ratio']);
+        const m = b.rover_body_level![t.body]!;
+        for (const k of ['target', 'earth_load_matched', 'earth_mass_matched'] as const) {
+          expect(ex.cases[k].slope_limit_deg).toBeCloseTo(m.cases[k].slope_limit_deg, 2);
+          expect(ex.cases[k].sinkage_mm).toBeCloseTo(m.cases[k].sinkage_mm, 2);
+          expect(m.cases[k]).not.toHaveProperty('traversable_frac');
+        }
+        expect(ex.soil_reused_from_moon).toBe(t.body === 'mars');
+      }
+      expect(b.rover_body_level![t.body]!.soil_reused_from_moon).toBe(t.body === 'mars');
     }
   });
 });

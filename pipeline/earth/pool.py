@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 from pathlib import Path
+from typing import cast
 
 from pyproj import CRS, Transformer
 
@@ -90,7 +91,7 @@ def build_pool(seed=2026, n_per_stratum=None, *, project=None, practice_csv=None
             raise ValueError(f"unknown stratum {stratum}")
         region = boxes[stratum].intersection(land, maxError=100)
         # Download point coordinates, then construct genuinely metric polygons.
-        points = ee.FeatureCollection.randomPoints(region, count*4, seed+index, maxError=100).getInfo()["features"]
+        points = cast(dict, ee.FeatureCollection.randomPoints(region, count*4, seed+index, maxError=100).getInfo())["features"]
         proposed = []
         for point in points:
             lon, lat = point["geometry"]["coordinates"]

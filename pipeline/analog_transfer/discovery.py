@@ -22,6 +22,7 @@ import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import cast
 
 import numpy as np
 
@@ -89,7 +90,7 @@ def level1(region: dict = REGION) -> tuple[list[dict], list[str]]:
     return blocks, sources
 
 
-def robust_outliers(blocks: list[dict]) -> None:
+def robust_outliers(blocks: list[dict]) -> dict:
     """Median/MAD-standardised descriptor distance; exploratory, not a classification."""
     keys = ("relief_m", "slope_p50", "slope_p90", "flat_fraction")
     usable = [b for b in blocks if b.get("usable")]
@@ -206,7 +207,7 @@ def run(ctx: Context, target_id: str = "MARS_JEZERO", n_short: int = 10, out: Pa
              for c in candidates]
     if len(route) >= 4:
         from scipy.stats import spearmanr
-        rho = spearmanr([a for a, _ in route], [b for _, b in route]).statistic
+        rho = cast(float, spearmanr([a for a, _ in route], [b for _, b in route])[0])
         agreement = {"spearman_coarse_vs_level2_route_match": float(rho), "n": len(route),
                      "mean_coarse_match": float(np.mean([a for a, _ in route])),
                      "mean_level2_route_match": float(np.mean([b for _, b in route])),

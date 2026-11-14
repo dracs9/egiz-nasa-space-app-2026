@@ -22,6 +22,7 @@ import math
 from dataclasses import dataclass
 
 import numpy as np
+from numpy.typing import ArrayLike
 
 from pipeline.discovery import dimensions as D
 from pipeline.discovery.fingerprint import Target, Window, dem_source, slope_sigma_deg
@@ -47,7 +48,7 @@ class EarthTable:
                          for w in self.windows], float)
 
     def text(self, name: str) -> list[str | None]:
-        return [w.features.get(name) if isinstance(w.features.get(name), str) else None for w in self.windows]
+        return [v if isinstance(v := w.features.get(name), str) else None for w in self.windows]
 
     @property
     def lat(self) -> np.ndarray:
@@ -108,11 +109,11 @@ def eval_cdf(x: np.ndarray, y: np.ndarray, shift: np.ndarray, scale: np.ndarray)
     return out
 
 
-def js_divergence(p: np.ndarray, q: np.ndarray) -> float:
-    p, q = np.clip(np.asarray(p, float), 1e-12, None), np.clip(np.asarray(q, float), 1e-12, None)
-    p, q = p / p.sum(), q / q.sum()
-    m = (p + q) / 2
-    return float(0.5 * np.sum(p * np.log2(p / m)) + 0.5 * np.sum(q * np.log2(q / m)))
+def js_divergence(p: ArrayLike, q: ArrayLike) -> float:
+    pa, qa = np.clip(np.asarray(p, float), 1e-12, None), np.clip(np.asarray(q, float), 1e-12, None)
+    pa, qa = pa / pa.sum(), qa / qa.sum()
+    m = (pa + qa) / 2
+    return float(0.5 * np.sum(pa * np.log2(pa / m)) + 0.5 * np.sum(qa * np.log2(qa / m)))
 
 
 # ----------------------------------------------------------------------------- decorrelation

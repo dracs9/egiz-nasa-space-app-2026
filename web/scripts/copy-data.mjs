@@ -109,6 +109,14 @@ export async function copyDatasets(root = path.resolve(path.dirname(fileURLToPat
     await writeFile(path.join(discoveryOut, 'discovery.json'), bundleText);
     for (const t of bundle.targets) await copyFile(path.join(discovery, t.shard), path.join(discoveryOut, t.shard));
     await copyFile(path.join(discovery, 'validation.json'), path.join(discoveryOut, 'validation.json')).catch(() => {});
+    // Regional refinement (pipeline/discovery/refine.py): scored separately, never mixed into the bundle.
+    const regionText = await readFile(path.join(discovery, 'regions', 'kz.json'), 'utf8').catch(() => null);
+    if (regionText) {
+      const region = JSON.parse(regionText);
+      if (region.schema !== 'egiz.discovery_region' || region.synthetic !== false) throw new Error('data/discovery/regions/kz.json is not a measured region file.');
+      await mkdir(path.join(discoveryOut, 'regions'), { recursive: true });
+      await writeFile(path.join(discoveryOut, 'regions', 'kz.json'), regionText);
+    }
     console.log(`Egiz: packaged discovery bundle (${bundle.windows.id.length} windows, ${bundle.targets.length} targets).`);
   } else console.log('Egiz: no discovery bundle in data/discovery; the Discover workspace will report it as not built.');
   return modes;

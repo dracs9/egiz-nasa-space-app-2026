@@ -7,6 +7,7 @@ python -m pipeline.discovery build                                   # fingerpri
 python -m pipeline.discovery validate                                # benchmark, ablation, sensitivity
 python -m pipeline.discovery verify                                  # rebuild in memory and compare hashes
 python -m pipeline.discovery report                                  # docs/discovery/RESULTS.md from the bundle
+python -m pipeline.discovery refine-plan|refine-acquire|refine-index|refine-build   # Kazakhstan 20 km refinement
 """
 from __future__ import annotations
 
@@ -33,6 +34,11 @@ def main(argv=None) -> int:
     sub.add_parser("validate")
     sub.add_parser("report")
     sub.add_parser("verify")
+    sub.add_parser("refine-plan")
+    ra = sub.add_parser("refine-acquire")
+    ra.add_argument("--workers", type=int, default=6)
+    sub.add_parser("refine-index")
+    sub.add_parser("refine-build")
     args = p.parse_args(argv)
 
     if args.cmd in {"plan", "acquire"}:
@@ -69,6 +75,18 @@ def main(argv=None) -> int:
     if args.cmd == "report":
         from pipeline.discovery.report import write_report
         print(write_report())
+        return 0
+    if args.cmd.startswith("refine-"):
+        from pipeline.discovery import refine as RF
+        if args.cmd == "refine-plan":
+            doc = RF.plan_seeds()
+            print(json.dumps({"seeds": len(doc["seeds"]), "windows_to_acquire": len(RF.refine_aois(doc["seeds"]))}))
+        elif args.cmd == "refine-acquire":
+            print(json.dumps(RF.acquire(workers=args.workers)))
+        elif args.cmd == "refine-index":
+            print(json.dumps(RF.compile_region_index(), indent=1))
+        else:
+            print(RF.build())
         return 0
     if args.cmd == "verify":
         from pipeline.discovery.bundle import verify

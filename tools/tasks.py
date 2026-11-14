@@ -1128,7 +1128,7 @@ def cmd_next(data: dict, args) -> int:
                 print(f"  {t['id']} — {t['title']}")
         locked = groups["locked"]
         if locked:
-            first = min(not_before(t, meta) for t in locked)
+            first = min(nb for t in locked if (nb := not_before(t, meta)) is not None)
             print(f"[ЗАКРЫТО ДО СРОКА] {len(locked)} задач; ближайшая откроется {fmt_local(first)} (Астана).")
         done = groups["done"]
         print(f"Готово: {len(done)} из {len(own)}.")
@@ -1150,7 +1150,7 @@ def cmd_blocked(data: dict, args) -> int:
         print(f"  {t['id']} ({t['owner']}) {t['title']}")
     waiting = defaultdict(list)
     for t in data["tasks"]:
-        if t["status"] in ("DONE",) or (not_before(t, data["meta"]) and now < not_before(t, data["meta"])):
+        if t["status"] in ("DONE",) or ((nb := not_before(t, data["meta"])) and now < nb):
             continue
         for dep in t["dependencies"]:
             d = tasks.get(dep)

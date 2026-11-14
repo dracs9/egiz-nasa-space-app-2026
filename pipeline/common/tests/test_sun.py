@@ -52,9 +52,12 @@ def test_against_astropy_above_five_degrees():
     times = np.arange(np.datetime64("2025-01-01"), np.datetime64("2026-01-01"), np.timedelta64(31, "h")).astype("datetime64[s]")
     for lat in [-77.5, 0, 45, 77.5]:
         h, _ = sun_position(lat, 0, times)
-        frame = AltAz(obstime=Time(times), location=EarthLocation(lat=lat*u.deg, lon=0*u.deg),
+        # astropy's EarthLocation hierarchy is self-referential for static checkers.
+        frame = AltAz(obstime=Time(times), location=EarthLocation(lat=lat*u.deg, lon=0*u.deg),  # pyright: ignore[reportGeneralTypeIssues]
                       pressure=1013.25*u.hPa, temperature=15*u.deg_C)
-        reference = get_sun(Time(times)).transform_to(frame).alt.deg
+        alt = get_sun(Time(times)).transform_to(frame).alt
+        assert alt is not None
+        reference = np.asarray(alt.deg)
         assert np.max(np.abs(h[h > 5]-reference[h > 5])) < .1
 
 
@@ -69,11 +72,13 @@ def test_reference_full_preregistered_e1_grid():
                                      np.timedelta64(30, "m")) for day in days]).astype("datetime64[s]")
     for lat in [-80, -77.5, -45, 0, 45, 70, 80]:
         h, az = sun_position(lat, 0, times, refraction=False)
-        frame = AltAz(obstime=Time(times), location=EarthLocation(lat=lat*u.deg, lon=0*u.deg), pressure=0*u.hPa)
+        frame = AltAz(obstime=Time(times), location=EarthLocation(lat=lat*u.deg, lon=0*u.deg), pressure=0*u.hPa)  # pyright: ignore[reportGeneralTypeIssues]
         reference = get_sun(Time(times)).transform_to(frame)
+        ref_alt, ref_az = reference.alt, reference.az
+        assert ref_alt is not None and ref_az is not None
         mask = h > 1
-        assert np.max(np.abs(h[mask]-reference.alt.deg[mask])) < .1
-        delta_az = np.abs((az-reference.az.deg+180) % 360-180)
+        assert np.max(np.abs(h[mask]-np.asarray(ref_alt.deg)[mask])) < .1
+        delta_az = np.abs((az-ref_az.deg+180) % 360-180)
         assert np.max(delta_az[mask]) < .1
 
 

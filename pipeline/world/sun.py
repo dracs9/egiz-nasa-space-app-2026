@@ -15,7 +15,7 @@ from pipeline.science.spice import BODIES, KERNELS, kernel_manifest
 
 
 def series(site: dict, epoch: str, days: float = 30.0, step: float = 3600.0) -> dict:
-    import spiceypy as spice
+    import spiceypy as spice  # pyright: ignore[reportMissingImports]  # optional dependency
 
     if site["body"] != "moon":
         raise ValueError("world illumination series currently supports the Moon site only")

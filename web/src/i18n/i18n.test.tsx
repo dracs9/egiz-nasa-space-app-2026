@@ -15,10 +15,10 @@ afterEach(async () => {
   root = undefined; vi.restoreAllMocks(); setLanguage('en', false);
 });
 describe('Russian interface', () => {
-  it('starts in Russian and restores the saved English preference', () => {
-    initializeLanguage(); expect(useLanguage.getState().language).toBe('ru'); expect(document.documentElement.lang).toBe('ru');
-    setLanguage('en'); initializeLanguage(); expect(useLanguage.getState().language).toBe('en');
-    localStorage.setItem(LANGUAGE_KEY, 'invalid'); initializeLanguage(); expect(useLanguage.getState().language).toBe('ru');
+  it('starts in English (default for judges) and restores the saved Russian preference', () => {
+    initializeLanguage(); expect(useLanguage.getState().language).toBe('en'); expect(document.documentElement.lang).toBe('en');
+    setLanguage('ru'); initializeLanguage(); expect(useLanguage.getState().language).toBe('ru');
+    localStorage.setItem(LANGUAGE_KEY, 'invalid'); initializeLanguage(); expect(useLanguage.getState().language).toBe('en');
   });
   it('switches mounted content without resetting engineering state', async () => {
     const { useState } = await import('react');
@@ -53,7 +53,8 @@ describe('Russian interface', () => {
   it('continues operating when local preference storage is unavailable', () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('blocked'); });
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked'); });
-    expect(() => initializeLanguage()).not.toThrow(); expect(t('Earth')).toBe('Земля');
+    expect(() => initializeLanguage()).not.toThrow(); expect(t('Earth')).toBe('Earth');
+    expect(() => setLanguage('ru')).not.toThrow(); expect(t('Earth')).toBe('Земля');
     expect(() => setLanguage('en')).not.toThrow(); expect(t('Earth')).toBe('Earth');
   });
 });

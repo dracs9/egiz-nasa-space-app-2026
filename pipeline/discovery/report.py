@@ -9,6 +9,11 @@ import json
 from pipeline.discovery import OUT, ROOT
 
 DOC = ROOT / "docs" / "discovery" / "RESULTS.md"
+WEAK_MATCH = 0.3  # same rule as web/src/discover/engine.ts isWeakMatch
+
+
+def weak_match(fidelity, lo) -> bool:
+    return not (fidelity is not None and fidelity >= WEAK_MATCH) or not (lo is not None and lo >= WEAK_MATCH)
 
 
 def _f(v, nd=3):
@@ -43,6 +48,11 @@ def write_report() -> str:
             L.append(f"| {n} (rank {e['rank']}) | {name[e['window']]} `{e['window']}` | {country[e['window']] or '—'} | "
                      f"{_f(e['score'])} | {_f(e['fidelity'], 2)} [{_f(e['lo'], 2)}–{_f(e['hi'], 2)}] | {_f(e['coverage'], 2)} | "
                      f"{e['category']} | {_f(e['score_percentile'], 1)} | {novelty[e['window']]} |")
+        top0 = t["shortlist"][0] if t["shortlist"] else None
+        if top0 and weak_match(top0["fidelity"], top0["lo"]):
+            L += ["", f"**Rank 1 is the closest window found — weak match**, not a demonstrated analog: fidelity "
+                      f"{_f(top0['fidelity'], 2)} with lower 90 % bound {_f(top0['lo'], 2)} (rule: fidelity or its lower "
+                      f"bound below {WEAK_MATCH})."]
         hyp = [x for x in t["benchmark"] if x["role"] == "hypothesis"]
         if hyp:
             L += ["", "Kazakhstan hypotheses (not forced): " + "; ".join(
@@ -50,26 +60,65 @@ def write_report() -> str:
         top = t["shortlist"][0]
         if top.get("rover"):
             r = top["rover"]["deltas"]["earth_mass_matched"]
-            L += ["", f"Rover experiment on the top window (model estimate): a mass-matched Earth test mis-states the target "
-                      f"slope limit by {_f(r['d_slope_limit_deg'], 1)}°, traversable fraction by "
-                      f"{_f(r['d_traversable_frac'] * 100, 1)} points, sinkage ×{_f(r['sinkage_ratio'], 2)}, "
-                      f"climbing energy ×{_f(r['energy_ratio'], 2)}."]
+            L += ["", f"Rover experiment on the top window (window-level, model estimate; uses this window's measured "
+                      f"slope distribution): a mass-matched Earth test mis-states the traversable fraction by "
+                      f"{_f(r['d_traversable_frac'] * 100, 1)} points and climbing energy ×{_f(r['energy_ratio'], 2)}. "
+                      f"Slope limit and sinkage are body-level (see “Rover model, body level”)."]
         L.append("")
+    rb = b.get("rover_body_level") or {}
+    if rb:
+        L += ["## Rover model, body level", "",
+              "Traction-limited slope and wheel sinkage depend only on gravity, the rover and the assumed soil, so they are "
+              "the same for every Earth window on a body (body-level, model estimate; CF_TERRAMECHANICS, static Bekker). "
+              "They are reported once here, not per site.", "",
+              "| Body | Slope limit, target gravity | Δ slope limit, Earth mass-matched test | Sinkage ×, Earth mass-matched | Soil |",
+              "|---|---|---|---|---|"]
+        for body, m in rb.items():
+            d = m["deltas"]["earth_mass_matched"]
+            L.append(f"| {body} | {_f(m['cases']['target']['slope_limit_deg'], 1)}° | {_f(d['d_slope_limit_deg'], 1)}° | "
+                     f"×{_f(d['sinkage_ratio'], 2)} | {m['soil']['name']}{' — REUSED for Mars' if m['soil_reused_from_moon'] else ''} |")
+        notes = [m["soil_note"] for m in rb.values() if m.get("soil_note")]
+        L += [""] + [f"* {n}." for n in notes] + [""]
     if v:
         L += ["## Validation", "", f"Population: {v['population']}. Draws: {v['draws']}.", "",
-              "| Target | n positives | ROC AUC [90 % bootstrap] | AUC vs controls | recall@50 | precision@50 (chance) | seed ρ |",
-              "|---|---|---|---|---|---|---|"]
+              "| Target | n positives | ROC AUC [90 % bootstrap] | AUC vs hard control [90 %] | AUC vs easy controls | recall@50 | precision@50 (chance) | seed ρ |",
+              "|---|---|---|---|---|---|---|---|"]
         for r in v["targets"]:
             m = r["metrics"]
             ci = m.get("auc_90ci") or ["—", "—"]
-            L.append(f"| {r['target']} | {m['n_positive']} | {m['auc']} [{ci[0]}–{ci[1]}] | {m['auc_vs_designated_controls']} | "
+            h = m.get("hard_negative") or {}
+            hci = h.get("auc_90ci") or ["—", "—"]
+            L.append(f"| {r['target']} | {m['n_positive']} | {m['auc']} [{ci[0]}–{ci[1]}] | {h.get('auc', '—')} [{hci[0]}–{hci[1]}] | "
+                     f"{m['auc_vs_designated_controls']} | "
                      f"{m['recall@50']} | {m['precision@50']} ({m['chance_precision']}) | {r['reproducibility']['spearman_seed_2026_vs_7']} |")
+        h0 = next((r["metrics"].get("hard_negative") for r in v["targets"] if r["metrics"].get("hard_negative")), None)
+        if h0:
+            L += ["", f"Hard control: {h0['definition']}. Matched controls per positive: " + "; ".join(
+                f"{r['target']} {r['metrics']['hard_negative']['n_per_positive']}" for r in v["targets"]
+                if r["metrics"].get("hard_negative")) + ". Bands with a single control give a very noisy per-positive AUC."]
         L += ["", "Ablation (AUC without each dimension) and weight sensitivity:", ""]
         for r in v["targets"]:
             abl = ", ".join(f"{d} {a}" for d, a in r["ablation_auc_without"].items())
             L.append(f"* {r['target']}: {abl}; AUC under weight perturbation p05/p50/p95 = "
                      f"{r['sensitivity']['auc_p05_p50_p95']}; top-10 Jaccard {r['sensitivity']['top10_jaccard_p05_p50_p95']}.")
         L += ["", "Caveats:", ""] + [f"* {c}" for c in v["caveats"]] + [""]
+    kz = OUT / "regions" / "kz.json"
+    if kz.exists():
+        r = json.loads(kz.read_text(encoding="utf-8"))
+        L += ["## Kazakhstan: coarse-to-fine refinement", "",
+              f"Around every Kazakhstan window in the Earth-wide top 100 of a Mars target, {r['n_refinement_windows']} "
+              f"neighbouring windows ({r['step_km']:g} km step) were acquired with the same stages and scored with the same "
+              f"code in a separate run (`python -m pipeline.discovery refine-*`, file `data/discovery/regions/kz.json`). "
+              "They are excluded from the reference population and from discovery.json, so nothing above changes.", "",
+              "| Target | Seeds | Refined beats seed | Best window | Score | Fidelity [90 %] | Earth pct | Would-be rank |",
+              "|---|---|---|---|---|---|---|---|"]
+        for t in r["targets"]:
+            e = t["top"][0]
+            L.append(f"| {t['target']} | {len(t['seeds'])} | {t['n_better_than_parent']} | `{e['window']}` "
+                     f"({'refined near ' + e['parent'] if e.get('parent') else 'index window'}) | {_f(e['score'])} | "
+                     f"{_f(e['fidelity'], 2)} [{_f(e['lo'], 2)}–{_f(e['hi'], 2)}] | {_f(e['score_percentile'], 1)} | "
+                     f"{e['rank_among_earth_windows']} |")
+        L += [""] + [f"* {n}" for n in r["notes"]] + [""]
     DOC.parent.mkdir(parents=True, exist_ok=True)
     DOC.write_text("\n".join(L) + "\n", encoding="utf-8")
     return str(DOC)

@@ -15,8 +15,8 @@ export function setLanguage(language: Language, persist = true) {
   if (persist) try { localStorage.setItem(LANGUAGE_KEY, language); } catch { /* Works without browser storage. */ }
 }
 export function initializeLanguage() {
-  let language: Language = 'ru';
-  try { const saved = localStorage.getItem(LANGUAGE_KEY); if (saved === 'en' || saved === 'ru') language = saved; } catch { /* Russian is the initial product language. */ }
+  let language: Language = 'en';  // English for judges; Russian is a toggle
+  try { const saved = localStorage.getItem(LANGUAGE_KEY); if (saved === 'en' || saved === 'ru') language = saved; } catch { /* English is the initial product language. */ }
   setLanguage(language, false);
 }
 /** Translate rendered strings only. Preserve numbers, elements, IDs and whitespace. */

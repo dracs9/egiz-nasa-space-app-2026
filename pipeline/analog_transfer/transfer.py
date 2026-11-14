@@ -72,6 +72,7 @@ def factor_value(ctx: Context, site_id: str, target_id: str, factor: str) -> dic
            "kind": "unknown", "effective_resolution_m": None, "detail": {}}
 
     def grid_side(value_e, value_t, unit):
+        assert d_e is not None and d_t is not None  # only called once both are measured
         src_e = f"computed:{site_id} Copernicus DEM GLO-30 -> 200 m cells"
         src_t = f"computed:{target_id} {target['dem_product']} -> 200 m cells"
         rec["earth"] = {"value": value_e, "unit": unit, "kind": "derived", "source": src_e}
@@ -288,7 +289,7 @@ def assess(rules: dict, task: dict, factors: list[dict], physics: list[dict], fa
     elif primary_blocking:
         status = "NON_TRANSFERABLE"
         reasons.append("PHYSICS_PRIMARY")
-    elif coverage + 1e-12 < task["min_evidence"] or point is None:
+    elif coverage + 1e-12 < task["min_evidence"] or point is None or ci is None:
         status = "UNKNOWN"
         reasons.append("EVIDENCE")
     elif (ci[0] >= rules["supported_lower_bound"] and quality >= rules["supported_min_quality"]

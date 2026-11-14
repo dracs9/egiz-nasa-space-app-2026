@@ -303,6 +303,7 @@ export function HomePage() {
     {/* one continuous film behind the page: scrolling flies the camera forward, scrolling back flies it back */}
     <div className="hm-film" aria-hidden="true">
       {FILM.map((base, i) => <video key={base} data-film={i} muted playsInline preload={i < 2 ? 'auto' : 'none'} poster={asset(`media/cinematic/${base}.jpg`)} src={asset(`media/cinematic/${base}-${CLIP_RES}.mp4`)} style={{ opacity: i === 0 ? 1 : 0 }} />)}
+      <span className="hm-veo">{L(lang, 'AI-generated (Veo) — illustration, not data', 'создано ИИ (Veo) — иллюстрация, не данные')}</span>
     </div>
     {/* letterbox: the film opens up with the first scroll */}
     <div className="hm-bars" aria-hidden="true"><i /><i /></div>

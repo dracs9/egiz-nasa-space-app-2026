@@ -17,10 +17,11 @@ Evidence category
 from __future__ import annotations
 
 import math
+from collections.abc import Mapping
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.spatial import cKDTree
+from scipy.spatial import KDTree
 
 from pipeline.discovery import dimensions as D
 from pipeline.discovery.fingerprint import Target, Window
@@ -93,8 +94,8 @@ def score_target(table: EarthTable, target: Target, population: np.ndarray, draw
     return out
 
 
-def aggregate(dims: dict[str, tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]],
-              weights: dict[str, float]) -> dict[str, np.ndarray]:
+def aggregate(dims: Mapping[str, tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]],
+              weights: Mapping[str, float]) -> dict[str, np.ndarray]:
     """dims: id -> (s50, lo, hi, status codes). Pure function mirrored in TypeScript."""
     any_arr = next(iter(dims.values()))[0]
     W = len(any_arr)
@@ -164,7 +165,7 @@ def rarity(table: EarthTable, population: np.ndarray, features, k: int = 10) -> 
     ref = ok & population
     dist = np.full(len(table), np.nan)
     if ref.sum() > k + 1:
-        tree = cKDTree(z[ref])
+        tree = KDTree(z[ref])
         d, _ = tree.query(z[ok], k=k + 1)
         own = population[ok]  # population members find themselves at distance 0: drop that neighbour
         dist[ok] = np.where(own, d[:, 1:].mean(axis=1), d[:, :k].mean(axis=1))

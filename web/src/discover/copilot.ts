@@ -122,12 +122,12 @@ export const TOOLS: Tool[] = [
       const c = ex.cases, d = ex.deltas.earth_mass_matched;
       return { tool: 'recommend_simulation', ok: true, summary: `Rover experiment on ${winName(ctx, i)} (model estimate)`,
         facts: [
-          { label: 'Slope limit (target gravity)', value: `${f2(c.target.slope_limit_deg, 1)}°`, evidence: 'CF_TERRAMECHANICS' },
-          { label: 'Slope limit (Earth, mass-matched test)', value: `${f2(c.earth_mass_matched.slope_limit_deg, 1)}° (Δ ${f2(d.d_slope_limit_deg, 1)}°)`, evidence: 'CF_TERRAMECHANICS' },
-          { label: 'Traversable fraction of this terrain', value: `${f2(c.target.traversable_frac * 100, 1)} % target vs ${f2(c.earth_mass_matched.traversable_frac * 100, 1)} % Earth test`, evidence: 'measured slope CDF (GLO-30, 100 m)' },
-          { label: 'Sinkage ratio Earth/target', value: `${f2(d.sinkage_ratio)}×`, evidence: 'Bekker model' },
-          { label: 'Climbing energy ratio Earth/target', value: `${f2(d.energy_ratio)}×`, evidence: 'Bekker model + slope CDF' },
-        ], notes: ex.assumptions, windows: [ctx.bundle.windows.id[i]] };
+          { label: 'Slope limit (target gravity) — body-level, same for every candidate', value: `${f2(c.target.slope_limit_deg, 1)}°`, evidence: 'CF_TERRAMECHANICS (body-level model estimate)' },
+          { label: 'Slope limit (Earth, mass-matched test) — body-level', value: `${f2(c.earth_mass_matched.slope_limit_deg, 1)}° (Δ ${f2(d.d_slope_limit_deg, 1)}°)`, evidence: 'CF_TERRAMECHANICS (body-level model estimate)' },
+          { label: 'Sinkage ratio Earth/target — body-level', value: `${f2(d.sinkage_ratio)}×`, evidence: 'Bekker model (body-level model estimate)' },
+          { label: 'Traversable fraction of this terrain — window-level', value: `${f2(c.target.traversable_frac * 100, 1)} % target vs ${f2(c.earth_mass_matched.traversable_frac * 100, 1)} % Earth test`, evidence: 'measured slope CDF (GLO-30, 100 m)' },
+          { label: 'Climbing energy ratio Earth/target — window-level', value: `${f2(d.energy_ratio)}×`, evidence: 'Bekker model + slope CDF' },
+        ], notes: [...(ex.soil_note ? [ex.soil_note] : []), ...ex.assumptions], windows: [ctx.bundle.windows.id[i]] };
     },
   },
   {
@@ -151,7 +151,10 @@ export const TOOLS: Tool[] = [
       const m = v.metrics as Record<string, number | number[] | null>;
       const ci = Array.isArray(m.auc_90ci) ? ` [${m.auc_90ci.join('–')}]` : '';
       return { tool: 'validation_summary', ok: true, summary: `ROC AUC ${m.auc}${ci} for ${v.positives.length} published analogs vs ${m.n_background} lattice windows`,
-        facts: v.per_positive.map(p => ({ label: p.site, value: `percentile ${f2(p.percentile, 1)}`, evidence: p.aspects.join(', ') })), notes: ctx.validation!.caveats };
+        facts: [
+          ...(v.metrics.hard_negative ? [{ label: 'AUC vs bare, arid, latitude-matched control', value: `${v.metrics.hard_negative.auc ?? '—'}${Array.isArray(v.metrics.hard_negative.auc_90ci) ? ` [90 % ${v.metrics.hard_negative.auc_90ci.join('–')}]` : ''} (${v.metrics.hard_negative.n_hard_negative} windows)`, evidence: 'validation.json hard_negative' }] : []),
+          { label: 'recall@50', value: String(m['recall@50'] ?? '—'), evidence: 'validation.json' },
+          ...v.per_positive.map(p => ({ label: p.site, value: `percentile ${f2(p.percentile, 1)}`, evidence: p.aspects.join(', ') }))], notes: ctx.validation!.caveats };
     },
   },
   {

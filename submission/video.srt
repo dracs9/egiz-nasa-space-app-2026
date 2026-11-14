@@ -1,19 +1,31 @@
 1
-00:00:00,000 --> 00:00:04,000
-Before a mission, we rehearse on Earth.
+00:00:00,000 --> 00:00:03,000
+Every Moon and Mars mission is rehearsed on Earth first.
 
 2
-00:00:04,000 --> 00:00:10,000
-Choose the conditions your tests need.
+00:00:03,000 --> 00:00:06,000
+But which place on Earth is really the closest?
 
 3
-00:00:10,000 --> 00:00:18,000
-Egiz combines complementary test sites.
+00:00:06,000 --> 00:00:10,000
+EGIZ compares 4,544 measured Earth windows with 10 targets.
 
 4
-00:00:18,000 --> 00:00:25,000
-Inspect the evidence and the limits.
+00:00:10,000 --> 00:00:14,000
+Eight measured dimensions, each with an uncertainty interval.
 
 5
-00:00:25,000 --> 00:00:30,000
-Software demo. Real-data validation pending.
+00:00:14,000 --> 00:00:18,000
+It also shows what no Earth site can match: Earth's gravity is 2.6× Mars's.
+
+6
+00:00:18,000 --> 00:00:22,000
+In Kazakhstan, Mangystau ranks in Earth's top 1 % for Jezero.
+
+7
+00:00:22,000 --> 00:00:26,000
+Against bare desert alone the match is weaker — so these are leads to test in the field.
+
+8
+00:00:26,000 --> 00:00:30,000
+NASA and ESA data, open code. EGIZ — Astana.

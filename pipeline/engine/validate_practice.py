@@ -85,6 +85,7 @@ def run(results, candidates, practice_csv, *, preregistration_commit="", seed=20
                 elif testable and tile_id not in tiles:
                     excluded = "Practice tile is absent from candidate snapshot"
                 elif testable:
+                    assert item is not None  # guaranteed by the first branch
                     scores = {id_: cell["F"] for id_, cell in item["fidelity"][objective].items() if id_ in tiles}
                     r, n = rank(scores, tile_id)
                     if r is None:
@@ -136,7 +137,7 @@ def run(results, candidates, practice_csv, *, preregistration_commit="", seed=20
         interval = np.percentile(boot, [2.5, 97.5]).tolist()
     synthetic = results.get("synthetic", False) or candidates.get("synthetic", False)
     status = "inconclusive"
-    if len(values) >= 8 and dry_median is not None and preregistration_commit and not synthetic:
+    if len(values) >= 8 and median is not None and dry_median is not None and preregistration_commit and not synthetic:
         status = "confirmed" if median <= 20 and median < dry_median and median < 50 else "not_confirmed"
     notes = [f"{len(values)} evaluable source pairs; lexical ID tie breaking; controls excluded.",
              "v1 baseline unavailable: the archived model's <15-degree fraction is absent from v2 inputs."]

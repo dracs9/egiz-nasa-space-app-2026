@@ -19,6 +19,7 @@ import io
 import json
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
 from pipeline.discovery import INDEX_DERIVED, INDEX_VERSION, OUT
 from pipeline.discovery.context import window_context
@@ -102,7 +103,7 @@ def compile_index(derived: Path = INDEX_DERIVED, out: Path = INDEX_DIR) -> dict:
             if m.get("evidence"):
                 e = meta_by_col.setdefault(k, {"evidence": m["evidence"], "sources_by_body": {}, "method": m["method"]})
                 e["sources_by_body"][r["aoi"]["body"]] = m["source"]
-    columns = {c: {"unit": "id", "description": "identifier / bookkeeping"} for c in ID_COLUMNS}
+    columns: dict[str, dict[str, Any]] = {c: {"unit": "id", "description": "identifier / bookkeeping"} for c in ID_COLUMNS}
     for k in names:
         columns[k] = {"unit": unit(k), "description": describe(k), "missing_encoding": "empty cell",
                       **meta_by_col.get(k, {"evidence": None, "sources_by_body": {}, "method": None})}

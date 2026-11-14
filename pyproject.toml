@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "egiz"
 version = "0.1.0"
 description = "Reproducible Earth analog test campaign planner"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
   "numpy>=2,<3", "scipy>=1.14,<2", "jsonschema>=4.23,<5",
   "rasterio>=1.4,<2", "pyproj>=3.7,<4", "pillow>=11,<13",
@@ -17,7 +17,9 @@ dependencies = [
 science = ["spiceypy==8.0.0"]
 dynamics = ["mujoco==3.16.0", "bsk==2.12.0"]
 earth = ["earthengine-api>=1.5,<2"]
-dev = ["pytest>=8,<10", "ruff>=0.11,<1", "astropy>=7,<9"]
+# astropy only cross-checks pipeline.common.sun in tests (skipped when absent); astropy>=7 needs Python>=3.11.
+validation = ["astropy>=7,<9; python_version >= '3.11'"]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1", "astropy>=7,<9; python_version >= '3.11'"]
 
 [tool.setuptools.packages.find]
 include = ["pipeline*"]
@@ -28,7 +30,7 @@ pythonpath = ["."]
 addopts = "-ra"
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py310"
 line-length = 100
 
 [tool.ruff.lint]

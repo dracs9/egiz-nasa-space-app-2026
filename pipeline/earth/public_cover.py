@@ -14,6 +14,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
+import rasterio.crs
 from rasterio.enums import Resampling
 from rasterio.transform import from_origin
 from rasterio.warp import reproject
@@ -76,7 +77,7 @@ def acquire(manifest):
     manifest = Path(manifest)
     with manifest.open(newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
-        fields, rows = list(reader.fieldnames), list(reader)
+        fields, rows = list(reader.fieldnames or []), list(reader)
     report = []
     for row in rows:
         out = manifest.parent.parent / "raw" / "worldcover" / f"{row['id']}.tif"

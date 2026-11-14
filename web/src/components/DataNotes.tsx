@@ -7,6 +7,18 @@ import { hasSyntheticData } from '../data/load';
 import { dataModeInfo } from '../data/modes';
 import copy from '../content/copy.json';
 
+const NASA_DATA = [
+  'LOLA 5 m/px DEMs of the lunar south pole (NASA GSFC Planetary Geodesy Data Archive, PGDA)',
+  'MOLA (NASA Mars Global Surveyor), inside the USGS HRSC/MOLA blended Mars DEM (200 m)',
+  'NASA POWER climatology 2001–2025 (2 m air temperature, precipitation)',
+  'HiRISE (NASA MRO) Jezero terrain via USGS, used for the Mission Studio world',
+  'SPICE kernels from NASA NAIF (Sun and Earth geometry, lighting)',
+];
+const PARTNER_DATA = [
+  'Copernicus DEM GLO-30 (ESA / Copernicus programme) — Earth terrain',
+  'ESA WorldCover 2021 v200 — Earth land cover',
+];
+
 /** Source context stays available on demand, without competing with the workspace. */
 export function DataNotes() {
   useLanguage();
@@ -30,6 +42,10 @@ export function DataNotes() {
         <strong>{t(dataMode === 'pilot' ? 'MEASURED TERRAIN PILOT — EXPLORATORY, UNVALIDATED' : 'OBSERVED DATA — CHECK VALIDATION AND MISSING INPUTS')}</strong>
         <p>{dataMode === 'pilot' ? message('{sites} Earth windows · {targets} targets. ESA WorldCover land cover included. Climate, seasonal snow and target temperatures are missing; this is not a global search.', '{sites} участков Земли · {targets} цели. Включён земной покров ESA WorldCover. Климат, сезонный снег и температуры целей отсутствуют; это не глобальный поиск.', { sites: data.candidates.tiles.length, targets: data.targets.targets.length }) : t('Source provenance and recorded validation apply to this dataset only.')}</p>
       </div>}
+      <h3>{t('NASA data')}</h3>
+      <ul className="data-notes-sources">{NASA_DATA.map(x => <li key={x}>{t(x)}</li>)}</ul>
+      <h3>{t('Space agency partner data (ESA)')}</h3>
+      <ul className="data-notes-sources">{PARTNER_DATA.map(x => <li key={x}>{t(x)}</li>)}</ul>
       <p className="data-notes-attribution">{t(copy.common.independent)}</p>
       <button onClick={() => navigate('evidence')}>{t('Sources & limitations')}<ArrowRight size={15} /></button>
     </div>

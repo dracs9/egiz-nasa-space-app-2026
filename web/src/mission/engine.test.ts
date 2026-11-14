@@ -429,3 +429,29 @@ it("rejects an uploaded modified heightmap that retains a genuine source fingerp
     /does not match/,
   );
 });
+
+describe("energy accounting on measured pilot terrain", () => {
+  it("reports energy equal to the time integral of electrical power, and battery = budget - energy", () => {
+    let checked = 0;
+    for (const t of pilot.entries as MissionTerrain[]) {
+      const s = defaultScenario(t);
+      if (!s.rover.design) continue;
+      const r = simulate(s, t);
+      if (r.frames.length < 3) continue;
+      let integral = 0;
+      for (let k = 1; k < r.frames.length; k++) {
+        // Each recorded step holds the electrical power of the step that ends at that frame.
+        integral += (r.frames[k].mobility?.electricalPowerW ?? 0) * (r.frames[k].t - r.frames[k - 1].t) / 3600;
+      }
+      expect(r.metrics.energyWh).toBeCloseTo(integral, 6);
+      const last = r.frames.at(-1)!;
+      expect(last.energyWh).toBeCloseTo(r.metrics.energyWh, 9);
+      expect(last.mobility!.batteryRemainingWh).toBeCloseTo(s.rover.batteryWh - r.metrics.energyWh + last.mobility!.generatedWh, 6);
+      // Mean bus load over the run is energy / time, not the instantaneous readout at one replay time.
+      const meanW = r.metrics.energyWh * 3600 / r.metrics.duration;
+      expect(meanW).toBeGreaterThanOrEqual(s.rover.idlePower);
+      checked++;
+    }
+    expect(checked).toBeGreaterThan(0);
+  });
+});

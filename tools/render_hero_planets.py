@@ -116,7 +116,7 @@ def render(tex, *, size, cx, cy, radius, lat0, lon0, roll, sun, atmosphere=None,
     out = (lin_to_srgb(img) * 255 + 0.5).astype(np.uint8)
     im = Image.fromarray(out, "RGB")
     if ss > 1:
-        im = im.resize(size, Image.LANCZOS)
+        im = im.resize(size, Image.Resampling.LANCZOS)
     return im
 
 
@@ -131,7 +131,7 @@ def save(im: Image.Image, stem: str, widths=(2560, 1440)):
     OUT.mkdir(parents=True, exist_ok=True)
     for w in widths:
         h = round(im.height * w / im.width)
-        r = im if w == im.width else im.resize((w, h), Image.LANCZOS)
+        r = im if w == im.width else im.resize((w, h), Image.Resampling.LANCZOS)
         r = r.filter(ImageFilter.UnsharpMask(radius=1.2, percent=40, threshold=2))
         r.save(OUT / f"{stem}-{w}.jpg", quality=84, optimize=True, progressive=True)
         print(OUT / f"{stem}-{w}.jpg", r.size)
@@ -178,7 +178,7 @@ def render_mouton_hillshade():
         e = np.asarray(t["elevations"], dtype=np.float64).reshape(side, side)
         z[r * (side - 1): r * (side - 1) + side, c * (side - 1): c * (side - 1) + side] = e
     post = 10.0
-    im = Image.fromarray(z.astype(np.float32), mode="F").resize((1600, 1600), Image.BICUBIC)
+    im = Image.fromarray(z.astype(np.float32), mode="F").resize((1600, 1600), Image.Resampling.BICUBIC)
     z = np.asarray(im, dtype=np.float64)
     post *= (n - 1) / 1599
     gy, gx = np.gradient(z, post)
@@ -193,7 +193,7 @@ def render_mouton_hillshade():
     out = grain(out, 2.0)
     OUT.mkdir(parents=True, exist_ok=True)
     out.save(OUT / "mons-mouton-hillshade-1600.jpg", quality=86, optimize=True, progressive=True)
-    out.resize((800, 800), Image.LANCZOS).save(OUT / "mons-mouton-hillshade-800.jpg", quality=84, optimize=True, progressive=True)
+    out.resize((800, 800), Image.Resampling.LANCZOS).save(OUT / "mons-mouton-hillshade-800.jpg", quality=84, optimize=True, progressive=True)
     print("hillshade", z.min(), z.max())
 
 

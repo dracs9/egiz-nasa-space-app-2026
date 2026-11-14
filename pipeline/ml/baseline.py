@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import copy
 import math
+from typing import Any
 
 import numpy as np
 
@@ -282,7 +283,7 @@ def rank_profile(snapshot: Snapshot, target: dict, template: dict, objective: di
         passed = [c["passed"] for c in checks]
         op_value = False if False in passed else (None if None in passed else True)
         stab_value = stab.get(aoi)
-        explanation = {"matching": matching, "mismatches": mismatches,
+        explanation: dict[str, Any] = {"matching": matching, "mismatches": mismatches,
                        "attributes": attributes, "missing_fields": missing}
         if tile.get("environment") or tile.get("geology"):
             explanation["context"] = {

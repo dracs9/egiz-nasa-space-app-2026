@@ -12,6 +12,7 @@ import zipfile
 from pathlib import Path
 
 import rasterio
+import rasterio.errors
 from rasterio.io import MemoryFile
 
 from pipeline.common.terrain import terrain_attributes
@@ -29,7 +30,7 @@ def rename_attributes(attrs, baseline):
     return renamed
 
 
-def download_dem(lon, lat, *, p=200, half_m=11000, project=None, out=None):
+def download_dem(lon, lat, *, p: float = 200, half_m=11000, project=None, out=None):
     ee = initialize_ee(project)
     region = ee.Geometry.Polygon([square_coordinates(lon, lat, 2*half_m)], geodesic=False)
     crs = f"EPSG:{utm_epsg(lon, lat)}"

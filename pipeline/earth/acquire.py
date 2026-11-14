@@ -7,8 +7,10 @@ boundary exists for local orchestration tests, not for production fake data.
 import argparse
 import json
 import os
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from pipeline.earth.export import export_candidates
 from pipeline.earth.gee_env import environment
@@ -20,12 +22,12 @@ from pipeline.earth.pool import build_pool
 
 @dataclass(frozen=True)
 class AcquisitionAdapters:
-    pool: object = build_pool
-    terrain_a: object = stage_a
-    terrain_b: object = stage_b
-    environment: object = environment
-    snow: object = snow_free_frac
-    kazakhstan: object = build_kazakhstan_pool
+    pool: Callable[..., Any] = build_pool
+    terrain_a: Callable[..., Any] = stage_a
+    terrain_b: Callable[..., Any] = stage_b
+    environment: Callable[..., Any] = environment
+    snow: Callable[..., Any] = snow_free_frac
+    kazakhstan: Callable[..., Any] = build_kazakhstan_pool
 
 
 PROVENANCE = [

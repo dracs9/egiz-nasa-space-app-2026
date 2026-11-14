@@ -1,0 +1,330 @@
+aoi_id,country_iso,volcano_km,volcano_name,impact_km,impact_name
+GL_W116.820_N36.240,USA,103.36,Ubehebe Craters,540.83,Meteor Crater
+KZ_E051.200_N43.400,,548.38,Kazbek,718.74,Meteor Çukuru
+PILOT_ATACAMA,CHL,94.32,"Negrillar, La",140.79,Monturaqui crater
+PILOT_BOSZHIRA,KAZ,790.14,Kazbek,700.06,Chiyli crater
+PILOT_ICELAND,ISL,12.08,Fremrinamar,1011.78,Ullapool bolide impact
+PILOT_RIO_TINTO,ESP,260.05,Calatrava Volcanic Field,617.16,Q16303651
+PILOT_UTAH,USA,164.59,Black Rock Desert,375.73,Meteor Crater
+PILOT_WADI_RUM,JOR,372.43,"Ash Shaam, Harrat",212.84,Jabel Waqf as Suwwan crater
+PR_JETT_SP_CRATER,USA,25.56,San Francisco Volcanic Field,81.81,Meteor Crater
+SM_E000.385_N42.222,ESP,176.79,Olot Volcanic Field,159.53,Azuara impact structure
+SM_E000.516_N26.596,DZA,611.55,Manzaz Volcanic Field,390.66,Amguid crater
+SM_E001.342_N19.336,MLI,530.63,Tahalra Volcanic Field,813.36,Amguid crater
+SM_E001.647_N15.265,NER,778.43,Todra Volcanic Field,1236.8,Amguid crater
+SM_E003.399_N28.357,DZA,549.78,Manzaz Volcanic Field,188.22,Tin Bider crater
+SM_E003.502_N22.269,DZA,160.25,Tahalra Volcanic Field,434.18,Amguid crater
+SM_E003.679_N31.244,DZA,841.47,Manzaz Volcanic Field,232.71,Talemzane crater
+SM_E004.235_N15.645,NER,507.53,Todra Volcanic Field,1161.3,Amguid crater
+SM_E004.610_N20.439,DZA,251.33,Tahalra Volcanic Field,628.5,Amguid crater
+SM_E005.554_N16.286,NER,349.53,Todra Volcanic Field,1096.49,Amguid crater
+SM_E005.588_N43.734,-99,303.59,Olot Volcanic Field,198.99,Q116877401
+SM_E006.474_N27.687,DZA,423.8,Manzaz Volcanic Field,134.54,Tin Bider crater
+SM_E007.661_N13.758,NER,445.25,Todra Volcanic Field,1370.69,Aorounga crater
+SM_E008.509_N34.724,TUN,390.02,Pantelleria,441.02,Talemzane crater
+SM_E009.347_N38.497,,303.75,Pantelleria,544.96,Sirente crater
+SM_E009.752_N22.336,DZA,416.83,Atakor Volcanic Field,684.8,Amguid crater
+SM_E010.205_N49.668,DEU,246.58,West Eifel Volcanic Field,93.24,Nördlinger Ries
+SM_E010.451_N64.534,,1060.01,Jan Mayen,270.19,Malingen Crater
+SM_E012.206_N23.753,LBY,501.92,"Toh, Tarso",829.14,Amguid crater
+SM_E012.275_N18.735,NER,415.63,Todra Volcanic Field,734.77,Aorounga crater
+SM_E012.445_N16.628,NER,435.15,Todra Volcanic Field,770.77,Aorounga crater
+SM_E012.592_N25.225,LBY,577.29,"Toh, Tarso",790.08,Tin Bider crater
+SM_E013.209_N29.786,LBY,784.39,Pantelleria,826.21,Tin Bider crater
+SM_E014.247_S22.356,,2244.76,Walvis Ridge at 33°S,635.78,Roter Kamm crater
+SM_E014.734_N23.276,LBY,271.62,"Toh, Tarso",659.31,Aorounga crater
+SM_E015.604_N16.241,TCD,502.29,"Koussi, Emi",500.24,Aorounga crater
+SM_E016.319_N17.703,TCD,329.48,"Koussi, Emi",346.06,Aorounga crater
+SM_E017.256_S33.345,,2088.8,Walvis Ridge at 33°S,627.15,Roter Kamm crater
+SM_E017.282_N53.464,POL,804.14,West Eifel Volcanic Field,362.71,Mien
+SM_E017.697_N28.373,LBY,795.18,"Toh, Tarso",738.5,BP Structure
+SM_E018.312_N17.472,TCD,259.88,"Koussi, Emi",206.34,Aorounga crater
+SM_E018.416_S19.238,NAM,1987.4,Ngozi,959.4,Morokweng crater
+SM_E018.458_N05.608,CAF,883.03,Oku Volcanic Field,1361.26,Gweni-Fada crater
+SM_E019.373_S04.451,COD,1142.41,Nyamulagira,1143.87,Luizi crater
+SM_E020.705_N27.737,LBY,833.53,"Voon, Tarso",448.12,BP Structure
+SM_E021.354_N20.646,TCD,309.3,"Koussi, Emi",279.21,Aorounga crater
+SM_E021.570_S31.467,ZAF,2191.64,Prince Edward Island,302.89,Kalkkop crater
+SM_E022.552_N29.356,LBY,827.36,Santorini,481.22,BP Structure
+SM_E024.365_N29.636,LBY,758.67,Santorini,480.01,BP Structure
+SM_E024.470_N14.660,SDN,148.82,Kutum Volcanic Field,422.4,Gweni-Fada crater
+SM_E024.514_N25.297,LBY,866.47,"Koussi, Emi",20.71,BP Structure
+SM_E024.604_S25.461,BWA,2049.47,Kyejo,154.79,Morokweng crater
+SM_E024.723_N28.322,LBY,900.89,Santorini,336.38,BP Structure
+SM_E025.531_N17.780,SDN,291.27,Meidob Volcanic Field,120.5,Al 'Atrun
+SM_E025.725_N16.331,SDN,137.8,Meidob Volcanic Field,225.93,Al 'Atrun
+SM_E025.746_N42.782,BGR,522.44,Kula,750.4,Ilyinets crater
+SM_E026.264_N29.380,EGY,785.22,Santorini,491.02,BP Structure
+SM_E026.496_N26.620,EGY,1092.89,Santorini,262.08,BP Structure
+SM_E026.503_N23.454,EGY,863.33,Bayuda Volcanic Field,165.22,Kamil Crater
+SM_E026.595_S23.597,BWA,1771.39,Kyejo,159.88,Kgagodi crater
+SM_E026.617_N11.430,SDN,306.0,"Marra, Jebel",751.58,Al 'Atrun
+SM_E027.495_N14.617,SDN,135.03,Meidob Volcanic Field,408.85,Al 'Atrun
+SM_E029.356_N18.305,SDN,358.28,Bayuda Volcanic Field,292.8,Al 'Atrun
+SM_E029.523_N51.496,BLR,1324.94,Elbrus,199.44,Zapadnaya crater
+SM_E030.522_N47.400,UKR,994.07,Kula,182.36,Zeleny Gai crater
+SM_E031.248_N39.628,TUR,262.64,Kula,945.98,Zeleny Gai crater
+SM_E031.682_S17.742,ZWE,973.65,Kyejo,678.93,Kgagodi crater
+SM_E031.721_N41.217,TUR,400.62,Kula,765.97,Zeleny Gai crater
+SM_E033.653_N13.377,SDN,559.15,Bayuda Volcanic Field,926.09,Al 'Atrun
+SM_E034.645_N19.620,SDN,245.52,Bayuda Volcanic Field,862.48,Al 'Atrun
+SM_E035.265_S03.426,TZA,103.01,"Lengai, Ol Doinyo",1097.48,Luizi crater
+SM_E035.738_N17.361,SDN,334.11,Bayuda Volcanic Field,973.33,Al 'Atrun
+SM_E036.395_N26.431,SAU,195.09,"Lunayyir, Harrat",417.19,Q30917554
+SM_E036.670_N20.393,SDN,438.66,"Rahat, Harrat",1042.13,Q30917554
+SM_E036.733_N34.436,SYR,246.8,"Ash Shaam, Harrat",376.88,Jabel Waqf as Suwwan crater
+SM_E039.494_N19.478,,256.23,"Birk, Harrat al",1126.52,Q30917554
+SM_E040.285_N31.232,SAU,283.21,"Ash Shaam, Harrat",238.14,Q30917554
+SM_E040.771_N64.723,RUS,2096.02,Jan Mayen,790.84,Saarijärvi
+SM_E042.275_N45.329,RUS,220.34,Elbrus,362.01,Kamensk crater
+SM_E042.339_N23.570,SAU,130.15,"Kishb, Harrat",760.16,Q30917554
+SM_E042.363_N13.336,ERI,43.53,Assab Volcanic Field,1250.59,Wabar craters
+SM_E042.562_N48.569,RUS,580.29,Elbrus,150.22,Gusev crater
+SM_E042.692_N37.628,TUR,121.06,Nemrut Dagi,248.72,Meteor Çukuru
+SM_E043.319_N25.487,SAU,333.12,"Khaybar, Harrat",643.98,Q30917554
+SM_E043.516_S24.397,,1297.25,"Fournaise, Piton de la",1559.73,Tswaing crater
+SM_E043.587_N33.233,IRQ,570.05,"Ash Shaam, Harrat",616.12,Q30917554
+SM_E044.482_N12.260,,214.42,Gufa,1209.21,Wabar craters
+SM_E045.406_N16.364,YEM,112.08,"Haylan, Jabal",781.47,Wabar craters
+SM_E045.542_N31.363,IRQ,743.35,"Ithnayn, Harrat",684.77,Q30917554
+SM_E045.707_N20.255,SAU,467.81,"Yar, Jabal",514.39,Wabar craters
+SM_E046.223_N27.366,SAU,603.18,"Ithnayn, Harrat",775.36,Q30917554
+SM_E047.604_N33.696,IRN,481.56,Damavand,697.72,Meteor Çukuru
+SM_E047.731_N22.258,SAU,655.03,"Kishb, Harrat",295.16,Wabar craters
+SM_E049.457_N45.581,,507.92,Kazbek,745.57,Kamensk crater
+SM_E051.322_N11.547,,431.12,Balhaf-Bir Ali Volcanic Field,1110.98,Wabar craters
+SM_E051.649_N34.328,IRN,185.25,Damavand,857.49,Meteor Çukuru
+SM_E052.376_N32.618,IRN,371.42,Damavand,1041.46,Meteor Çukuru
+SM_E052.581_N51.756,RUS,1175.39,Kazbek,463.15,Karla crater
+SM_E052.657_N15.657,,185.11,Bir Borhut,689.75,Wabar craters
+SM_E052.749_N49.244,KAZ,965.59,Kazbek,369.47,Chiyli crater
+SM_E053.694_N38.275,,294.15,Damavand,814.33,Meteor Çukuru
+SM_E054.393_N23.592,ARE,968.3,Bir Borhut,464.5,Wabar craters
+SM_E055.757_N37.339,IRN,360.17,Damavand,1015.73,Meteor Çukuru
+SM_E056.315_N32.716,IRN,527.67,Damavand,1302.88,Meteor Çukuru
+SM_E056.398_N18.419,OMN,664.63,Bir Borhut,707.76,Wabar craters
+SM_E057.245_N34.350,IRN,499.65,Damavand,1272.14,Meteor Çukuru
+SM_E059.364_N27.342,IRN,1177.26,Damavand,1071.76,Luna crater
+SM_E060.488_N29.596,IRN,1054.19,Damavand,1089.82,Luna crater
+SM_E060.685_N42.301,UZB,1021.64,Damavand,678.53,Zhamanshin crater
+SM_E061.459_N39.227,TKM,900.19,Damavand,1020.75,Zhamanshin crater
+SM_E061.727_N36.491,TKM,864.52,Damavand,1325.67,Zhamanshin crater
+SM_E063.289_N35.217,AFG,1013.75,Damavand,1403.79,Luna crater
+SM_E063.295_N55.797,RUS,1982.19,Kazbek,338.63,Ragozinka crater
+SM_E064.275_N33.323,AFG,1149.88,Damavand,1174.74,Luna crater
+SM_E065.400_N68.794,RUS,1905.55,East Gakkel Ridge at 85°E,60.42,Kara crater
+SM_E065.484_N34.688,AFG,1220.62,Damavand,1274.79,Luna crater
+SM_E065.509_N49.326,KAZ,1772.97,Kazbek,347.8,Zhamanshin crater
+SM_E065.541_N38.394,UZB,1219.5,Damavand,1171.83,Zhamanshin crater
+SM_E066.334_N51.449,KAZ,1906.6,Kazbek,512.18,Zhamanshin crater
+SM_E067.344_N60.553,RUS,2097.69,Jombolok,371.31,Ragozinka crater
+SM_E067.563_N27.571,PAK,1610.39,Ashikule Volcanic Field,462.34,Luna crater
+SM_E070.564_N50.308,KAZ,1848.74,Ashikule Volcanic Field,726.19,Zhamanshin crater
+SM_E070.567_N26.765,IND,1449.07,Ashikule Volcanic Field,364.78,Luna crater
+SM_E071.221_N35.352,AFG,943.73,Ashikule Volcanic Field,1227.89,Ramgarh crater
+SM_E071.293_N30.340,PAK,1135.68,Ashikule Volcanic Field,763.93,Ramgarh crater
+SM_E072.252_N46.454,KAZ,1425.44,Ashikule Volcanic Field,875.2,Zhamanshin crater
+SM_E073.266_N40.562,KGZ,907.15,Ashikule Volcanic Field,1305.43,Zhamanshin crater
+SM_E073.434_N63.741,RUS,1913.2,Jombolok,723.35,Kara crater
+SM_E073.723_N27.641,IND,1170.95,Ashikule Volcanic Field,385.69,Ramgarh crater
+SM_E073.765_N58.731,RUS,1704.33,Jombolok,689.64,Ragozinka crater
+SM_E075.475_N47.564,KAZ,1409.84,Ashikule Volcanic Field,1082.21,Zhamanshin crater
+SM_E076.288_N45.714,KAZ,1196.51,Ashikule Volcanic Field,1196.2,Zhamanshin crater
+SM_E076.292_N58.428,RUS,1554.04,Jombolok,839.08,Ragozinka crater
+SM_E077.435_N43.278,KAZ,912.19,Ashikule Volcanic Field,1393.42,Zhamanshin crater
+SM_E078.341_N46.714,KAZ,1250.64,Ashikule Volcanic Field,1314.28,Zhamanshin crater
+SM_E078.468_N10.456,IND,1689.64,Barren Island,1079.11,Lonar Lake
+SM_E079.310_N54.501,RUS,1311.07,Jombolok,1165.69,Ragozinka crater
+SM_E080.648_N46.232,KAZ,1169.41,Ashikule Volcanic Field,1498.83,Zhamanshin crater
+SM_E080.735_N35.776,CHN,82.29,Ashikule Volcanic Field,1191.08,Dhala crater
+SM_E082.348_N43.300,CHN,842.56,Ashikule Volcanic Field,1743.55,Zhamanshin crater
+SM_E083.220_N67.703,RUS,1868.82,Jombolok,610.18,Logancha crater
+SM_E084.752_N37.709,CHN,352.76,Ashikule Volcanic Field,1514.67,Dhala crater
+SM_E088.272_N42.406,CHN,935.42,Ashikule Volcanic Field,1736.54,Tabun-Khara-Obo crater
+SM_E088.595_N47.798,CHN,845.47,Taryatu-Chulutu,1671.84,Tabun-Khara-Obo crater
+SM_E089.725_N36.799,CHN,733.52,Ashikule Volcanic Field,1686.6,Dhala crater
+SM_E090.428_N41.212,CHN,976.03,Ashikule Volcanic Field,1600.79,Tabun-Khara-Obo crater
+SM_E090.563_N43.557,CHN,886.46,Taryatu-Chulutu,1528.6,Tabun-Khara-Obo crater
+SM_E091.325_N44.798,CHN,756.92,Taryatu-Chulutu,1453.0,Tabun-Khara-Obo crater
+SM_E091.389_N32.486,CHN,966.68,Ashikule Volcanic Field,1515.89,Dhala crater
+SM_E091.518_N51.439,RUS,531.7,Jombolok,1573.24,Tabun-Khara-Obo crater
+SM_E092.488_N61.771,RUS,1079.9,Jombolok,449.73,Logancha crater
+SM_E093.489_N50.563,MNG,450.26,Jombolok,1407.56,Tabun-Khara-Obo crater
+SM_E095.446_N56.652,RUS,494.47,Jombolok,986.05,Logancha crater
+SM_E095.613_N39.631,CHN,926.85,Khoid Naiman Nuur,1263.2,Tabun-Khara-Obo crater
+SM_E095.796_N23.724,MMR,316.81,Popa,1632.99,Jinlin Meteorite Crater
+SM_E097.317_N17.398,MMR,447.76,Popa,1646.56,Jinlin Meteorite Crater
+SM_E097.441_N79.268,RUS,723.29,East Gakkel Ridge at 85°E,396.81,Chukcha crater
+SM_E098.561_N03.272,IDN,6.57,Singkut,2644.57,Jinlin Meteorite Crater
+SM_E098.797_N46.299,MNG,221.74,Taryatu-Chulutu,882.75,Tabun-Khara-Obo crater
+SM_E100.502_N40.697,CHN,669.63,Khoid Naiman Nuur,841.93,Tabun-Khara-Obo crater
+SM_E100.599_N72.378,RUS,1493.96,East Gakkel Ridge at 85°E,371.8,Popigai crater
+SM_E101.403_N46.636,MNG,30.19,Khoid Naiman Nuur,701.16,Tabun-Khara-Obo crater
+SM_E102.608_N69.568,RUS,1654.2,Udokan Plateau,391.64,Popigai crater
+SM_E102.766_N30.390,CHN,710.64,Tengchong,1193.42,Jinlin Meteorite Crater
+SM_E103.767_N73.515,RUS,1378.48,East Gakkel Ridge at 85°E,300.64,Chukcha crater
+SM_E104.764_N38.565,CHN,785.35,Honggeertu,741.11,Tabun-Khara-Obo crater
+SM_E105.348_N45.767,MNG,290.09,Khoid Naiman Nuur,384.13,Tabun-Khara-Obo crater
+SM_E105.469_N41.707,CHN,622.16,Khoid Naiman Nuur,434.29,Tabun-Khara-Obo crater
+SM_E105.503_S06.781,IDN,71.59,Pulosari,1922.66,Bedout
+SM_E105.658_N48.784,MNG,373.96,Khoid Naiman Nuur,600.57,Tabun-Khara-Obo crater
+SM_E107.240_N34.609,CHN,930.31,Honggeertu,1078.99,Tabun-Khara-Obo crater
+SM_E107.371_N12.280,VNM,296.28,"Cendres, Ile des",1312.69,Jinlin Meteorite Crater
+SM_E107.442_N46.475,MNG,431.83,Khoid Naiman Nuur,312.41,Tabun-Khara-Obo crater
+SM_E107.761_N55.498,RUS,629.59,Udokan Plateau,775.73,Macha crater
+SM_E108.338_N69.567,RUS,1548.41,Udokan Plateau,254.26,Popigai crater
+SM_E108.800_S03.603,,363.54,Tampomas,1948.5,Bedout
+SM_E109.576_N43.645,MNG,368.57,Honggeertu,54.62,Tabun-Khara-Obo crater
+SM_E110.313_S08.649,,124.18,Merapi,1400.81,Bedout
+SM_E111.352_N02.653,MYS,873.54,"Cendres, Ile des",2296.91,Jinlin Meteorite Crater
+SM_E113.406_N45.428,MNG,427.43,Honggeertu,329.51,Tabun-Khara-Obo crater
+SM_E114.317_N47.790,MNG,487.23,Arxan-Chaihe,543.36,Tabun-Khara-Obo crater
+SM_E114.320_N55.250,RUS,244.29,Udokan Plateau,572.86,Macha crater
+SM_E114.720_S24.591,AUS,1807.71,Rinjani,162.32,Woodleigh crater
+SM_E115.707_N52.684,RUS,421.43,Udokan Plateau,831.56,Macha crater
+SM_E115.796_N64.219,RUS,889.36,Udokan Plateau,469.63,Macha crater
+SM_E119.552_N64.665,RUS,937.38,Udokan Plateau,518.51,Macha crater
+SM_E119.786_N01.771,,294.82,Colo,2171.43,Spider crater
+SM_E120.248_N47.202,CHN,49.91,Arxan-Chaihe,695.61,Yilan crater
+SM_E120.518_S30.457,AUS,2174.26,Newer Volcanics Province,443.8,Dalgaranga crater
+SM_E121.446_N42.451,CHN,415.22,Longgang Group,287.24,Xiuyan
+SM_E121.503_S29.205,AUS,2160.85,Newer Volcanics Province,376.2,Shoemaker crater
+SM_E123.523_N56.589,RUS,355.25,Udokan Plateau,517.78,Macha crater
+SM_E123.747_S19.389,AUS,1189.14,Iya,328.91,Goat Paddock crater
+SM_E124.385_S32.454,AUS,1747.04,Newer Volcanics Province,807.39,Shoemaker crater
+SM_E124.500_N73.346,RUS,1504.81,East Gakkel Ridge at 85°E,271.35,Beyenchime-Salaatin crater
+SM_E125.620_N08.295,PHL,76.39,Musuan,2225.17,Jinlin Meteorite Crater
+SM_E128.596_N62.447,RUS,917.74,Udokan Plateau,640.14,Macha crater
+SM_E128.778_N69.679,RUS,1584.48,Udokan Plateau,306.03,Beyenchime-Salaatin crater
+SM_E129.654_S28.461,AUS,1579.19,Newer Volcanics Province,366.2,Massive Australian Precambrian/Cambrian Impact Structure
+SM_E130.397_S21.495,AUS,1520.87,McBride Volcanic Province,324.53,Gosses Bluff crater
+SM_E130.625_S24.732,AUS,1604.84,McBride Volcanic Province,118.72,Massive Australian Precambrian/Cambrian Impact Structure
+SM_E131.297_N51.738,RUS,462.02,Keluo Group,612.47,Yilan crater
+SM_E132.273_N65.541,RUS,1287.77,Udokan Plateau,750.26,Beyenchime-Salaatin crater
+SM_E132.556_N70.208,RUS,1705.7,Udokan Plateau,411.26,Beyenchime-Salaatin crater
+SM_E133.756_S30.475,AUS,1141.66,Newer Volcanics Province,235.2,Acraman crater
+SM_E133.789_S20.651,AUS,1157.57,McBride Volcanic Province,80.6,Kelly West Metorite Crater
+SM_E135.247_S20.322,AUS,1001.52,McBride Volcanic Province,69.88,Amelia Creek crater
+SM_E135.255_N67.646,RUS,1547.82,Udokan Plateau,651.36,Beyenchime-Salaatin crater
+SM_E135.364_S03.344,,612.0,Manuk,1016.89,Liverpool crater
+SM_E135.427_S22.680,AUS,1065.41,McBride Volcanic Province,24.95,Boxhole crater
+SM_E135.485_N63.433,RUS,1262.04,Udokan Plateau,1005.2,Macha crater
+SM_E135.605_N60.717,RUS,1142.85,Udokan Plateau,985.32,Macha crater
+SM_E137.368_N75.570,RUS,1359.26,East Gakkel Ridge at 85°E,704.33,Beyenchime-Salaatin crater
+SM_E137.711_N62.438,RUS,1311.73,Bolshoi-Kekuknaysky,1098.89,Macha crater
+SM_E137.711_S34.733,AUS,546.17,Newer Volcanics Province,120.83,Crawford crater
+SM_E137.741_S25.749,AUS,1080.52,McBride Volcanic Province,339.79,Mount Toondina crater
+SM_E138.789_N67.233,RUS,1486.79,Severny,795.54,Beyenchime-Salaatin crater
+SM_E139.518_S35.539,AUS,363.7,Newer Volcanics Province,101.44,Crawford crater
+SM_E140.778_S21.592,AUS,534.15,McBride Volcanic Province,395.04,Lawn Hill crater
+SM_E142.739_N48.227,,357.61,Rishirizan,425.43,Sobolev crater
+SM_E143.786_S33.319,AUS,508.4,Newer Volcanics Province,458.43,Flaxman crater
+SM_E145.207_S22.473,AUS,461.41,McBride Volcanic Province,569.21,Tookoonooka crater
+SM_E146.450_S30.629,AUS,872.95,Newer Volcanics Province,525.82,Tookoonooka crater
+SM_E146.708_S43.537,AUS,732.71,Newer Volcanics Province,161.56,Darwin Crater
+SM_E150.286_N66.779,RUS,1086.57,Severny,1224.25,Beyenchime-Salaatin crater
+SM_E153.360_N62.680,RUS,638.46,Severny,1637.97,Beyenchime-Salaatin crater
+SM_E161.620_N60.708,,273.28,Severny,2089.76,Beyenchime-Salaatin crater
+SM_E164.464_N65.598,RUS,834.82,Severny,1678.59,Avak crater
+SM_E165.539_N67.540,RUS,1055.73,Severny,1513.28,Avak crater
+SM_E175.702_N67.712,RUS,946.89,Imuruk Lake,1140.3,Avak crater
+SM_W000.396_N15.522,MLI,976.03,Tahalra Volcanic Field,1275.66,Amguid crater
+SM_W000.502_N33.554,DZA,669.95,Calatrava Volcanic Field,421.84,Talemzane crater
+SM_W001.718_N19.285,MLI,792.4,Tahalra Volcanic Field,982.23,Amguid crater
+SM_W002.384_N29.221,DZA,1006.82,Manzaz Volcanic Field,428.07,Q30917556
+SM_W002.775_N23.704,DZA,802.87,Tahalra Volcanic Field,701.06,Temimichat Crater
+SM_W003.243_N16.408,MLI,1108.97,Tahalra Volcanic Field,1042.06,Tenoumer crater
+SM_W004.515_N37.323,ESP,177.39,Calatrava Volcanic Field,527.79,Azuara impact structure
+SM_W005.556_N09.579,CIV,1715.42,"Basile, Pico",1010.46,Q2536085
+SM_W006.294_N20.233,MRT,1194.79,Fuerteventura,519.62,Tenoumer crater
+SM_W006.710_N29.238,DZA,672.42,Lanzarote,85.59,Ouarkziz crater
+SM_W008.320_N16.541,MRT,1437.99,Fuerteventura,616.71,Aouelloul crater
+SM_W009.324_N17.616,MRT,1287.15,Fuerteventura,457.61,Aouelloul crater
+SM_W009.362_N24.373,MRT,641.51,Fuerteventura,32.23,Temimichat Crater
+SM_W009.541_N28.648,MAR,400.52,Lanzarote,197.91,Ouarkziz crater
+SM_W010.714_N26.353,ESH,395.33,Fuerteventura,257.14,Temimichat Crater
+SM_W012.397_N25.548,MAR,351.42,Fuerteventura,312.39,Temimichat Crater
+SM_W013.604_N17.493,MRT,1181.42,Fogo,320.83,Aouelloul crater
+SM_W014.681_N19.294,MRT,972.37,Gran Canaria,234.85,Aouelloul crater
+SM_W014.763_N21.305,MRT,749.01,Gran Canaria,247.22,Aouelloul crater
+SM_W015.782_N23.481,MAR,502.9,Gran Canaria,482.24,Aouelloul crater
+SM_W016.647_N18.730,,921.06,Fogo,448.97,Aouelloul crater
+SM_W018.672_N64.315,ISL,51.17,Thordarhyrna,993.91,Ullapool bolide impact
+SM_W018.795_N76.344,GRL,670.34,Jan Mayen,1123.83,Hiawatha impact crater
+SM_W023.236_N70.618,GRL,478.73,Kolbeinsey Ridge,1498.01,Hiawatha impact crater
+SM_W023.270_N72.488,GRL,546.45,Jan Mayen,1329.43,Hiawatha impact crater
+SM_W031.409_N73.422,GRL,823.82,Jan Mayen,1080.96,Hiawatha impact crater
+SM_W036.765_N78.528,GRL,1152.09,Jan Mayen,628.88,Hiawatha impact crater
+SM_W038.697_N74.634,GRL,1061.22,Jan Mayen,832.97,Hiawatha impact crater
+SM_W040.440_N72.425,GRL,1055.83,Kolbeinsey Ridge,996.84,Hiawatha impact crater
+SM_W040.580_S22.781,,2751.5,Cordon de Puntas Negras,602.68,Praia Grande crater
+SM_W043.325_S18.561,BRA,2563.46,Guayaques,371.93,Cratera de Patrocínio
+SM_W046.721_N67.514,GRL,1067.25,Snaefellsjokull,1402.1,Hiawatha impact crater
+SM_W047.719_N77.711,GRL,1353.86,Jan Mayen,432.45,Hiawatha impact crater
+SM_W061.718_S31.503,ARG,787.26,Tupungatito,281.0,Rio Cuarto craters
+SM_W062.407_N64.282,,1818.41,Snaefellsjokull,661.55,Pingualuit Crater
+SM_W063.633_N76.332,GRL,1747.65,Jan Mayen,301.89,Hiawatha impact crater
+SM_W064.421_S09.676,BRA,903.07,Quimsachata-Oroscocha,1467.92,Araguainha crater
+SM_W064.478_S39.360,ARG,509.1,"Blanca, Laguna",721.1,Rio Cuarto craters
+SM_W065.757_S47.472,,577.05,"Hudson, Cerro",1627.88,Rio Cuarto craters
+SM_W066.487_S20.227,BOL,215.55,Olca-Paruma,450.26,Monturaqui crater
+SM_W066.752_S29.519,ARG,313.13,Tipas,444.23,Rio Cuarto craters
+SM_W067.444_S33.676,ARG,219.83,Tupungatito,312.25,Rio Cuarto craters
+SM_W067.577_N62.220,CAN,2146.37,Snaefellsjokull,336.91,Pingualuit Crater
+SM_W068.698_S46.682,ARG,339.51,"Hudson, Cerro",1581.12,Rio Cuarto craters
+SM_W069.272_N47.315,USA,2686.39,Pico Fracture Zone,81.06,Charlevoix crater
+SM_W069.432_N70.745,CAN,1974.35,Snaefellsjokull,826.89,Haughton impact crater
+SM_W069.594_S21.246,CHL,122.64,Irruputuncu,328.04,Monturaqui crater
+SM_W069.602_S52.609,CHL,58.96,Pali-Aike Volcanic Field,2235.95,Rio Cuarto craters
+SM_W070.468_S47.325,ARG,248.23,"Hudson, Cerro",1690.51,Rio Cuarto craters
+SM_W070.725_S20.363,,230.11,Irruputuncu,470.56,Monturaqui crater
+SM_W070.738_S37.403,ARG,53.97,Antuco,776.83,Rio Cuarto craters
+SM_W070.744_S31.514,CHL,230.31,Tupungatito,631.93,Rio Cuarto craters
+SM_W071.630_S49.379,ARG,141.92,Lautaro,1934.5,Rio Cuarto craters
+SM_W074.290_S15.440,PER,124.73,"Auquihuato, Cerro",1134.9,Monturaqui crater
+SM_W074.792_N42.681,USA,2703.05,Dotsero,204.14,Charity Shoal Crater
+SM_W076.452_S13.204,,408.37,"Auquihuato, Cerro",1471.09,Monturaqui crater
+SM_W080.661_N00.772,,252.22,Guagua Pichincha,930.98,Gatun structure
+SM_W082.358_N47.498,CAN,2158.38,Dotsero,133.76,Sudbury Basin
+SM_W085.348_N39.230,USA,1858.34,Dotsero,169.44,Serpent Mound crater
+SM_W087.399_N76.291,,2009.68,East Gakkel Ridge at 85°E,118.28,Haughton impact crater
+SM_W090.243_N54.752,CAN,1988.08,Wells Gray-Clearwater,642.0,Saint Martin crater
+SM_W090.366_N13.222,,94.33,Moyuta,913.8,Chicxulub crater
+SM_W092.754_N55.476,CAN,1826.37,Wells Gray-Clearwater,559.83,Saint Martin crater
+SM_W097.567_N45.652,USA,1020.15,Dotsero,417.59,Manson crater
+SM_W098.433_N68.589,,1840.36,Tuya Volcanic Field,686.4,Nicholson crater
+SM_W098.438_N56.206,CAN,1479.66,Wells Gray-Clearwater,281.16,Deep Bay crater
+SM_W101.534_N38.397,USA,495.48,Dotsero,226.32,Haviland Crater
+SM_W102.503_N48.656,USA,957.11,Hell's Half Acre,52.29,Newporte crater
+SM_W102.533_N26.709,MEX,343.54,Durango Volcanic Field,434.28,Sierra Madera crater
+SM_W103.277_N37.758,USA,388.72,Dotsero,325.31,Santa Fe impact structure
+SM_W103.317_N46.684,USA,799.38,Hell's Half Acre,103.37,Red Wing crater
+SM_W104.279_N45.240,USA,660.15,Dotsero,268.3,Red Wing crater
+SM_W104.377_N40.529,USA,245.85,Dotsero,348.47,Cloud Creek crater
+SM_W104.381_N49.297,CAN,893.23,Hell's Half Acre,100.2,Viewfield crater
+SM_W104.574_N26.291,MEX,238.4,Durango Volcanic Field,505.76,Sierra Madera crater
+SM_W105.563_N65.209,CAN,1434.19,Tuya Volcanic Field,315.69,Nicholson crater
+SM_W106.524_N25.533,MEX,259.7,Durango Volcanic Field,665.24,Sierra Madera crater
+SM_W106.638_N33.539,USA,70.8,Carrizozo,254.17,Santa Fe impact structure
+SM_W107.677_N29.433,MEX,467.05,"Tortuga, Isla",476.27,Sierra Madera crater
+SM_W109.248_N36.384,USA,209.18,Zuni-Bandera,220.06,Meteor Crater
+SM_W109.527_N31.568,USA,305.24,Red Hill-Quemado,409.09,Meteor Crater
+SM_W109.572_N49.658,CAN,719.92,Hell's Half Acre,37.42,Maple Creek crater
+SM_W109.759_N28.796,MEX,257.11,"Tortuga, Isla",690.49,Sierra Madera crater
+SM_W110.366_N24.693,,213.32,Comondu-La Purisima,984.25,Sierra Madera crater
+SM_W110.619_N61.705,CAN,1117.31,Tuya Volcanic Field,159.41,Pilot crater
+SM_W111.273_N50.526,CAN,636.75,Wells Gray-Clearwater,80.41,Bow City impact crater
+SM_W114.316_N74.378,,1556.36,Fort Selkirk,212.87,Prince Albert Impact Crater
+SM_W114.406_N40.540,USA,238.79,Black Rock Desert,413.88,Beaverhead crater
+SM_W116.506_N45.648,USA,288.24,Jordan Craters,251.09,Beaverhead crater
+SM_W119.371_N38.449,USA,58.14,Mono Lake Volcanic Field,785.14,Beaverhead crater
+SM_W119.703_N35.200,USA,276.9,Mammoth Mountain,789.47,Meteor Crater
+SM_W126.576_N62.652,CAN,423.78,Tuya Volcanic Field,594.27,Steen River crater
+SM_W136.519_N68.213,CAN,588.76,Fort Selkirk,835.46,Avak crater
+SM_W136.680_N65.379,CAN,274.42,Fort Selkirk,1035.45,Avak crater
+SM_W146.451_N67.554,USA,398.65,Buzzard Creek,567.36,Avak crater
+SM_W150.407_N64.281,USA,98.7,Buzzard Creek,815.25,Avak crater
+SM_W152.212_N66.480,USA,321.16,Buzzard Creek,557.23,Avak crater
+SM_W158.759_N60.760,USA,315.75,Ingakslugwat Hills,1170.7,Avak crater
+SM_W161.707_N56.225,,71.83,Dana,1688.73,Avak crater
+SM_W166.590_N61.376,,112.99,Ingakslugwat Hills,1183.15,Avak crater

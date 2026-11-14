@@ -32,6 +32,7 @@ def build(name: str, days: int = 3, epoch: str = DEFAULT_EPOCH, step: float = 60
                         (start + timedelta(days=day)).isoformat().replace("+00:00", "Z"), 86400, step)
         record = record or part
         samples += [{**s, "t": s["t"] + day * 86400.0} for s in part["samples"] if day == 0 or s["t"] > 0]
+    assert record is not None  # days >= 1
     document = {**record, "schema": "egiz.world_illumination", "duration": days * 86400.0, "samples": samples,
                 "segments": days, "method": "Concatenated consecutive 24 h CSPICE geometry runs; identical kernels and frame."}
     path = ROOT / "data/world" / name / "illumination.json"

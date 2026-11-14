@@ -153,7 +153,7 @@ def coverage_report(cells, mission, reqs, selected, Q, sites) -> list[dict]:
         for s in selected:
             c = index.get((s, r["task"]))
             f = next((f for f in c["factors"] if f["factor"] == r["factor"]), None) if c else None
-            if not f or f["match"] is None or c["status"] not in ("SUPPORTED", "CONDITIONAL"):
+            if not c or not f or f["match"] is None or c["status"] not in ("SUPPORTED", "CONDITIONAL"):
                 continue
             level = "strong" if c["status"] == "SUPPORTED" and f["ci"][0] >= STRONG_LCB else "covered" if f["ci"][0] >= COVER_LCB else None
             if level and (best is None or f["ci"][0] > best["lcb"]):
