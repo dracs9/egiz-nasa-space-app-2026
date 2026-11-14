@@ -12,7 +12,14 @@ export interface StageApi {
 export function canRenderWorld() {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
   if (/jsdom/i.test(navigator.userAgent)) return false;
-  try { const c = document.createElement('canvas'); return !!c.getContext('webgl2'); } catch { return false; }
+  try {
+    const c = document.createElement('canvas'); const gl = c.getContext('webgl2'); if (!gl) return false;
+    // software rasterisers (no GPU) would freeze on this terrain: those visitors get the still fallback
+    const info = gl.getExtension('WEBGL_debug_renderer_info');
+    const renderer = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+    return !/swiftshader|llvmpipe|softpipe|software/i.test(renderer);
+  } catch { return false; }
 }
 
 interface Props {

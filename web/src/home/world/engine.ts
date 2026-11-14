@@ -204,6 +204,9 @@ export class WorldEngine {
   setLaunch(l: LaunchState | null) { this.launch = l; }
   setGapFocus(i: number) { this.gapFocus = i; }
   setLabels(l: LabelSpec[]) { this.labels = l; }
+  private occluded = false;
+  /** True while something opaque covers the whole canvas. */
+  setOccluded(v: boolean) { this.occluded = v; }
   get weights() { return this.w; }
   /** How much of each kind of air the current shot is in, for the soundscape. */
   get mix() { const k = 1 - this.spaceMix; return { vacuum: this.w[0] * k + this.spaceMix, mars: this.w[1] * k, earth: (this.w[2] + this.w[3]) * k }; }
@@ -378,7 +381,8 @@ export class WorldEngine {
     // airless ground blooms less: in vacuum there is no haze to carry the glow, so the sky stays black
     this.bloom.strength = mix(.1 + .14 * (earthAir + marsAir), .4, s.space);
 
-    this.composer.render(dt);
+    // a film plate or an opaque chapter covers the whole screen: keep the clock running, skip the GPU work
+    if (!this.occluded) this.composer.render(dt);
     this.updateLabels();
     this.onFrame?.(this.chapter);
   };

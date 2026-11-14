@@ -14,6 +14,9 @@ import { WorldStage, type StageApi, type Shot, type LabelSpec, type ProbeReadout
 import type { StageData } from './world/terrainData';
 import type { WorldEngine } from './world/engine';
 import { Soundscape } from './world/soundscape';
+import { CinemaLayer, type CinemaHandle } from './cinema/CinemaLayer';
+import type { CinemaAsset } from './cinema/cinema';
+import { MatchChapter } from './match/MatchChapter';
 import './home.css';
 
 interface Param { key: string; group: 'rover' | 'vehicle'; en: string; ru: string; unit: string; min: number; max: number; step: number; value: number; maxFrom?: string }
@@ -126,6 +129,17 @@ export function HomePage() {
   const [soundOn, setSoundOn] = useState(false);
   const sound = useRef<Soundscape | null>(null);
   const probeOpen = useRef(false);
+  // ---------- Film plates and the opaque match chapter both may cover the live world ----------
+  const cinema = useRef<CinemaHandle>(null);
+  const [films, setFilms] = useState<CinemaAsset[]>([]);
+  const cover = useRef({ film: 0, match: false });
+  const syncCover = useCallback(() => {
+    const { film, match } = cover.current;
+    if (root.current) { root.current.dataset.film = String(film > .5); root.current.dataset.match = String(match); }
+    api.current.engine?.setOccluded(film > .985 || match);
+  }, []);
+  const onFilmCover = useCallback((v: number) => { cover.current.film = v; syncCover(); }, [syncCover]);
+  const onMatchCover = useCallback((v: boolean) => { cover.current.match = v; syncCover(); }, [syncCover]);
   const toggleSound = async () => {
     if (!sound.current) sound.current = new Soundscape();
     if (sound.current.on) { sound.current.disable(); setSoundOn(false); }
@@ -163,6 +177,7 @@ export function HomePage() {
         if (y >= top - 1) c = i + f;
       });
       api.current.engine?.setChapter(c);
+      cinema.current?.update(c);
       const a = Math.min(sections.length - 1, Math.round(c - .25)); setActive(prev => prev === a ? prev : a);
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(tick); };
@@ -258,6 +273,7 @@ export function HomePage() {
 
   return <main ref={root} className={`hm wd ${ready === false ? 'wd-no-gl' : ''} ${ready ? 'wd-ready' : ''}`} aria-labelledby="hm-title">
     <WorldStage analogues={analogues} shots={buildShots} labels={labels} apiRef={api} onProbe={onProbe} onReady={setReady} launch={launchState} />
+    <CinemaLayer ref={cinema} lang={lang} onAssets={setFilms} onCover={onFilmCover} />
 
     <div className="wd-labels" aria-hidden="true">
       {labelText.map((text, i) => <span key={i} ref={el => { labelRefs.current[i] = el; }} className="wd-label"><i />{text}</span>)}
@@ -369,6 +385,9 @@ export function HomePage() {
         </div>
       </div>
     </section>}
+
+    {/* Same ground, two planets: point at Mars, Earth answers */}
+    <MatchChapter data={data} lang={lang} synthetic={synthetic} films={films.filter(f => f.mode === 'inline')} onCover={onMatchCover} />
 
     {/* 04 — Method */}
     <section data-chapter="4" className="wd-ch wd-ch-long" aria-labelledby="hm-method">

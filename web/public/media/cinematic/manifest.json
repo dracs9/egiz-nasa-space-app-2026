@@ -1,0 +1,15 @@
+{
+  "schema": "egiz.cinema",
+  "version": "2.0.0",
+  "note": "ONE SHOT: eight 8-second Veo 3.1 clips chained end-frame to start-frame. Prompts: docs/cinematic/SCENES.md. The page probes each 'base' for .webm/.mp4 (video) and .jpg (still); a scene with neither is skipped. 'window' is in landing chapter units (chapter index + progress). Modes: 'handoff' plays once then dissolves into the live world; 'scrub' ties the frame to the scroll position; 'inline' clips play in order inside the Same Ground chapter.",
+  "scenes": [
+    { "id": "S1", "name": "Arrival", "group": "hero", "base": "hero/s1-arrival", "mode": "handoff", "window": [0, 0.5], "loop": false, "focus": "62% 50%", "role": "Hero: from black space to the lunar south pole; dissolves into the live measured Moon.", "status": "planned" },
+    { "id": "S2", "name": "The Twin", "group": "earth", "base": "earth/s2-twin", "mode": "scrub", "window": [0.5, 1.12], "loop": false, "focus": "62% 50%", "role": "Into chapter 1: lunar craters become a Death Valley salt pan in one move.", "status": "planned" },
+    { "id": "S3", "name": "Return", "group": "moon", "base": "moon/s3-return", "mode": "scrub", "window": [1.5, 2.1], "loop": false, "focus": "40% 50%", "role": "Into chapter 2: the sky drains to black, back on a lunar crater rim.", "status": "planned" },
+    { "id": "S4", "name": "Passage", "group": "transitions", "base": "transitions/s4-passage", "mode": "scrub", "window": [2.5, 3.1], "loop": false, "focus": "50% 50%", "role": "Moon to Mars through the dust.", "status": "planned" },
+    { "id": "S5", "name": "Jezero", "group": "mars", "base": "mars/s5-jezero", "mode": "scrub", "window": [3.1, 3.97], "loop": false, "focus": "55% 50%", "role": "Chapter 3: the delta at the blue sunset, pure cinema.", "status": "planned" },
+    { "id": "S6", "name": "The Pointing", "group": "missions", "base": "missions/s6-pointing", "mode": "inline", "window": [0, 0], "loop": false, "focus": "50% 50%", "role": "Opens the Same Ground chapter: Mars was a model on a table; a hand points at the crater.", "status": "planned" },
+    { "id": "S7", "name": "The Answer", "group": "missions", "base": "missions/s7-answer", "mode": "inline", "window": [0, 0], "loop": false, "focus": "50% 50%", "role": "The model turns into Earth; the finger rests on the twin. Then the live comparison.", "status": "planned" },
+    { "id": "S8", "name": "Home", "group": "orbital", "base": "orbital/s8-home", "mode": "scrub", "window": [6.9, 7.95], "loop": false, "focus": "50% 60%", "role": "Finale: from the model into real Earth and up to orbit, the Moon above the limb.", "status": "planned" }
+  ]
+}
