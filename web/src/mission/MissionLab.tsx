@@ -100,7 +100,7 @@ import {
   useMissionGuide,
   type GuideStep,
 } from "./MissionGuide";
-import { takeLaunchIntent } from "./launchIntent";
+import { applyOverrides, takeLaunchIntent } from "./launchIntent";
 
 const RESULT_TABS = [
 ['engineering','Design','Rover engineering',Wrench],['dynamics','Dynamics','Native engineering lab',Settings2],['tests','Tests','Experiment test bench',ClipboardCheck],['telemetry','Telemetry','Telemetry charts',ChartNoAxesCombined],['analysis','Analysis','Scientific analysis',FlaskConical],['validation','Earth tests','Earth validation',MapPin],['compare','Compare','Compare & sensitivity',GitCompareArrows],['control','Control','Mission Control',Radio],['experiments','Archive','Saved experiments',FolderOpen],
@@ -276,6 +276,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
   const [bundle, setBundle] = useState<TerrainBundle | null>(null),
     [loadError, setLoadError] = useState(""),
     [attempt, setAttempt] = useState(0);
+  const autorun = useRef(false);
   const [scenario, setScenario] = useState<Scenario | null>(null),
     [archivedTerrain, setArchivedTerrain] = useState<MissionTerrain | null>(
       null,
@@ -409,9 +410,12 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
     const terrain = bundle?.entries.find((e) => e.id === targetId);
     if (!terrain) return;
     cancelWorker.current?.();
-    const intent = takeLaunchIntent() ?? undefined;
-    setScenario(defaultScenario(terrain, intent));
-    setRequirements(defaultRequirements(defaultScenario(terrain, intent)));
+    const launchIntent = takeLaunchIntent();
+    const intent = launchIntent?.mode;
+    const initial = applyOverrides(defaultScenario(terrain, intent), launchIntent?.overrides);
+    autorun.current = Boolean(launchIntent?.autorun);
+    setScenario(initial);
+    setRequirements(defaultRequirements(initial));
     setGuideStep((step) => (step === null ? null : 0));
     setExplorerView("planet");
     setRun(null);
@@ -563,6 +567,12 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
       else setError((e as Error).message);
     }
   };
+  useEffect(() => {
+    if (!autorun.current || !scenario || !terrain || busy || errors.length > 0) return;
+    autorun.current = false;
+    void launch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scenario, terrain, busy, errors.length]);
   const openEngineering = () => {
     setTab("engineering"); setPlaying(false); goView("vehicle");
     document.querySelector(".ml-results")?.scrollIntoView({behavior:"smooth", block:"start"});
@@ -915,6 +925,8 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
       data-presentation={presentation}
       data-view={explorerView}
       data-guide-step={guideStep ?? undefined}
+      data-has-run={run ? "true" : "false"}
+      data-has-archive={library.length > 0 ? "true" : "false"}
     >
       {inspectorOpen&&<Suspense fallback={null}><ModelInspector scenario={scenario} onClose={closeInspector} initialModel={inspectorModel}/></Suspense>}
       <header className="ml-intro ex-mission-header">
@@ -1043,7 +1055,7 @@ export default function MissionLab({ model }: { model: CampaignModel }) {
       <div className="sim-deck" data-scene-panel={scenePanel}>
         <nav className="sim-rail" aria-label={localizeText('Engineering workspaces')}>
           <button className="sim-world-button" aria-label={localizeText('Simulation workspace')} title={localizeText('Simulation workspace')} aria-pressed={activePanel === 'world'} onClick={() => setActivePanel('world')}><Globe2 size={20}/><span>{localizeText('World')}</span></button>
-          {RESULT_TABS.map(([id, shortLabel, label, Icon]) => <button key={id} aria-label={localizeText(label)} title={localizeText(label)} aria-pressed={activePanel === id} onClick={() => {setTab(id); if(id==='engineering') {setPlaying(false);goView('vehicle');}}}><Icon size={19}/><span>{localizeText(shortLabel)}</span>{id === 'compare' && comparison.length > 0 && <b>{comparison.length}</b>}</button>)}
+          {RESULT_TABS.map(([id, shortLabel, label, Icon]) => <button key={id} data-tab={id} aria-label={localizeText(label)} title={localizeText(label)} aria-pressed={activePanel === id} onClick={() => {setTab(id); if(id==='engineering') {setPlaying(false);goView('vehicle');}}}><Icon size={19}/><span>{localizeText(shortLabel)}</span>{id === 'compare' && comparison.length > 0 && <b>{comparison.length}</b>}</button>)}
         </nav>
       <div className="ml-workspace" hidden={!scenePanel}>
         <aside className="ml-setup" hidden={!setupOpen || activePanel !== 'world'}>

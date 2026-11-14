@@ -302,3 +302,57 @@ html .focused-workspace .sim-workbench .ml-modes .ml-mode-index { display: inlin
 @media (max-width: 900px) {
   html .focused-workspace .sim-workbench .ml-modes > button { flex: 0 0 auto; min-width: 170px; }
 }
+
+/* =========================================================
+   Focus pass: fewer words, no empty tabs, clear order.
+   Hidden with CSS only — every feature stays reachable.
+   ========================================================= */
+
+/* Header: title only, no breadcrumb or status chatter */
+.sim-workbench .ex-mission-header .sim-location,
+.sim-workbench .ex-header-meta { display: none !important; }
+.sim-workbench .ex-mission-header { min-height: 56px; }
+
+/* First-visit card: the landing page already explains the lab */
+.sim-workbench .ex-welcome { display: none !important; }
+
+/* Scene: drop captions that repeat the setup panel */
+.sim-workbench .ex-target-card,
+.sim-workbench .ex-orbit-footer,
+.sim-workbench .ml-scene-toolbar > span,
+.sim-workbench .ml-scene-bottom,
+.sim-workbench .ml-scene-title .ml-overline { display: none !important; }
+.sim-workbench .ex-image-credit { opacity: .55; }
+.sim-workbench .ex-image-credit:hover, .sim-workbench .ex-image-credit[open] { opacity: 1; }
+
+/* Timeline: keep controls, drop labels */
+.sim-workbench .chrono-identity,
+.sim-workbench .ex-bookmark-label { display: none !important; }
+.sim-workbench .ex-bookmark-art { display: none !important; }
+
+/* Status bar: keep only the data-source control */
+.sim-workbench .sim-status-chip { display: none !important; }
+
+/* Rail: results appear only after a run; advanced tools sit below a rule */
+.sim-workbench .sim-rail > .sim-world-button { order: 0; }
+.sim-workbench .sim-rail > [data-tab=engineering] { order: 1; }
+.sim-workbench .sim-rail > [data-tab=telemetry] { order: 2; }
+.sim-workbench .sim-rail > [data-tab=analysis] { order: 3; }
+.sim-workbench .sim-rail > [data-tab=compare] { order: 4; }
+.sim-workbench .sim-rail > [data-tab=control] { order: 5; }
+.sim-workbench .sim-rail > [data-tab=tests] { order: 6; margin-top: 10px; }
+.sim-workbench .sim-rail > [data-tab=tests]::after { content: ''; position: absolute; left: 6px; right: 6px; top: -8px; height: 1px; background: var(--lab-rule-strong); }
+.sim-workbench .sim-rail > [data-tab=validation] { order: 7; }
+.sim-workbench .sim-rail > [data-tab=dynamics] { order: 8; }
+.sim-workbench .sim-rail > [data-tab=experiments] { order: 9; }
+.sim-workbench[data-has-run=false] .sim-rail > :is([data-tab=telemetry], [data-tab=analysis], [data-tab=compare], [data-tab=control]):not([aria-pressed=true]) { display: none; }
+.sim-workbench[data-has-archive=false] .sim-rail > [data-tab=experiments]:not([aria-pressed=true]) { display: none; }
+.sim-workbench[data-has-run=true] .sim-rail > [data-tab=telemetry]:not([aria-pressed=true]) { animation: lab-rail-in .6s var(--ease-out) both; }
+@keyframes lab-rail-in { from { opacity: 0; transform: translateX(-6px); } }
+
+/* Panels: lead copy shorter and quieter */
+.sim-workbench .ml-results > header p,
+.sim-workbench .ml-results .panel-intro,
+.sim-workbench .ml-results .ml-tiny { color: var(--lab-ink-3) !important; }
+.sim-workbench .sim-rail button span { white-space: normal !important; text-align: center; line-height: 1.15; overflow: visible !important; text-overflow: clip !important; max-width: 60px; word-break: break-word; }
+.sim-workbench .sim-rail button span { font-size: 7.5px !important; letter-spacing: 0 !important; word-break: normal; overflow-wrap: normal; max-width: 64px; }

@@ -209,57 +209,86 @@
 .hm-hero-title { margin: 18px 0 22px; font-size: clamp(54px, 8.4vw, 132px); }
 .hm-hero-lede { margin-bottom: 30px; }
 
-.hm-expeditions { position: relative; padding: 0 var(--gutter) clamp(20px, 3.5vh, 36px); }
-.hm-exp-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 14px; }
-.hm-dest { display: flex; gap: 0; border: 1px solid var(--rule-strong); background: rgba(0,0,0,.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-.hm-dest button { display: flex; align-items: baseline; gap: 10px; padding: 9px 16px; color: var(--paper-3); transition: color .3s ease, background-color .4s var(--ease-out); }
-.hm-dest button span { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
-.hm-dest button small { font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; opacity: .8; }
-.hm-dest button:hover { color: var(--paper); }
-.hm-dest button[aria-checked=true] { background: var(--paper); color: #000; }
-.hm-exp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule-strong); }
-.hm-exp-list li + li { border-left: 1px solid var(--rule); }
-.hm-exp-list button { position: relative; width: 100%; height: 100%; display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; column-gap: 14px; row-gap: 4px; padding: 20px 22px 20px 0; text-align: left; color: var(--paper); isolation: isolate; overflow: hidden; }
-.hm-exp-list li + li button { padding-left: 22px; }
-.hm-exp-list button::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .5s var(--ease-out); }
-.hm-exp-list button:hover::before, .hm-exp-list button:focus-visible::before { transform: scaleY(1); }
-.hm-exp-list button:hover, .hm-exp-list button:focus-visible { color: #000; }
-.hm-exp-list li:first-child button:hover, .hm-exp-list li:first-child button:focus-visible { padding-left: 14px; }
-.hm-exp-list button { transition: color .35s ease, padding .5s var(--ease-out); }
-.hm-exp-n { position: absolute; top: 12px; right: 14px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; color: var(--paper-3); }
-.hm-exp-list button:hover .hm-exp-n { color: #555; }
-.hm-exp-list .mission-glyph { grid-row: span 2; width: 46px; height: 35px; opacity: .9; }
-.hm-exp-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.1; }
-.hm-exp-text { grid-column: 2; font-size: 12.5px; line-height: 1.4; color: var(--paper-3); }
-.hm-exp-list button:hover .hm-exp-text, .hm-exp-list button:focus-visible .hm-exp-text { color: #333; }
-.hm-exp-arrow { grid-column: 3; grid-row: 1 / span 2; transform: translateX(-6px); opacity: 0; transition: transform .5s var(--ease-out), opacity .3s ease; }
-.hm-exp-list button:hover .hm-exp-arrow, .hm-exp-list button:focus-visible .hm-exp-arrow { transform: none; opacity: 1; }
 .hm-swap { animation-duration: .9s !important; }
 .hm-hero .hm-scroll { display: none; }
 
-@media (max-width: 1100px) {
-  .hm-exp-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hm-exp-list li:nth-child(3) { border-left: 0; }
-  .hm-exp-list li:nth-child(n+3) { border-top: 1px solid var(--rule); }
-  .hm-exp-list li:nth-child(3) button { padding-left: 0; }
-}
-@media (max-width: 760px) {
-  .hm-hero-copy { padding-bottom: 28px; }
-  .hm-hero-plate-mars img { object-position: 80% 30%; }
-  .hm-exp-head { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .hm-dest { width: 100%; }
-  .hm-dest button { flex: 1; justify-content: center; flex-direction: column; align-items: center; gap: 2px; padding: 8px 6px; }
-  .hm-exp-list button { grid-template-columns: auto 1fr; padding: 14px 10px 14px 0; column-gap: 10px; }
-  .hm-exp-list li + li button, .hm-exp-list li:nth-child(3) button { padding-left: 10px; }
-  .hm-exp-list li:nth-child(3) button { padding-left: 0; }
-  .hm-exp-list .mission-glyph { width: 34px; height: 26px; grid-row: 1; }
-  .hm-exp-title { font-size: 14px; letter-spacing: .05em; }
-  .hm-exp-text { display: none; }
-  .hm-exp-arrow { display: none; }
-  .hm-exp-n { display: none; }
-}
 .hm-hero-title { font-size: clamp(48px, 6.6vw, 112px); }
 .hm-hero-shade { background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,0) 62%), linear-gradient(0deg, #000 0%, rgba(0,0,0,.65) 22%, rgba(0,0,0,0) 46%); }
 .hm-dest { background: rgba(0,0,0,.62); }
 @media (max-width: 760px) { .hm-hero-shade { background: linear-gradient(0deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.1) 78%); } }
 @media (max-width: 760px) { .hm-dest button small { display: none; } .hm-dest button { padding: 11px 6px; } }
+
+/* ---------- Hero mission console ---------- */
+.hm-hero-title { font-size: clamp(46px, 6vw, 104px); margin: 16px 0 20px; }
+.hm-hero-copy { padding-bottom: clamp(28px, 4.5vh, 52px); max-width: 1100px; }
+.hm-hero-lede { margin-bottom: 0; max-width: 520px; }
+.hm-console { padding: 0 var(--gutter) clamp(18px, 3vh, 30px); }
+.hm-console-row { display: grid; border-top: 1px solid var(--rule-strong); }
+.hm-console-top { grid-template-columns: minmax(260px, 3fr) minmax(0, 9fr); }
+.hm-console-bottom { grid-template-columns: minmax(0, 9fr) minmax(260px, 3fr); background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.25)); }
+.hm-step { padding: 16px 24px 18px 0; min-width: 0; }
+.hm-step + .hm-step, .hm-console-bottom .hm-launch { border-left: 1px solid var(--rule); padding-left: 24px; }
+.hm-step-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-3); }
+.hm-step-label b { font-weight: 500; color: var(--paper); }
+.hm-dest { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule-strong); background: rgba(0,0,0,.55); }
+.hm-dest button { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 14px; }
+.hm-dest button + button { border-left: 1px solid var(--rule-strong); }
+.hm-dest button small { font-size: 9.5px; }
+.hm-exp-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--rule-strong); background: rgba(0,0,0,.55); border-top: 1px solid var(--rule-strong); }
+.hm-exp-list button { position: relative; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 16px; text-align: left; color: var(--paper-3); isolation: isolate; overflow: hidden; transition: color .35s ease; }
+.hm-exp-list button + button { border-left: 1px solid var(--rule-strong); }
+.hm-exp-list button::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .45s var(--ease-out); }
+.hm-exp-list button:hover { color: var(--paper); }
+.hm-exp-list button[aria-checked=true] { color: #000; }
+.hm-exp-list button[aria-checked=true]::before { transform: scaleY(1); }
+.hm-exp-list .mission-glyph { width: 34px; height: 26px; flex-shrink: 0; }
+.hm-exp-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; line-height: 1.1; }
+.hm-params { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+.hm-param { display: block; min-width: 0; }
+.hm-param-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.hm-param-head > span { font-size: 13px; color: var(--paper-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hm-param output { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: .02em; color: var(--paper); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hm-param output small { font-family: var(--font-mono); font-weight: 400; font-size: 10.5px; color: var(--paper-3); letter-spacing: .06em; }
+.hm-param input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 20px; background: transparent; margin: 0; cursor: pointer; }
+.hm-param input[type=range]::-webkit-slider-runnable-track { height: 1px; background: linear-gradient(90deg, var(--paper) var(--fill), rgba(240,240,245,.25) var(--fill)); }
+.hm-param input[type=range]::-moz-range-track { height: 1px; background: rgba(240,240,245,.25); }
+.hm-param input[type=range]::-moz-range-progress { height: 1px; background: var(--paper); }
+.hm-param input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -5.5px; background: var(--paper); border: 0; border-radius: 0; transition: transform .2s ease; }
+.hm-param input[type=range]::-moz-range-thumb { width: 12px; height: 12px; background: var(--paper); border: 0; border-radius: 0; }
+.hm-param input[type=range]:hover::-webkit-slider-thumb, .hm-param input[type=range]:focus-visible::-webkit-slider-thumb { transform: scale(1.35); }
+.hm-param input[type=range]:focus-visible { outline: none; }
+.hm-param input[type=range]:focus-visible::-webkit-slider-runnable-track { box-shadow: 0 0 0 3px rgba(240,240,245,.18); }
+.hm-launch { display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: 8px; padding: 16px 0 16px 24px; }
+.hm-launch-button { justify-content: space-between; background: var(--paper); color: #000; min-height: 54px; }
+.hm-launch-button::before { background: #000; }
+.hm-launch-button:hover, .hm-launch-button:focus-visible { color: var(--paper); }
+.hm-launch .eg-button.quiet { min-height: 30px; font-size: 11.5px; color: var(--paper-2); align-self: flex-start; }
+
+@media (max-width: 1100px) {
+  .hm-console-top { grid-template-columns: 1fr; }
+  .hm-console-top .hm-step + .hm-step { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 14px; }
+  .hm-console-bottom { grid-template-columns: 1fr; }
+  .hm-console-bottom .hm-launch { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
+}
+@media (max-width: 760px) {
+  .hm-hero-copy { padding-bottom: 22px; }
+  .hm-hero-lede { font-size: 14.5px; }
+  .hm-exp-list { grid-template-columns: 1fr 1fr; }
+  .hm-exp-list button:nth-child(3) { border-left: 0; }
+  .hm-exp-list button:nth-child(n+3) { border-top: 1px solid var(--rule-strong); }
+  .hm-exp-list button { padding: 8px 10px; gap: 8px; min-height: 48px; }
+  .hm-exp-list .mission-glyph { width: 28px; height: 22px; }
+  .hm-exp-title { font-size: 12.5px; letter-spacing: .04em; }
+  .hm-params { grid-template-columns: 1fr; gap: 14px; }
+  .hm-param output { font-size: 19px; }
+  .hm-dest button small { display: none; }
+}
+.hm .hm-launch-button { background: var(--paper); color: #000; border-color: var(--paper); }
+.hm .hm-launch-button::before { background: #000; }
+.hm .hm-launch-button:hover, .hm .hm-launch-button:focus-visible { color: var(--paper); }
+.hm-dest button { color: var(--paper-3); transition: color .3s ease, background-color .4s var(--ease-out); }
+.hm-dest button span { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+.hm-dest button small { font-family: var(--font-mono); letter-spacing: .04em; opacity: .85; }
+.hm-dest button:hover { color: var(--paper); }
+.hm-dest button[aria-checked=true] { background: var(--paper); color: #000; }
+.hm-dest button small { display: none; } .hm-dest button { justify-content: center; min-height: 52px; }
