@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W158.759_N60.760",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:13Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:15Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:16Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:17Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    1.77,
+    1.5,
+    2.0,
+    10.82,
+    21.6,
+    27.48,
+    28.49,
+    26.04,
+    19.41,
+    12.33,
+    5.53,
+    2.15
+   ],
+   "t2m_min_c": [
+    -43.65,
+    -41.78,
+    -36.46,
+    -30.73,
+    -17.62,
+    -3.16,
+    2.21,
+    -1.44,
+    -5.91,
+    -23.98,
+    -34.75,
+    -40.39
+   ],
+   "t2m_c": [
+    -15.94,
+    -12.14,
+    -12.01,
+    -3.89,
+    4.57,
+    10.82,
+    12.31,
+    10.68,
+    5.58,
+    -1.74,
+    -10.63,
+    -14.1
+   ],
+   "precip_rate_mm_per_day": [
+    1.43,
+    1.8,
+    1.31,
+    1.61,
+    1.84,
+    2.41,
+    2.97,
+    3.25,
+    2.95,
+    2.55,
+    2.19,
+    1.96
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-158.7590&latitude=60.7600&format=JSON",
+  "accessed": "2026-11-07T17:29:16Z",
+  "sha256": "6c98c6874292e1f1aa1c40d5f2d077fe55303b982612e0e20e317cadc12c83dd"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=60.76000&lng=-158.75900",
+  "map_id": 1691721,
+  "source_id": 21,
+  "source_ref": "Wilson, F.H., Hults, C.P., Mull, C.G, and Karl, S.M. (compilers) (2015). Geologic map of Alaska.  U.S. Geological Survey Scientific Investigations Map 3340, pamphlet 196 doi: 10.3133/sim3340",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:29:17Z"
+ }
+}

@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W090.243_N54.752",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:03Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:05Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:06Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:11Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -1.25,
+    0.1,
+    9.5,
+    24.32,
+    27.81,
+    34.48,
+    32.68,
+    34.07,
+    29.87,
+    22.32,
+    5.97,
+    -0.33
+   ],
+   "t2m_min_c": [
+    -51.79,
+    -45.07,
+    -47.97,
+    -29.84,
+    -15.98,
+    -4.6,
+    0.06,
+    -0.05,
+    -5.13,
+    -16.4,
+    -38.56,
+    -48.35
+   ],
+   "t2m_c": [
+    -24.6,
+    -22.64,
+    -14.41,
+    -5.07,
+    4.35,
+    11.71,
+    15.3,
+    13.57,
+    7.95,
+    0.12,
+    -10.57,
+    -20.94
+   ],
+   "precip_rate_mm_per_day": [
+    0.7,
+    0.59,
+    0.99,
+    1.1,
+    2.04,
+    2.64,
+    3.15,
+    3.01,
+    2.58,
+    1.99,
+    1.21,
+    0.83
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-90.2430&latitude=54.7520&format=JSON",
+  "accessed": "2026-11-07T17:30:06Z",
+  "sha256": "aabae7918b9caf18ac33c9d1957f9b7a74b625dce5609e3e62e7cc5d12f22b6c"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=54.75200&lng=-90.24300",
+  "map_id": 614519,
+  "source_id": 1,
+  "source_ref": "Ontario Geological Survey (2011). 1:250 000 scale bedrock geology of Ontario. Miscellaneous Release–Data 126 - Revision 1 ISBN 978-1-4435-5705-4",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:30:09Z"
+ }
+}

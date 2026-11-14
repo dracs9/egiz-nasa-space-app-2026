@@ -1,0 +1,144 @@
+{
+ "aoi_id": "SM_W047.719_N77.711",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:18Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:21Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:21Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:23Z"
+  }
+ },
+ "missing": {
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_interval_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_top_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_bottom_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -12.31,
+    -9.98,
+    -14.24,
+    -9.14,
+    -4.63,
+    -0.66,
+    0.39,
+    -1.86,
+    -6.59,
+    -8.8,
+    -8.7,
+    -14.62
+   ],
+   "t2m_min_c": [
+    -55.69,
+    -57.21,
+    -56.12,
+    -50.13,
+    -39.16,
+    -24.53,
+    -20.25,
+    -28.79,
+    -40.14,
+    -47.17,
+    -49.34,
+    -55.63
+   ],
+   "t2m_c": [
+    -38.07,
+    -38.45,
+    -37.6,
+    -30.25,
+    -19.78,
+    -11.93,
+    -10.17,
+    -14.39,
+    -23.2,
+    -29.56,
+    -35.18,
+    -37.23
+   ],
+   "precip_rate_mm_per_day": [
+    0.22,
+    0.2,
+    0.25,
+    0.29,
+    0.4,
+    0.62,
+    0.65,
+    0.88,
+    0.46,
+    0.48,
+    0.32,
+    0.25
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-47.7190&latitude=77.7110&format=JSON",
+  "accessed": "2026-11-07T17:30:21Z",
+  "sha256": "bc08efe49a2a399a408a707549314c5cd4be22221962ddcc5f65b8c187e1122d"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=77.71100&lng=-47.71900",
+  "map_id": 648142,
+  "source_id": 2,
+  "source_ref": "J.C. Harrison, M.R. St-Onge, O.V. Petrov, S.I. Strelnikov, B.G. Lopatin, \nF.H. Wilson, S. Tella, D. Paul, T. Lynds, S.P. Shokalsky, C.K. Hults, \nS. Bergman, H.F. Jepsen, and A. Solli (2011). Geological map of the Arctic. Geological Survey of Canada Map 2159A doi:10.4095/287868",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:30:23Z"
+ }
+}

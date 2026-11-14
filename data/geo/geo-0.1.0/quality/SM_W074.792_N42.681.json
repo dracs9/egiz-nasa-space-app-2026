@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W074.792_N42.681",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:22Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:25Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:26Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:30Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    16.65,
+    19.92,
+    21.67,
+    27.93,
+    29.53,
+    31.15,
+    32.7,
+    33.89,
+    32.16,
+    28.07,
+    20.6,
+    17.76
+   ],
+   "t2m_min_c": [
+    -27.85,
+    -27.55,
+    -25.09,
+    -14.28,
+    -3.88,
+    0.36,
+    6.15,
+    6.04,
+    -0.25,
+    -8.55,
+    -19.97,
+    -21.78
+   ],
+   "t2m_c": [
+    -6.61,
+    -5.72,
+    -1.31,
+    5.69,
+    12.56,
+    17.27,
+    19.91,
+    19.23,
+    15.66,
+    8.74,
+    2.42,
+    -3.1
+   ],
+   "precip_rate_mm_per_day": [
+    2.26,
+    2.42,
+    2.62,
+    3.07,
+    3.18,
+    4.06,
+    3.69,
+    3.84,
+    3.58,
+    3.71,
+    2.67,
+    2.92
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-74.7920&latitude=42.6810&format=JSON",
+  "accessed": "2026-11-07T17:31:26Z",
+  "sha256": "30f08a7e03f1bd346946419794187b57b1064301eae3ff565b894a2aa3117e65"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=42.68100&lng=-74.79200",
+  "map_id": 4099236,
+  "source_id": 526,
+  "source_ref": "(2023). Jackson, R.L, and Doctor, D.H., 2023, A geodatabase representing a compilation of Cadwell, D.H., and others, 1991, Surficial Geology of New York; New York State Museum Map and Chart Series 40, scale 1:250,000, 5 sheets.: U.S. Geological Survey data release, https://doi.org/10.5066/P9KM842E.",
+  "n_units_at_point": 6,
+  "accessed": "2026-11-07T17:31:29Z"
+ }
+}

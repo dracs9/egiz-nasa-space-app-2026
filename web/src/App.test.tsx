@@ -83,7 +83,7 @@ describe('explicit data source selection', () => {
     await act(async () => { toggle.click(); }); expect(toggle.getAttribute('aria-expanded')).toBe('true');
     await act(async () => { window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })); });
     expect(toggle.getAttribute('aria-expanded')).toBe('false'); expect(document.activeElement).toBe(toggle);
-    await act(async () => { [...document.querySelectorAll<HTMLButtonElement>('nav button')].find(button => button.textContent?.includes('Evidence'))!.click(); });
+    await act(async () => { [...document.querySelectorAll<HTMLButtonElement>('nav button')].find(button => button.textContent?.includes('Sources & Limits'))!.click(); });
     expect(document.activeElement?.tagName).toBe('H1');
   });
 });

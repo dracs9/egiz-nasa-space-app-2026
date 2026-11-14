@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "egiz.ml.discovery_result/0.1.0",
+  "title": "EGIZ ML discovery result (DRAFT)",
+  "description": "One ranked list of Earth candidates for one planetary target and one mission profile. Score components are kept separate; no single opaque confidence. Written with AI assistance (Claude Code); human review pending.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schema_version", "status", "run_id", "created_at", "method", "dataset", "target",
+               "mission_profile", "component_definitions", "ranking", "candidates",
+               "physical_non_equivalence", "limitations"],
+  "$defs": {
+    "status": {"enum": ["computed", "exploratory", "not_available", "not_applicable"]},
+    "provenance_class": {"enum": ["observed", "derived", "proxy", "simulated", "synthetic"]},
+    "nullable_unit": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "component": {
+      "type": "object",
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "value": {},
+        "reason": {"type": ["string", "null"]},
+        "provenance_class": {"$ref": "#/$defs/provenance_class"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"enum": ["not_available", "not_applicable"]}}},
+         "then": {"properties": {"value": {"type": "null"}}, "required": ["reason"]}}
+      ]
+    },
+    "constraint_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attr", "op", "threshold", "value", "passed"],
+      "properties": {
+        "attr": {"type": "string"},
+        "op": {"enum": ["<=", ">="]},
+        "threshold": {"type": "number"},
+        "value": {"type": ["number", "null"]},
+        "passed": {"type": ["boolean", "null"]}
+      }
+    },
+    "attribute_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attr", "earth_value", "target_value", "fidelity", "weight", "log_contribution"],
+      "properties": {
+        "attr": {"type": "string"},
+        "earth_value": {"type": ["number", "null"]},
+        "target_value": {"type": ["number", "null"]},
+        "fidelity": {"$ref": "#/$defs/nullable_unit"},
+        "weight": {"type": "number", "exclusiveMinimum": 0},
+        "log_contribution": {"type": ["number", "null"], "maximum": 0},
+        "target_source": {"type": ["string", "null"]}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rank", "aoi_id", "name", "lon", "lat", "pool", "eligible", "components", "explanation"],
+      "properties": {
+        "rank": {"type": ["integer", "null"], "minimum": 1},
+        "aoi_id": {"type": "string"},
+        "name": {"type": "string"},
+        "country": {"type": ["string", "null"]},
+        "lon": {"type": "number"},
+        "lat": {"type": "number"},
+        "pool": {"type": "string"},
+        "site_id": {"type": ["string", "null"]},
+        "group_id": {"type": ["string", "null"], "description": "Spatial block for leakage-safe splits (geo release)"},
+        "coverage_level": {"type": ["string", "null"]},
+        "eligible": {"type": "boolean"},
+        "ineligible_reason": {"type": ["string", "null"]},
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["deterministic_fidelity", "learned_similarity", "environmental_similarity",
+                       "geological_similarity", "operational_suitability", "novelty",
+                       "data_completeness", "ranking_stability"],
+          "properties": {
+            "deterministic_fidelity": {"$ref": "#/$defs/component"},
+            "learned_similarity": {"$ref": "#/$defs/component"},
+            "environmental_similarity": {"$ref": "#/$defs/component"},
+            "geological_similarity": {"$ref": "#/$defs/component"},
+            "operational_suitability": {
+              "allOf": [{"$ref": "#/$defs/component"}],
+              "properties": {
+                "value": {"type": ["boolean", "null"]},
+                "constraints": {"type": "array", "items": {"$ref": "#/$defs/constraint_check"}}
+              }
+            },
+            "novelty": {"$ref": "#/$defs/component"},
+            "data_completeness": {
+              "allOf": [{"$ref": "#/$defs/component"}],
+              "properties": {
+                "value": {"$ref": "#/$defs/nullable_unit"},
+                "missing_fields": {"type": "array", "items": {"type": "string"}}
+              }
+            },
+            "ranking_stability": {
+              "allOf": [{"$ref": "#/$defs/component"}],
+              "properties": {
+                "value": {"type": ["object", "null"],
+                          "properties": {
+                            "top1_frequency": {"type": "number", "minimum": 0, "maximum": 1},
+                            "topk_frequency": {"type": "number", "minimum": 0, "maximum": 1},
+                            "k": {"type": "integer", "minimum": 1},
+                            "median_rank": {"type": "number", "minimum": 1},
+                            "rank_p05": {"type": "number", "minimum": 1},
+                            "rank_p95": {"type": "number", "minimum": 1},
+                            "draws": {"type": "integer", "minimum": 1}
+                          }}
+              }
+            }
+          }
+        },
+        "explanation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["matching", "mismatches", "attributes", "missing_fields"],
+          "properties": {
+            "matching": {"type": "array", "items": {"type": "string"}},
+            "mismatches": {"type": "array", "items": {"type": "string"}},
+            "attributes": {"type": "array", "items": {"$ref": "#/$defs/attribute_evidence"}},
+            "missing_fields": {"type": "array", "items": {"type": "string"}},
+            "context": {
+              "type": "object",
+              "description": "Labelled context not used in F (e.g. modelled climate, map-category geology)",
+              "additionalProperties": {
+                "type": "object",
+                "required": ["evidence", "values"],
+                "properties": {"evidence": {"enum": ["observed", "derived", "proxy", "modelled"]},
+                               "values": {"type": "object"}, "note": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "schema": {"const": "egiz.ml.discovery_result"},
+    "schema_version": {"const": "0.1.0"},
+    "status": {"enum": ["DRAFT", "agreed"]},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+    "created_at": {"type": "string"},
+    "method": {
+      "type": "object",
+      "required": ["name", "version", "engine_version", "config"],
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "string"},
+        "engine_version": {"type": "string"},
+        "config": {"type": "object"}
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "required": ["path", "synthetic", "provenance_class", "files", "candidate_count", "eligible_count",
+                   "skipped", "engine_results_consistent", "sources"],
+      "properties": {
+        "path": {"type": "string"},
+        "kind": {"enum": ["contract", "geo"]},
+        "dataset_version": {"type": ["string", "null"]},
+        "synthetic": {"type": "boolean"},
+        "provenance_class": {"$ref": "#/$defs/provenance_class"},
+        "files": {"type": "object", "additionalProperties": {
+          "type": "object", "required": ["sha256"],
+          "properties": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                         "schema": {"type": ["string", "null"]}, "version": {"type": ["string", "null"]}}}},
+        "candidate_count": {"type": "integer", "minimum": 0},
+        "eligible_count": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "array", "items": {"type": "object", "required": ["id", "reason"]}},
+        "engine_results_consistent": {"type": ["boolean", "null"]},
+        "sources": {"type": "array", "items": {"type": "object", "required": ["id", "dataset", "role"]}}
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["id", "body", "name"],
+      "properties": {"id": {"type": "string"}, "body": {"enum": ["moon", "mars"]}, "name": {"type": "string"},
+                     "kind": {"type": ["string", "null"]}, "lon": {"type": "number"}, "lat": {"type": "number"}}
+    },
+    "mission_profile": {
+      "type": "object",
+      "required": ["id", "template_id", "objective_id", "name", "attributes", "constraints"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z0-9_]+/[A-Z0-9_]+$"},
+        "template_id": {"type": "string"},
+        "objective_id": {"type": "string"},
+        "name": {"type": "string"},
+        "attributes": {"type": "array"},
+        "constraints": {"type": "array"}
+      }
+    },
+    "component_definitions": {"type": "object", "additionalProperties": {
+      "type": "object", "required": ["definition", "range", "status"],
+      "properties": {"definition": {"type": "string"}, "range": {"type": "string"},
+                     "status": {"$ref": "#/$defs/status"}, "provenance_class": {"$ref": "#/$defs/provenance_class"},
+                     "reason": {"type": ["string", "null"]}}}},
+    "ranking": {
+      "type": "object",
+      "required": ["primary_component", "order"],
+      "properties": {"primary_component": {"type": "string"}, "order": {"type": "string"}}
+    },
+    "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}},
+    "physical_non_equivalence": {"type": "array", "items": {
+      "type": "object", "required": ["gap", "alternative"],
+      "properties": {"gap": {"type": "string"}, "alternative": {"type": "string"}, "source": {"type": ["string", "null"]}}}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

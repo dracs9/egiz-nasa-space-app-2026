@@ -58,6 +58,6 @@ it('downloads the displayed fixture campaign with disclosure, correct roles and 
   expect(payload.campaign).toEqual(campaign);
   for (const site of payload.campaign.sites) expect(site.roles).toEqual(campaign.per_objective.filter(o => o.site === site.id).map(o => o.objective));
   for (const objective of payload.campaign.per_objective) if (objective.site) expect(objective.F).toBe(run.fidelity[objective.objective][objective.site].F);
-  expect(payload.limitations).toContain('Suitability not assessed: access, permits, safety.');
+  expect(payload.limitations).toContain('Not yet assessed: access, permits and safety.');
   expect(revokeObjectURL).not.toHaveBeenCalled(); revoke(); expect(revokeObjectURL).toHaveBeenCalledWith('blob:egiz-export-test');
 });

@@ -8,6 +8,10 @@ Design an Earth test campaign for a Moon base region or a Mars landing site. Egi
 
 **15 October rules review:** the official 2026 FAQ and Team Formation Guide prohibit beginning challenge work before **14 November, 09:00 local time**. The user subsequently explicitly authorized further local development (DEC-029). This is not organizer permission: competition eligibility of the October prototype remains unresolved. See the [verified rules audit](docs/competition/CURRENT_RULES_AUDIT_2026_10_15.md), [readiness findings](docs/audit/FINAL_READINESS_AUDIT_2026_10_15.md), and [unsent organizer questions](docs/competition/ORGANIZER_CLARIFICATION_DRAFT.md). Files and their actual chronology are preserved.
 
+## Discover · Earth-wide analog search · 14 November 2026
+
+Open **Discover** (`/#/discover`). EGIZ now searches a measured Earth-wide index — a near-equal-area global lattice, a dense Kazakhstan lattice, published analog sites and the geo-0.1.0 windows, all processed with Copernicus GLO-30, ESA WorldCover, NASA POWER and Macrostrat — for analogs of ten lunar and Martian targets. Each candidate gets eight independently scored dimensions with Monte Carlo uncertainty, Earth-wide percentiles, rarity, novelty, a separate operational axis, a computed gap ledger and a rover experiment; four further dimensions are honestly reported as not assessed. A tool-grounded research assistant (optional server-side language model) explains results, and a published-analog benchmark reports how well the method recovers known sites. Read the [user guide and reproduction steps](docs/discovery/README.md), [methodology](docs/discovery/METHODOLOGY.md), [datasets](docs/discovery/DATASETS.md), [actual results and validation](docs/discovery/RESULTS.md) and [limitations](docs/discovery/LIMITATIONS.md).
+
 ## Run locally
 
 Requires Python 3.11+ and Node.js 24.14.1+ (the pinned optional Open MCT distribution requires this Node version; tested with Python 3.13 and Node 24.14.1).
@@ -92,3 +96,28 @@ The existing **Tests** workspace now searches feasible operating modes under fix
 node tools/benchmark_operating.mjs
 node tools/reproduce_operating.mjs artifacts/next-MOON_MONS_MOUTON.json
 ```
+
+### ATLAS-Π mission-conditioned transferability · 13 November 2026
+
+Open **Transferability** (`/#/atlas?data=pilot`). ATLAS-Π assesses each measured Earth window against Mons Mouton and Jezero **per mission task** (route planning, hazard mapping, wheel–soil, EVA geology, sampling, solar siting, low-Sun operations, comms, habitat layout, excavation, dust, cold-dry operations). Similarity, evidence coverage, evidence quality, resolution and physics stay separate axes. Rule-based statuses are SUPPORTED, CONDITIONAL, WEAK, NON_TRANSFERABLE or UNKNOWN.
+
+The workspace adds:
+
+- content-addressed certificates with an evidence trace to hashed source files;
+- a complementary analog-constellation optimiser with baselines, Pareto alternatives and uncovered/lab-only requirements;
+- counterfactual terramechanics and Same-Sun decomposition (SPICE);
+- an EVPI-ranked field-measurement plan;
+- a deterministic scientific red team;
+- a Kazakhstan coarse-to-fine discovery screen;
+- downloadable dossiers.
+
+No generative model or paid service is used.
+
+```bash
+make atlas            # build data/pilot/atlas_pi.json and package it
+make atlas-verify     # rebuild in memory and compare the content hash
+make atlas-check      # Python + web tests for ATLAS-Π
+make atlas-discover   # optional, network: Copernicus public COGs (Mangystau/Ustyurt)
+```
+
+Measured results, failures and caveats are in [validation](docs/research/ATLAS_PI_VALIDATION_REPORT.md). Also see the [review](docs/research/ATLAS_PI_RESEARCH_REVIEW.md), [prior art](docs/research/ATLAS_PI_PRIOR_ART.md), [hypotheses](docs/research/ATLAS_PI_SCIENTIFIC_HYPOTHESES.md), [architecture](docs/research/ATLAS_PI_ARCHITECTURE_DECISIONS.md), [model card](docs/research/ATLAS_PI_MODEL_CARD.md), [provenance](docs/research/ATLAS_PI_DATA_PROVENANCE.md) and [limitations](docs/research/ATLAS_PI_LIMITATIONS.md). This is exploratory research software: no recommendation has been field-validated.

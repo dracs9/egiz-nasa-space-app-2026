@@ -1,0 +1,148 @@
+{
+ "aoi_id": "SM_W114.316_N74.378",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L1_dem",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:37Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:39Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:40Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:41Z"
+  }
+ },
+ "missing": {
+  "tree_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "crop_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "built_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "bare_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "snow_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "water_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "grass_shrub_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "moss_lichen_frac": "WorldCover classified coverage < 99% (ocean or tile gap)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -7.1,
+    -7.82,
+    -4.66,
+    0.07,
+    0.78,
+    7.59,
+    11.35,
+    11.16,
+    2.57,
+    0.3,
+    -5.3,
+    -6.92
+   ],
+   "t2m_min_c": [
+    -42.35,
+    -42.12,
+    -44.8,
+    -32.83,
+    -22.36,
+    -9.66,
+    -2.74,
+    -6.15,
+    -15.2,
+    -29.9,
+    -36.83,
+    -38.8
+   ],
+   "t2m_c": [
+    -26.61,
+    -26.94,
+    -24.59,
+    -17.14,
+    -7.23,
+    0.33,
+    2.62,
+    0.89,
+    -3.88,
+    -13.32,
+    -20.94,
+    -25.1
+   ],
+   "precip_rate_mm_per_day": [
+    0.44,
+    0.42,
+    0.47,
+    0.46,
+    0.6,
+    1.0,
+    1.66,
+    1.49,
+    1.02,
+    0.79,
+    0.57,
+    0.51
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-114.3160&latitude=74.3780&format=JSON",
+  "accessed": "2026-11-07T17:29:40Z",
+  "sha256": "a2270f95fcf990e3b147b73d2b43bc0f3e29953b3404b080c414c68425086872"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=74.37800&lng=-114.31600",
+  "map_id": 648016,
+  "source_id": 2,
+  "source_ref": "J.C. Harrison, M.R. St-Onge, O.V. Petrov, S.I. Strelnikov, B.G. Lopatin, \nF.H. Wilson, S. Tella, D. Paul, T. Lynds, S.P. Shokalsky, C.K. Hults, \nS. Bergman, H.F. Jepsen, and A. Solli (2011). Geological map of the Arctic. Geological Survey of Canada Map 2159A doi:10.4095/287868",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:29:41Z"
+ }
+}

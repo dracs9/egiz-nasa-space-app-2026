@@ -2,70 +2,74 @@
   "brand": {
     "name": "Egiz",
     "tagline": "Earth, before elsewhere.",
-    "version": "PLANETARY EXPERIMENTS / V0.2"
+    "version": "FIELD RESEARCH PROTOTYPE · V0.2"
   },
   "nav": {
     "home": "Home",
-    "brief": "Mission brief",
-    "campaign": "Campaign",
-    "matrix": "Fidelity matrix",
-    "evidence": "Evidence",
+    "brief": "Mission Brief",
+    "campaign": "Field Campaign",
+    "matrix": "Fidelity Matrix",
+    "evidence": "Sources & Limits",
     "twin": "Same Sun",
-    "lab": "Engineering lab"
+    "lab": "Engineering Lab",
+    "atlas": "Transferability",
+    "studio": "Lunar World",
+    "astral": "Mission Studio",
+    "discover": "Discover"
   },
   "common": {
-    "synthetic": "SYNTHETIC DEMO DATA — not NASA observations",
-    "syntheticDetail": "Invented inputs demonstrate the workflow. These are not validated site recommendations.",
-    "suitability": "Suitability not assessed: access, permits, safety.",
-    "snow": "Snow not assessed.",
-    "independent": "Independent student project for NASA Space Apps Challenge 2026. Not affiliated with or endorsed by NASA.",
-    "loading": "Loading mission data…",
-    "retry": "Retry data loading",
+    "synthetic": "DEMO DATA — invented for illustration, not NASA observations",
+    "syntheticDetail": "These inputs only show how the tool works. They are not site recommendations.",
+    "suitability": "Not yet assessed: access, permits and safety.",
+    "snow": "Snow cover not assessed.",
+    "independent": "An independent student project for the NASA Space Apps Challenge 2026. Not affiliated with or endorsed by NASA.",
+    "loading": "Loading terrain and mission data…",
+    "retry": "Try again",
     "missing": "missing",
-    "offline": "Basemap unavailable · local data remain available"
+    "offline": "Satellite map offline · your data is still here"
   },
   "campaign": {
-    "eyebrow": "EARTH ANALOGUE CAMPAIGN PLANNER",
-    "title": "Your mission, rehearsed on Earth.",
-    "subtitle": "Find a small set of places to rehearse your mission. Know what each site can test — and what Earth cannot.",
-    "objectives": "Mission objectives",
-    "objectiveSubtitle": "How well Earth can rehearse each test",
-    "ceiling": "Earth ceiling",
-    "sites": "Campaign sites",
-    "coverage": "Campaign coverage",
-    "gaps": "What Earth cannot test",
-    "gapsSubtitle": "Plan these conditions in a lab.",
+    "eyebrow": "FIELD CAMPAIGN",
+    "title": "Where on Earth does your mission begin?",
+    "subtitle": "Choose what the crew must practise. EGIZ finds the fewest places on Earth that cover it — and shows what none of them can.",
+    "objectives": "What the crew must practise",
+    "objectiveSubtitle": "How closely Earth can rehearse each one",
+    "ceiling": "Best on Earth",
+    "sites": "Field sites",
+    "coverage": "Coverage",
+    "gaps": "What Earth cannot teach",
+    "gapsSubtitle": "These conditions belong in a laboratory.",
     "method": "Exact within the shortlist. Checked against greedy search over the full candidate pool.",
     "map": "Map",
-    "table": "Candidate table",
+    "table": "All candidates",
     "fit": "Fit campaign",
-    "empty": "Select at least one objective to design a campaign.",
-    "noSites": "No eligible Earth sites for this selection.",
-    "live": "Re-optimized in your browser",
-    "global": "Global",
+    "empty": "Choose at least one objective to start.",
+    "noSites": "No place on Earth qualifies for this selection.",
+    "live": "Recalculated in your browser",
+    "global": "Worldwide",
     "kazakhstan": "Kazakhstan only",
-    "partial": "Partial data"
+    "partial": "Incomplete data"
   },
   "brief": {
-    "eyebrow": "01 / MISSION BRIEF",
-    "title": "Start with the mission.",
-    "subtitle": "Choose your destination and the conditions your team needs to rehearse.",
-    "target": "Choose a target",
-    "mission": "Set your objectives",
-    "size": "Choose your campaign size",
-    "design": "Design campaign",
-    "disclaimer": "Fidelity measures similarity of test-relevant conditions, not suitability."
+    "eyebrow": "01 · MISSION BRIEF",
+    "title": "Begin with the mission.",
+    "subtitle": "Pick a destination and what your team must practise before it goes.",
+    "target": "Destination",
+    "mission": "What the crew must practise",
+    "size": "How many field sites",
+    "design": "Find field sites",
+    "disclaimer": "Fidelity measures how alike the conditions are — not whether a site is safe or available."
   },
   "evidence": {
-    "eyebrow": "METHOD / VALIDATION / PROVENANCE",
-    "title": "The reasoning behind the rehearsal.",
-    "subtitle": "A transparent chain from measured conditions to an explicit, limited campaign recommendation.",
-    "experiments": "Scientific validation",
-    "limitations": "What this model leaves out",
-    "sources": "Data & credits"
+    "eyebrow": "SOURCES · VALIDATION · LIMITS",
+    "title": "How we know — and where we don't.",
+    "subtitle": "Every recommendation traces back to a measured source. Every limit is written down.",
+    "experiments": "Validation",
+    "limitations": "What the model leaves out",
+    "sources": "Data and credits"
   },
   "matrix": {
-    "title": "Look inside the coverage.",
-    "subtitle": "Compare attribute fidelity across campaign sites and the leading alternatives. Select a cell to inspect its evidence."
+    "title": "Inside the coverage.",
+    "subtitle": "See how closely every site matches every objective. Select a cell to open the evidence behind it."
   }
 }

@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W097.567_N45.652",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:32Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:34Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:35Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:32:42Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    9.2,
+    18.12,
+    26.42,
+    30.36,
+    35.14,
+    39.24,
+    42.38,
+    40.36,
+    36.11,
+    30.42,
+    21.72,
+    10.49
+   ],
+   "t2m_min_c": [
+    -41.97,
+    -33.08,
+    -29.51,
+    -15.59,
+    -5.59,
+    3.71,
+    7.06,
+    6.59,
+    -1.32,
+    -16.81,
+    -21.61,
+    -30.71
+   ],
+   "t2m_c": [
+    -10.46,
+    -9.01,
+    -0.96,
+    6.27,
+    13.19,
+    19.39,
+    22.91,
+    21.16,
+    16.12,
+    6.95,
+    -0.4,
+    -7.62
+   ],
+   "precip_rate_mm_per_day": [
+    0.43,
+    0.62,
+    0.94,
+    1.84,
+    2.68,
+    3.43,
+    2.69,
+    2.33,
+    2.34,
+    1.95,
+    0.58,
+    0.72
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-97.5670&latitude=45.6520&format=JSON",
+  "accessed": "2026-11-07T17:31:35Z",
+  "sha256": "bacdf0b0ba808faf202bf09b23f2972fac3dd065d1624e21d1a3eb49a5b7bb77"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=45.65200&lng=-97.56700",
+  "map_id": 3900361,
+  "source_id": 486,
+  "source_ref": "(1991). Sims, P.K., Peterman, Z.E., Hildebrand, T.G., and Mahan, S., 1991, Precambrian basement map of the trans-Hudson orogen and adjacent terranes, northern Great Plains, USA: U.S. Geological Survey Miscellaneous Investigations Map I-2214, scale 1:1,000,000..",
+  "n_units_at_point": 9,
+  "accessed": "2026-11-07T17:32:41Z"
+ }
+}

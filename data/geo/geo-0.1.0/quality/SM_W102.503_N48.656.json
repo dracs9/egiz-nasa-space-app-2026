@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W102.503_N48.656",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:47Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:48Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:49Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:50Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    9.73,
+    13.91,
+    23.38,
+    30.44,
+    32.07,
+    35.4,
+    40.86,
+    39.53,
+    34.22,
+    27.84,
+    19.57,
+    9.65
+   ],
+   "t2m_min_c": [
+    -41.38,
+    -35.68,
+    -31.2,
+    -19.3,
+    -6.81,
+    2.17,
+    6.45,
+    3.47,
+    -3.61,
+    -14.36,
+    -25.86,
+    -33.25
+   ],
+   "t2m_c": [
+    -11.1,
+    -10.13,
+    -2.18,
+    5.04,
+    11.81,
+    17.34,
+    21.36,
+    19.92,
+    13.94,
+    5.17,
+    -2.01,
+    -8.89
+   ],
+   "precip_rate_mm_per_day": [
+    0.52,
+    0.47,
+    0.7,
+    1.05,
+    2.34,
+    3.31,
+    1.92,
+    1.58,
+    1.58,
+    1.01,
+    0.57,
+    0.6
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-102.5030&latitude=48.6560&format=JSON",
+  "accessed": "2026-11-07T17:28:49Z",
+  "sha256": "bd1f01cc1bf41fa0e639129e68ced7ef1ba6c3b7cddd3e3f109a98ff25258445"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=48.65600&lng=-102.50300",
+  "map_id": 3738780,
+  "source_id": 452,
+  "source_ref": "(1983). Bluemle, J.P., 1983, Geologic and topographic bedrock map of North Dakota: North Dakota Geological Survey Miscellaneous Map 25, scale 1:670,000..",
+  "n_units_at_point": 7,
+  "accessed": "2026-11-07T17:28:49Z"
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "aoi_id": "SM_E055.757_N37.339",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:39Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:41Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:41Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:42Z"
+  }
+ },
+ "missing": {
+  "geo_unit_name_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)",
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    24.12,
+    27.68,
+    37.46,
+    39.25,
+    43.88,
+    46.43,
+    46.58,
+    45.73,
+    42.91,
+    38.76,
+    32.52,
+    26.19
+   ],
+   "t2m_min_c": [
+    -11.74,
+    -12.84,
+    -6.62,
+    -2.82,
+    3.34,
+    9.96,
+    15.1,
+    13.14,
+    8.28,
+    1.8,
+    -7.66,
+    -7.24
+   ],
+   "t2m_c": [
+    5.59,
+    6.83,
+    11.56,
+    16.55,
+    23.0,
+    27.91,
+    30.23,
+    29.34,
+    24.94,
+    18.48,
+    11.23,
+    6.97
+   ],
+   "precip_rate_mm_per_day": [
+    0.69,
+    1.05,
+    1.19,
+    1.07,
+    0.59,
+    0.23,
+    0.22,
+    0.14,
+    0.27,
+    0.45,
+    0.87,
+    0.62
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=55.7570&latitude=37.3390&format=JSON",
+  "accessed": "2026-11-07T17:25:41Z",
+  "sha256": "680c8283903ec6a268ea66ea31ba455b95067be3c3a07794872f21c14e4489f6"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=37.33900&lng=55.75700",
+  "map_id": 3317586,
+  "source_id": 191,
+  "source_ref": "Sahandi, M.R., and M. Soheili (compilers) (2014). 1:1,000,000 scale Bedrock and Structural geology of Iran. National Geoscience Database of Iran",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:25:42Z"
+ }
+}

@@ -1,0 +1,254 @@
+/* EGIZ ASTRAL Mission Studio — restrained instrument styling. The landscape stays the focus. */
+.astral {
+  --astral-bg: #050506; --astral-panel: #0c0c0e; --astral-panel-2: #121215; --astral-line: rgba(240,240,245,.1); --astral-line-2: rgba(240,240,245,.2);
+  --astral-text: #e9e8ea; --astral-muted: #9a9aa3; --astral-dim: #6c6c75; --astral-accent: #d4b46a; --astral-accent-2: #7fc3a6; --astral-danger: #e07a62; --astral-warn: #e3b65c;
+  height: calc(100dvh - var(--header-h)); min-height: 520px; display: grid; background: var(--astral-bg); color: var(--astral-text);
+  grid-template-columns: 64px minmax(300px, 360px) minmax(0, 1fr) minmax(260px, 320px); grid-template-rows: 48px minmax(0, 1fr) auto;
+  grid-template-areas: "top top top top" "rail panel view inspect" "rail panel time time";
+  font: 13px/1.45 var(--font-body); overflow: hidden;
+}
+.astral *, .astral *::before, .astral *::after { box-sizing: border-box; }
+.astral-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 24px; }
+.astral-state h1 { font: 700 28px/1 var(--font-display); letter-spacing: .12em; margin: 0; }
+.astral-state .eg-loading-bar { width: 200px; }
+.astral-muted, .astral-state p { color: var(--astral-muted); margin: 0 0 10px; }
+.astral code { font-family: var(--font-mono); font-size: 12px; }
+
+/* Top bar */
+.astral-top { grid-area: top; display: flex; align-items: center; gap: 16px; padding: 0 14px; border-bottom: 1px solid var(--astral-line); background: var(--astral-panel); min-width: 0; }
+.astral-id { display: flex; align-items: center; gap: 10px; min-width: 0; white-space: nowrap; }
+.astral-id b { font: 700 15px/1 var(--font-display); letter-spacing: .16em; }
+.astral-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border: 1px solid var(--astral-line-2); border-radius: 3px; font: 11px/1.3 var(--font-mono); color: var(--astral-text); overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+.astral-chip.subtle { color: var(--astral-muted); border-color: var(--astral-line); }
+.astral-chip i.moon { width: 8px; height: 8px; border-radius: 50%; background: var(--moon, #d9c9a3); }
+.astral-command { flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--astral-line-2); border-radius: 4px; background: #000; color: var(--astral-muted); }
+.astral-command:focus-within { border-color: var(--astral-accent); }
+.astral-command input { flex: 1; min-width: 0; background: transparent; border: 0; color: var(--astral-text); font: inherit; outline: none; }
+.astral-provider { font: 10px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--astral-dim); }
+.astral-top-actions { display: flex; gap: 6px; }
+
+/* Buttons and fields */
+.astral-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 1px solid var(--astral-accent); background: var(--astral-accent); color: #111; border-radius: 3px; font: 600 12px/1 var(--font-body); cursor: pointer; text-decoration: none; white-space: nowrap; }
+.astral-btn:hover:not(:disabled) { filter: brightness(1.08); }
+.astral-btn.ghost { background: transparent; color: var(--astral-text); border-color: var(--astral-line-2); }
+.astral-btn.ghost:hover:not(:disabled) { border-color: var(--astral-accent); }
+.astral-btn.primary { width: 100%; justify-content: center; height: 36px; margin-top: 10px; }
+.astral-btn:disabled { opacity: .45; cursor: not-allowed; }
+.astral-icon { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--astral-line-2); background: transparent; color: var(--astral-text); border-radius: 3px; cursor: pointer; }
+.astral-icon:disabled { opacity: .4; }
+.astral button:focus-visible, .astral input:focus-visible, .astral select:focus-visible, .astral textarea:focus-visible, .astral summary:focus-visible, .astral a:focus-visible { outline: 2px solid var(--astral-accent); outline-offset: 1px; }
+.astral input[type="range"] { width: 100%; accent-color: var(--astral-accent); }
+.astral select, .astral input[type="number"], .astral input[type="password"], .astral textarea { width: 100%; background: #000; color: var(--astral-text); border: 1px solid var(--astral-line-2); border-radius: 3px; padding: 5px 7px; font: inherit; }
+.astral textarea { resize: vertical; }
+.astral-field { display: grid; gap: 4px; margin: 8px 0; color: var(--astral-muted); font-size: 12px; }
+.astral-field b { color: var(--astral-text); font-weight: 600; }
+.astral-check { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; color: var(--astral-text); font-size: 12px; }
+.astral-check input { margin-top: 2px; accent-color: var(--astral-accent); }
+.astral-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: end; }
+.astral-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.spin { animation: astral-spin 1s linear infinite; }
+@keyframes astral-spin { to { transform: rotate(360deg); } }
+
+/* Rail */
+.astral-rail { grid-area: rail; display: flex; flex-direction: column; gap: 2px; padding: 8px 6px; border-right: 1px solid var(--astral-line); background: var(--astral-panel); overflow-y: auto; }
+.astral-rail button { display: grid; justify-items: center; gap: 3px; padding: 8px 2px; border: 0; border-radius: 4px; background: transparent; color: var(--astral-muted); cursor: pointer; font: 10px/1.1 var(--font-body); }
+.astral-rail button:hover { color: var(--astral-text); background: var(--astral-panel-2); }
+.astral-rail button.on { color: var(--astral-accent); background: var(--astral-panel-2); box-shadow: inset 2px 0 0 var(--astral-accent); }
+
+/* Panel */
+.astral-panel { grid-area: panel; overflow-y: auto; padding: 14px 16px 24px; border-right: 1px solid var(--astral-line); background: var(--astral-panel); min-height: 0; }
+.astral-head h2, .astral-inspect h2 { font: 700 20px/1.1 var(--font-display); letter-spacing: .04em; margin: 2px 0 6px; }
+.astral-kicker { font: 10px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--astral-accent); margin: 0; }
+.astral-panel h3, .astral-inspect h3 { font: 600 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--astral-muted); margin: 18px 0 8px; padding-top: 12px; border-top: 1px solid var(--astral-line); }
+.astral-note { color: var(--astral-muted); font-size: 12px; margin: 6px 0; }
+.astral-seg { display: flex; flex-wrap: wrap; gap: 4px; border: 0; padding: 0; margin: 10px 0 4px; }
+.astral-seg label { padding: 5px 9px; border: 1px solid var(--astral-line-2); border-radius: 3px; cursor: pointer; font-size: 12px; }
+.astral-seg label.on { border-color: var(--astral-accent); color: var(--astral-accent); }
+.astral-seg input { position: absolute; opacity: 0; pointer-events: none; }
+.astral-seg label:focus-within { outline: 2px solid var(--astral-accent); }
+.astral-legend-list { list-style: none; padding: 0; margin: 6px 0; display: grid; gap: 4px; font-size: 12px; }
+.astral-legend-list li { display: grid; grid-template-columns: 12px auto 1fr auto; gap: 6px; align-items: center; color: var(--astral-muted); }
+.astral-legend-list i { width: 12px; height: 12px; border-radius: 2px; }
+.astral-legend-list b { color: var(--astral-text); }
+.astral-ramp { display: flex; align-items: center; gap: 6px; font: 11px var(--font-mono); color: var(--astral-muted); }
+.astral-ramp i { flex: 1; height: 8px; border-radius: 2px; background: linear-gradient(90deg, #296b73, #dbad4d 60%, #cc3a2e); }
+.astral-list { list-style: none; padding: 0; margin: 4px 0; display: grid; gap: 2px; }
+.astral-list li { display: flex; gap: 4px; align-items: center; }
+.astral-list li > button:first-child { flex: 1; display: grid; text-align: left; gap: 1px; padding: 6px 8px; border: 1px solid transparent; border-radius: 3px; background: var(--astral-panel-2); color: var(--astral-text); cursor: pointer; font: inherit; min-width: 0; }
+.astral-list li > button:first-child:hover { border-color: var(--astral-line-2); }
+.astral-list span { color: var(--astral-muted); font-size: 11.5px; overflow-wrap: anywhere; }
+.astral-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--astral-line); margin: 8px 0 12px; }
+.astral-tabs button { padding: 7px 10px; border: 0; background: none; color: var(--astral-muted); cursor: pointer; font: inherit; border-bottom: 2px solid transparent; }
+.astral-tabs button.on { color: var(--astral-text); border-color: var(--astral-accent); }
+
+/* Facts */
+.astral-facts { margin: 6px 0; display: grid; gap: 1px; }
+.astral-fact { display: grid; grid-template-columns: minmax(96px, 38%) 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--astral-line); }
+.astral-facts.compact .astral-fact { padding: 4px 0; }
+.astral-fact dt { color: var(--astral-muted); display: flex; flex-direction: column; align-items: flex-start; gap: 3px; font-size: 12px; }
+.astral-fact dd { margin: 0; overflow-wrap: anywhere; font-size: 12.5px; }
+.astral-fact dd small { display: block; color: var(--astral-dim); font-size: 11px; margin-top: 2px; }
+.astral-class { font: 9.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 4px; border-radius: 2px; border: 1px solid currentColor; }
+.c-measured { color: #e8e3d6; } .c-derived { color: #a9b4bd; } .c-model { color: #d4b46a; } .c-simulated { color: #7fc3a6; }
+.c-assumed { color: #c79ad8; } .c-unknown { color: #8c8c96; border-style: dashed; } .c-retrieved { color: #8fb4e8; } .c-hypothesis { color: #e0927a; border-style: dashed; }
+
+/* Viewport */
+.astral-viewport { grid-area: view; position: relative; min-width: 0; min-height: 0; overflow: hidden; background: #000; }
+.astral-canvas-host { position: absolute; inset: 0; }
+.astral-canvas-host canvas { display: block; outline: none; }
+.astral-labels { position: absolute; inset: 0; pointer-events: none; }
+.astral-label { position: absolute; left: 0; top: 0; translate: -50% -130%; padding: 2px 6px; font: 600 11px/1.2 var(--font-mono); color: #111; background: rgba(240,236,224,.92); border-radius: 2px; white-space: nowrap; }
+.astral-hud { position: absolute; top: 10px; left: 10px; display: flex; flex-wrap: wrap; gap: 6px; font: 11px/1 var(--font-mono); pointer-events: none; max-width: calc(100% - 20px); }
+.astral-hud span { padding: 5px 7px; background: rgba(0,0,0,.66); border: 1px solid var(--astral-line); border-radius: 3px; color: var(--astral-muted); }
+.astral-hud .astral-sci { color: var(--astral-accent-2); }
+.astral-hud .astral-illus { color: #e0927a; border-color: #e0927a; }
+.astral-hud .astral-stream { color: var(--astral-accent); }
+.astral-hud .astral-scale-note { color: var(--astral-warn); border-color: rgba(227,182,92,.5); }
+.astral-readout { position: absolute; left: 10px; bottom: 10px; padding: 5px 8px; font: 11px var(--font-mono); background: rgba(0,0,0,.66); border: 1px solid var(--astral-line); border-radius: 3px; color: var(--astral-muted); pointer-events: none; max-width: calc(100% - 20px); }
+.astral-cams { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 2px; padding: 2px; background: rgba(0,0,0,.7); border: 1px solid var(--astral-line); border-radius: 4px; }
+.astral-cams button { height: 26px; padding: 0 8px; border: 0; background: transparent; color: var(--astral-muted); font: 11px var(--font-body); border-radius: 3px; cursor: pointer; text-transform: capitalize; }
+.astral-cams button.on { background: var(--astral-panel-2); color: var(--astral-accent); }
+.astral-cams button:disabled { opacity: .35; cursor: default; }
+.astral-pick-hint, .astral-highlight, .astral-progress, .astral-toast { position: absolute; left: 50%; translate: -50% 0; display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 3px; font-size: 12px; }
+.astral-pick-hint { top: 44px; background: var(--astral-accent); color: #111; font-weight: 600; }
+.astral-pick-hint button, .astral-highlight button { border: 0; background: none; color: inherit; cursor: pointer; display: grid; }
+.astral-highlight { top: 84px; background: rgba(0,0,0,.78); border: 1px solid var(--astral-accent); color: var(--astral-accent); }
+.astral-progress { bottom: 50px; background: rgba(0,0,0,.84); border: 1px solid var(--astral-line-2); min-width: 280px; flex-direction: column; align-items: stretch; }
+.astral-toast { bottom: 90px; background: #1b1b1f; border: 1px solid var(--astral-warn); color: var(--astral-text); max-width: 80%; }
+
+/* Inspector */
+.astral-inspector { grid-area: inspect; overflow-y: auto; padding: 14px; border-left: 1px solid var(--astral-line); background: var(--astral-panel); min-height: 0; }
+.astral-inspect h2 { font-size: 18px; overflow-wrap: anywhere; }
+
+/* Timeline */
+.astral-timeline { grid-area: time; display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); grid-template-rows: auto auto; gap: 6px 14px; padding: 8px 14px; border-top: 1px solid var(--astral-line); background: var(--astral-panel); min-width: 0; }
+.astral-time-controls { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.astral-time-meta { display: grid; min-width: 0; }
+.astral-time-meta b { font: 600 12px var(--font-mono); }
+.astral-time-meta span { color: var(--astral-muted); font: 10.5px var(--font-mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.astral-scrub { position: relative; display: grid; gap: 1px; min-width: 0; }
+.astral-scrub input { margin: 0; }
+.astral-scrub-label { font: 10.5px var(--font-mono); color: var(--astral-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.astral-spark { width: 100%; height: 22px; display: block; }
+.astral-zero { stroke: var(--astral-line-2); stroke-dasharray: 3 3; }
+.astral-marker { stroke: var(--astral-accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.astral-mission-scrub { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr) 80px; gap: 10px; align-items: center; }
+.astral-mission-scrub.empty { display: block; color: var(--astral-dim); font-size: 12px; }
+.astral-events { position: relative; height: 10px; }
+.astral-events .ev { position: absolute; top: 0; width: 8px; height: 8px; translate: -50% 0; border: 0; border-radius: 50%; cursor: pointer; padding: 0; }
+.ev.science { background: var(--astral-accent-2); } .ev.warning { background: var(--astral-warn); } .ev.failure { background: var(--astral-danger); }
+
+/* Charts */
+.astral-chart { margin: 8px 0; }
+.astral-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.astral-chart figcaption { font-size: 11px; color: var(--astral-muted); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.astral-axis { stroke: var(--astral-line-2); }
+.astral-tick { fill: var(--astral-dim); font: 9px var(--font-mono); }
+.astral-chart-band { fill: rgba(224,122,98,.12); }
+.astral-legend { display: inline-flex; gap: 8px; }
+.astral-legend i { display: inline-block; width: 8px; height: 2px; margin-right: 4px; vertical-align: middle; }
+.astral-chart-empty { color: var(--astral-dim); font-size: 12px; }
+.astral-bars { display: grid; gap: 4px; }
+.astral-bar-row { display: grid; grid-template-columns: minmax(80px, 38%) 1fr auto; gap: 8px; align-items: center; font-size: 11.5px; }
+.astral-bar-row > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--astral-muted); }
+.astral-bar-track { height: 8px; background: var(--astral-panel-2); border-radius: 2px; overflow: hidden; }
+.astral-bar-track i { display: block; height: 100%; background: #6d6d77; }
+.astral-bar-track i.best { background: var(--astral-accent-2); }
+
+/* Copilot */
+.astral-chat { display: grid; gap: 12px; }
+.astral-empty { color: var(--astral-muted); display: grid; gap: 8px; }
+.astral-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.astral-chips button { text-align: left; padding: 5px 8px; border: 1px solid var(--astral-line-2); background: transparent; color: var(--astral-text); border-radius: 3px; font: 11.5px/1.35 var(--font-body); cursor: pointer; }
+.astral-chips button:hover { border-color: var(--astral-accent); }
+.astral-answer { border-left: 2px solid var(--astral-line-2); padding-left: 10px; }
+.astral-q { font-weight: 600; margin: 0 0 6px; }
+.astral-narrative { margin: 4px 0 8px; white-space: pre-wrap; }
+.astral-answer section { margin: 6px 0; }
+.astral-answer section.failed h4 { color: var(--astral-warn); }
+.astral-answer h4 { display: flex; gap: 6px; align-items: flex-start; font: 600 12px/1.35 var(--font-body); margin: 6px 0 2px; color: var(--astral-text); }
+.astral-answer h4 svg { flex: none; margin-top: 2px; color: var(--astral-accent-2); }
+.astral-declined { display: flex; gap: 6px; color: var(--astral-warn); margin: 4px 0; }
+.astral-cites { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-top: 6px; font-size: 11px; }
+.astral-cites b { font: 10px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--astral-dim); margin-right: 4px; }
+.cite { padding: 2px 6px; border: 1px solid var(--astral-line-2); border-radius: 2px; color: var(--astral-muted); }
+.cite a, .cite button { color: var(--astral-text); background: none; border: 0; padding: 0; font: inherit; cursor: pointer; display: inline-flex; gap: 3px; align-items: center; text-decoration: none; }
+.astral-toollog { margin-top: 6px; font-size: 11px; color: var(--astral-dim); }
+.astral-toollog code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--astral-muted); margin: 2px 0; }
+.astral-ask { position: sticky; bottom: -24px; display: flex; gap: 6px; padding: 10px 0; background: var(--astral-panel); margin-top: 8px; }
+.astral-ask textarea { flex: 1; }
+.astral-more { margin-top: 10px; color: var(--astral-muted); font-size: 12px; }
+.astral-more ul { padding-left: 18px; }
+.astral-models { display: grid; gap: 4px; }
+.astral-model { border: 1px solid var(--astral-line); border-radius: 3px; padding: 6px 8px; }
+.astral-model summary { cursor: pointer; display: grid; gap: 4px; }
+.astral-statuses { display: flex; flex-wrap: wrap; gap: 3px; }
+.astral-statuses i { font: normal 9.5px/1 var(--font-mono); padding: 2px 4px; border-radius: 2px; border: 1px solid var(--astral-line-2); color: var(--astral-muted); }
+.astral-statuses i.st-inference_ready, .astral-statuses i.st-available { color: var(--astral-accent-2); border-color: var(--astral-accent-2); }
+.astral-statuses i.st-incompatible, .astral-statuses i.st-unavailable { color: var(--astral-danger); border-color: var(--astral-danger); }
+.astral-statuses i.st-experimental { color: var(--astral-warn); border-color: var(--astral-warn); }
+.astral-key { margin-top: 12px; }
+.astral-key h3 { display: flex; gap: 6px; align-items: center; }
+.astral-checks { list-style: none; padding: 0; display: grid; gap: 6px; }
+.astral-checks li { display: grid; gap: 2px; padding: 6px 8px; border-left: 2px solid var(--astral-line-2); background: var(--astral-panel-2); }
+.astral-checks li span { color: var(--astral-muted); font-size: 12px; }
+.q-pass { border-color: var(--astral-accent-2) !important; } .q-warn { border-color: var(--astral-warn) !important; } .q-fail { border-color: var(--astral-danger) !important; }
+
+/* Mission / simulate / compare */
+.astral-parse { list-style: none; padding: 0; margin: 6px 0; font-size: 12px; display: grid; gap: 2px; }
+.astral-parse li { color: var(--astral-accent-2); }
+.astral-parse li.miss { color: var(--astral-warn); }
+.astral-pts { display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; font: 12px var(--font-mono); }
+.astral-validation { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px; border-radius: 3px; margin-top: 10px; font-size: 12px; }
+.astral-validation.ok { background: rgba(127,195,166,.08); color: var(--astral-accent-2); border: 1px solid rgba(127,195,166,.3); }
+.astral-validation.bad { background: rgba(224,122,98,.08); color: var(--astral-danger); border: 1px solid rgba(224,122,98,.35); }
+.astral-validation small { flex-basis: 100%; color: var(--astral-muted); }
+.astral-routes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 10px 0; }
+.astral-routes button { display: grid; gap: 2px; text-align: left; padding: 6px 8px; border: 1px solid var(--astral-line-2); background: transparent; color: var(--astral-text); border-radius: 3px; cursor: pointer; font: 600 12px var(--font-body); }
+.astral-routes button small { color: var(--astral-muted); font-weight: 400; }
+.astral-routes button.on { border-color: var(--astral-accent); color: var(--astral-accent); }
+.astral-routes button:disabled { opacity: .45; }
+.astral-outcome { display: flex; gap: 6px; align-items: center; padding: 8px; border-radius: 3px; font-weight: 600; }
+.astral-outcome.completed { color: var(--astral-accent-2); background: rgba(127,195,166,.08); }
+.astral-outcome.failed { color: var(--astral-danger); background: rgba(224,122,98,.1); }
+.astral-telemetry { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin: 10px 0; background: var(--astral-line); border: 1px solid var(--astral-line); }
+.astral-telemetry div { display: grid; padding: 5px 7px; background: var(--astral-panel); }
+.astral-telemetry span { color: var(--astral-dim); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; }
+.astral-telemetry b { font: 600 12.5px var(--font-mono); }
+.astral-events-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; max-height: 240px; overflow-y: auto; }
+.astral-events-list button { display: grid; width: 100%; text-align: left; padding: 5px 8px; background: var(--astral-panel-2); border: 0; border-left: 2px solid var(--astral-line-2); color: var(--astral-text); font: 12px/1.35 var(--font-body); cursor: pointer; }
+.astral-events-list button span { color: var(--astral-dim); font: 10.5px var(--font-mono); }
+.astral-events-list .science button { border-color: var(--astral-accent-2); } .astral-events-list .warning button { border-color: var(--astral-warn); } .astral-events-list .failure button { border-color: var(--astral-danger); }
+.astral-table-wrap { overflow-x: auto; margin: 8px 0; }
+.astral-table { border-collapse: collapse; width: 100%; font-size: 11.5px; }
+.astral-table th, .astral-table td { padding: 5px 6px; border-bottom: 1px solid var(--astral-line); text-align: right; white-space: nowrap; }
+.astral-table th:first-child, .astral-table thead th:first-child { text-align: left; white-space: normal; }
+.astral-table thead th { color: var(--astral-dim); font: 10px var(--font-mono); text-transform: uppercase; }
+.astral-table td.failed { color: var(--astral-danger); } .astral-table td.completed { color: var(--astral-accent-2); }
+.astral-dominated { display: block; color: var(--astral-dim); font: normal 10px var(--font-mono); }
+
+/* Home page action pair */
+.hm-plate-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Responsive: viewport keeps priority; panels stack below on narrow screens. */
+@media (max-width: 1280px) {
+  .astral { grid-template-columns: 58px minmax(280px, 320px) minmax(0, 1fr); grid-template-areas: "top top top" "rail panel view" "rail panel time"; }
+  .astral-inspector { grid-area: view; display: none; align-self: start; justify-self: end; width: min(320px, 46%); max-height: calc(100% - 96px); margin: 48px 10px 0 0; z-index: 3; background: rgba(12,12,14,.94); border: 1px solid var(--astral-line-2); border-radius: 4px; }
+  .astral-inspector.has-sel { display: block; }
+}
+@media (max-width: 860px) {
+  .astral { height: auto; min-height: calc(100dvh - var(--header-h)); overflow: visible; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 62vh auto auto auto;
+    grid-template-areas: "top" "rail" "view" "time" "panel" "inspect"; }
+  .astral-top { flex-wrap: wrap; height: auto; padding: 8px 12px; gap: 8px; }
+  .astral-command { order: 3; flex-basis: 100%; }
+  .astral-chip.subtle, .astral-top-actions .ghost { display: none; }
+  .astral-rail { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--astral-line); padding: 4px; }
+  .astral-rail button { min-width: 64px; }
+  .astral-rail button.on { box-shadow: inset 0 -2px 0 var(--astral-accent); }
+  .astral-panel { border-right: 0; overflow: visible; padding: 12px 16px; }
+  .astral-inspector, .astral-inspector.has-sel { grid-area: inspect; display: block; width: auto; max-height: none; margin: 0; border-radius: 0; background: var(--astral-panel); border: 0; border-left: 0; border-top: 1px solid var(--astral-line); overflow: visible; padding: 12px 16px; }
+  .astral-timeline { grid-template-columns: minmax(0, 1fr); padding: 8px 12px; }
+  .astral-cams { left: 10px; right: auto; bottom: 40px; flex-wrap: wrap; max-width: calc(100% - 20px); }
+  .astral-hud span:nth-child(2) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }

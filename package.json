@@ -1,0 +1,9 @@
+{
+  "name": "egiz-serverless",
+  "private": true,
+  "description": "Dependencies of the optional Vercel function api/copilot.ts (server-side LLM proxy). The web app lives in web/.",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.8.0"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/geospatial/asset_manifest.schema.json",
+  "title": "EGIZ geospatial asset manifest 1.x",
+  "type": "object",
+  "required": ["schema_version", "dataset_version", "assets"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^1\\.\\d+\\.\\d+$"},
+    "dataset_version": {"type": "string", "pattern": "^geo-\\d+\\.\\d+\\.\\d+$"},
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["aoi_id", "role", "path", "sha256", "bytes", "crs", "committed"],
+        "properties": {
+          "aoi_id": {"type": "string"},
+          "role": {"enum": ["native_window", "native_product", "analysis_grid"]},
+          "source_id": {"type": ["string", "null"]},
+          "path": {"type": "string", "pattern": "^data/(raw|derived)/"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "crs": {"type": "string"},
+          "pixel_m": {"type": "number", "exclusiveMinimum": 0},
+          "committed": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

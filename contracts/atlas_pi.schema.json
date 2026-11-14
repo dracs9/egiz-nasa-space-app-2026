@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.local/contracts/atlas_pi.schema.json",
+  "title": "EGIZ ATLAS-Pi transferability bundle",
+  "description": "Output of python -m pipeline.analog_transfer build. Written with AI assistance (Claude); human review pending.",
+  "type": "object",
+  "required": ["schema", "version", "synthetic", "generated_at", "engine", "inputs", "parameters", "registry", "sites", "targets",
+               "tensor", "certificates", "stability", "constellations", "sensitivity", "counterfactual", "planner", "redteam",
+               "evidence_graph", "evaluation", "performance", "limitations", "content_sha256"],
+  "properties": {
+    "schema": {"const": "egiz.atlas_pi"},
+    "version": {"type": "string", "pattern": "^1\\.\\d+\\.\\d+$"},
+    "synthetic": {"const": false},
+    "generated_at": {"type": "string"},
+    "engine": {"type": "string", "pattern": "^atlas-pi-"},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "inputs": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "sites": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "lon", "lat", "pool", "terrain"]}},
+    "targets": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "body", "terrain"],
+                "properties": {"body": {"enum": ["moon", "mars"]}}}},
+    "tensor": {
+      "type": "object", "required": ["cells", "general_similarity"],
+      "properties": {
+        "cells": {"type": "array", "items": {"$ref": "#/$defs/cell"}},
+        "general_similarity": {"type": "object", "additionalProperties": {"type": ["number", "null"], "minimum": 0, "maximum": 1}}
+      }
+    },
+    "certificates": {"type": "object", "additionalProperties": {"type": "object", "required": ["id", "claim", "evidence", "reproducibility"]}},
+    "constellations": {"type": "object", "additionalProperties": {"type": "object", "additionalProperties": {"$ref": "#/$defs/constellation"}}},
+    "evidence_graph": {"type": "object", "required": ["nodes", "edges"]},
+    "evaluation": {"type": ["object", "null"]}
+  },
+  "$defs": {
+    "unit": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "cell": {
+      "type": "object",
+      "required": ["site", "target", "task", "status", "reasons", "axes", "factors", "physics", "explanation", "counter_evidence", "certificate"],
+      "properties": {
+        "status": {"enum": ["SUPPORTED", "CONDITIONAL", "WEAK", "NON_TRANSFERABLE", "UNKNOWN"]},
+        "reasons": {"type": "array", "items": {"enum": ["SITE_CONSTRAINT", "PHYSICS_PRIMARY", "EVIDENCE", "CI_BELOW_THRESHOLD",
+                                                        "LOW_EVIDENCE_QUALITY", "RESOLUTION", "PHYSICS_CORRECTION", "LOW_MATCH"]}},
+        "axes": {
+          "type": "object",
+          "required": ["task_match", "task_match_ci90", "evidence_coverage", "evidence_quality", "resolution_sufficient", "operational_relevance", "physical_mismatch"],
+          "properties": {
+            "task_match": {"$ref": "#/$defs/unit"},
+            "task_match_ci90": {"type": ["array", "null"], "items": {"$ref": "#/$defs/unit"}, "minItems": 2, "maxItems": 2},
+            "evidence_coverage": {"$ref": "#/$defs/unit"},
+            "evidence_quality": {"$ref": "#/$defs/unit"},
+            "operational_relevance": {"$ref": "#/$defs/unit"}
+          }
+        },
+        "factors": {"type": "array", "items": {
+          "type": "object", "required": ["factor", "match", "kind", "role", "weight", "earth", "target"],
+          "properties": {"match": {"$ref": "#/$defs/unit"},
+                         "kind": {"enum": ["observed", "retrieved", "derived", "model", "curated", "assumed", "unknown"]},
+                         "role": {"enum": ["primary", "secondary"]}}}}
+      }
+    },
+    "constellation": {
+      "type": "object",
+      "required": ["mission", "target", "k", "selected", "objective", "requirements", "per_requirement", "uncovered", "lab_only_tasks",
+                   "baseline_topk_individual", "contributions", "pareto", "parameters"]
+    }
+  }
+}

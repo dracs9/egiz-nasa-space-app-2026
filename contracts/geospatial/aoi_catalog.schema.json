@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/geospatial/aoi_catalog.schema.json",
+  "title": "EGIZ geospatial AOI catalog 1.x (compact; for the web app)",
+  "type": "object",
+  "required": ["schema_version", "dataset_version", "synthetic", "coordinate_convention", "aois"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^1\\.\\d+\\.\\d+$"},
+    "dataset_version": {"type": "string", "pattern": "^geo-\\d+\\.\\d+\\.\\d+$"},
+    "synthetic": {"const": false},
+    "coordinate_convention": {"type": "string"},
+    "aois": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["aoi_id", "site_id", "group_id", "body", "name", "pool", "centroid", "footprint",
+                     "analysis_crs", "coverage_level", "stages", "quality_status", "summary", "missing"],
+        "properties": {
+          "aoi_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.]+$", "not": {"pattern": "^FAKE_"}},
+          "site_id": {"type": "string", "pattern": "^SITE_[A-Z0-9_.]+$"},
+          "group_id": {"type": "string", "pattern": "^(EARTH|MOON|MARS)_[A-Z0-9_]+$"},
+          "body": {"enum": ["earth", "moon", "mars"]},
+          "name": {"type": "string"},
+          "region": {"type": ["string", "null"]},
+          "country": {"type": ["string", "null"]},
+          "pool": {"enum": ["pilot", "target", "target_extra", "sampled"]},
+          "centroid": {"type": "object", "required": ["lon", "lat"],
+                       "properties": {"lon": {"type": "number", "minimum": -180, "maximum": 180},
+                                      "lat": {"type": "number", "minimum": -90, "maximum": 90}}},
+          "footprint": {"type": "object", "required": ["window_m", "core_m", "ring_lonlat"],
+                        "properties": {"window_m": {"type": "number"}, "core_m": {"type": "number"},
+                                       "ring_lonlat": {"type": "array", "minItems": 5, "maxItems": 5,
+                                                       "items": {"type": "array", "minItems": 2, "maxItems": 2,
+                                                                 "items": {"type": "number"}}}}},
+          "analysis_crs": {"type": "string"},
+          "coverage_level": {"enum": ["L0_sampled", "L1_dem", "L2_environment", "L3_geology", "L4_validated"]},
+          "stages": {"type": "object", "additionalProperties": {"enum": ["ok", "failed", "not_applicable", "no_data"]}},
+          "quality_status": {"enum": ["pass", "fail"]},
+          "summary": {"type": "object", "additionalProperties": {"type": ["number", "string", "null"]}},
+          "missing": {"type": "object", "additionalProperties": {"type": "string"}},
+          "notes": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W104.377_N40.529",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:43Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:44Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:45Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:46Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    21.62,
+    23.47,
+    27.81,
+    32.31,
+    37.5,
+    41.22,
+    41.5,
+    40.95,
+    38.54,
+    31.08,
+    26.01,
+    18.04
+   ],
+   "t2m_min_c": [
+    -19.79,
+    -23.72,
+    -17.72,
+    -11.99,
+    -6.21,
+    4.14,
+    10.54,
+    7.53,
+    -0.11,
+    -10.99,
+    -18.48,
+    -21.8
+   ],
+   "t2m_c": [
+    -0.39,
+    0.05,
+    5.38,
+    9.65,
+    14.94,
+    21.94,
+    25.56,
+    23.67,
+    18.76,
+    10.38,
+    4.2,
+    -0.89
+   ],
+   "precip_rate_mm_per_day": [
+    0.43,
+    0.57,
+    0.9,
+    1.56,
+    2.21,
+    1.59,
+    1.73,
+    1.46,
+    1.12,
+    0.93,
+    0.54,
+    0.51
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-104.3770&latitude=40.5290&format=JSON",
+  "accessed": "2026-11-07T17:28:45Z",
+  "sha256": "6f215eb1e5572929046ac2937e9d77fca1f4d0ab7494be66c0bd29518d05fbca"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=40.52900&lng=-104.37700",
+  "map_id": 3770629,
+  "source_id": 460,
+  "source_ref": "(2001). Sims, P.K., Bankey, V., Finn, C.A., 2001, Preliminary Precambrian basement map of Colorado-a geologic interpretation of the aeromagnetic anomaly map: U.S. Geological Survey Open-File Report 01-364, scale 1:1,000,000..",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:28:46Z"
+ }
+}

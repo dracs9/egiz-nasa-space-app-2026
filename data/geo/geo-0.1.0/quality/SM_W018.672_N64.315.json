@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W018.672_N64.315",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:36Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:38Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:39Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:39Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    3.97,
+    2.68,
+    2.94,
+    6.07,
+    7.41,
+    11.17,
+    14.72,
+    15.21,
+    8.08,
+    6.73,
+    4.57,
+    3.58
+   ],
+   "t2m_min_c": [
+    -20.61,
+    -22.34,
+    -20.9,
+    -17.73,
+    -15.52,
+    -6.67,
+    -1.88,
+    -2.75,
+    -9.48,
+    -16.03,
+    -20.92,
+    -22.59
+   ],
+   "t2m_c": [
+    -6.21,
+    -6.22,
+    -5.69,
+    -3.27,
+    -0.45,
+    3.04,
+    4.24,
+    3.65,
+    1.59,
+    -1.87,
+    -4.82,
+    -6.15
+   ],
+   "precip_rate_mm_per_day": [
+    4.93,
+    4.94,
+    4.35,
+    3.58,
+    2.47,
+    2.25,
+    2.91,
+    2.94,
+    4.94,
+    4.04,
+    4.29,
+    5.01
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-18.6720&latitude=64.3150&format=JSON",
+  "accessed": "2026-11-07T17:31:39Z",
+  "sha256": "50b9e49be2fd80a9115eb4d99f3ed63079832d9a55713458838b3ad57cc64c44"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=64.31500&lng=-18.67200",
+  "map_id": 4457791,
+  "source_id": 1080,
+  "source_ref": "(). IS-NI contribution to EGDI 1:1 Million pan-european Surface Geology: NI_J600v_berg bedrock and IS 50V Vatnafar water bodies.",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:31:39Z"
+ }
+}

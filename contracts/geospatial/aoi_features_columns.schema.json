@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egiz.example/contracts/geospatial/aoi_features_columns.schema.json",
+  "title": "EGIZ aoi_features.csv column dictionary 1.x",
+  "type": "object",
+  "required": ["schema_version", "dataset_version", "columns"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^1\\.\\d+\\.\\d+$"},
+    "dataset_version": {"type": "string", "pattern": "^geo-\\d+\\.\\d+\\.\\d+$"},
+    "columns": {
+      "type": "object",
+      "required": ["aoi_id", "site_id", "group_id", "body", "pool", "lon", "lat", "coverage_level", "quality_status"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["unit", "description"],
+        "properties": {
+          "unit": {"type": "string"},
+          "description": {"type": "string"},
+          "missing_encoding": {"const": "empty cell"},
+          "evidence": {"enum": ["observed", "derived", "proxy", "modelled", "simulated", "synthetic_fixture", null]},
+          "sources_by_body": {"type": "object", "additionalProperties": {"type": "string"}},
+          "method": {"type": ["string", "null"]}
+        }
+      },
+      "propertyNames": {"pattern": "^[a-z0-9_]+$"}
+    }
+  }
+}

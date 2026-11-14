@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_E065.484_N34.688",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:15Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:17Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:18Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:30Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    8.08,
+    13.22,
+    22.9,
+    22.27,
+    27.25,
+    33.04,
+    32.71,
+    31.68,
+    29.0,
+    24.59,
+    17.4,
+    11.23
+   ],
+   "t2m_min_c": [
+    -28.06,
+    -33.11,
+    -21.49,
+    -13.26,
+    -7.93,
+    -3.3,
+    0.1,
+    0.03,
+    -6.58,
+    -8.99,
+    -19.65,
+    -24.77
+   ],
+   "t2m_c": [
+    -7.27,
+    -5.36,
+    0.77,
+    5.95,
+    10.71,
+    15.02,
+    17.46,
+    16.25,
+    12.11,
+    6.69,
+    0.56,
+    -4.61
+   ],
+   "precip_rate_mm_per_day": [
+    1.1,
+    1.46,
+    1.37,
+    1.16,
+    0.51,
+    0.09,
+    0.07,
+    0.07,
+    0.09,
+    0.2,
+    1.0,
+    0.92
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=65.4840&latitude=34.6880&format=JSON",
+  "accessed": "2026-11-07T17:27:18Z",
+  "sha256": "7e91c19279e18c1cdc2b336205030b6d7057b1294cc32c0f4af9cfce6e6a9cb0"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=34.68800&lng=65.48400",
+  "map_id": 2151128,
+  "source_id": 28,
+  "source_ref": "Doebrich, J.L., R.R. Wahl et al. (2006). Geologic and mineral resource map of Afghanistan. USGS Open-File Report 2006-1038 isbn: 9781411318038",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:27:30Z"
+ }
+}

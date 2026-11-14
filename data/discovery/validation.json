@@ -1,0 +1,1438 @@
+{
+ "schema": "egiz.discovery_validation",
+ "population": "3640 global-lattice windows (near-equal-area land sample, 220 km spacing)",
+ "draws": 128,
+ "design": "Validation: published analog sites vs. the Earth-wide population, with ablation and sensitivity.\n\npython -m pipeline.discovery validate   # writes data/discovery/validation.json\n\nDesign (fixed before results were seen; nothing below is tuned to improve the metrics):\n\n* Positives: benchmark sites with role \"analog\" whose literature names the target's body.\n  Labels are imperfect: many analogs were chosen for geology training or logistics,\n  not for terrain/illumination similarity to a specific target region.\n* Background: the unbiased global-lattice population (near-equal-area land sample).\n* Designated negative controls: four a-priori implausible windows (forest, farmland, delta).\n* Metrics: ROC AUC (positives vs. background) with a bootstrap 90 % interval; recall@k and\n  precision@k against the chance rate; per-positive percentiles; AUC vs. designated controls.\n* Ablation: AUC with each measured dimension's weight set to zero.\n* Sensitivity: 200 Dirichlet weight perturbations (concentration 20) -> AUC spread and\n  top-10 stability (Jaccard with the default ranking).\n* Reproducibility: Spearman rank correlation of scores between two Monte Carlo seeds.\n",
+ "targets": [
+  {
+   "target": "MOON_MONS_MOUTON",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.8895,
+    "auc_90ci": [
+     0.8539,
+     0.9244
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.0243,
+     "percentile": 85.52
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0371,
+     "percentile": 92.45
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.029,
+     "percentile": 88.93
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.0206,
+     "percentile": 82.53
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0483,
+     "percentile": 95.33
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.8522,
+    "terrain_roughness": 0.8775,
+    "terrain_regional": 0.8469,
+    "surface_exposure": 0.818,
+    "geology": 0.8806,
+    "aridity": 0.8719,
+    "illumination": 0.8985
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.8602,
+     0.8843,
+     0.9004
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.4286,
+     0.6667,
+     0.8182
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.95773,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MOON_SHACKLETON_RIM",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.7935,
+    "auc_90ci": [
+     0.7094,
+     0.8744
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.004,
+     "percentile": 66.07
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0084,
+     "percentile": 89.97
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.0042,
+     "percentile": 67.47
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.0059,
+     "percentile": 83.63
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0081,
+     "percentile": 89.62
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.7748,
+    "terrain_roughness": 0.7819,
+    "terrain_regional": 0.7743,
+    "surface_exposure": 0.7032,
+    "geology": 0.7559,
+    "aridity": 0.8012,
+    "illumination": 0.8155
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.7469,
+     0.7916,
+     0.8231
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.8182,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.95094,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MOON_CONNECTING_RIDGE",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.8942,
+    "auc_90ci": [
+     0.8729,
+     0.9132
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.0369,
+     "percentile": 87.75
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0468,
+     "percentile": 91.46
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.0386,
+     "percentile": 88.52
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.0336,
+     "percentile": 86.04
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0524,
+     "percentile": 93.32
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.862,
+    "terrain_roughness": 0.8713,
+    "terrain_regional": 0.853,
+    "surface_exposure": 0.8242,
+    "geology": 0.8928,
+    "aridity": 0.8864,
+    "illumination": 0.9002
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.8628,
+     0.8887,
+     0.9055
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.533,
+     0.6667,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.95971,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MOON_SHACKLETON_PEAK",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.9082,
+    "auc_90ci": [
+     0.8703,
+     0.939
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.0392,
+     "percentile": 90.93
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0393,
+     "percentile": 91.02
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.0477,
+     "percentile": 93.63
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.0258,
+     "percentile": 82.61
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0601,
+     "percentile": 95.93
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.883,
+    "terrain_roughness": 0.8987,
+    "terrain_regional": 0.8715,
+    "surface_exposure": 0.8468,
+    "geology": 0.8763,
+    "aridity": 0.9067,
+    "illumination": 0.9155
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.8812,
+     0.905,
+     0.9207
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.5385,
+     0.6667,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.95526,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MOON_DE_GERLACHE_RIM",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.8969,
+    "auc_90ci": [
+     0.8521,
+     0.9392
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.0189,
+     "percentile": 86.9
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0403,
+     "percentile": 96.04
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.0229,
+     "percentile": 90.03
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.014,
+     "percentile": 80.27
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0363,
+     "percentile": 95.22
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.8977,
+    "terrain_roughness": 0.9172,
+    "terrain_regional": 0.8831,
+    "surface_exposure": 0.8284,
+    "geology": 0.8463,
+    "aridity": 0.8738,
+    "illumination": 0.896
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.86,
+     0.8919,
+     0.9136
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.5385,
+     0.6667,
+     0.8182
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.96041,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MOON_MALAPERT",
+   "body": "moon",
+   "positives": [
+    "BM_SAN_FRANCISCO_VF",
+    "BM_MAUNA_KEA",
+    "BM_LANZAROTE",
+    "BM_METEOR_CRATER",
+    "BM_ASKJA"
+   ],
+   "metrics": {
+    "n_positive": 5,
+    "n_background": 3640,
+    "auc": 0.8627,
+    "auc_90ci": [
+     0.8042,
+     0.9177
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0014,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.011,
+     "percentile": 80.49
+    },
+    {
+     "site": "BM_MAUNA_KEA",
+     "window": "BM_MAUNA_KEA",
+     "aspects": [
+      "regolith",
+      "isru",
+      "volcanic"
+     ],
+     "score": 0.0345,
+     "percentile": 96.51
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.0149,
+     "percentile": 86.92
+    },
+    {
+     "site": "BM_METEOR_CRATER",
+     "window": "BM_METEOR_CRATER",
+     "aspects": [
+      "impact",
+      "training"
+     ],
+     "score": 0.0097,
+     "percentile": 75.41
+    },
+    {
+     "site": "BM_ASKJA",
+     "window": "BM_ASKJA",
+     "aspects": [
+      "volcanic",
+      "training"
+     ],
+     "score": 0.0208,
+     "percentile": 92.01
+    }
+   ],
+   "ablation_auc_without": {
+    "terrain_fine": 0.8412,
+    "terrain_roughness": 0.8725,
+    "terrain_regional": 0.8497,
+    "surface_exposure": 0.7752,
+    "geology": 0.8319,
+    "aridity": 0.8471,
+    "illumination": 0.8577
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.8256,
+     0.8567,
+     0.88
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.4286,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.95591,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MARS_JEZERO",
+   "body": "mars",
+   "positives": [
+    "BM_HAUGHTON",
+    "BM_SAN_FRANCISCO_VF",
+    "BM_CRATERS_OF_THE_MOON",
+    "BM_HAWAII_KILAUEA",
+    "BM_LANZAROTE",
+    "BM_MDRS_UTAH",
+    "BM_SVALBARD_BOCKFJORD",
+    "BM_DRY_VALLEYS",
+    "BM_ATACAMA",
+    "BM_RIO_TINTO"
+   ],
+   "metrics": {
+    "n_positive": 10,
+    "n_background": 3640,
+    "auc": 0.7951,
+    "auc_90ci": [
+     0.6525,
+     0.9306
+    ],
+    "auc_vs_designated_controls": 0.85,
+    "chance_precision": 0.0027,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.04,
+    "recall@25": 0.1,
+    "precision@50": 0.02,
+    "recall@50": 0.1,
+    "precision@100": 0.01,
+    "recall@100": 0.1
+   },
+   "per_positive": [
+    {
+     "site": "BM_HAUGHTON",
+     "window": "BM_HAUGHTON",
+     "aspects": [
+      "impact",
+      "polar_desert",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.1886,
+     "percentile": 88.41
+    },
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.2478,
+     "percentile": 92.66
+    },
+    {
+     "site": "BM_CRATERS_OF_THE_MOON",
+     "window": "BM_CRATERS_OF_THE_MOON",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.3186,
+     "percentile": 96.02
+    },
+    {
+     "site": "BM_HAWAII_KILAUEA",
+     "window": "BM_HAWAII_KILAUEA",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.1878,
+     "percentile": 88.24
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.3445,
+     "percentile": 97.09
+    },
+    {
+     "site": "BM_MDRS_UTAH",
+     "window": "PILOT_UTAH",
+     "aspects": [
+      "sedimentary",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.3337,
+     "percentile": 96.7
+    },
+    {
+     "site": "BM_SVALBARD_BOCKFJORD",
+     "window": "BM_SVALBARD_BOCKFJORD",
+     "aspects": [
+      "volcanic",
+      "carbonates",
+      "cold"
+     ],
+     "score": 0.0379,
+     "percentile": 28.41
+    },
+    {
+     "site": "BM_DRY_VALLEYS",
+     "window": "BM_DRY_VALLEYS",
+     "aspects": [
+      "cold_desert",
+      "permafrost",
+      "aeolian"
+     ],
+     "score": 0.0304,
+     "percentile": 22.2
+    },
+    {
+     "site": "BM_ATACAMA",
+     "window": "PILOT_ATACAMA",
+     "aspects": [
+      "hyperarid",
+      "astrobiology",
+      "terrain"
+     ],
+     "score": 0.42,
+     "percentile": 99.4
+    },
+    {
+     "site": "BM_RIO_TINTO",
+     "window": "PILOT_RIO_TINTO",
+     "aspects": [
+      "acidic_aqueous",
+      "jarosite",
+      "astrobiology"
+     ],
+     "score": 0.1683,
+     "percentile": 85.96
+    }
+   ],
+   "terrain_claimed_subset": {
+    "n_positive": 4,
+    "n_background": 3640,
+    "auc": 0.9429,
+    "auc_90ci": [
+     0.9073,
+     0.9793
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0011,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.04,
+    "recall@25": 0.25,
+    "precision@50": 0.02,
+    "recall@50": 0.25,
+    "precision@100": 0.01,
+    "recall@100": 0.25
+   },
+   "ablation_auc_without": {
+    "terrain_fine": 0.8598,
+    "terrain_roughness": 0.773,
+    "terrain_regional": 0.7452,
+    "surface_exposure": 0.7629,
+    "geology": 0.775,
+    "aridity": 0.7915,
+    "thermal": 0.7875,
+    "illumination": 0.835
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.7694,
+     0.796,
+     0.818
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.6667,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.9816,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MARS_GALE",
+   "body": "mars",
+   "positives": [
+    "BM_HAUGHTON",
+    "BM_SAN_FRANCISCO_VF",
+    "BM_CRATERS_OF_THE_MOON",
+    "BM_HAWAII_KILAUEA",
+    "BM_LANZAROTE",
+    "BM_MDRS_UTAH",
+    "BM_SVALBARD_BOCKFJORD",
+    "BM_DRY_VALLEYS",
+    "BM_ATACAMA",
+    "BM_RIO_TINTO"
+   ],
+   "metrics": {
+    "n_positive": 10,
+    "n_background": 3640,
+    "auc": 0.8059,
+    "auc_90ci": [
+     0.6567,
+     0.935
+    ],
+    "auc_vs_designated_controls": 0.85,
+    "chance_precision": 0.0027,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.02,
+    "recall@50": 0.1,
+    "precision@100": 0.02,
+    "recall@100": 0.2
+   },
+   "per_positive": [
+    {
+     "site": "BM_HAUGHTON",
+     "window": "BM_HAUGHTON",
+     "aspects": [
+      "impact",
+      "polar_desert",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.174,
+     "percentile": 89.73
+    },
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.2296,
+     "percentile": 93.96
+    },
+    {
+     "site": "BM_CRATERS_OF_THE_MOON",
+     "window": "BM_CRATERS_OF_THE_MOON",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.2714,
+     "percentile": 96.13
+    },
+    {
+     "site": "BM_HAWAII_KILAUEA",
+     "window": "BM_HAWAII_KILAUEA",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.1687,
+     "percentile": 88.98
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.3011,
+     "percentile": 97.06
+    },
+    {
+     "site": "BM_MDRS_UTAH",
+     "window": "PILOT_UTAH",
+     "aspects": [
+      "sedimentary",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.3305,
+     "percentile": 98.24
+    },
+    {
+     "site": "BM_SVALBARD_BOCKFJORD",
+     "window": "BM_SVALBARD_BOCKFJORD",
+     "aspects": [
+      "volcanic",
+      "carbonates",
+      "cold"
+     ],
+     "score": 0.0334,
+     "percentile": 30.03
+    },
+    {
+     "site": "BM_DRY_VALLEYS",
+     "window": "BM_DRY_VALLEYS",
+     "aspects": [
+      "cold_desert",
+      "permafrost",
+      "aeolian"
+     ],
+     "score": 0.0291,
+     "percentile": 24.95
+    },
+    {
+     "site": "BM_ATACAMA",
+     "window": "PILOT_ATACAMA",
+     "aspects": [
+      "hyperarid",
+      "astrobiology",
+      "terrain"
+     ],
+     "score": 0.3639,
+     "percentile": 99.26
+    },
+    {
+     "site": "BM_RIO_TINTO",
+     "window": "PILOT_RIO_TINTO",
+     "aspects": [
+      "acidic_aqueous",
+      "jarosite",
+      "astrobiology"
+     ],
+     "score": 0.1564,
+     "percentile": 87.53
+    }
+   ],
+   "terrain_claimed_subset": {
+    "n_positive": 4,
+    "n_background": 3640,
+    "auc": 0.953,
+    "auc_90ci": [
+     0.9228,
+     0.9848
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0011,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.02,
+    "recall@50": 0.25,
+    "precision@100": 0.02,
+    "recall@100": 0.5
+   },
+   "ablation_auc_without": {
+    "terrain_fine": 0.8796,
+    "terrain_roughness": 0.7998,
+    "terrain_regional": 0.7479,
+    "surface_exposure": 0.7843,
+    "geology": 0.7801,
+    "aridity": 0.8047,
+    "thermal": 0.7978,
+    "illumination": 0.8446
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.775,
+     0.8088,
+     0.8379
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.4286,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.98089,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MARS_OXIA_PLANUM",
+   "body": "mars",
+   "positives": [
+    "BM_HAUGHTON",
+    "BM_SAN_FRANCISCO_VF",
+    "BM_CRATERS_OF_THE_MOON",
+    "BM_HAWAII_KILAUEA",
+    "BM_LANZAROTE",
+    "BM_MDRS_UTAH",
+    "BM_SVALBARD_BOCKFJORD",
+    "BM_DRY_VALLEYS",
+    "BM_ATACAMA",
+    "BM_RIO_TINTO"
+   ],
+   "metrics": {
+    "n_positive": 10,
+    "n_background": 3640,
+    "auc": 0.6736,
+    "auc_90ci": [
+     0.4941,
+     0.8257
+    ],
+    "auc_vs_designated_controls": 0.775,
+    "chance_precision": 0.0027,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_HAUGHTON",
+     "window": "BM_HAUGHTON",
+     "aspects": [
+      "impact",
+      "polar_desert",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.1373,
+     "percentile": 80.47
+    },
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.1543,
+     "percentile": 83.79
+    },
+    {
+     "site": "BM_CRATERS_OF_THE_MOON",
+     "window": "BM_CRATERS_OF_THE_MOON",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.2436,
+     "percentile": 91.51
+    },
+    {
+     "site": "BM_HAWAII_KILAUEA",
+     "window": "BM_HAWAII_KILAUEA",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.0915,
+     "percentile": 64.37
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.1909,
+     "percentile": 87.75
+    },
+    {
+     "site": "BM_MDRS_UTAH",
+     "window": "PILOT_UTAH",
+     "aspects": [
+      "sedimentary",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.1801,
+     "percentile": 86.81
+    },
+    {
+     "site": "BM_SVALBARD_BOCKFJORD",
+     "window": "BM_SVALBARD_BOCKFJORD",
+     "aspects": [
+      "volcanic",
+      "carbonates",
+      "cold"
+     ],
+     "score": 0.0174,
+     "percentile": 8.52
+    },
+    {
+     "site": "BM_DRY_VALLEYS",
+     "window": "BM_DRY_VALLEYS",
+     "aspects": [
+      "cold_desert",
+      "permafrost",
+      "aeolian"
+     ],
+     "score": 0.0135,
+     "percentile": 4.53
+    },
+    {
+     "site": "BM_ATACAMA",
+     "window": "PILOT_ATACAMA",
+     "aspects": [
+      "hyperarid",
+      "astrobiology",
+      "terrain"
+     ],
+     "score": 0.2521,
+     "percentile": 92.01
+    },
+    {
+     "site": "BM_RIO_TINTO",
+     "window": "PILOT_RIO_TINTO",
+     "aspects": [
+      "acidic_aqueous",
+      "jarosite",
+      "astrobiology"
+     ],
+     "score": 0.1136,
+     "percentile": 73.85
+    }
+   ],
+   "terrain_claimed_subset": {
+    "n_positive": 4,
+    "n_background": 3640,
+    "auc": 0.8577,
+    "auc_90ci": [
+     0.8229,
+     0.8929
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0011,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "ablation_auc_without": {
+    "terrain_fine": 0.7416,
+    "terrain_roughness": 0.6647,
+    "terrain_regional": 0.691,
+    "surface_exposure": 0.5668,
+    "geology": 0.6517,
+    "aridity": 0.6461,
+    "thermal": 0.6746,
+    "illumination": 0.6814
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.6403,
+     0.6722,
+     0.7051
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.5385,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.9812,
+    "top10_identical": false
+   }
+  },
+  {
+   "target": "MARS_UTOPIA_ZHURONG",
+   "body": "mars",
+   "positives": [
+    "BM_HAUGHTON",
+    "BM_SAN_FRANCISCO_VF",
+    "BM_CRATERS_OF_THE_MOON",
+    "BM_HAWAII_KILAUEA",
+    "BM_LANZAROTE",
+    "BM_MDRS_UTAH",
+    "BM_SVALBARD_BOCKFJORD",
+    "BM_DRY_VALLEYS",
+    "BM_ATACAMA",
+    "BM_RIO_TINTO"
+   ],
+   "metrics": {
+    "n_positive": 10,
+    "n_background": 3640,
+    "auc": 0.6395,
+    "auc_90ci": [
+     0.4763,
+     0.7844
+    ],
+    "auc_vs_designated_controls": 0.8,
+    "chance_precision": 0.0027,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "per_positive": [
+    {
+     "site": "BM_HAUGHTON",
+     "window": "BM_HAUGHTON",
+     "aspects": [
+      "impact",
+      "polar_desert",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.0916,
+     "percentile": 71.35
+    },
+    {
+     "site": "BM_SAN_FRANCISCO_VF",
+     "window": "PR_JETT_SP_CRATER",
+     "aspects": [
+      "volcanic",
+      "terrain",
+      "eva_operations"
+     ],
+     "score": 0.104,
+     "percentile": 76.7
+    },
+    {
+     "site": "BM_CRATERS_OF_THE_MOON",
+     "window": "BM_CRATERS_OF_THE_MOON",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.1838,
+     "percentile": 90.19
+    },
+    {
+     "site": "BM_HAWAII_KILAUEA",
+     "window": "BM_HAWAII_KILAUEA",
+     "aspects": [
+      "basaltic_volcanism",
+      "eva_operations"
+     ],
+     "score": 0.0613,
+     "percentile": 52.14
+    },
+    {
+     "site": "BM_LANZAROTE",
+     "window": "BM_LANZAROTE",
+     "aspects": [
+      "basaltic_volcanism",
+      "lava_tubes",
+      "training"
+     ],
+     "score": 0.1453,
+     "percentile": 86.35
+    },
+    {
+     "site": "BM_MDRS_UTAH",
+     "window": "PILOT_UTAH",
+     "aspects": [
+      "sedimentary",
+      "terrain",
+      "operations"
+     ],
+     "score": 0.1359,
+     "percentile": 84.81
+    },
+    {
+     "site": "BM_SVALBARD_BOCKFJORD",
+     "window": "BM_SVALBARD_BOCKFJORD",
+     "aspects": [
+      "volcanic",
+      "carbonates",
+      "cold"
+     ],
+     "score": 0.0183,
+     "percentile": 11.46
+    },
+    {
+     "site": "BM_DRY_VALLEYS",
+     "window": "BM_DRY_VALLEYS",
+     "aspects": [
+      "cold_desert",
+      "permafrost",
+      "aeolian"
+     ],
+     "score": 0.0143,
+     "percentile": 5.0
+    },
+    {
+     "site": "BM_ATACAMA",
+     "window": "PILOT_ATACAMA",
+     "aspects": [
+      "hyperarid",
+      "astrobiology",
+      "terrain"
+     ],
+     "score": 0.1866,
+     "percentile": 90.41
+    },
+    {
+     "site": "BM_RIO_TINTO",
+     "window": "PILOT_RIO_TINTO",
+     "aspects": [
+      "acidic_aqueous",
+      "jarosite",
+      "astrobiology"
+     ],
+     "score": 0.091,
+     "percentile": 71.07
+    }
+   ],
+   "terrain_claimed_subset": {
+    "n_positive": 4,
+    "n_background": 3640,
+    "auc": 0.8082,
+    "auc_90ci": [
+     0.7424,
+     0.8706
+    ],
+    "auc_vs_designated_controls": 1.0,
+    "chance_precision": 0.0011,
+    "precision@10": 0.0,
+    "recall@10": 0.0,
+    "precision@25": 0.0,
+    "recall@25": 0.0,
+    "precision@50": 0.0,
+    "recall@50": 0.0,
+    "precision@100": 0.0,
+    "recall@100": 0.0
+   },
+   "ablation_auc_without": {
+    "terrain_fine": 0.7185,
+    "terrain_roughness": 0.6592,
+    "terrain_regional": 0.6431,
+    "surface_exposure": 0.5187,
+    "geology": 0.5995,
+    "aridity": 0.6068,
+    "thermal": 0.6424,
+    "illumination": 0.6626
+   },
+   "sensitivity": {
+    "auc_p05_p50_p95": [
+     0.5922,
+     0.6402,
+     0.6788
+    ],
+    "top10_jaccard_p05_p50_p95": [
+     0.5385,
+     0.8182,
+     1.0
+    ]
+   },
+   "reproducibility": {
+    "spearman_seed_2026_vs_7": 0.9663,
+    "top10_identical": false
+   }
+  }
+ ],
+ "caveats": [
+  "Positive labels come from where analog campaigns were run, which reflects logistics, geology training and history as much as similarity to a specific target region. Low AUC is therefore not proof of a wrong model, and high AUC is not proof of a right one.",
+  "n_positive is 5 (Moon) or 10 (Mars); confidence intervals are wide. No weights or tolerances were tuned on these results.",
+  "Lunar positives are mostly low-latitude Apollo-era geology training sites, while the lunar targets are south-polar; the illumination dimension deliberately favours high-latitude Earth windows."
+ ],
+ "generated_at": "2026-11-14T10:55:13Z"
+}

@@ -1,0 +1,141 @@
+{
+ "aoi_id": "SM_W014.763_N21.305",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:46Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:47Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:47Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:48Z"
+  }
+ },
+ "missing": {
+  "geo_unit_name_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    33.32,
+    37.43,
+    42.08,
+    43.17,
+    45.2,
+    47.13,
+    47.53,
+    48.42,
+    45.94,
+    44.13,
+    38.49,
+    34.59
+   ],
+   "t2m_min_c": [
+    5.81,
+    6.23,
+    9.64,
+    11.43,
+    13.19,
+    16.66,
+    19.17,
+    19.69,
+    18.93,
+    13.2,
+    8.84,
+    5.7
+   ],
+   "t2m_c": [
+    17.95,
+    19.73,
+    22.99,
+    25.5,
+    28.32,
+    31.62,
+    33.32,
+    33.56,
+    32.48,
+    28.63,
+    23.07,
+    19.39
+   ],
+   "precip_rate_mm_per_day": [
+    0.03,
+    0.02,
+    0.01,
+    0.01,
+    0.01,
+    0.05,
+    0.08,
+    0.28,
+    0.38,
+    0.52,
+    0.04,
+    0.02
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-14.7630&latitude=21.3050&format=JSON",
+  "accessed": "2026-11-07T17:25:47Z",
+  "sha256": "f89efdd0f6ca2243f2d229c4e910d734a4c16a3f43cfbb447b4115f17d114201"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=21.30500&lng=-14.76300",
+  "map_id": 3311031,
+  "source_id": 190,
+  "source_ref": "Thiéblemont, D. (ed.) (2016). New edition of the 1:10,000,000 geological map of Africa. CGMW-BRGM",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:25:48Z"
+ }
+}

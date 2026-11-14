@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_E114.317_N47.790",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:36Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:37Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:38Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:39Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -2.98,
+    6.4,
+    19.24,
+    29.78,
+    36.6,
+    40.06,
+    40.75,
+    40.99,
+    32.88,
+    24.55,
+    11.92,
+    1.88
+   ],
+   "t2m_min_c": [
+    -38.81,
+    -36.68,
+    -26.27,
+    -14.14,
+    -5.12,
+    0.56,
+    7.21,
+    -0.19,
+    -5.7,
+    -17.54,
+    -26.91,
+    -32.24
+   ],
+   "t2m_c": [
+    -19.16,
+    -15.43,
+    -5.74,
+    3.91,
+    11.88,
+    19.19,
+    21.92,
+    19.38,
+    11.97,
+    1.81,
+    -8.44,
+    -17.02
+   ],
+   "precip_rate_mm_per_day": [
+    0.1,
+    0.12,
+    0.2,
+    0.29,
+    0.7,
+    1.59,
+    2.24,
+    1.63,
+    0.83,
+    0.39,
+    0.2,
+    0.16
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=114.3170&latitude=47.7900&format=JSON",
+  "accessed": "2026-11-07T17:27:38Z",
+  "sha256": "462cf5532015459c5155c89ce26f8e4d299ed28dab007c2405225a42ea44975a"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=47.79000&lng=114.31700",
+  "map_id": 3190725,
+  "source_id": 154,
+  "source_ref": "Chorlton, L.B. (2007). Generalized geology of the world: bedrock domains and major faults in GIS format: a small-scale world geology map with an extended geological attribute database. Geological Survey of Canada, Open File 5529 doi: 10.4095/223767",
+  "n_units_at_point": 1,
+  "accessed": "2026-11-07T17:27:39Z"
+ }
+}

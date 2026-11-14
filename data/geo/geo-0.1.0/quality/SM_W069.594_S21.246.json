@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W069.594_S21.246",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:05Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:06Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:07Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:08Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    30.62,
+    29.8,
+    30.85,
+    29.79,
+    29.87,
+    29.6,
+    31.75,
+    30.76,
+    29.47,
+    30.19,
+    29.6,
+    31.3
+   ],
+   "t2m_min_c": [
+    10.44,
+    10.59,
+    10.52,
+    8.26,
+    6.32,
+    5.25,
+    2.5,
+    4.63,
+    5.48,
+    5.34,
+    7.53,
+    8.98
+   ],
+   "t2m_c": [
+    19.15,
+    19.34,
+    19.08,
+    17.93,
+    16.73,
+    15.71,
+    15.36,
+    16.15,
+    16.9,
+    17.4,
+    17.83,
+    18.44
+   ],
+   "precip_rate_mm_per_day": [
+    0.17,
+    0.22,
+    0.12,
+    0.02,
+    0.02,
+    0.01,
+    0.02,
+    0.01,
+    0.01,
+    0.0,
+    0.04,
+    0.06
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-69.5940&latitude=-21.2460&format=JSON",
+  "accessed": "2026-11-07T17:27:07Z",
+  "sha256": "beb6244caea55ea4eae933d3f58f3a2981cc7705bac56711ec4543db85545958"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=-21.24600&lng=-69.59400",
+  "map_id": 4967786,
+  "source_id": 1087,
+  "source_ref": "Gómez, J., Schobbenhaus, C. & Montes, N.E., compilers (2019). Geological Map of South America 2018. Scale 1:5 000 000. Commission for the Geological Map of the World (CGMW), Colombian Geological Survey and Geological Survey of Brazil",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:27:08Z"
+ }
+}

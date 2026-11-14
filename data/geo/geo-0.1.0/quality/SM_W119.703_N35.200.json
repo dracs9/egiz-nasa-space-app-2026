@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W119.703_N35.200",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:47Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:48Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:49Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:51Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    27.37,
+    27.13,
+    30.15,
+    34.51,
+    37.73,
+    41.97,
+    43.63,
+    42.38,
+    44.26,
+    38.03,
+    31.98,
+    26.14
+   ],
+   "t2m_min_c": [
+    -4.73,
+    -4.16,
+    -2.5,
+    -0.57,
+    3.14,
+    4.67,
+    9.74,
+    9.06,
+    5.79,
+    1.65,
+    -2.6,
+    -4.08
+   ],
+   "t2m_c": [
+    9.01,
+    9.25,
+    11.19,
+    13.1,
+    17.12,
+    21.75,
+    25.23,
+    24.58,
+    22.42,
+    17.57,
+    12.44,
+    8.59
+   ],
+   "precip_rate_mm_per_day": [
+    2.27,
+    2.17,
+    1.71,
+    0.87,
+    0.35,
+    0.09,
+    0.06,
+    0.04,
+    0.09,
+    0.59,
+    0.92,
+    1.95
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-119.7030&latitude=35.2000&format=JSON",
+  "accessed": "2026-11-07T17:28:49Z",
+  "sha256": "3ff9b6ceea14bce976cc22f641abee8121472e455bb841eb411cf56f344a1c11"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=35.20000&lng=-119.70300",
+  "map_id": 3240246,
+  "source_id": 160,
+  "source_ref": "Graham, S.E., T.M. Mahony, J.L. Blissenbach, J.J. Mariant, C.M. Wentworth (1999). Regional Geologic Map of San Andreas and Related Faults in Carrizo Plain, Temblor, Caliente and La Panza Ranges and Vicinity, California; A Digital Database. U.S. Geological Survey Open-File Report 99-014",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:28:50Z"
+ }
+}

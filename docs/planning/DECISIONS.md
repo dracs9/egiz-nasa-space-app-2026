@@ -194,3 +194,10 @@
 
 - Earth regional metrics already use 200 m pixels. Lunar target regional metrics previously inherited its 50 m fine grid. A common 2 km difference baseline did not remove differences in sampling and elevation percentile statistics.
 - Planetary targets now compute regional attributes on 200 m grids; fine attributes retain their mission baseline. Actual target/results/evidence artifacts were rebuilt and hashes updated. A numerical regression guards the separation. This is a scientific implementation correction, not evidence of external validity.
+
+### DEC-032 · Geospatial data foundation `geo-0.1.0` — PROPOSED
+
+- **07.11.2026.** At the user's explicit direction: (1) team roles for this work follow a three-person model (Geo lead / ML engineer / frontend engineer); the Geo lead owns `pipeline/earth/`, `pipeline/planets/`, `pipeline/lighting/`, `pipeline/geodata/`, `data/` manifests, `contracts/geospatial/` and geo docs; (2) code and data downloads were done before 14.11 09:00, overriding DEC-003 / DEVELOPMENT_WORKFLOW §12 and AUTH-01 (A2 still unanswered). This does not constitute organizer authorization and must be disclosed in the submission (PRE_EVENT_AUTHORIZATION §3).
+- New package `pipeline/geodata/` builds a versioned release `data/geo/geo-0.1.0/` (catalog JSON + CSV feature table + patch index + manifests + QA). Tabular outputs are CSV/JSON, not Parquet: no new heavy dependency (pyarrow) without a decision.
+- Credential-free sources only: Copernicus GLO-30, ESA WorldCover, NASA POWER (modelled 2 m air temperature — not LST), Macrostrat (map proxy), PGDA LOLA 5 m, USGS MOLA/HRSC blend. Earth Engine products remain pending credentials.
+- Terrain uses `pipeline/common/terrain.py` unchanged; no ranking engine or ML was added.

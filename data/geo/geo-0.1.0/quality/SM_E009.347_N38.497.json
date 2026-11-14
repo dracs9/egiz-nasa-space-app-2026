@@ -1,0 +1,152 @@
+{
+ "aoi_id": "SM_E009.347_N38.497",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L1_dem",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:02Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:03Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:04Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:04Z"
+  }
+ },
+ "missing": {
+  "tree_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "crop_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "built_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "bare_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "snow_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "water_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "grass_shrub_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "moss_lichen_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_interval_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_top_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)",
+  "geo_age_bottom_ma": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    16.9,
+    16.87,
+    19.63,
+    18.64,
+    23.24,
+    28.62,
+    29.04,
+    30.28,
+    27.89,
+    25.47,
+    22.27,
+    19.51
+   ],
+   "t2m_min_c": [
+    6.91,
+    6.99,
+    8.65,
+    10.09,
+    12.78,
+    16.18,
+    19.54,
+    20.76,
+    18.98,
+    14.48,
+    9.92,
+    7.95
+   ],
+   "t2m_c": [
+    13.54,
+    12.91,
+    13.76,
+    15.3,
+    17.79,
+    21.45,
+    24.46,
+    25.36,
+    23.59,
+    21.23,
+    17.84,
+    14.98
+   ],
+   "precip_rate_mm_per_day": [
+    1.74,
+    1.8,
+    1.42,
+    1.5,
+    1.16,
+    0.29,
+    0.09,
+    0.37,
+    1.3,
+    1.54,
+    2.9,
+    2.15
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=9.3470&latitude=38.4970&format=JSON",
+  "accessed": "2026-11-07T17:29:04Z",
+  "sha256": "a226e80a6080bfe04d08a9d8dd335f4304767aba82b73933d44d7c7b57435efd"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=38.49700&lng=9.34700",
+  "map_id": 3159158,
+  "source_id": 147,
+  "source_ref": "Asch, K. (2003). The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept. Geologisches Jahrbuch, SA 3",
+  "n_units_at_point": 1,
+  "accessed": "2026-11-07T17:29:04Z"
+ }
+}

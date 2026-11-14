@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_E063.295_N55.797",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:44Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:46Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:47Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:27:48Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    0.93,
+    1.11,
+    11.87,
+    27.26,
+    31.07,
+    33.82,
+    38.01,
+    38.79,
+    33.6,
+    19.95,
+    9.64,
+    1.35
+   ],
+   "t2m_min_c": [
+    -47.39,
+    -39.87,
+    -27.66,
+    -18.58,
+    -4.34,
+    -0.72,
+    4.77,
+    2.99,
+    -3.37,
+    -22.5,
+    -41.56,
+    -40.69
+   ],
+   "t2m_c": [
+    -17.53,
+    -14.99,
+    -6.51,
+    3.55,
+    12.05,
+    16.97,
+    19.55,
+    17.84,
+    11.16,
+    2.57,
+    -6.78,
+    -15.0
+   ],
+   "precip_rate_mm_per_day": [
+    0.7,
+    0.69,
+    1.04,
+    1.12,
+    1.78,
+    2.01,
+    2.35,
+    1.75,
+    1.42,
+    1.43,
+    1.1,
+    0.77
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=63.2950&latitude=55.7970&format=JSON",
+  "accessed": "2026-11-07T17:27:47Z",
+  "sha256": "f0d0703bbe15124698dd3ad3045429ee3bcfe1ea7ef110c8c0bb04f611f21d22"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=55.79700&lng=63.29500",
+  "map_id": 3161356,
+  "source_id": 147,
+  "source_ref": "Asch, K. (2003). The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept. Geologisches Jahrbuch, SA 3",
+  "n_units_at_point": 2,
+  "accessed": "2026-11-07T17:27:48Z"
+ }
+}

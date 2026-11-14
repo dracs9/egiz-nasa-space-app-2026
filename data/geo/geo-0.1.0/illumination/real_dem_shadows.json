@@ -1,0 +1,707 @@
+{
+ "schema_version": "1.0.0",
+ "dataset_version": "geo-0.1.0",
+ "synthetic": false,
+ "pixel_m": 50,
+ "analysis_mask": "central 10 km x 10 km",
+ "horizon": "terrain inside 22 km window only; shadow fractions at h<=3 deg are lower bounds",
+ "shadow_function": "pipeline.common.shadows.cast_shadow (cast shadow OR self-shadow, facing < 0)",
+ "interpretation": "controlled_same_incidence compares terrain geometry under identical Sun angles. It is not an equivalent illumination environment: the Moon's 29.5 d synodic day, 1.54 deg obliquity and absence of atmosphere (no diffuse skylight, no refraction) differ fundamentally from Earth's 24 h day, 23.44 deg obliquity and scattering atmosphere. Mars (24.6 h sol, 25.2 deg obliquity, dusty thin atmosphere) is not included in this release because its 200 m blended DEM is too coarse for 50 m shadow grids.",
+ "items": [
+  {
+   "aoi_id": "MOON_MONS_MOUTON",
+   "body": "moon",
+   "grid": "data/derived/geo-0.1.0/grids/MOON_MONS_MOUTON_p50.tif",
+   "grid_sha256": "c65e0ddcecd01b33764fea542ab8ae5eeb9ed7d20067fb23b4d139e3f64ba71a",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.6369,
+      0.6669,
+      0.536,
+      0.6754
+     ],
+     [
+      0.5569,
+      0.5194,
+      0.4642,
+      0.5711
+     ],
+     [
+      0.4809,
+      0.3712,
+      0.364,
+      0.4425
+     ],
+     [
+      0.3499,
+      0.0658,
+      0.0757,
+      0.1754
+     ],
+     [
+      0.1522,
+      0.0,
+      0.0003,
+      0.002
+     ]
+    ],
+    "mean_over_az": [
+     0.6288,
+     0.5279,
+     0.4146,
+     0.1667,
+     0.0386
+    ]
+   },
+   "actual_local_sun": {
+    "h_max_deg_bound": 6.113423000000005,
+    "method": "geometric bound 90-|lat|+1.54 deg (lunar obliquity 1.54 deg); Sun circles the horizon over a ~29.5 d synodic day",
+    "missing": "SPICE time series not computed in this release (spiceypy not installed)"
+   }
+  },
+  {
+   "aoi_id": "GL_W116.820_N36.240",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/GL_W116.820_N36.240_p50.tif",
+   "grid_sha256": "10b2db532dd04296b642a15959300da140498f81cbd40172cd5f7aeedb3290c5",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.3566,
+      1.0,
+      0.065,
+      0.8355
+     ],
+     [
+      0.1806,
+      1.0,
+      0.0509,
+      0.1678
+     ],
+     [
+      0.1111,
+      1.0,
+      0.0382,
+      0.002
+     ],
+     [
+      0.0424,
+      0.5908,
+      0.0202,
+      0.0009
+     ],
+     [
+      0.0095,
+      0.1285,
+      0.0078,
+      0.0001
+     ]
+    ],
+    "mean_over_az": [
+     0.5643,
+     0.3498,
+     0.2878,
+     0.1636,
+     0.0365
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.509779299847793,
+    "daylight_low_sun_lt5deg_frac": 0.08613868776591774,
+    "annual_max_elevation_deg": 77.2001198568532,
+    "min_daily_max_elevation_deg": 30.340424233080284,
+    "shadow_frac_at_5deg_equatorward": 0.038175
+   }
+  },
+  {
+   "aoi_id": "KZ_E051.200_N43.400",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/KZ_E051.200_N43.400_p50.tif",
+   "grid_sha256": "52d24dfbfc082fc4dd245d1c09235b168bbd84826da97c6652334a42bb0bddff",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    ],
+    "mean_over_az": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5114916286149163,
+    "daylight_low_sun_lt5deg_frac": 0.09719535783365571,
+    "annual_max_elevation_deg": 70.03485787416987,
+    "min_daily_max_elevation_deg": 23.19503937078291,
+    "shadow_frac_at_5deg_equatorward": 0.0
+   }
+  },
+  {
+   "aoi_id": "PILOT_ATACAMA",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_ATACAMA_p50.tif",
+   "grid_sha256": "423889654164eaca3b0856f96eb39d5972fab32e0be16f53e9b9dfa147724516",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.7196,
+      0.7662,
+      0.4934,
+      0.3729
+     ],
+     [
+      0.372,
+      0.4203,
+      0.2488,
+      0.2428
+     ],
+     [
+      0.1904,
+      0.2092,
+      0.1246,
+      0.1402
+     ],
+     [
+      0.0482,
+      0.0572,
+      0.0323,
+      0.0414
+     ],
+     [
+      0.0035,
+      0.0037,
+      0.0026,
+      0.0026
+     ]
+    ],
+    "mean_over_az": [
+     0.5881,
+     0.321,
+     0.1661,
+     0.0448,
+     0.0031
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5057838660578386,
+    "daylight_low_sun_lt5deg_frac": 0.07481944026482094,
+    "annual_max_elevation_deg": 88.80663688992026,
+    "min_daily_max_elevation_deg": 42.07987442895159,
+    "shadow_frac_at_5deg_equatorward": 0.19045
+   }
+  },
+  {
+   "aoi_id": "PILOT_BOSZHIRA",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_BOSZHIRA_p50.tif",
+   "grid_sha256": "223f1f5d4d57a15a5cfc9555779bc116882a81d31d068e738d324d20bdefe915",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.2712,
+      0.231,
+      0.1242,
+      0.2357
+     ],
+     [
+      0.1763,
+      0.1516,
+      0.0509,
+      0.1156
+     ],
+     [
+      0.0945,
+      0.099,
+      0.0292,
+      0.0743
+     ],
+     [
+      0.0315,
+      0.0474,
+      0.0127,
+      0.0321
+     ],
+     [
+      0.0037,
+      0.0095,
+      0.0019,
+      0.0056
+     ]
+    ],
+    "mean_over_az": [
+     0.2155,
+     0.1236,
+     0.0743,
+     0.0309,
+     0.0052
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5108447488584474,
+    "daylight_low_sun_lt5deg_frac": 0.09594040968342644,
+    "annual_max_elevation_deg": 70.01802346119544,
+    "min_daily_max_elevation_deg": 23.198732515832774,
+    "shadow_frac_at_5deg_equatorward": 0.029175
+   }
+  },
+  {
+   "aoi_id": "PILOT_ICELAND",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_ICELAND_p50.tif",
+   "grid_sha256": "c7f56abaf760d8c8633d927772bb93c6c3e882fbe88297d3689cebe707e0fcd3",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.1138,
+      0.1122,
+      0.4976,
+      0.9341
+     ],
+     [
+      0.0323,
+      0.038,
+      0.1145,
+      0.273
+     ],
+     [
+      0.0148,
+      0.0162,
+      0.0216,
+      0.0741
+     ],
+     [
+      0.006,
+      0.0039,
+      0.0066,
+      0.0202
+     ],
+     [
+      0.0014,
+      0.0009,
+      0.0017,
+      0.0057
+     ]
+    ],
+    "mean_over_az": [
+     0.4144,
+     0.1145,
+     0.0317,
+     0.0092,
+     0.0024
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.532648401826484,
+    "daylight_low_sun_lt5deg_frac": 0.23592656093727676,
+    "annual_max_elevation_deg": 47.9510108219067,
+    "min_daily_max_elevation_deg": 1.4158178076363468,
+    "shadow_frac_at_5deg_equatorward": 0.0216
+   }
+  },
+  {
+   "aoi_id": "PILOT_RIO_TINTO",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_RIO_TINTO_p50.tif",
+   "grid_sha256": "7fe89c1dad1377bddf3f86c8957d81417dc18eb8f9826c2872569f181bd83c04",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.8942,
+      0.7852,
+      0.7297,
+      0.7132
+     ],
+     [
+      0.7422,
+      0.5972,
+      0.5601,
+      0.5404
+     ],
+     [
+      0.5261,
+      0.3973,
+      0.4025,
+      0.3584
+     ],
+     [
+      0.1827,
+      0.1418,
+      0.163,
+      0.1251
+     ],
+     [
+      0.0262,
+      0.0139,
+      0.0188,
+      0.0124
+     ]
+    ],
+    "mean_over_az": [
+     0.7806,
+     0.61,
+     0.4211,
+     0.1532,
+     0.0178
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5101027397260274,
+    "daylight_low_sun_lt5deg_frac": 0.08828465928163813,
+    "annual_max_elevation_deg": 75.73727303381649,
+    "min_daily_max_elevation_deg": 28.88127682332163,
+    "shadow_frac_at_5deg_equatorward": 0.402525
+   }
+  },
+  {
+   "aoi_id": "PILOT_UTAH",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_UTAH_p50.tif",
+   "grid_sha256": "00ba794922948c718ec0b9d56f91f5be594aec2ae793ff342ee5ffb2fa1a4976",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.616,
+      0.6027,
+      0.5804,
+      0.6799
+     ],
+     [
+      0.3528,
+      0.3047,
+      0.3405,
+      0.4166
+     ],
+     [
+      0.1947,
+      0.156,
+      0.2038,
+      0.2458
+     ],
+     [
+      0.0665,
+      0.048,
+      0.072,
+      0.088
+     ],
+     [
+      0.0092,
+      0.0043,
+      0.0104,
+      0.0134
+     ]
+    ],
+    "mean_over_az": [
+     0.6198,
+     0.3536,
+     0.2001,
+     0.0686,
+     0.0093
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.510369101978691,
+    "daylight_low_sun_lt5deg_frac": 0.0896551724137931,
+    "annual_max_elevation_deg": 75.00867183847186,
+    "min_daily_max_elevation_deg": 28.19097849799556,
+    "shadow_frac_at_5deg_equatorward": 0.20385
+   }
+  },
+  {
+   "aoi_id": "PILOT_WADI_RUM",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PILOT_WADI_RUM_p50.tif",
+   "grid_sha256": "45de095a9d8b0563da34dec31aac4b13ddce13d9cdab7cf5b938472d65f40def",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.8229,
+      0.9266,
+      0.9433,
+      0.9307
+     ],
+     [
+      0.7045,
+      0.8451,
+      0.8051,
+      0.8539
+     ],
+     [
+      0.558,
+      0.6876,
+      0.6082,
+      0.6871
+     ],
+     [
+      0.3315,
+      0.4267,
+      0.3574,
+      0.4149
+     ],
+     [
+      0.141,
+      0.2011,
+      0.1568,
+      0.1926
+     ]
+    ],
+    "mean_over_az": [
+     0.9059,
+     0.8022,
+     0.6352,
+     0.3826,
+     0.1729
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5089992389649924,
+    "daylight_low_sun_lt5deg_frac": 0.07920607034725077,
+    "annual_max_elevation_deg": 83.93984175472941,
+    "min_daily_max_elevation_deg": 37.07508363739925,
+    "shadow_frac_at_5deg_equatorward": 0.608225
+   }
+  },
+  {
+   "aoi_id": "PR_JETT_SP_CRATER",
+   "body": "earth",
+   "grid": "data/derived/geo-0.1.0/grids/PR_JETT_SP_CRATER_p50.tif",
+   "grid_sha256": "d68dcc4625bfe6a80f00e0b9a750f0c8ff64e874cac50d907d2059eda2bdd428",
+   "controlled_same_incidence": {
+    "h_deg": [
+     1.5,
+     3,
+     5,
+     10,
+     20
+    ],
+    "az_deg": [
+     0,
+     90,
+     180,
+     270
+    ],
+    "shadow_frac": [
+     [
+      0.3293,
+      0.5223,
+      0.938,
+      0.6458
+     ],
+     [
+      0.2268,
+      0.3608,
+      0.6235,
+      0.4831
+     ],
+     [
+      0.1527,
+      0.2249,
+      0.3346,
+      0.3209
+     ],
+     [
+      0.0696,
+      0.0982,
+      0.1128,
+      0.1232
+     ],
+     [
+      0.015,
+      0.0227,
+      0.0199,
+      0.0248
+     ]
+    ],
+    "mean_over_az": [
+     0.6089,
+     0.4236,
+     0.2583,
+     0.101,
+     0.0206
+    ]
+   },
+   "actual_local_sun": {
+    "year": 2025,
+    "step_min": 10,
+    "algorithm": "NOAA (pipeline.common.sun.sun_position), refraction on",
+    "sun_up_frac": 0.5095509893455099,
+    "daylight_low_sun_lt5deg_frac": 0.08449705025763572,
+    "annual_max_elevation_deg": 77.86236394497999,
+    "min_daily_max_elevation_deg": 31.00399961878178,
+    "shadow_frac_at_5deg_equatorward": 0.33455
+   }
+  }
+ ]
+}

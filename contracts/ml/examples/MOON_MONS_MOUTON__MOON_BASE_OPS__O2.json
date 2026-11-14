@@ -1,0 +1,1449 @@
+{
+  "schema": "egiz.ml.discovery_result",
+  "schema_version": "0.1.0",
+  "status": "DRAFT",
+  "run_id": "9d115b32bd5927ad",
+  "created_at": "2026-11-07T00:00:00+00:00",
+  "method": {
+    "name": "egiz-transparent-baseline",
+    "version": "0.1.0",
+    "engine_version": "1.0.0",
+    "config": {
+      "stability_draws": 200,
+      "stability_seed": 20261107,
+      "weight_log_sd": 0.25,
+      "scale_log_sd": 0.25,
+      "top_k": 3,
+      "match_threshold": 0.8,
+      "mismatch_threshold": 0.5
+    }
+  },
+  "dataset": {
+    "path": "data/pilot",
+    "kind": "contract",
+    "dataset_version": null,
+    "synthetic": false,
+    "provenance_class": "derived",
+    "files": {
+      "earth_candidates": {
+        "sha256": "621cdb583a7bf526c58ef627063bf0c68a6653faa937edb26f02fbad2e971e45",
+        "schema": "egiz.earth_candidates",
+        "version": "1.0.0"
+      },
+      "targets": {
+        "sha256": "1a01f9f3d33b932c53e4b690d8f1b9286cab98a58926918cee5ebcaa3e3d7f73",
+        "schema": "egiz.targets",
+        "version": "1.0.0"
+      },
+      "mission_templates": {
+        "sha256": "c5e7652145c728896da795a291da9cbc1e0bd8d29278fe90aa7017657ad06c67",
+        "schema": "egiz.mission_templates",
+        "version": "1.0.0"
+      },
+      "sun_windows": {
+        "sha256": "5535f8cd7ad4dca770e96837406ca7a004a2041f42a81d0f1c064a50054adcdc",
+        "schema": "egiz.sun_windows",
+        "version": "1.0.0"
+      },
+      "results": {
+        "sha256": "f501fbaa67a1531971c36e93eecb3d42ab188a078a7d2cae5ff78af80bf17ffc",
+        "schema": "egiz.results",
+        "version": "1.0.0"
+      }
+    },
+    "candidate_count": 9,
+    "eligible_count": 8,
+    "skipped": [],
+    "engine_results_consistent": true,
+    "sources": [
+      {
+        "id": "earth_candidates:1",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:2",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N33W114_Map.tif"
+      },
+      {
+        "id": "earth_candidates:3",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W117_00_DEM/Copernicus_DSM_COG_10_N36_00_W117_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:4",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W117_Map.tif"
+      },
+      {
+        "id": "earth_candidates:5",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E051_00_DEM/Copernicus_DSM_COG_10_N43_00_E051_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:6",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E051_Map.tif"
+      },
+      {
+        "id": "earth_candidates:7",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S25_00_W070_00_DEM/Copernicus_DSM_COG_10_S25_00_W070_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:8",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_S27W072_Map.tif"
+      },
+      {
+        "id": "earth_candidates:9",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W111_00_DEM/Copernicus_DSM_COG_10_N38_00_W111_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:10",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W111_Map.tif"
+      },
+      {
+        "id": "earth_candidates:11",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N65_00_W017_00_DEM/Copernicus_DSM_COG_10_N65_00_W017_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:12",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N63W018_Map.tif"
+      },
+      {
+        "id": "earth_candidates:13",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_E035_00_DEM/Copernicus_DSM_COG_10_N29_00_E035_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:14",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N27E033_Map.tif"
+      },
+      {
+        "id": "earth_candidates:15",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:16",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N36W009_Map.tif"
+      },
+      {
+        "id": "earth_candidates:17",
+        "dataset": "Copernicus DEM GLO-30 Public",
+        "role": "terrain",
+        "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_E054_00_DEM/Copernicus_DSM_COG_10_N43_00_E054_00_DEM.tif"
+      },
+      {
+        "id": "earth_candidates:18",
+        "dataset": "ESA WorldCover 2021 v200",
+        "role": "environment and land cover",
+        "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N42E054_Map.tif"
+      },
+      {
+        "id": "targets:1",
+        "dataset": "Barker et al. 2021. Improved LOLA Elevation Maps for South Pole Landing Sites. DOI 10.1016/j.pss.2020.105119",
+        "role": "target definition and DEM",
+        "url": "https://pgda.gsfc.nasa.gov/products/78"
+      },
+      {
+        "id": "targets:2",
+        "dataset": "Center of native Site20 5 m DEM extent: x=73000 m,y=118000 m; inverse raster CRS, MOON_ME DE421",
+        "role": "target definition and DEM",
+        "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20/Site20_final_adj_5mpp_surf.tif"
+      },
+      {
+        "id": "targets:3",
+        "dataset": "NASA 2024. Provides Update on Artemis III Moon Landing Regions (historical candidate list)",
+        "role": "target definition and DEM",
+        "url": "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/"
+      },
+      {
+        "id": "targets:4",
+        "dataset": "NASA PGDA Site20v2 extended LOLA 5m elevation raster (August 2022 update)",
+        "role": "target definition and DEM",
+        "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif"
+      },
+      {
+        "id": "targets:5",
+        "dataset": "Fergason et al. 2018. Mars MGS MOLA - MEX HRSC Blended DEM Global 200 m v2",
+        "role": "target definition and DEM",
+        "url": "https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m"
+      },
+      {
+        "id": "targets:6",
+        "dataset": "Bell et al. 2022. Geological, multispectral, and meteorological imaging results from the Mars 2020 Perseverance rover in Jezero crater. Landing coordinates 18.4446 N 77.4509 E",
+        "role": "target definition and DEM",
+        "url": "https://doi.org/10.1126/sciadv.abo4856"
+      }
+    ]
+  },
+  "target": {
+    "id": "MOON_MONS_MOUTON",
+    "body": "moon",
+    "name": "Mons Mouton / PGDA Site20 extent center",
+    "kind": "base_region",
+    "lon": 31.7427611534,
+    "lat": -85.4265772804
+  },
+  "mission_profile": {
+    "id": "MOON_BASE_OPS/O2",
+    "template_id": "MOON_BASE_OPS",
+    "objective_id": "O2",
+    "name": "EVA and field geology",
+    "attributes": [
+      {
+        "attr": "frac_lt20_r",
+        "fn": "match",
+        "params": {
+          "sigma": 0.1
+        },
+        "weight": 3.0,
+        "needs_target": true,
+        "priority": "P0"
+      },
+      {
+        "attr": "relief_m",
+        "fn": "logmatch",
+        "params": {
+          "sigma": 0.15
+        },
+        "weight": 2.0,
+        "needs_target": true,
+        "priority": "P0"
+      },
+      {
+        "attr": "bare_frac",
+        "fn": "at_least",
+        "params": {
+          "a": 0.7,
+          "tau": 0.2
+        },
+        "weight": 2.0,
+        "needs_target": false,
+        "priority": "P0"
+      }
+    ],
+    "constraints": [
+      {
+        "attr": "water_frac",
+        "op": "<=",
+        "value": 0.5
+      },
+      {
+        "attr": "built_frac",
+        "op": "<=",
+        "value": 0.2
+      }
+    ]
+  },
+  "component_definitions": {
+    "deterministic_fidelity": {
+      "definition": "Objective fidelity F: weighted geometric mean of attribute fidelities after constraints (MATHEMATICAL_SPECIFICATION §§5–7), recomputed by pipeline.engine.",
+      "range": "[0,1]; null when a constraint fails or missing weight exceeds the limit",
+      "status": "computed",
+      "provenance_class": "derived"
+    },
+    "learned_similarity": {
+      "definition": "Similarity in a learned terrain-embedding space.",
+      "range": "n/a",
+      "status": "not_available",
+      "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+    },
+    "environmental_similarity": {
+      "definition": "Geometric mean of this objective's climate attribute fidelities (t_min_c, t_max_c, precip_mm), when the objective uses them and values exist.",
+      "range": "[0,1]",
+      "status": "computed",
+      "provenance_class": "derived"
+    },
+    "geological_similarity": {
+      "definition": "Similarity on geology/mineralogy evidence.",
+      "range": "n/a",
+      "status": "not_available",
+      "reason": "No geology or mineralogy layers in the snapshot"
+    },
+    "operational_suitability": {
+      "definition": "All mission constraints of the objective pass (true), any fails (false), or a constraint value is missing (null).",
+      "range": "boolean or null",
+      "status": "computed",
+      "provenance_class": "derived"
+    },
+    "novelty": {
+      "definition": "Unusualness relative to the Earth candidate population. Not similarity to the target.",
+      "range": "n/a",
+      "status": "not_available",
+      "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+    },
+    "data_completeness": {
+      "definition": "Share of the objective's attribute weight whose Earth and target values are both known.",
+      "range": "[0,1]",
+      "status": "computed",
+      "provenance_class": "derived"
+    },
+    "ranking_stability": {
+      "definition": "Rank distribution under log-normal perturbation of attribute weights and match widths. Method sensitivity only; not measurement uncertainty or evidence strength.",
+      "range": "frequencies in [0,1], ranks ≥ 1",
+      "status": "computed",
+      "provenance_class": "simulated"
+    }
+  },
+  "ranking": {
+    "primary_component": "deterministic_fidelity",
+    "order": "descending deterministic_fidelity; ineligible candidates last with rank null; ties broken by aoi_id"
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "aoi_id": "GL_W116.820_N36.240",
+      "name": "Death Valley regional window",
+      "country": "United States",
+      "lon": -116.82,
+      "lat": 36.24,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.5257676981465613,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.00082725,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 4.1e-05,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 1.0,
+            "topk_frequency": 1.0,
+            "k": 3,
+            "median_rank": 1.0,
+            "rank_p05": 1.0,
+            "rank_p95": 1.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 0.9335408091557073,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.5668580473065015,
+            "weight": 3.0,
+            "log_contribution": -0.24327701317850403,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 1431.052503967285,
+            "target_value": 2549.96337890625,
+            "fidelity": 0.24692620259248726,
+            "weight": 2.0,
+            "log_contribution": -0.39961878912156645,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.9497865,
+            "target_value": null,
+            "fidelity": 1.0,
+            "weight": 2.0,
+            "log_contribution": 0.0,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 2,
+      "aoi_id": "PILOT_WADI_RUM",
+      "name": "Wadi Rum regional window",
+      "country": "Jordan",
+      "lon": 35.5,
+      "lat": 29.5,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.022685897159985216,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 4e-06,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.0009715,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 1.0,
+            "k": 3,
+            "median_rank": 2.0,
+            "rank_p05": 2.0,
+            "rank_p95": 2.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 0.9998,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.224663212467006,
+            "weight": 3.0,
+            "log_contribution": -0.6399226421280303,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 504.2082061767576,
+            "target_value": 2549.96337890625,
+            "fidelity": 1.65138338080263e-05,
+            "weight": 2.0,
+            "log_contribution": -3.1460891759204594,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.99292825,
+            "target_value": null,
+            "fidelity": 1.0,
+            "weight": 2.0,
+            "log_contribution": 0.0,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 3,
+      "aoi_id": "PILOT_ATACAMA",
+      "name": "Atacama regional window",
+      "country": "Chile",
+      "lon": -69.5,
+      "lat": -24.5,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.010166132232126486,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.0,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 8.5e-05,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.485,
+            "k": 3,
+            "median_rank": 4.0,
+            "rank_p05": 3.0,
+            "rank_p95": 4.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 369.62691650390616,
+            "target_value": 2549.96337890625,
+            "fidelity": 1.6225010754521058e-07,
+            "weight": 2.0,
+            "log_contribution": -3.9472887308469353,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.999807,
+            "target_value": null,
+            "fidelity": 1.0,
+            "weight": 2.0,
+            "log_contribution": 0.0,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 4,
+      "aoi_id": "PILOT_BOSZHIRA",
+      "name": "Boszhira regional window",
+      "country": "Kazakhstan",
+      "lon": 54.2,
+      "lat": 43.4,
+      "pool": "kazakhstan",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.010166132232126486,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 1.55e-05,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.0,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.0,
+            "k": 3,
+            "median_rank": 5.0,
+            "rank_p05": 4.0,
+            "rank_p95": 6.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 288.9761905193328,
+            "target_value": 2549.96337890625,
+            "fidelity": 2.3397328829523252e-09,
+            "weight": 2.0,
+            "log_contribution": -3.9472887308469353,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.77231075,
+            "target_value": null,
+            "fidelity": 1.0,
+            "weight": 2.0,
+            "log_contribution": 0.0,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 5,
+      "aoi_id": "PILOT_UTAH",
+      "name": "Utah desert regional window",
+      "country": "United States",
+      "lon": -110.75,
+      "lat": 38.4,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.010166132232126486,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.00077075,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.000784,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.0,
+            "k": 3,
+            "median_rank": 6.0,
+            "rank_p05": 5.0,
+            "rank_p95": 7.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 164.67940673828116,
+            "target_value": 2549.96337890625,
+            "fidelity": 2.1659824170112672e-14,
+            "weight": 2.0,
+            "log_contribution": -3.9472887308469353,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.941561,
+            "target_value": null,
+            "fidelity": 1.0,
+            "weight": 2.0,
+            "log_contribution": 0.0,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 6,
+      "aoi_id": "PILOT_ICELAND",
+      "name": "Iceland volcanic regional window",
+      "country": "Iceland",
+      "lon": -16.5,
+      "lat": 65.5,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.01013533129299939,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.0,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.0,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.505,
+            "k": 3,
+            "median_rank": 3.0,
+            "rank_p05": 3.0,
+            "rank_p95": 6.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [
+          "bare_frac"
+        ],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 405.9692108154297,
+            "target_value": 2549.96337890625,
+            "fidelity": 7.138102204554825e-07,
+            "weight": 2.0,
+            "log_contribution": -3.9472887308469353,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.67085175,
+            "target_value": null,
+            "fidelity": 0.9894359398288315,
+            "weight": 2.0,
+            "log_contribution": -0.003034358850223218,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 7,
+      "aoi_id": "PR_JETT_SP_CRATER",
+      "name": "S P Crater vicinity / JETT3",
+      "country": "United States",
+      "lon": -111.628601417,
+      "lat": 35.5733252222,
+      "pool": "practice",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.004050795293997799,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.0013625,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.001509,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.01,
+            "k": 3,
+            "median_rank": 7.0,
+            "rank_p05": 5.0,
+            "rank_p95": 7.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m",
+          "bare_frac"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 461.80571899414076,
+            "target_value": 2549.96337890625,
+            "fidelity": 4.846678055426056e-06,
+            "weight": 2.0,
+            "log_contribution": -3.4963477213477048,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.08039925,
+            "target_value": null,
+            "fidelity": 0.008239516470830195,
+            "weight": 2.0,
+            "log_contribution": -1.3710896050020083,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": 8,
+      "aoi_id": "PILOT_RIO_TINTO",
+      "name": "Rio Tinto regional window",
+      "country": "Spain",
+      "lon": -6.6,
+      "lat": 37.7,
+      "pool": "global",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": true,
+      "ineligible_reason": null,
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": 0.0021552341774103536,
+          "provenance_class": "derived",
+          "reason": null,
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": true,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.02213925,
+              "passed": true
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.01282925,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 1.0,
+          "missing_fields": []
+        },
+        "ranking_stability": {
+          "status": "computed",
+          "value": {
+            "top1_frequency": 0.0,
+            "topk_frequency": 0.0,
+            "k": 3,
+            "median_rank": 8.0,
+            "rank_p05": 7.950000000000001,
+            "rank_p95": 8.0,
+            "draws": 200
+          },
+          "provenance_class": "simulated"
+        }
+      },
+      "explanation": {
+        "matching": [],
+        "mismatches": [
+          "frac_lt20_r",
+          "relief_m",
+          "bare_frac"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.641404721903477,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 286.8186683654784,
+            "target_value": 2549.96337890625,
+            "fidelity": 2.040120830014881e-09,
+            "weight": 2.0,
+            "log_contribution": -3.9472887308469353,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.04096625,
+            "target_value": null,
+            "fidelity": 0.004387180359023376,
+            "weight": 2.0,
+            "log_contribution": -1.55116244156808,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": []
+      }
+    },
+    {
+      "rank": null,
+      "aoi_id": "KZ_E051.200_N43.400",
+      "name": "Water-dominated coastal window (excluded)",
+      "country": "Kazakhstan",
+      "lon": 51.2,
+      "lat": 43.4,
+      "pool": "kazakhstan",
+      "site_id": null,
+      "group_id": null,
+      "coverage_level": null,
+      "eligible": false,
+      "ineligible_reason": "constraint",
+      "components": {
+        "deterministic_fidelity": {
+          "status": "computed",
+          "value": null,
+          "provenance_class": "derived",
+          "reason": "constraint",
+          "partial": false
+        },
+        "learned_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3; gate requires ≥50 distinct sites and ≥5000 patches; snapshot has 9 sites and no committed patch rasters"
+        },
+        "environmental_similarity": {
+          "status": "not_applicable",
+          "value": null,
+          "reason": "This objective uses no climate attributes"
+        },
+        "geological_similarity": {
+          "status": "not_available",
+          "value": null,
+          "reason": "No geology or mineralogy layers in the snapshot"
+        },
+        "operational_suitability": {
+          "status": "computed",
+          "value": false,
+          "provenance_class": "derived",
+          "constraints": [
+            {
+              "attr": "water_frac",
+              "op": "<=",
+              "threshold": 0.5,
+              "value": 0.958658,
+              "passed": false
+            },
+            {
+              "attr": "built_frac",
+              "op": "<=",
+              "threshold": 0.2,
+              "value": 0.00154975,
+              "passed": true
+            }
+          ]
+        },
+        "novelty": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Stage 3 gate: ≥100 sites required, 9 present"
+        },
+        "data_completeness": {
+          "status": "computed",
+          "provenance_class": "derived",
+          "value": 0.7143,
+          "missing_fields": [
+            "relief_m"
+          ]
+        },
+        "ranking_stability": {
+          "status": "not_available",
+          "value": null,
+          "reason": "Candidate never receives a score under perturbation"
+        }
+      },
+      "explanation": {
+        "matching": [],
+        "mismatches": [
+          "frac_lt20_r",
+          "bare_frac",
+          "constraint water_frac <= 0.5 failed (value 0.959)"
+        ],
+        "attributes": [
+          {
+            "attr": "frac_lt20_r",
+            "earth_value": 1.0,
+            "target_value": 0.8269906928645294,
+            "fidelity": 0.22388762709111443,
+            "weight": 3.0,
+            "log_contribution": -0.8979666106648677,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "relief_m",
+            "earth_value": 0.0,
+            "target_value": 2549.96337890625,
+            "fidelity": null,
+            "weight": 2.0,
+            "log_contribution": null,
+            "target_source": "computed:PGDA LOLA 5mpp Site20v2; pixel=200m"
+          },
+          {
+            "attr": "bare_frac",
+            "earth_value": 0.0227655,
+            "target_value": null,
+            "fidelity": 0.0032370848239769807,
+            "weight": 2.0,
+            "log_contribution": -2.2932328399512496,
+            "target_source": "definition:EGIZ_METHOD"
+          }
+        ],
+        "missing_fields": [
+          "relief_m (not computable value missing)"
+        ]
+      }
+    }
+  ],
+  "physical_non_equivalence": [
+    {
+      "gap": "Reduced gravity",
+      "alternative": "Parabolic flight or gravity offload for the applicable task; terrestrial field gravity remains 1 g",
+      "source": "NASA_PARABOLIC"
+    },
+    {
+      "gap": "Vacuum or thin atmosphere",
+      "alternative": "Thermal vacuum or controlled pressure chamber",
+      "source": "NASA_TVAC"
+    },
+    {
+      "gap": "Extreme thermal environment",
+      "alternative": "Thermal vacuum chamber with controlled thermal boundary conditions",
+      "source": "NASA_TVAC"
+    },
+    {
+      "gap": "Space radiation",
+      "alternative": "Separate radiation qualification; terrestrial field ranking does not model radiation",
+      "source": "NASA_ANALOGS"
+    },
+    {
+      "gap": "Polar lighting duration and horizon",
+      "alternative": "Artificial field lighting (JETT Sun cart); natural Earth windows remain incomplete",
+      "source": "NASA_JETT3"
+    },
+    {
+      "gap": "Regolith mechanical and chemical properties",
+      "alternative": "Characterized material testing and suitable regolith simulants; no composition claim from DEM",
+      "source": "EGIZ_METHOD"
+    }
+  ],
+  "limitations": [
+    "Exploratory pilot: candidates are a small hand-selected set of regional windows, not a global sample.",
+    "Ranking reuses the provisional deterministic engine; weights and widths are not calibrated against independent field evidence (Stage 2 pre-registered evaluation not yet run).",
+    "Terrain similarity does not establish field suitability, access, safety or planetary equivalence.",
+    "Ranking stability reflects sensitivity to method parameters only, not DEM or land-cover measurement error.",
+    "Learned similarity, geology and novelty are not available in Stage 1."
+  ]
+}

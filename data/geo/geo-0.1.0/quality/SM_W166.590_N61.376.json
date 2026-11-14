@@ -1,0 +1,149 @@
+{
+ "aoi_id": "SM_W166.590_N61.376",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L1_dem",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:05Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:07Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:07Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:08Z"
+  }
+ },
+ "missing": {
+  "tree_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "crop_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "built_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "bare_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "snow_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "water_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "grass_shrub_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "moss_lichen_frac": "WorldCover classified coverage < 99% (ocean or tile gap)",
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    3.16,
+    2.16,
+    1.67,
+    5.39,
+    12.36,
+    13.96,
+    19.52,
+    16.01,
+    16.49,
+    12.12,
+    6.2,
+    4.18
+   ],
+   "t2m_min_c": [
+    -29.41,
+    -27.3,
+    -24.02,
+    -17.83,
+    -10.5,
+    -1.23,
+    3.04,
+    5.26,
+    2.03,
+    -7.08,
+    -20.36,
+    -26.68
+   ],
+   "t2m_c": [
+    -10.34,
+    -9.11,
+    -9.03,
+    -4.2,
+    0.9,
+    5.77,
+    9.11,
+    10.41,
+    8.34,
+    3.76,
+    -1.91,
+    -7.09
+   ],
+   "precip_rate_mm_per_day": [
+    1.63,
+    1.88,
+    1.24,
+    1.32,
+    1.44,
+    1.7,
+    2.54,
+    2.76,
+    3.14,
+    2.7,
+    2.27,
+    1.96
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-166.5900&latitude=61.3760&format=JSON",
+  "accessed": "2026-11-07T17:31:07Z",
+  "sha256": "5a3c5de4c2d8ff19e1adf07f06e104fd033774194e22f1a24e82c4ebcce30e1f"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=61.37600&lng=-166.59000",
+  "map_id": 1588943,
+  "source_id": 21,
+  "source_ref": "Wilson, F.H., Hults, C.P., Mull, C.G, and Karl, S.M. (compilers) (2015). Geologic map of Alaska.  U.S. Geological Survey Scientific Investigations Map 3340, pamphlet 196 doi: 10.3133/sim3340",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-07T17:31:08Z"
+ }
+}

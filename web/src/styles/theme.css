@@ -192,6 +192,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 @media (max-width: 1180px) {
   .eg-header .eg-nav button { letter-spacing: .1em; font-size: 12px; }
+  .eg-header .eg-nav { gap: clamp(10px, 1.1vw, 16px); margin-left: 8px; } /* seven workspaces must fit at 1024 px */
   .eg-header .dataset-selected-label { display: none; }
 }
 @media (max-width: 1023px) {

@@ -1,0 +1,141 @@
+{
+ "aoi_id": "SM_W067.577_N62.220",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:22Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:24Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:25Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:28Z"
+  }
+ },
+ "missing": {
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (large)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    0.01,
+    1.78,
+    0.75,
+    0.77,
+    5.4,
+    10.02,
+    15.23,
+    12.12,
+    11.3,
+    3.51,
+    1.59,
+    1.01
+   ],
+   "t2m_min_c": [
+    -35.29,
+    -37.15,
+    -32.7,
+    -26.63,
+    -18.23,
+    -5.7,
+    -0.68,
+    -0.75,
+    -5.78,
+    -12.3,
+    -20.75,
+    -30.26
+   ],
+   "t2m_c": [
+    -19.5,
+    -20.71,
+    -16.87,
+    -10.01,
+    -3.59,
+    1.17,
+    4.21,
+    4.26,
+    1.27,
+    -2.19,
+    -6.8,
+    -12.47
+   ],
+   "precip_rate_mm_per_day": [
+    1.05,
+    0.92,
+    1.15,
+    1.51,
+    1.58,
+    2.36,
+    2.62,
+    2.75,
+    2.84,
+    2.26,
+    1.99,
+    1.5
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-67.5770&latitude=62.2200&format=JSON",
+  "accessed": "2026-11-07T17:29:25Z",
+  "sha256": "c0e7d65109bff932e7d83c8a216f882d9306a07f46bc2f2c754fe06febf60c22"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=62.22000&lng=-67.57700",
+  "map_id": 3495778,
+  "source_id": 252,
+  "source_ref": "St-Onge, M.R., Rayner, N.M., Steenkamp, H.M., and Gilbert, C. (2015). Geology, Pritzler Harbour, Baffin Island, Nunavut (preliminary), scale 1:100,000. Canada-Nunavut Geoscience Office, Open File Map 2015-03E doi: 10.4095/296109",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:29:27Z"
+ }
+}

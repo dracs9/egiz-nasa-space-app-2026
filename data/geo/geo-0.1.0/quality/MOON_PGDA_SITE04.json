@@ -1,0 +1,84 @@
+{
+ "aoi_id": "MOON_PGDA_SITE04",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L0_sampled",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:12:20Z"
+  },
+  "landcover": {
+   "status": "not_applicable",
+   "at": "2026-11-07T17:12:20Z"
+  },
+  "climate": {
+   "status": "not_applicable",
+   "at": "2026-11-07T17:12:20Z"
+  },
+  "geology": {
+   "status": "not_applicable",
+   "at": "2026-11-07T17:12:20Z"
+  }
+ },
+ "missing": {
+  "tree_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "crop_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "built_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "bare_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "snow_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "water_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "grass_shrub_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "moss_lichen_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "landcover_classified_frac": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "t2m_max_warmest_month_c": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "t2m_min_coldest_month_c": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "t2m_mean_annual_c": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "t2m_seasonal_range_c": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "precip_annual_mm": "not_comparable: Earth-atmosphere/land-cover variable has no measured counterpart on this body",
+  "geo_unit_name_label": "not acquired: no harmonised planetary geologic map unit layer in this release",
+  "geo_lith_label": "not acquired: no harmonised planetary geologic map unit layer in this release",
+  "geo_age_interval_label": "not acquired: no harmonised planetary geologic map unit layer in this release",
+  "geo_age_top_ma": "not acquired: no harmonised planetary geologic map unit layer in this release",
+  "geo_age_bottom_ma": "not acquired: no harmonised planetary geologic map unit layer in this release",
+  "geo_map_scale_label": "not acquired: no harmonised planetary geologic map unit layer in this release"
+ },
+ "climate_meta": null,
+ "geology_meta": null
+}

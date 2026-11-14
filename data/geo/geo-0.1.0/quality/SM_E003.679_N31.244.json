@@ -1,0 +1,141 @@
+{
+ "aoi_id": "SM_E003.679_N31.244",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:24Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:26Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:26Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:25:28Z"
+  }
+ },
+ "missing": {
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (small)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    24.88,
+    35.33,
+    36.69,
+    40.29,
+    44.02,
+    46.38,
+    47.92,
+    46.97,
+    45.15,
+    40.35,
+    32.89,
+    26.83
+   ],
+   "t2m_min_c": [
+    -2.61,
+    -2.76,
+    0.37,
+    5.53,
+    10.22,
+    14.29,
+    20.64,
+    21.49,
+    13.31,
+    7.43,
+    2.41,
+    -1.12
+   ],
+   "t2m_c": [
+    9.32,
+    11.51,
+    16.46,
+    21.34,
+    26.41,
+    31.54,
+    34.8,
+    33.83,
+    29.5,
+    23.31,
+    15.4,
+    10.5
+   ],
+   "precip_rate_mm_per_day": [
+    0.19,
+    0.04,
+    0.23,
+    0.15,
+    0.06,
+    0.02,
+    0.04,
+    0.1,
+    0.13,
+    0.16,
+    0.1,
+    0.15
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=3.6790&latitude=31.2440&format=JSON",
+  "accessed": "2026-11-07T17:25:26Z",
+  "sha256": "05d3d2f31a5fa7b041951aadd7a803f69ca9a5e0b07e035ec8926cdbaff502f2"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=31.24400&lng=3.67900",
+  "map_id": 3131579,
+  "source_id": 147,
+  "source_ref": "Asch, K. (2003). The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept. Geologisches Jahrbuch, SA 3",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:25:28Z"
+ }
+}

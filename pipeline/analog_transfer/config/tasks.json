@@ -1,0 +1,542 @@
+{
+  "schema": "egiz.atlas_pi.task_registry",
+  "version": "1.0.0",
+  "note": "Mission-conditioned task registry. Tolerances are declared engineering tolerances (assumptions), not measured error bars; the evaluation varies them by x0.5 and x2. Status thresholds are expressed in tolerance units: match = exp(-z^2/2), so 0.6065 is z = 1 tolerance and 0.1353 is z = 2 tolerances.",
+  "status_rules": {
+    "supported_lower_bound": 0.6065,
+    "conditional_point": 0.1353,
+    "conditional_discount": 0.5,
+    "order": [
+      "SITE_CONSTRAINT: a hard site constraint fails -> NON_TRANSFERABLE (the site cannot host the operation).",
+      "PHYSICS_PRIMARY: a primary physical dependency is not reproducible in the field and has no correction model -> NON_TRANSFERABLE.",
+      "EVIDENCE: available factor weight fraction below the task's min_evidence -> UNKNOWN.",
+      "SUPPORTED: lower bootstrap bound of the task match >= 1-tolerance threshold, evidence quality >= supported_min_quality, primary-factor resolution sufficient, and no primary physics dependency that is only partially reproducible or model-corrected.",
+      "CONDITIONAL: point match >= 2-tolerance threshold but a caveat applies (CI below threshold, low evidence quality, insufficient resolution, or a partial/model-corrected primary physics dependency).",
+      "WEAK: point match below the 2-tolerance threshold.",
+      "Secondary physics dependencies never change the status; they are listed as certificate limitations and red-team findings."
+    ],
+    "supported_min_quality": 0.6
+  },
+  "factors": {
+    "slope_dist": {
+      "name": "Slope distribution (multi-scale)",
+      "kind": "distribution",
+      "metric": "Wasserstein-1 between slope distributions at 200, 400 and 800 m cells (central differences)",
+      "tolerance": 2.0,
+      "unit": "deg",
+      "scales_m": [
+        200,
+        400,
+        800
+      ]
+    },
+    "traversable": {
+      "name": "Traversable fraction (slope < 15 deg, 200 m cells)",
+      "kind": "scalar_grid",
+      "metric": "Absolute difference of fraction",
+      "tolerance": 0.1,
+      "unit": "fraction",
+      "threshold_deg": 15
+    },
+    "roughness": {
+      "name": "Detrended local roughness (600 m windows)",
+      "kind": "distribution",
+      "metric": "Wasserstein-1 between log10 residual-std distributions after 3x3 plane removal",
+      "tolerance": 0.15,
+      "unit": "dex"
+    },
+    "relief": {
+      "name": "Regional relief (P95-P5 elevation)",
+      "kind": "scalar_grid",
+      "metric": "Absolute log10 ratio",
+      "tolerance": 0.15,
+      "unit": "dex"
+    },
+    "fine_slope": {
+      "name": "Fine-baseline slope P90 (target baseline)",
+      "kind": "scalar_attr",
+      "metric": "Absolute difference at the target fine baseline (100 m Moon, 400 m Mars)",
+      "tolerance": 4.0,
+      "unit": "deg"
+    },
+    "surface_cover": {
+      "name": "Bare surface fraction",
+      "kind": "threshold",
+      "metric": "at_least 0.8 with tau 0.2 (target bare by definition)",
+      "tolerance": 0.2,
+      "unit": "fraction"
+    },
+    "process": {
+      "name": "Geological process compatibility",
+      "kind": "categorical",
+      "metric": "Declared process-tag compatibility matrix",
+      "tolerance": null,
+      "unit": null
+    },
+    "illumination_geometry": {
+      "name": "Solar illumination geometry",
+      "kind": "derived",
+      "metric": "Moon: existing EGIZ low-Sun light fidelity (NOAA, monthly windows); Mars: Wasserstein-1 between NASA SPICE daylight solar-elevation distributions (Earth: 12 monthly days; Jezero: 12 epochs across a Mars year)",
+      "tolerance": 10.0,
+      "unit": "deg"
+    },
+    "irradiance": {
+      "name": "Direct solar irradiance (Sun-tracking, period mean)",
+      "kind": "model",
+      "metric": "Absolute log10 ratio of modelled mean direct irradiance on a Sun-tracking surface, including night (CF_SOLAR)",
+      "tolerance": 0.15,
+      "unit": "dex"
+    },
+    "thermal": {
+      "name": "Minimum surface temperature",
+      "kind": "scalar_attr",
+      "metric": "colder-than-target",
+      "tolerance": 30.0,
+      "unit": "degC"
+    },
+    "aridity": {
+      "name": "Annual precipitation",
+      "kind": "scalar_attr",
+      "metric": "at_most 50 mm with tau 100 mm",
+      "tolerance": 100.0,
+      "unit": "mm"
+    }
+  },
+  "tasks": [
+    {
+      "id": "HAZARD_MAPPING",
+      "name": "DEM-based hazard mapping rehearsal",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Rehearse slope/roughness hazard mapping and avoidance planning from orbital-class DEMs.",
+      "factors": [
+        {
+          "factor": "fine_slope",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "roughness",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "slope_dist",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {},
+      "required_resolution_m": 100,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Lander-scale (metre) hazards such as boulders are not resolved by any input DEM."
+      ]
+    },
+    {
+      "id": "ROUTE_PLANNING",
+      "name": "Rover route planning and autonomous navigation",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Exercise route planners and autonomy on terrain geometry statistically similar to the target region.",
+      "factors": [
+        {
+          "factor": "slope_dist",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "traversable",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "roughness",
+          "role": "secondary",
+          "weight": 1
+        },
+        {
+          "factor": "relief",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "gravity": "secondary",
+        "regolith_mechanics": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Traversability thresholds depend on wheel-soil behaviour, which is not transferred by terrain geometry."
+      ]
+    },
+    {
+      "id": "WHEEL_SOIL",
+      "name": "Wheel-soil traction and sinkage qualification",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Qualify wheel traction, sinkage and drawbar pull.",
+      "factors": [
+        {
+          "factor": "slope_dist",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "regolith_mechanics": "primary",
+        "gravity": "primary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.5,
+      "limitations": [
+        "Field soils are unmeasured; reduced-gravity soil strength effects are empirically documented and not reproduced at 1 g."
+      ]
+    },
+    {
+      "id": "EVA_GEOLOGY",
+      "name": "EVA field-geology traverse training",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Train crews and science teams on geological traverses and observation planning.",
+      "factors": [
+        {
+          "factor": "relief",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "surface_cover",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "process",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "slope_dist",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "gravity": "secondary",
+        "atmosphere": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Suit mobility under reduced gravity and pressurisation is not reproduced."
+      ]
+    },
+    {
+      "id": "SAMPLING",
+      "name": "Geological sampling protocol rehearsal",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Rehearse sample selection, documentation and handling protocols.",
+      "factors": [
+        {
+          "factor": "process",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "surface_cover",
+          "role": "primary",
+          "weight": 2
+        }
+      ],
+      "physics": {
+        "regolith_mechanics": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Mineralogy and lithology are not inferred from DEMs."
+      ]
+    },
+    {
+      "id": "SOLAR_SITING",
+      "name": "Solar array siting and energy-constrained scheduling",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Plan array placement and operations against solar geometry and available irradiance.",
+      "factors": [
+        {
+          "factor": "illumination_geometry",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "irradiance",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "relief",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "atmosphere": "secondary",
+        "dust": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "No terrain horizon shadowing at the Earth sites; panel temperature and dust deposition not modelled."
+      ]
+    },
+    {
+      "id": "LOW_SUN_OPS",
+      "name": "Low-Sun crew and robotic operations",
+      "bodies": [
+        "moon"
+      ],
+      "description": "Rehearse perception and operations under long, low-angle shadows.",
+      "factors": [
+        {
+          "factor": "illumination_geometry",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "slope_dist",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "polar_illumination": "primary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Natural Earth low-Sun windows are seasonal and short compared with lunar polar illumination."
+      ]
+    },
+    {
+      "id": "COMMS_VISIBILITY",
+      "name": "Line-of-sight and communications geometry planning",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Plan line-of-sight between assets and relay placement over terrain.",
+      "factors": [
+        {
+          "factor": "relief",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "roughness",
+          "role": "secondary",
+          "weight": 1
+        },
+        {
+          "factor": "slope_dist",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "earth_link": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Direct-to-Earth and relay-orbiter geometry is not reproduced by terrestrial sites."
+      ]
+    },
+    {
+      "id": "HABITAT_LAYOUT",
+      "name": "Habitat and landing-pad site layout",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Lay out habitat, pad and keep-out zones against flat-terrain availability and thermal environment.",
+      "factors": [
+        {
+          "factor": "traversable",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "fine_slope",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "thermal",
+          "role": "primary",
+          "weight": 2
+        }
+      ],
+      "physics": {
+        "radiation": "secondary",
+        "thermal_cycle": "secondary"
+      },
+      "required_resolution_m": 100,
+      "min_evidence": 0.75,
+      "limitations": [
+        "Radiation shielding and thermal design are outside field-analog scope."
+      ]
+    },
+    {
+      "id": "EXCAVATION_ISRU",
+      "name": "Excavation and regolith ISRU operations",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Excavate, haul and process regolith; prospect volatiles.",
+      "factors": [
+        {
+          "factor": "surface_cover",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "regolith_mechanics": "primary",
+        "gravity": "primary",
+        "volatiles": "primary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.5,
+      "limitations": [
+        "Excavation forces scale with gravity and soil strength; volatile behaviour requires cryo-vacuum testing."
+      ]
+    },
+    {
+      "id": "DUST_MITIGATION",
+      "name": "Dust mitigation and contamination control",
+      "bodies": [
+        "moon",
+        "mars"
+      ],
+      "description": "Test dust tolerance of mechanisms, seals and optics.",
+      "factors": [
+        {
+          "factor": "surface_cover",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "dust": "primary",
+        "atmosphere": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.5,
+      "limitations": [
+        "Lunar electrostatic dust and low-pressure Martian aeolian transport are not reproduced outdoors on Earth."
+      ]
+    },
+    {
+      "id": "COLD_DRY_SURFACE",
+      "name": "Cold, dry surface operations",
+      "bodies": [
+        "mars"
+      ],
+      "description": "Operate equipment in persistently cold and arid surface conditions.",
+      "factors": [
+        {
+          "factor": "thermal",
+          "role": "primary",
+          "weight": 2
+        },
+        {
+          "factor": "aridity",
+          "role": "primary",
+          "weight": 3
+        },
+        {
+          "factor": "surface_cover",
+          "role": "secondary",
+          "weight": 1
+        }
+      ],
+      "physics": {
+        "thermal_cycle": "secondary",
+        "atmosphere": "secondary"
+      },
+      "required_resolution_m": 200,
+      "min_evidence": 0.7,
+      "limitations": [
+        "Earth and target temperatures/precipitation were not acquired."
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "attr": "water_frac",
+      "op": "<=",
+      "value": 0.5,
+      "source": "EGIZ mission_templates.json (all objectives)"
+    },
+    {
+      "attr": "built_frac",
+      "op": "<=",
+      "value": 0.2,
+      "source": "EGIZ mission_templates.json (all objectives)"
+    }
+  ],
+  "missions": [
+    {
+      "id": "MOON_SOUTH_POLE_CAMPAIGN",
+      "target": "MOON_MONS_MOUTON",
+      "name": "Lunar south-pole surface campaign",
+      "task_weights": {
+        "HAZARD_MAPPING": 1,
+        "ROUTE_PLANNING": 1.5,
+        "WHEEL_SOIL": 1,
+        "EVA_GEOLOGY": 1,
+        "SAMPLING": 1,
+        "SOLAR_SITING": 1,
+        "LOW_SUN_OPS": 1.5,
+        "COMMS_VISIBILITY": 0.5,
+        "HABITAT_LAYOUT": 1,
+        "EXCAVATION_ISRU": 1,
+        "DUST_MITIGATION": 1
+      }
+    },
+    {
+      "id": "MARS_JEZERO_CAMPAIGN",
+      "target": "MARS_JEZERO",
+      "name": "Jezero rover mobility and geology campaign",
+      "task_weights": {
+        "HAZARD_MAPPING": 1,
+        "ROUTE_PLANNING": 1.5,
+        "WHEEL_SOIL": 1,
+        "EVA_GEOLOGY": 1,
+        "SAMPLING": 1.5,
+        "SOLAR_SITING": 1,
+        "COMMS_VISIBILITY": 0.5,
+        "HABITAT_LAYOUT": 0.5,
+        "EXCAVATION_ISRU": 0.5,
+        "DUST_MITIGATION": 1,
+        "COLD_DRY_SURFACE": 1
+      }
+    }
+  ]
+}

@@ -8,6 +8,9 @@ const shared=[
 export function topicsFor(route:Route):GuideTopic[] {
   const specific:Record<Route,GuideTopic[]>={
     home:[],
+    studio:[],
+    astral:[],
+    discover:[],
     brief:[
       topic('target','.target-choices','Mission destination','Choose the Moon or Mars and its measured research region. The destination determines the terrain and reference environment.','Select a destination card.'),
       topic('objectives','.brief-objectives','Mission objectives','Enable the experiments you want to rehearse on Earth. Priority weights determine how much each objective contributes to campaign coverage.','Enable an objective, then adjust its priority.'),
@@ -38,6 +41,10 @@ export function topicsFor(route:Route):GuideTopic[] {
     matrix:[
       topic('cells','.matrix-scroll','Attribute fidelity matrix','Each row is an Earth site and each column is a mission attribute. Color and numbers show fidelity from zero to one; hatched cells have missing evidence.','Select a cell for evidence or a column heading to sort.'),
       topic('matrix-evidence','.matrix-evidence','Cell evidence','A selected cell exposes the underlying value, source, mismatch and comparison method. It explains why that attribute received its score.','Compare the source values and their units.'),
+    ],
+    atlas:[
+      topic('atlas-modes','.atlas-tabs','Transferability workspace','Each mode answers one research question: which operations transfer, which sites complement each other, what physics changes, and what to measure next.','Choose a mode; the mission selector applies to all of them.'),
+      topic('atlas-tensor','.atlas-matrix','Operational Transferability Tensor','Rows are Earth sites, columns are mission tasks. The status comes from documented rules; similarity, evidence and physics remain separate numbers in the cell detail.','Select a cell to open its certificate and evidence trace.'),
     ],
     evidence:[
       topic('coverage','.research-overview','Packaged evidence','These counts describe the currently loaded dataset: Earth windows, planetary targets and distinct source records.','Expand the dataset coverage section below.'),

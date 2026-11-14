@@ -1,0 +1,282 @@
+{
+ "schema_version": "1.0.0",
+ "dataset_version": "geo-0.1.0",
+ "generated_at": "2026-11-07T17:36:44Z",
+ "n_aois": 336,
+ "n_distinct_sites": 336,
+ "by_body": {
+  "earth": 329,
+  "mars": 1,
+  "moon": 6
+ },
+ "by_pool": {
+  "pilot": 9,
+  "target": 2,
+  "target_extra": 5,
+  "sampled": 320
+ },
+ "by_coverage_level": {
+  "L0_sampled": 4,
+  "L1_dem": 18,
+  "L2_environment": 6,
+  "L3_geology": 0,
+  "L4_validated": 308
+ },
+ "stage_status": {
+  "dem": {
+   "ok": 336
+  },
+  "landcover": {
+   "ok": 329,
+   "not_applicable": 7
+  },
+  "climate": {
+   "ok": 329,
+   "not_applicable": 7
+  },
+  "geology": {
+   "ok": 312,
+   "not_applicable": 7,
+   "no_data": 17
+  }
+ },
+ "by_variable": {
+  "slope_f400_p50_deg": {
+   "non_null": 330,
+   "of": 336
+  },
+  "slope_f400_p90_deg": {
+   "non_null": 330,
+   "of": 336
+  },
+  "frac_lt10_f400": {
+   "non_null": 330,
+   "of": 336
+  },
+  "frac_lt20_f400": {
+   "non_null": 330,
+   "of": 336
+  },
+  "tri_f400_m": {
+   "non_null": 330,
+   "of": 336
+  },
+  "slope_r_p50_deg": {
+   "non_null": 336,
+   "of": 336
+  },
+  "slope_r_p90_deg": {
+   "non_null": 336,
+   "of": 336
+  },
+  "frac_lt20_r": {
+   "non_null": 336,
+   "of": 336
+  },
+  "relief_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "elev_min_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "slope_f100_p50_deg": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_p90_deg": {
+   "non_null": 335,
+   "of": 336
+  },
+  "frac_lt10_f100": {
+   "non_null": 335,
+   "of": 336
+  },
+  "frac_lt20_f100": {
+   "non_null": 335,
+   "of": 336
+  },
+  "tri_f100_m": {
+   "non_null": 335,
+   "of": 336
+  },
+  "dem_valid_frac": {
+   "non_null": 336,
+   "of": 336
+  },
+  "elev_p05_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "elev_p50_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "elev_p95_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "elev_std_m": {
+   "non_null": 336,
+   "of": 336
+  },
+  "slope_f100_mean_deg": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_std_deg": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_bin_0_5_frac": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_bin_5_15_frac": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_bin_15_30_frac": {
+   "non_null": 335,
+   "of": 336
+  },
+  "slope_f100_bin_gt30_frac": {
+   "non_null": 335,
+   "of": 336
+  },
+  "aspect_northness_mean_unitless": {
+   "non_null": 275,
+   "of": 336
+  },
+  "aspect_eastness_mean_unitless": {
+   "non_null": 275,
+   "of": 336
+  },
+  "aspect_sloped_frac": {
+   "non_null": 275,
+   "of": 336
+  },
+  "curv_lap_f100_std_per_m": {
+   "non_null": 335,
+   "of": 336
+  },
+  "tree_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "crop_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "built_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "bare_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "snow_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "water_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "grass_shrub_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "moss_lichen_frac": {
+   "non_null": 311,
+   "of": 336
+  },
+  "landcover_classified_frac": {
+   "non_null": 329,
+   "of": 336
+  },
+  "t2m_max_warmest_month_c": {
+   "non_null": 329,
+   "of": 336
+  },
+  "t2m_min_coldest_month_c": {
+   "non_null": 329,
+   "of": 336
+  },
+  "t2m_mean_annual_c": {
+   "non_null": 329,
+   "of": 336
+  },
+  "t2m_seasonal_range_c": {
+   "non_null": 329,
+   "of": 336
+  },
+  "precip_annual_mm": {
+   "non_null": 329,
+   "of": 336
+  },
+  "geo_unit_name_label": {
+   "non_null": 228,
+   "of": 336
+  },
+  "geo_lith_label": {
+   "non_null": 259,
+   "of": 336
+  },
+  "geo_age_interval_label": {
+   "non_null": 288,
+   "of": 336
+  },
+  "geo_age_top_ma": {
+   "non_null": 307,
+   "of": 336
+  },
+  "geo_age_bottom_ma": {
+   "non_null": 307,
+   "of": 336
+  },
+  "geo_map_scale_label": {
+   "non_null": 312,
+   "of": 336
+  },
+  "slope_f400_mean_deg": {
+   "non_null": 1,
+   "of": 336
+  },
+  "slope_f400_std_deg": {
+   "non_null": 1,
+   "of": 336
+  },
+  "slope_f400_bin_0_5_frac": {
+   "non_null": 1,
+   "of": 336
+  },
+  "slope_f400_bin_5_15_frac": {
+   "non_null": 1,
+   "of": 336
+  },
+  "slope_f400_bin_15_30_frac": {
+   "non_null": 1,
+   "of": 336
+  },
+  "slope_f400_bin_gt30_frac": {
+   "non_null": 1,
+   "of": 336
+  },
+  "curv_lap_f400_std_per_m": {
+   "non_null": 1,
+   "of": 336
+  }
+ },
+ "values_by_source": {
+  "COP_GLO30": 9687,
+  "ESA_WC_V200": 2817,
+  "NASA_POWER_CLIM": 1645,
+  "MACROSTRAT": 1701,
+  "USGS_MARS_BLEND": 25,
+  "PGDA_LOLA_5MPP": 150
+ },
+ "n_groups": 328
+}

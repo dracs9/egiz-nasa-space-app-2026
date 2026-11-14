@@ -1,0 +1,311 @@
+{
+  "schema": "egiz.atlas_pi.physical_factors",
+  "version": "1.0.0",
+  "note": "Body-level reference conditions. Values are global reference values, not observations at an analysis site. 'reproducible_in_field' describes whether an open-air terrestrial field site reproduces the condition; it is a design classification by EGIZ, reviewed against the cited sources.",
+  "factors": [
+    {
+      "id": "gravity",
+      "name": "Surface gravity",
+      "reproducible_in_field": "no",
+      "corrections": [
+        "CF_TERRAMECHANICS"
+      ],
+      "correction_scope": "Bekker rigid-wheel sinkage/compaction resistance under declared load protocols only. Gravity-dependent soil strength is not modelled.",
+      "lab_alternatives": [
+        "Parabolic flight or gravity offload (NASA_PARABOLIC)",
+        "Mass-matched rather than load-matched wheel testing (Wong 2012)"
+      ],
+      "values": {
+        "earth": {
+          "value": 9.80665,
+          "unit": "m/s^2",
+          "kind": "assumed",
+          "source": "Standard gravity (definition, CGPM 1901)"
+        },
+        "moon": {
+          "value": 1.62,
+          "unit": "m/s^2",
+          "kind": "retrieved",
+          "source": "NASA NSSDCA Moon Fact Sheet https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html (1.62 m/s^2, verified 2026-11-13)"
+        },
+        "mars": {
+          "value": 3.73,
+          "unit": "m/s^2",
+          "kind": "retrieved",
+          "source": "NASA NSSDCA Mars Fact Sheet, mean surface gravity (sheet updated 19 May 2025) https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html. Note: the existing EGIZ Mission Lab environment uses the older 3.71."
+        }
+      },
+      "evidence": [
+        {
+          "ref": "WONG_2012",
+          "statement": "Proposes Earth testing with identical mass rather than identical normal load to predict extraterrestrial rigid-wheel sinkage and compaction resistance."
+        },
+        {
+          "ref": "NIKSIRAT_2020",
+          "statement": "Parabolic-flight wheel tests on a Mars simulant reported reduced traction and increased sinkage in reduced gravity relative to 1 g at equal wheel load (as summarised in the session literature search; full text not read)."
+        },
+        {
+          "ref": "DACA_2022",
+          "statement": "1/6 g parabolic-flight cone penetration in GRC-1 reported a markedly reduced cone index gradient (reduced shear strength), i.e. soil strength depends on gravity."
+        }
+      ]
+    },
+    {
+      "id": "atmosphere",
+      "name": "Atmospheric pressure and composition",
+      "reproducible_in_field": "no",
+      "corrections": [
+        "CF_SOLAR"
+      ],
+      "correction_scope": "Only the attenuation of direct solar irradiance is modelled (Earth clear-sky approximation; Mars Beer-Lambert with declared optical depth). Convection, aeolian transport and thermal coupling are not modelled.",
+      "lab_alternatives": [
+        "Thermal vacuum or controlled-pressure chamber (NASA_TVAC)"
+      ],
+      "values": {
+        "earth": {
+          "value": 101.325,
+          "unit": "kPa",
+          "kind": "assumed",
+          "source": "Standard atmosphere sea-level pressure (definition)"
+        },
+        "moon": {
+          "value": 0.0,
+          "unit": "kPa",
+          "kind": "retrieved",
+          "source": "NASA NSSDCA Moon Fact Sheet (surface exosphere; effectively vacuum)"
+        },
+        "mars": {
+          "value": 0.6,
+          "unit": "kPa",
+          "kind": "assumed",
+          "source": "Order-of-magnitude mean surface pressure (~0.6 kPa, seasonally variable); exact NSSDCA value not verified in this session"
+        }
+      }
+    },
+    {
+      "id": "radiation",
+      "name": "Ionising radiation environment",
+      "reproducible_in_field": "no",
+      "corrections": [],
+      "lab_alternatives": [
+        "Separate radiation qualification (NASA_ANALOGS); field ranking does not model radiation"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled by EGIZ"
+        },
+        "moon": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled by EGIZ"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled by EGIZ"
+        }
+      }
+    },
+    {
+      "id": "thermal_cycle",
+      "name": "Surface thermal environment and diurnal cycle",
+      "reproducible_in_field": "partial",
+      "corrections": [],
+      "lab_alternatives": [
+        "Thermal vacuum chamber with controlled boundary conditions (NASA_TVAC)"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": "degC",
+          "kind": "unknown",
+          "source": "Site temperatures not acquired (MODIS LST adapter implemented, not run)"
+        },
+        "moon": {
+          "value": null,
+          "unit": "degC",
+          "kind": "unknown",
+          "source": "Target temperatures intentionally blank in EGIZ targets.json"
+        },
+        "mars": {
+          "value": null,
+          "unit": "degC",
+          "kind": "unknown",
+          "source": "Target temperatures intentionally blank in EGIZ targets.json"
+        }
+      }
+    },
+    {
+      "id": "regolith_mechanics",
+      "name": "Regolith mechanical properties",
+      "reproducible_in_field": "no",
+      "corrections": [],
+      "correction_scope": "No correction: terrestrial field soils are unmeasured. CF_TERRAMECHANICS can only explore declared Bekker parameters, it cannot make a field soil equivalent to regolith.",
+      "lab_alternatives": [
+        "Characterised regolith simulant bin testing",
+        "In-situ bevameter testing at the field site (planner measurement M_BEVAMETER)"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "No soil mechanics measured at any EGIZ Earth window"
+        },
+        "moon": {
+          "value": {
+            "kc_N_m2": 1400,
+            "kphi_N_m3": 820000,
+            "n": 1
+          },
+          "unit": "Bekker",
+          "kind": "assumed",
+          "source": "Apollo-era design estimates from Surveyor/Apollo data, described by NASA as rough estimates (NASA M2M-30044 Lunar Surface Data Book; NASA TM-20250006958)"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "No Jezero regolith mechanics parameters acquired"
+        }
+      }
+    },
+    {
+      "id": "dust",
+      "name": "Dust behaviour (lunar electrostatic charging; Martian aeolian dust)",
+      "reproducible_in_field": "no",
+      "corrections": [],
+      "lab_alternatives": [
+        "Vacuum dust chamber with simulant",
+        "Mars wind tunnel (low pressure)"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        },
+        "moon": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        }
+      }
+    },
+    {
+      "id": "volatiles",
+      "name": "Volatile behaviour (cold-trapped ice, sublimation)",
+      "reproducible_in_field": "no",
+      "corrections": [],
+      "lab_alternatives": [
+        "Cryogenic vacuum chamber with icy simulant"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        },
+        "moon": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not modelled"
+        }
+      }
+    },
+    {
+      "id": "earth_link",
+      "name": "Direct-to-Earth / relay communication geometry",
+      "reproducible_in_field": "no",
+      "corrections": [],
+      "lab_alternatives": [
+        "Link emulation with recorded SPICE Earth-elevation series"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "assumed",
+          "source": "Terrestrial infrastructure; not an analog of planetary link geometry"
+        },
+        "moon": {
+          "value": null,
+          "unit": "deg",
+          "kind": "derived",
+          "source": "SPICE Earth elevation series (pipeline.science.spice)"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Relay orbiter geometry not modelled"
+        }
+      }
+    },
+    {
+      "id": "polar_illumination",
+      "name": "Polar low-Sun illumination regime",
+      "reproducible_in_field": "partial",
+      "corrections": [
+        "CF_SOLAR"
+      ],
+      "correction_scope": "Natural Earth windows reproduce low solar elevation for limited hours and seasons; artificial lighting (JETT Sun cart) is an alternative.",
+      "lab_alternatives": [
+        "Artificial low-angle field lighting (NASA_JETT3)"
+      ],
+      "values": {
+        "earth": {
+          "value": null,
+          "unit": null,
+          "kind": "derived",
+          "source": "NOAA solar geometry (sun_windows.json)"
+        },
+        "moon": {
+          "value": null,
+          "unit": null,
+          "kind": "derived",
+          "source": "SPICE solar geometry"
+        },
+        "mars": {
+          "value": null,
+          "unit": null,
+          "kind": "unknown",
+          "source": "Not applicable at Jezero latitude"
+        }
+      }
+    }
+  ],
+  "references": {
+    "WONG_2012": "Wong, J.Y. (2012) Predicting the performances of rigid rover wheels on extraterrestrial surfaces based on test results obtained on earth. J. Terramechanics 49, 49-61. https://www.kiss.caltech.edu/papers/xterramechanics/papers/predicting.pdf",
+    "WONG_KOBAYASHI_2012": "Wong, J.Y., Kobayashi, T. (2012) Further study of the method of approach to testing the performance of extraterrestrial rovers/rover wheels on earth. J. Terramechanics 49(6), 349-362. doi:10.1016/j.jterra.2012.10.004",
+    "NIKSIRAT_2020": "Niksirat, P., Daca, A., Skonieczny, K. (2020) Int. J. Robotics Research \u2014 parabolic-flight ExoMars wheel tests (title and figures not verified in this session; finding as summarised via ESA ASTRA 2022 paper https://robotics.estec.esa.int/ASTRA/Astra2022/24_Skonieczny-Krzysztof-24-109-Skonieczny-Krzysztof.pdf)",
+    "DACA_2022": "Daca, A., Tremblay, D., Skonieczny, K. (2022) Experimental evaluation of cone index gradient as a metric for the prediction of wheel performance in reduced gravity. J. Terramechanics. https://istvs.org/publication-news/experimental-evaluation-of-cone-index-gradient-as-a-metric-for-the-prediction-of-wheel-performance-in-reduced-gravity",
+    "NASA_LSDB": "NASA (2025) M2M-30044 Lunar Surface Data Book. https://ntrs.nasa.gov/api/citations/20250002845/downloads/M2M-30044%20Lunar%20Surface%20Data%20Book%20Baseline_Final.pdf",
+    "NASA_TM_2025_TIRE": "NASA (2025) An Overview of Tire-Ground Contact Modeling Approaches. TM-20250006958. https://ntrs.nasa.gov/api/citations/20250006958/downloads/TM-20250006958.pdf",
+    "NASA_PARABOLIC": "NASA Parabolic Flight. https://www.nasa.gov/mission/parabolic-flight/",
+    "NASA_TVAC": "NASA SSRI Thermal Vacuum. https://s3vi.ndc.nasa.gov/ssri-kb/topics/59/",
+    "NASA_ANALOGS": "NASA Analog Missions. https://www.nasa.gov/analog-missions/",
+    "NASA_JETT3": "NASA (2022) NASA to Practice Artemis Moonwalking, Roving Operations in Arizona Desert. https://www.nasa.gov/humans-in-space/nasa-to-practice-artemis-moonwalking-roving-operations-in-arizona-desert/"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "egiz.atlas_pi.site_context",
+  "version": "1.0.0",
+  "note": "Dominant geological process tags. Grade A = peer-reviewed source checked in this session; B = authoritative non-peer-reviewed record already in EGIZ references; C = non-academic secondary source checked in this session; D = derived from the window name or general knowledge, NOT verified. Grades C and D are hypotheses for the field-research planner to verify.",
+  "compatibility": {"shared_tag": 1.0, "no_shared_tag": 0.2, "rule": "1.0 if any process tag is shared; otherwise 0.2 (morphology may still be useful but formation process differs). Declared judgment, varied in sensitivity analysis."},
+  "grade_quality": {"A": 1.0, "B": 0.8, "C": 0.4, "D": 0.25},
+  "sites": {
+    "PR_JETT_SP_CRATER": {"tags": ["volcanic"], "grade": "B", "source": "Arizona Geological Survey, S P Crater record https://azgs.arizona.edu/birds-eye-view-sp-crater-arizona; NASA JETT3 field test https://www.nasa.gov/humans-in-space/nasa-to-practice-artemis-moonwalking-roving-operations-in-arizona-desert/"},
+    "GL_W116.820_N36.240": {"tags": ["alluvial", "evaporite"], "grade": "D", "source": "Window name (Death Valley); not verified in this session"},
+    "KZ_E051.200_N43.400": {"tags": ["coastal"], "grade": "D", "source": "WorldCover water fraction 0.96 (observed); process not verified"},
+    "PILOT_ATACAMA": {"tags": ["alluvial", "evaporite", "aeolian"], "grade": "D", "source": "Window name (Atacama); not verified in this session"},
+    "PILOT_UTAH": {"tags": ["sedimentary_fluvial", "aeolian"], "grade": "D", "source": "Window name (Utah desert); not verified in this session"},
+    "PILOT_ICELAND": {"tags": ["volcanic"], "grade": "D", "source": "Window name (Iceland volcanic); not verified in this session"},
+    "PILOT_WADI_RUM": {"tags": ["sedimentary_fluvial", "aeolian"], "grade": "D", "source": "Window name (Wadi Rum); not verified in this session"},
+    "PILOT_RIO_TINTO": {"tags": ["hydrothermal_acidic", "sedimentary_fluvial"], "grade": "A", "source": "Fernandez-Remolar et al. (2005) EPSL 240(1):149-167, The Rio Tinto Basin, Spain: mineralogy, sedimentary geobiology, and implications for interpretation of outcrop rocks at Meridiani Planum, Mars"},
+    "PILOT_BOSZHIRA": {"tags": ["sedimentary_marine"], "grade": "C", "source": "Chalk/limestone uplands of the western Ustyurt Plateau per regional tourism sources (e.g. https://orexca.com/kazakhstan/mangystau/bozzhyra.htm); no peer-reviewed geology found in this session"}
+  },
+  "targets": {
+    "MOON_MONS_MOUTON": {"tags": ["impact"], "grade": "D", "source": "General knowledge that lunar south-polar highland terrain is impact-dominated; not verified for Mons Mouton in this session"},
+    "MARS_JEZERO": {"tags": ["impact", "sedimentary_fluvial"], "grade": "A", "source": "Bell et al. (2022) Sci. Adv., doi:10.1126/sciadv.abo4856 (Jezero crater, deltaic deposits)"}
+  }
+}

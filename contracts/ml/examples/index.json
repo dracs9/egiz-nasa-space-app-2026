@@ -1,0 +1,78 @@
+{
+  "schema": "egiz.ml.discovery_index",
+  "schema_version": "0.1.0",
+  "results": [
+    {
+      "file": "MARS_JEZERO__MARS_SURFACE_OPS__M1.json",
+      "run_id": "358ef3d703e088bc",
+      "target": "MARS_JEZERO",
+      "mission_profile": "MARS_SURFACE_OPS/M1",
+      "eligible": 8,
+      "top_candidate": "PILOT_ICELAND"
+    },
+    {
+      "file": "MARS_JEZERO__MARS_SURFACE_OPS__M2.json",
+      "run_id": "803a7e7794af3f18",
+      "target": "MARS_JEZERO",
+      "mission_profile": "MARS_SURFACE_OPS/M2",
+      "eligible": 8,
+      "top_candidate": "PILOT_ICELAND"
+    },
+    {
+      "file": "MARS_JEZERO__MARS_SURFACE_OPS__M3.json",
+      "run_id": "9d58cc2c65b41580",
+      "target": "MARS_JEZERO",
+      "mission_profile": "MARS_SURFACE_OPS/M3",
+      "eligible": 8,
+      "top_candidate": "PILOT_WADI_RUM"
+    },
+    {
+      "file": "MARS_JEZERO__MARS_SURFACE_OPS__M4.json",
+      "run_id": "99073700555ad987",
+      "target": "MARS_JEZERO",
+      "mission_profile": "MARS_SURFACE_OPS/M4",
+      "eligible": 0,
+      "top_candidate": null
+    },
+    {
+      "file": "MOON_MONS_MOUTON__MOON_BASE_OPS__O1.json",
+      "run_id": "2e90ce07a5779ca9",
+      "target": "MOON_MONS_MOUTON",
+      "mission_profile": "MOON_BASE_OPS/O1",
+      "eligible": 8,
+      "top_candidate": "PILOT_RIO_TINTO"
+    },
+    {
+      "file": "MOON_MONS_MOUTON__MOON_BASE_OPS__O2.json",
+      "run_id": "9d115b32bd5927ad",
+      "target": "MOON_MONS_MOUTON",
+      "mission_profile": "MOON_BASE_OPS/O2",
+      "eligible": 8,
+      "top_candidate": "GL_W116.820_N36.240"
+    },
+    {
+      "file": "MOON_MONS_MOUTON__MOON_BASE_OPS__O3.json",
+      "run_id": "52f1aa1ae58fb404",
+      "target": "MOON_MONS_MOUTON",
+      "mission_profile": "MOON_BASE_OPS/O3",
+      "eligible": 8,
+      "top_candidate": "PILOT_RIO_TINTO"
+    },
+    {
+      "file": "MOON_MONS_MOUTON__MOON_BASE_OPS__O4.json",
+      "run_id": "85476acfc5a1ccc2",
+      "target": "MOON_MONS_MOUTON",
+      "mission_profile": "MOON_BASE_OPS/O4",
+      "eligible": 8,
+      "top_candidate": "PILOT_ICELAND"
+    },
+    {
+      "file": "MOON_MONS_MOUTON__MOON_BASE_OPS__O5.json",
+      "run_id": "b6c27f017e091146",
+      "target": "MOON_MONS_MOUTON",
+      "mission_profile": "MOON_BASE_OPS/O5",
+      "eligible": 0,
+      "top_candidate": null
+    }
+  ]
+}

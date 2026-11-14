@@ -11,7 +11,7 @@ export const useLanguage = create<{ language: Language }>(() => ({ language: 'en
 export function setLanguage(language: Language, persist = true) {
   if (language !== 'ru' && language !== 'en') return;
   useLanguage.setState({ language });
-  if (typeof document !== 'undefined') { document.documentElement.lang = language; document.title = language === 'ru' ? 'EGIZ — Планетарная инженерная лаборатория' : 'EGIZ — Planetary Mission Explorer'; }
+  if (typeof document !== 'undefined') { document.documentElement.lang = language; document.title = language === 'ru' ? 'EGIZ — земные полигоны для Луны и Марса' : 'EGIZ — Training grounds for the Moon and Mars'; }
   if (persist) try { localStorage.setItem(LANGUAGE_KEY, language); } catch { /* Works without browser storage. */ }
 }
 export function initializeLanguage() {

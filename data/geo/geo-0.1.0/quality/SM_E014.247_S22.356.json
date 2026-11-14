@@ -1,0 +1,147 @@
+{
+ "aoi_id": "SM_E014.247_S22.356",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "water_dominated_window",
+   "status": "warn",
+   "detail": "water_frac=1.00; terrain statistics describe a water-flattened DSM surface"
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L2_environment",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:26:55Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:26:56Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:26:57Z"
+  },
+  "geology": {
+   "status": "no_data",
+   "at": "2026-11-07T17:26:57Z"
+  }
+ },
+ "missing": {
+  "geo_unit_name_label": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)",
+  "geo_lith_label": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)",
+  "geo_age_interval_label": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)",
+  "geo_age_top_ma": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)",
+  "geo_age_bottom_ma": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)",
+  "geo_map_scale_label": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    33.02,
+    33.76,
+    36.19,
+    34.57,
+    33.98,
+    31.35,
+    31.82,
+    33.09,
+    34.58,
+    33.42,
+    30.72,
+    30.45
+   ],
+   "t2m_min_c": [
+    14.32,
+    15.13,
+    13.76,
+    12.62,
+    11.48,
+    10.08,
+    9.2,
+    9.48,
+    9.33,
+    10.36,
+    11.25,
+    12.93
+   ],
+   "t2m_c": [
+    19.18,
+    19.82,
+    19.7,
+    19.14,
+    18.57,
+    17.2,
+    17.09,
+    15.31,
+    15.4,
+    15.81,
+    16.91,
+    18.0
+   ],
+   "precip_rate_mm_per_day": [
+    0.58,
+    0.73,
+    0.65,
+    0.69,
+    0.05,
+    0.02,
+    0.03,
+    0.01,
+    0.05,
+    0.17,
+    0.32,
+    0.39
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=14.2470&latitude=-22.3560&format=JSON",
+  "accessed": "2026-11-07T17:26:57Z",
+  "sha256": "558ef7c539cb4c107ebb206c22e70104ed91955bb2e1f0f22537f658256c781c"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=-22.35600&lng=14.24700",
+  "reason": "no mapped geologic unit at AOI centre (Macrostrat coverage gap)"
+ }
+}

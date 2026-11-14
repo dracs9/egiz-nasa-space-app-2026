@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W085.348_N39.230",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:40Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:41Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:42Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:43Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    18.97,
+    22.52,
+    26.76,
+    28.08,
+    31.14,
+    38.14,
+    39.77,
+    37.34,
+    37.01,
+    34.44,
+    26.09,
+    21.13
+   ],
+   "t2m_min_c": [
+    -23.76,
+    -22.09,
+    -16.62,
+    -5.32,
+    -2.8,
+    6.35,
+    9.52,
+    9.34,
+    2.96,
+    -4.09,
+    -11.68,
+    -22.63
+   ],
+   "t2m_c": [
+    -1.54,
+    -0.16,
+    5.64,
+    12.18,
+    17.62,
+    22.17,
+    24.03,
+    23.78,
+    20.19,
+    13.04,
+    6.12,
+    0.74
+   ],
+   "precip_rate_mm_per_day": [
+    2.69,
+    2.83,
+    3.48,
+    4.17,
+    4.21,
+    4.12,
+    3.65,
+    2.77,
+    2.93,
+    3.31,
+    3.1,
+    3.24
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-85.3480&latitude=39.2300&format=JSON",
+  "accessed": "2026-11-07T17:30:42Z",
+  "sha256": "f292bf7ae38b6ccf5cc90609670fb544d35a90d80aa6f7b60d05bdda2f4c5197"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=39.23000&lng=-85.34800",
+  "map_id": 4132733,
+  "source_id": 528,
+  "source_ref": "(1989). Gray, H.H., 1989, Quaternary Geologic Map of Indiana: Indiana Geological Survey Miscellaneous Map 49, scale 1:500,000..",
+  "n_units_at_point": 6,
+  "accessed": "2026-11-07T17:30:42Z"
+ }
+}

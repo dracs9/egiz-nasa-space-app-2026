@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W069.272_N47.315",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:56Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:58Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:59Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:01Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    6.68,
+    4.92,
+    19.64,
+    21.94,
+    28.73,
+    30.7,
+    30.43,
+    28.82,
+    28.76,
+    24.21,
+    17.71,
+    11.55
+   ],
+   "t2m_min_c": [
+    -38.83,
+    -38.0,
+    -32.35,
+    -19.79,
+    -5.82,
+    -1.76,
+    5.75,
+    4.62,
+    -3.17,
+    -8.15,
+    -22.2,
+    -29.31
+   ],
+   "t2m_c": [
+    -13.89,
+    -12.46,
+    -7.58,
+    1.16,
+    9.29,
+    14.66,
+    17.83,
+    16.94,
+    12.7,
+    5.54,
+    -1.52,
+    -9.39
+   ],
+   "precip_rate_mm_per_day": [
+    1.86,
+    2.12,
+    2.28,
+    2.94,
+    3.01,
+    3.67,
+    3.49,
+    3.25,
+    3.21,
+    3.58,
+    2.82,
+    2.89
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-69.2720&latitude=47.3150&format=JSON",
+  "accessed": "2026-11-07T17:30:59Z",
+  "sha256": "c2ffa796563da69e037035ecc5f9be5a9a64786d5d098be9f820b5ed3d5fe1a0"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=47.31500&lng=-69.27200",
+  "map_id": 3889877,
+  "source_id": 481,
+  "source_ref": "(1985). Osberg, P.H., Hussey, A.M. and Boone, G.M., 1985, Bedrock geologic map of Maine: Maine Geological Survey, Geologic Map Series BGMM, scale 1:500,000..",
+  "n_units_at_point": 6,
+  "accessed": "2026-11-07T17:31:01Z"
+ }
+}

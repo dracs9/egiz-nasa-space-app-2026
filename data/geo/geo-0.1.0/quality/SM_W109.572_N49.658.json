@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W109.572_N49.658",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:06Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:07Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:08Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:11Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    9.92,
+    12.94,
+    22.02,
+    28.09,
+    29.93,
+    34.37,
+    36.24,
+    37.16,
+    33.2,
+    26.49,
+    17.57,
+    7.36
+   ],
+   "t2m_min_c": [
+    -37.93,
+    -33.84,
+    -33.05,
+    -17.12,
+    -6.61,
+    0.32,
+    5.39,
+    2.63,
+    -7.3,
+    -17.86,
+    -24.82,
+    -36.91
+   ],
+   "t2m_c": [
+    -7.91,
+    -7.55,
+    -1.35,
+    4.45,
+    10.39,
+    15.24,
+    19.92,
+    18.34,
+    12.37,
+    4.55,
+    -1.88,
+    -7.23
+   ],
+   "precip_rate_mm_per_day": [
+    0.63,
+    0.66,
+    0.79,
+    1.33,
+    1.95,
+    2.85,
+    1.27,
+    1.36,
+    1.24,
+    0.99,
+    0.8,
+    0.62
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-109.5720&latitude=49.6580&format=JSON",
+  "accessed": "2026-11-07T17:29:08Z",
+  "sha256": "405dd90369c0c272cb48cda7ae26153f4571832bc733f72a8471ae5851b12675"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=49.65800&lng=-109.57200",
+  "map_id": 1296405,
+  "source_id": 9,
+  "source_ref": "Saskatchewan Energy and Resources (2015). Geological atlas of Saskatchewan\n.",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:29:09Z"
+ }
+}

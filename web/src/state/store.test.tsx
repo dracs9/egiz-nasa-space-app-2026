@@ -28,7 +28,7 @@ describe('URL state and mission brief', () => {
     (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
     const root = createRoot(document.getElementById('test-root')!);
     await act(async () => { root.render(<BriefPage />); });
-    const button = [...document.querySelectorAll('button')].find(b => b.textContent === 'Design campaign');
+    const button = [...document.querySelectorAll('button')].find(b => b.textContent === 'Find field sites');
     expect(button?.disabled).toBe(true);
     await act(async () => { root.unmount(); });
   });

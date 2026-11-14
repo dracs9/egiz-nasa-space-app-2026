@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W116.506_N45.648",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:10Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:11Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:12Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:17Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    6.06,
+    10.59,
+    19.26,
+    24.19,
+    29.46,
+    34.31,
+    37.65,
+    35.14,
+    32.79,
+    29.25,
+    17.31,
+    8.47
+   ],
+   "t2m_min_c": [
+    -27.11,
+    -23.96,
+    -19.0,
+    -13.87,
+    -6.81,
+    -1.81,
+    3.34,
+    1.59,
+    -3.0,
+    -14.68,
+    -20.23,
+    -25.61
+   ],
+   "t2m_c": [
+    -5.49,
+    -4.42,
+    -0.53,
+    3.54,
+    9.03,
+    13.14,
+    18.87,
+    18.16,
+    13.21,
+    5.74,
+    -0.85,
+    -5.44
+   ],
+   "precip_rate_mm_per_day": [
+    2.64,
+    2.63,
+    2.99,
+    2.46,
+    2.4,
+    2.07,
+    0.47,
+    0.59,
+    1.01,
+    1.77,
+    2.5,
+    3.08
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-116.5060&latitude=45.6480&format=JSON",
+  "accessed": "2026-11-07T17:31:12Z",
+  "sha256": "3b917b58b4d2d31420ab42607b4a42c1a03547f5b099964dd57d8418fa83e425"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=45.64800&lng=-116.50600",
+  "map_id": 1462894,
+  "source_id": 20,
+  "source_ref": "R.L. Smith, W.P. Roe (compilers) (2015). Oregon Geologic Data Compilation, release 6. State of Oregon Department of Geology and Mineral Industries",
+  "n_units_at_point": 6,
+  "accessed": "2026-11-07T17:31:13Z"
+ }
+}

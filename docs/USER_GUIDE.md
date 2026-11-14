@@ -15,6 +15,10 @@ EGIZ helps you explore planetary terrain, simulate a mission, and find Earth loc
 
 An **Earth analog** is a place on Earth used to test some conditions relevant to a Moon or Mars mission. A similarity score describes the model's comparison; it is not a probability of mission success.
 
+## Discover: search the whole Earth for analogs
+
+Open **Discover** (`#/discover`). Pick a lunar or Martian target and a mission objective; EGIZ ranks every window of its measured Earth-wide index (global lattice, Kazakhstan lattice, published analog sites) along independent dimensions — fine-scale slopes, roughness, regional relief, exposed ground, lithology, aridity, thermal regime (Mars), solar geometry — with uncertainty intervals, Earth-wide percentiles, rarity and novelty. Mineralogy, dust, ice and caves are shown as *not assessed* because no dataset was acquired. Open a candidate for its dimension profile, computed gap ledger, rover experiment and 3D world link; compare up to three; export a reproducible dossier; or ask the research assistant (answers come only from analysis tools). Details: [docs/discovery/README.md](discovery/README.md).
+
 ## Try your first mission
 
 1. Open **Engineering lab** with **Real terrain** selected, then choose **World** in its workspace rail.

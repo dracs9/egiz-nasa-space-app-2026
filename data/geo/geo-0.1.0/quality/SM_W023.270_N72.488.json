@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W023.270_N72.488",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:37Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:39Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:40Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:42Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    -1.55,
+    -1.5,
+    -2.46,
+    1.86,
+    5.47,
+    10.15,
+    10.43,
+    9.55,
+    6.83,
+    1.9,
+    -2.12,
+    -0.77
+   ],
+   "t2m_min_c": [
+    -36.5,
+    -38.04,
+    -37.03,
+    -28.16,
+    -19.43,
+    -9.71,
+    -1.82,
+    -7.87,
+    -19.27,
+    -28.96,
+    -30.73,
+    -34.59
+   ],
+   "t2m_c": [
+    -18.52,
+    -19.84,
+    -19.84,
+    -14.06,
+    -6.16,
+    1.2,
+    3.31,
+    2.02,
+    -3.73,
+    -11.31,
+    -17.13,
+    -18.91
+   ],
+   "precip_rate_mm_per_day": [
+    2.9,
+    2.72,
+    1.2,
+    0.93,
+    1.12,
+    0.47,
+    1.4,
+    2.04,
+    2.54,
+    2.17,
+    1.89,
+    2.15
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-23.2700&latitude=72.4880&format=JSON",
+  "accessed": "2026-11-07T17:30:40Z",
+  "sha256": "1dcacc20fe2f27e1da90a6ea5fcf81654113bbe728f15d9511e1746c2714d037"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=72.48800&lng=-23.27000",
+  "map_id": 958447,
+  "source_id": 7,
+  "source_ref": "Garrity, C.P., and Soller, D.R., (2009). Database of the Geologic Map of North America: adapted from the map by J.C. Reed, Jr. and others (2005). U.S. Geological Survey Data Series 424",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-07T17:30:42Z"
+ }
+}

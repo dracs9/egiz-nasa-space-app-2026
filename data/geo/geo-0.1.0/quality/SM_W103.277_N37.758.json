@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W103.277_N37.758",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:16Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:17Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:18Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:28:20Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    22.93,
+    26.29,
+    30.42,
+    34.47,
+    41.12,
+    43.36,
+    42.72,
+    41.81,
+    39.54,
+    33.78,
+    29.13,
+    23.13
+   ],
+   "t2m_min_c": [
+    -15.53,
+    -18.43,
+    -14.16,
+    -8.76,
+    -1.45,
+    5.74,
+    11.47,
+    10.98,
+    1.11,
+    -9.39,
+    -13.57,
+    -16.66
+   ],
+   "t2m_c": [
+    1.34,
+    2.53,
+    8.24,
+    12.69,
+    18.27,
+    24.96,
+    27.44,
+    25.53,
+    21.21,
+    13.12,
+    6.52,
+    1.15
+   ],
+   "precip_rate_mm_per_day": [
+    0.3,
+    0.32,
+    0.57,
+    1.13,
+    1.39,
+    1.62,
+    2.15,
+    1.83,
+    1.0,
+    0.85,
+    0.28,
+    0.36
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-103.2770&latitude=37.7580&format=JSON",
+  "accessed": "2026-11-07T17:28:18Z",
+  "sha256": "5aa111552a73e71793272bfe403127ce7bd3b614f764350f8fbb1c9dc0fc495f"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=37.75800&lng=-103.27700",
+  "map_id": 3922988,
+  "source_id": 492,
+  "source_ref": "(1979). Tweto, Ogden, 1979, Geologic map of Colorado: U.S. Geological Survey, scale 1:500,000..",
+  "n_units_at_point": 5,
+  "accessed": "2026-11-07T17:28:18Z"
+ }
+}

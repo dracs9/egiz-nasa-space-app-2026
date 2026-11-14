@@ -22,7 +22,7 @@ it('renders the all-null Kazakhstan site as not eligible in both offline map and
   expect(document.querySelector<HTMLButtonElement>('[aria-label="Fit campaign"]')!.disabled).toBe(true);
   const normalizedColor = document.createElement('span'); normalizedColor.style.background = fidelityColor(null);
   expect(point!.style.background).toBe(normalizedColor.style.background);
-  const tableButton = [...document.querySelectorAll<HTMLButtonElement>('.map-toolbar button')].find(button => button.textContent === 'Candidate table')!;
+  const tableButton = [...document.querySelectorAll<HTMLButtonElement>('.map-toolbar button')].find(button => button.textContent === 'All candidates')!;
   await act(async () => { tableButton.click(); });
   expect(tableButton.getAttribute('aria-pressed')).toBe('true');
   const row = [...document.querySelectorAll('.candidate-table tbody tr')].find(item => item.querySelector('button')?.textContent?.includes(coords(unknown.lat, unknown.lon)));

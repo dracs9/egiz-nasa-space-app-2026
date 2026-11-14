@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_E065.400_N68.794",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:39Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:41Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:42Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:29:42Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    0.87,
+    -1.01,
+    1.62,
+    2.13,
+    15.32,
+    21.71,
+    24.07,
+    19.4,
+    16.9,
+    8.11,
+    1.35,
+    0.79
+   ],
+   "t2m_min_c": [
+    -40.11,
+    -41.14,
+    -40.39,
+    -25.35,
+    -17.31,
+    -8.5,
+    -0.95,
+    -0.25,
+    -4.82,
+    -21.88,
+    -34.87,
+    -42.09
+   ],
+   "t2m_c": [
+    -19.63,
+    -19.38,
+    -13.87,
+    -8.34,
+    -2.95,
+    4.4,
+    9.11,
+    7.87,
+    4.16,
+    -2.8,
+    -11.67,
+    -16.08
+   ],
+   "precip_rate_mm_per_day": [
+    1.08,
+    0.94,
+    1.18,
+    1.5,
+    2.13,
+    2.95,
+    2.43,
+    2.69,
+    2.37,
+    2.15,
+    1.72,
+    1.35
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=65.4000&latitude=68.7940&format=JSON",
+  "accessed": "2026-11-07T17:29:42Z",
+  "sha256": "f158d953007e330ae79bbc7fead0e6bff20325e6cfb974019d74d9db877f5210"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=68.79400&lng=65.40000",
+  "map_id": 643379,
+  "source_id": 2,
+  "source_ref": "J.C. Harrison, M.R. St-Onge, O.V. Petrov, S.I. Strelnikov, B.G. Lopatin, \nF.H. Wilson, S. Tella, D. Paul, T. Lynds, S.P. Shokalsky, C.K. Hults, \nS. Bergman, H.F. Jepsen, and A. Solli (2011). Geological map of the Arctic. Geological Survey of Canada Map 2159A doi:10.4095/287868",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:29:42Z"
+ }
+}

@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W098.438_N56.206",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:07Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:09Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:10Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:30:11Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    0.13,
+    0.14,
+    2.96,
+    24.6,
+    30.73,
+    35.59,
+    32.21,
+    32.25,
+    27.71,
+    18.32,
+    2.97,
+    -0.35
+   ],
+   "t2m_min_c": [
+    -50.54,
+    -46.3,
+    -43.99,
+    -33.62,
+    -14.49,
+    -2.89,
+    2.36,
+    1.2,
+    -6.04,
+    -20.76,
+    -40.52,
+    -48.55
+   ],
+   "t2m_c": [
+    -24.58,
+    -22.52,
+    -14.08,
+    -3.87,
+    5.81,
+    13.25,
+    16.64,
+    14.35,
+    8.04,
+    -0.92,
+    -13.14,
+    -22.33
+   ],
+   "precip_rate_mm_per_day": [
+    0.79,
+    0.59,
+    1.17,
+    1.22,
+    1.8,
+    2.77,
+    3.64,
+    2.92,
+    2.3,
+    1.79,
+    1.08,
+    0.71
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-98.4380&latitude=56.2060&format=JSON",
+  "accessed": "2026-11-07T17:30:10Z",
+  "sha256": "320ab56ecc12aff52dce936b762a378a1ddb090299c91c54ce9e686347149fdc"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=56.20600&lng=-98.43800",
+  "map_id": 1299279,
+  "source_id": 10,
+  "source_ref": "Manitoba Mineral Resources (2013). Bedrock geology, Manitoba; in Map Gallery – Geoscientific Maps, Manitoba Mineral Resources (July 2015).",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:30:11Z"
+ }
+}

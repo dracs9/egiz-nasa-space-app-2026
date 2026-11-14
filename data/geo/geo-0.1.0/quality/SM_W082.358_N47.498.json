@@ -1,0 +1,139 @@
+{
+ "aoi_id": "SM_W082.358_N47.498",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:18Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:20Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:20Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:31:23Z"
+  }
+ },
+ "missing": {},
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    3.23,
+    0.54,
+    24.88,
+    23.65,
+    32.9,
+    31.7,
+    31.89,
+    31.28,
+    29.75,
+    24.8,
+    18.78,
+    10.01
+   ],
+   "t2m_min_c": [
+    -44.02,
+    -38.45,
+    -38.56,
+    -19.39,
+    -6.24,
+    0.11,
+    5.02,
+    2.96,
+    -1.58,
+    -15.31,
+    -26.54,
+    -40.97
+   ],
+   "t2m_c": [
+    -14.71,
+    -13.81,
+    -7.56,
+    1.2,
+    9.46,
+    14.99,
+    17.56,
+    16.54,
+    12.54,
+    4.72,
+    -2.12,
+    -10.1
+   ],
+   "precip_rate_mm_per_day": [
+    1.41,
+    1.48,
+    1.47,
+    2.27,
+    2.6,
+    2.85,
+    2.74,
+    2.84,
+    3.19,
+    3.07,
+    2.29,
+    1.76
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=-82.3580&latitude=47.4980&format=JSON",
+  "accessed": "2026-11-07T17:31:20Z",
+  "sha256": "0a18753a21c38849ef6a4e5b54422aeb1a54b9c78cced94a9b36f32bcee13149"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=47.49800&lng=-82.35800",
+  "map_id": 4021234,
+  "source_id": 505,
+  "source_ref": "(1993). Sado, E.V., Fullerton, D.S., Baker, C.L., and Farrand, W.R., compilers; Fullerton, D.S., ed., 1993, Quaternary Geologic Map of the Sudbury 4° x 6° Quadrangle, United States and Canada: U.S. Geological Survey Miscellaneous Investigations Series Map I-1420 (NL-17), scale 1:1,000,000, [Digital edition, 2002], https://pubs.usgs.gov/imap/i-1420/nl-17/.",
+  "n_units_at_point": 4,
+  "accessed": "2026-11-07T17:31:21Z"
+ }
+}

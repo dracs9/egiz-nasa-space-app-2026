@@ -1,0 +1,141 @@
+{
+ "aoi_id": "SM_E137.741_S25.749",
+ "status": "pass",
+ "checks": [
+  {
+   "check": "stages_without_errors",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "units_suffix",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "plausible_ranges",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "evidence_and_missing_metadata",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "elevation_percentiles_ordered",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "slope_histogram_sums_to_one",
+   "status": "pass",
+   "detail": "sum=1.000000"
+  },
+  {
+   "check": "t2m_max_ge_min",
+   "status": "pass",
+   "detail": ""
+  },
+  {
+   "check": "assets_present_checksums_crs_pixels",
+   "status": "pass",
+   "detail": ""
+  }
+ ],
+ "coverage_level": "L4_validated",
+ "stages": {
+  "dem": {
+   "status": "ok",
+   "at": "2026-11-07T17:24:31Z"
+  },
+  "landcover": {
+   "status": "ok",
+   "at": "2026-11-07T17:24:33Z"
+  },
+  "climate": {
+   "status": "ok",
+   "at": "2026-11-07T17:24:33Z"
+  },
+  "geology": {
+   "status": "ok",
+   "at": "2026-11-07T17:24:37Z"
+  }
+ },
+ "missing": {
+  "geo_lith_label": "no valid value: Macrostrat map unit at AOI centre, most detailed scale (medium)"
+ },
+ "climate_meta": {
+  "monthly": {
+   "t2m_max_c": [
+    48.3,
+    46.31,
+    45.43,
+    40.76,
+    33.57,
+    32.86,
+    30.68,
+    36.87,
+    41.64,
+    43.87,
+    47.98,
+    48.57
+   ],
+   "t2m_min_c": [
+    16.13,
+    15.94,
+    11.36,
+    7.62,
+    3.77,
+    1.43,
+    0.73,
+    1.74,
+    4.36,
+    7.97,
+    8.23,
+    14.37
+   ],
+   "t2m_c": [
+    33.47,
+    31.56,
+    28.39,
+    23.98,
+    18.06,
+    13.94,
+    13.63,
+    16.03,
+    21.05,
+    25.37,
+    29.06,
+    31.46
+   ],
+   "precip_rate_mm_per_day": [
+    0.78,
+    1.0,
+    0.71,
+    0.13,
+    0.23,
+    0.3,
+    0.22,
+    0.12,
+    0.29,
+    0.24,
+    0.47,
+    0.54
+   ]
+  },
+  "period": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+  "api_version": "v2.10.1",
+  "url": "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M_MAX,T2M_MIN,T2M,PRECTOTCORR&community=RE&longitude=137.7410&latitude=-25.7490&format=JSON",
+  "accessed": "2026-11-07T17:24:33Z",
+  "sha256": "79aca52564375260bf07aca8866c40f2bf867db146fa4cc2d1f82103213d7cd9"
+ },
+ "geology_meta": {
+  "url": "https://macrostrat.org/api/v2/geologic_units/map?lat=-25.74900&lng=137.74100",
+  "map_id": 696014,
+  "source_id": 5,
+  "source_ref": "Raymond, O.L., Liu, S., Gallagher, R., Zhang, W., Highet, L.M. (2012). Surface Geology of Australia 1:1 million scale dataset 2012 edition. Commonwealth of Australia (Geoscience Australia)",
+  "n_units_at_point": 3,
+  "accessed": "2026-11-07T17:24:36Z"
+ }
+}
