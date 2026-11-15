@@ -25,7 +25,7 @@ import numpy as np
 from numpy.typing import ArrayLike
 
 from pipeline.discovery import dimensions as D
-from pipeline.discovery.fingerprint import Target, Window, dem_source, slope_sigma_deg
+from pipeline.discovery.fingerprint import Target, Window, slope_sigma_deg, target_dem
 
 GRID = np.arange(0.0, 60.0 + 1e-9, 1.0)   # slope grid for CDF integration (deg)
 EPS = 1e-3
@@ -163,8 +163,8 @@ def score_terrain_fine(s: Scoring) -> tuple[np.ndarray, np.ndarray, dict]:
     avail = np.isfinite(T.col(f"slope_f{b}_p50_deg")) & np.isfinite(T.col(f"slope_f{b}_p90_deg"))
     rng = s.rng("fine")
     se = slope_sigma_deg(b, "earth")
-    st = slope_sigma_deg(b, s.target.body)
-    pen = D.RESOLUTION_PENALTY[dem_source(s.target.body)]
+    st = slope_sigma_deg(b, s.target.body, target_dem(s.target))
+    pen = D.resolution_penalty(target_dem(s.target))
     shift_e = rng.normal(0, se, (W, N))
     shift_t = rng.normal(0, st, (1, N))
     scale_t = 1 + rng.normal(0, pen, (1, N)) if pen else np.ones((1, N))
@@ -212,9 +212,9 @@ def _decorrelated(s: Scoring, specs: list[tuple[str, str, float, float, float]],
 
 def score_terrain_roughness(s: Scoring, population: np.ndarray):
     b = s.target.baseline
-    src = dem_source(s.target.body)
-    pen = D.RESOLUTION_PENALTY[src]
-    sz_e, sz_t = D.DEM_ERROR["COP_GLO30"]["sigma_z_m"], D.DEM_ERROR[src]["sigma_z_m"]
+    src = target_dem(s.target)
+    pen = D.resolution_penalty(src)
+    sz_e, sz_t = D.dem_error("COP_GLO30")["sigma_z_m"], D.dem_error(src)["sigma_z_m"]
     tri_t = s.tf(f"tri_f{b}_m") or 1.0
     tri_e = np.nanmedian(s.table.col(f"tri_f{b}_m"))
     specs = [
@@ -229,15 +229,15 @@ def score_terrain_roughness(s: Scoring, population: np.ndarray):
 
 
 def score_terrain_regional(s: Scoring, population: np.ndarray):
-    src = dem_source(s.target.body)
-    sz_t = D.DEM_ERROR[src]["sigma_z_m"]
-    pen = D.RESOLUTION_PENALTY[src]
+    src = target_dem(s.target)
+    sz_t = D.dem_error(src)["sigma_z_m"]
+    pen = D.resolution_penalty(src)
     rel_t = s.tf("relief_m") or 100.0
     specs = [
         ("slope_r_p50_deg", "lin", D.TAU["slope_deg"], slope_sigma_deg(2000, "earth"),
-         slope_sigma_deg(2000, s.target.body) + pen * (s.tf("slope_r_p50_deg") or 0)),
+         slope_sigma_deg(2000, s.target.body, src) + pen * (s.tf("slope_r_p50_deg") or 0)),
         ("slope_r_p90_deg", "lin", D.TAU["slope_p90_deg"], slope_sigma_deg(2000, "earth"),
-         slope_sigma_deg(2000, s.target.body) + pen * (s.tf("slope_r_p90_deg") or 0)),
+         slope_sigma_deg(2000, s.target.body, src) + pen * (s.tf("slope_r_p90_deg") or 0)),
         ("frac_lt20_r", "lin", D.TAU["frac"], 0.01, 0.01 + pen * 0.1),
         ("relief_m", "log", D.TAU["log_factor"], 0.02, 2 * sz_t / max(rel_t, 1.0)),
         ("elev_std_m", "log", D.TAU["log_factor"], 0.02, 2 * sz_t / max(rel_t, 1.0)),
@@ -314,6 +314,8 @@ def score_geology(s: Scoring):
     if s.target.id in {"MARS_JEZERO", "MARS_GALE"}:
         target = target + ["impact_structure"]  # both sites lie inside impact craters
     nominal = np.full(W, np.nan)
+    if not target:  # no literature geology for this target (e.g. an on-demand point): nothing to compare
+        return np.full((W, N), np.nan), np.zeros(W, bool), {"classes": classes, "target_classes": []}
     sigma = np.full(W, 0.25)
     for i, c in enumerate(classes):
         if not c:

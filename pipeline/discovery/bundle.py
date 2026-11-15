@@ -79,7 +79,7 @@ def explain(i: int, w, target: Target, res: dict[str, R.DimResult], agg: dict, p
     measured = [(d, res[d].s50[i]) for d in res if res[d].status[i] == 0]
     measured.sort(key=lambda x: -x[1])
     for d, s in measured:
-        dim = D.DIM_BY_ID[d]
+        dim = D.any_dim(d)
         p = pct[d][i]
         stmt = (f"{dim.label}: similarity {s:.2f} [{res[d].lo[i]:.2f}-{res[d].hi[i]:.2f}]"
                 + (f"; Earth-wide percentile {p:.0f} of {n_pop} lattice windows" if np.isfinite(p) else ""))
@@ -92,8 +92,8 @@ def explain(i: int, w, target: Target, res: dict[str, R.DimResult], agg: dict, p
             cls = res[d].detail["classes"][i]
             stmt += f"; Earth classes {', '.join(cls) or 'none'} vs target {', '.join(res[d].detail['target_classes'])}"
         out.append({"kind": "dimension", "dimension": d, "text": stmt, "value": _r(s), "percentile": _r(p, 1)})
-    missing = [D.DIM_BY_ID[d].label for d in res if res[d].status[i] == 1]
-    unassessed = [D.DIM_BY_ID[d].label for d in res if res[d].status[i] == 2]
+    missing = [D.any_dim(d).label for d in res if res[d].status[i] == 1]
+    unassessed = [D.any_dim(d).label for d in res if res[d].status[i] == 2]
     if missing:
         out.append({"kind": "missing", "text": "No data for this window: " + ", ".join(missing)})
     if unassessed:

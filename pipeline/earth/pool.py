@@ -48,10 +48,19 @@ def initialize_ee(project=None):
         import ee
     except ImportError as exc:
         raise RuntimeError("Install optional earthengine-api to acquire Earth observations") from exc
+    # Service account (non-interactive servers): EE_SERVICE_ACCOUNT_KEY points to its JSON key file,
+    # which stays outside the repository. Otherwise the user's `earthengine authenticate` credentials.
+    key = os.environ.get("EE_SERVICE_ACCOUNT_KEY")
     try:
-        ee.Initialize(project=project)
+        if key:
+            import json
+            email = json.loads(open(os.path.expanduser(key), encoding="utf-8").read())["client_email"]
+            ee.Initialize(ee.ServiceAccountCredentials(email, os.path.expanduser(key)), project=project)
+        else:
+            ee.Initialize(project=project)
     except Exception as exc:
-        raise RuntimeError("Earth Engine initialization failed; verify EE_PROJECT and run earthengine authenticate") from exc
+        raise RuntimeError("Earth Engine initialization failed; verify EE_PROJECT and EE_SERVICE_ACCOUNT_KEY, "
+                           f"or run earthengine authenticate ({type(exc).__name__}: {exc})") from exc
     return ee
 
 

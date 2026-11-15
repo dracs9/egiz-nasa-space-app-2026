@@ -80,3 +80,63 @@ memory and compares its content hash with the committed one.
 | `data/discovery/scores/<target>.json` | per-window, per-dimension similarity median / 5 % / 95 % / status | yes |
 | `data/discovery/validation.json` | benchmark, ablation, sensitivity, reproducibility | yes |
 | `data/derived/egiz-index-1.0.0/` | per-window acquisition records and 50/200 m analysis grids | no (rebuild) |
+
+## Any point on the Moon or Mars (on demand)
+
+`#/discover` → **Any point on the Moon or Mars**: click the planet map or type coordinates. The local
+point API (`make discover-serve`, port 8767, proxied by Vite at `/api/point`) runs
+`pipeline/discovery/point.py`:
+
+1. reads a 22 km window by HTTP range requests from a global DEM — Mars: USGS HRSC/MOLA blend 200 m;
+   Moon: USGS LOLA LDEM 118 m (|lat| ≤ 88°);
+2. measures terrain with the unchanged geodata stage (400 m fine baseline, 200 m regional grid);
+3. scores every Earth window with the same Monte Carlo dimensions, aggregation and diversification as
+   the curated targets. Geology, mineralogy, dust, ice and subsurface stay `not_assessed` at points.
+
+New point: ~30 s (Mars) / ~60 s (Moon); repeated point: < 1 s. CLI:
+`python -m pipeline.discovery point --body mars --lon -72.5 --lat -7`.
+
+## AlphaEarth (Earth side only)
+
+`pipeline/discovery/alphaearth.py` uses Google DeepMind AlphaEarth satellite embeddings
+(`GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL`, 64-d, 10 m, yearly from 2017). They exist only for Earth,
+so they are never compared with a planetary point. They are used to:
+
+* **expand** — rank Earth windows by cosine similarity to the best *physical* matches (finds places
+  that look the same from orbit but the terrain ranking missed); needs
+  `python -m pipeline.discovery alphaearth-index` once (cached in `data/discovery/alphaearth/`);
+* **stability** — year-to-year embedding cosine of a window (flooding, vegetation, construction);
+* **zones** — unsupervised k-means of one window into surface zones (map tiles).
+
+Credentials: `EE_PROJECT` (default `deft-cove-409713` in the Makefile) and either
+`EE_SERVICE_ACCOUNT_KEY=/path/to/key.json` (kept outside the repo; default `~/.config/egiz/ee-key.json`)
+or `earthengine authenticate`.
+
+## Physical properties at the point (orbital maps)
+
+`pipeline/discovery/planetary_props.py` reads, in the same 22 km window, real USGS Astrogeology
+rasters (no values are filled in where a product has no coverage):
+
+| Body | Property | Product |
+|---|---|---|
+| Moon | FeO, plagioclase, olivine, clino-/orthopyroxene, OMAT | SELENE/Kaguya MI mineral maps, 4 ppd, 50° S–50° N (Lemelin et al. 2019) |
+| Moon | FeO fallback | Clementine UVVIS FeO, 1 km, 70° S–70° N (Lucey et al. 2000) |
+| Moon | ice favorability index | USGS Lunar Research polar maps, \|lat\| ≥ 80° |
+| Mars | bolometric Lambert albedo | MGS TES albedo, 7.4 km (Christensen et al. 2001) |
+
+Geology classes are then **inferred** with a-priori thresholds (mare basalt FeO ≥ 13 wt %, highlands
+FeO ≤ 8 wt % or plagioclase ≥ 70 %, olivine-rich ≥ 20 %; Mars dust-mantled TES albedo ≥ 0.22), so the
+geology dimension is scored at points. A point-only **surface albedo** dimension compares Mars TES
+albedo with Earth broadband surface albedo from NASA POWER (CERES SYN1deg 2001–2025, 1°),
+acquired once for all windows with `python -m pipeline.discovery earth-albedo`
+(`data/discovery/index/earth_albedo.csv`). Point-only dimensions are kept out of the published bundle,
+whose content hash is unchanged. Rejected: the LOLA 10 ppd "albedo" mosaic (an 8-bit rendering).
+
+## Physics → AlphaEarth bridge
+
+`pipeline/discovery/bridge.py` trains, on Earth windows, a ridge regression from features measurable on
+both worlds (terrain statistics, albedo, exposed ground, precipitation, noon Sun elevation) to the
+AlphaEarth embedding, validated by 5-fold CV over 10° spatial blocks. A planetary point is projected and
+searched by cosine similarity; its Mahalanobis distance to the training data is reported and a point
+beyond the 99th percentile is labelled an extrapolation, not a match. Train with
+`python -m pipeline.discovery alphaearth-bridge` after `alphaearth-index`.

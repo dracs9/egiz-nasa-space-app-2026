@@ -71,6 +71,24 @@ DEM_ERROR = {
 # fine-baseline slope statistics (assumed, documented; applied to the target side only).
 RESOLUTION_PENALTY = {"USGS_MARS_BLEND": 0.25, "PGDA_LOLA_5MPP": 0.0, "COP_GLO30": 0.0}
 
+# Error models used only by on-demand points (pipeline.discovery.point). Kept apart so the
+# published bundle constants, and therefore its content hash, are unchanged.
+POINT_DEM_ERROR = {
+    "LOLA_LDEM_118M": {"sigma_z_m": 5.0, "evidence": "assumed",
+                       "basis": "LOLA global gridded DEM 118 m/px (256 ppd), interpolated between altimeter tracks "
+                                "away from the poles; Smith D.E. et al. (2010) GRL 37:L18204; USGS Astrogeology mosaic"},
+}
+POINT_RESOLUTION_PENALTY = {"LOLA_LDEM_118M": 0.15}
+
+
+def dem_error(src: str) -> dict:
+    return DEM_ERROR[src] if src in DEM_ERROR else POINT_DEM_ERROR[src]
+
+
+def resolution_penalty(src: str) -> float:
+    return RESOLUTION_PENALTY[src] if src in RESOLUTION_PENALTY else POINT_RESOLUTION_PENALTY[src]
+
+
 WORLDCOVER_SIGMA = 0.08   # absolute 1-sigma on class fractions (WorldCover v200 overall accuracy 76.7 %)
 POWER_T_SIGMA_K = 2.0     # 1-sigma on monthly 2 m air temperature climatology (0.5 deg cell vs window)
 POWER_P_REL_SIGMA = 0.25  # relative 1-sigma on annual precipitation (MERRA-2 based climatology)
@@ -242,3 +260,26 @@ def isa_pressure_pa(elevation_m: float) -> float:
     """ICAO standard-atmosphere pressure at geopotential height (troposphere formula)."""
     h = max(-500.0, min(11000.0, elevation_m))
     return 101325.0 * (1 - 2.25577e-5 * h) ** 5.25588
+
+
+# ----------------------------------------------------------------------------- point-only dimensions
+
+# Scored only for on-demand points (pipeline.discovery.point); kept out of DIMENSIONS so the published
+# bundle, its profiles and its content hash are unchanged.
+ALBEDO_TAU = 0.05            # |albedo difference| e-folding (assumed, a priori)
+ALBEDO_EARTH_SIGMA = 0.03    # CERES 1 deg cell vs 20 km window (assumed)
+ALBEDO_TARGET_SIGMA = 0.02   # TES Lambert albedo calibration (assumed) added to the in-window spread
+POINT_DIMENSIONS = [
+    Dimension("surface_albedo", "Surface albedo (broadband)", "surface",
+              "exp(-|A_earth - A_target| / 0.05); Earth: NASA POWER ALLSKY_SRF_ALB (CERES SYN1deg, 2001-2025 "
+              "annual climatology, 1 deg); Mars: MGS TES bolometric Lambert albedo (7.4 km), window mean",
+              0.75, applies_to=("mars",),
+              reason="Moon: no broadband albedo product acquired (the LOLA 10 ppd mosaic in the USGS archive is "
+                     "an 8-bit rendering, not calibrated albedo)."),
+]
+POINT_DIM_BY_ID = {d.id: d for d in POINT_DIMENSIONS}
+
+
+def any_dim(dim_id: str) -> Dimension:
+    return DIM_BY_ID[dim_id] if dim_id in DIM_BY_ID else POINT_DIM_BY_ID[dim_id]
+

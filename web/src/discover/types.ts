@@ -40,6 +40,8 @@ export interface ShortlistEntry {
   window: string; rank: number; score: number; fidelity: number; lo: number; hi: number; coverage: number;
   category: Category; score_percentile: number | null; dims: Record<string, DimScore>; explanation: Explanation[];
   gaps: GapRow[] | null; rover: RoverExperiment | null; geology_classes: string[];
+  /** Present on on-demand point results (pipeline.discovery.point). */
+  name?: string;
 }
 export interface BenchmarkResult { site: string; role: string; window: string; status?: string; rank?: number; score?: number; score_percentile?: number | null; coverage?: number; category?: Category; target_body_match?: boolean }
 export interface FingerprintFeature { value: unknown; unit: string; sigma: number | null; evidence: string; source: string }

@@ -211,7 +211,8 @@ def stage_dem_planet(record, aoi: AOI):
     is_moon = body == "moon"
     if aoi.product is None or aoi.fine_baseline_m is None:
         raise ValueError(f"{aoi.aoi_id}: planetary AOI needs a DEM product and fine baseline")
-    if is_moon:
+    pgda = is_moon and "pgda.gsfc.nasa.gov" in aoi.product
+    if pgda:
         native = RAW / "pgda_lola_5mpp" / aoi.product.rsplit("/", 1)[-1]
         fetch(aoi.product, native, timeout=600)
         source = str(native)
@@ -223,21 +224,26 @@ def stage_dem_planet(record, aoi: AOI):
                 aoi.lon, aoi.lat = (float(v) for v in geo.transform(cx, cy))
                 record["aoi"].update(lon=aoi.lon, lat=aoi.lat)
     else:
-        native = RAW / "usgs_mars_blend" / "windows" / f"{aoi.aoi_id}.tif"
+        # Global products: HTTP range read of the window only (the full rasters are 8-11 GB).
+        folder = "lola_ldem_118m" if is_moon else "usgs_mars_blend"
+        native = RAW / folder / "windows" / f"{aoi.aoi_id}.tif"
         if not native.exists():
             z, transform, crs = read_window(f"/vsicurl/{aoi.product}", aoi.lon, aoi.lat, HALF_M + 2000, body)
             write_native(native, z, transform, crs, tags={
-                "source_urls": aoi.product, "dataset": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
-                "vertical": "m relative to 3396190 m sphere", "synthetic": "false",
-                "note": "blend of HRSC and MOLA; not a single native resolution"})
+                "source_urls": aoi.product,
+                "dataset": "Lunar_LRO_LOLA_Global_LDEM_118m_Mar2014" if is_moon else "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
+                "vertical": f"m relative to {RADII_M[body]} m sphere", "synthetic": "false",
+                "note": ("LOLA gridded altimetry, interpolated between tracks" if is_moon
+                         else "blend of HRSC and MOLA; not a single native resolution")})
         source = str(native)
     z, transform, crs = read_window(source, aoi.lon, aoi.lat, HALF_M, body)
-    asset = {"role": "native_window" if not is_moon else "native_product",
-             "source_id": "PGDA_LOLA_5MPP" if is_moon else "USGS_MARS_BLEND",
+    source_id = "PGDA_LOLA_5MPP" if pgda else ("LOLA_LDEM_118M" if is_moon else "USGS_MARS_BLEND")
+    asset = {"role": "native_product" if pgda else "native_window",
+             "source_id": source_id,
              "path": native.relative_to(RAW.parents[2]).as_posix(), "sha256": sha256_file(native),
              "bytes": native.stat().st_size, "crs": crs_str(crs), "vertical_datum":
              f"metres above {RADII_M[body]} m reference sphere", "nodata": "NaN",
-             "native_res": "5 m" if is_moon else "200 m posting (HRSC/MOLA blend)",
+             "native_res": "5 m" if pgda else ("118 m posting (LOLA 256 ppd)" if is_moon else "200 m posting (HRSC/MOLA blend)"),
              "tiles": [aoi.product], "committed": False}
     baseline = aoi.fine_baseline_m
     attrs = measure_target_terrain(z, transform, crs, (aoi.lon, aoi.lat), body, baseline)
@@ -249,7 +255,7 @@ def stage_dem_planet(record, aoi: AOI):
                                 "synthetic": "false"})
         patches.append({**meta, "patch_id": f"{aoi.aoi_id}__DEM_P{int(p)}", "variable": "elevation_m",
                         "resampling": "average (all source pixels valid), pipeline.planets.access.to_local_grid",
-                        "native_res_m": 5 if is_moon else 200})
+                        "native_res_m": 5 if pgda else (118 if is_moon else 200)})
         if p == baseline / 2:
             extra = extra_terrain(grid, p, f"f{baseline}")
             attrs["dem_valid_frac"] = float(np.isfinite(grid[20:-20, 20:-20]).mean())

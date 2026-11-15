@@ -91,10 +91,10 @@ def dem_source(body: str) -> str:
     return {"earth": "COP_GLO30", "moon": "PGDA_LOLA_5MPP", "mars": "USGS_MARS_BLEND"}[body]
 
 
-def slope_sigma_deg(baseline_m: float, body: str) -> float:
+def slope_sigma_deg(baseline_m: float, body: str, src: str | None = None) -> float:
     """1-sigma on a slope statistic from relative vertical error over the baseline (two-post difference)."""
     import math
-    sz = D.DEM_ERROR[dem_source(body)]["sigma_z_m"]
+    sz = D.dem_error(src or dem_source(body))["sigma_z_m"]
     return math.degrees(math.sqrt(2) * sz / baseline_m)
 
 
@@ -105,6 +105,7 @@ class Target:
     spec: TargetSpec
     window: Window
     baseline: int
+    dem: str | None = None   # DEM error-model key when it differs from the body default (on-demand points)
 
     @property
     def id(self) -> str:
@@ -113,6 +114,10 @@ class Target:
     @property
     def body(self) -> str:
         return self.spec.body
+
+
+def target_dem(t: Target) -> str:
+    return t.dem or dem_source(t.body)
 
 
 def load_targets(windows: list[Window]) -> list[Target]:
@@ -129,9 +134,9 @@ def load_targets(windows: list[Window]) -> list[Target]:
 def target_fingerprint(t: Target) -> dict:
     """Human-readable fingerprint (values, sigma, evidence) for one planetary target."""
     w, b = t.window, t.baseline
-    src = dem_source(t.body)
-    pen = D.RESOLUTION_PENALTY[src]
-    ss = slope_sigma_deg(b, t.body)
+    src = target_dem(t)
+    pen = D.resolution_penalty(src)
+    ss = slope_sigma_deg(b, t.body, src)
 
     def feat(name, unit, sigma, evidence="derived", source=src):
         v = w.f(name)
@@ -140,9 +145,9 @@ def target_fingerprint(t: Target) -> dict:
     terrain = {
         f"slope_f{b}_p50_deg": feat(f"slope_f{b}_p50_deg", "deg", lambda v: ss + pen * v),
         f"slope_f{b}_p90_deg": feat(f"slope_f{b}_p90_deg", "deg", lambda v: ss + pen * v),
-        f"tri_f{b}_m": feat(f"tri_f{b}_m", "m", lambda v: D.DEM_ERROR[src]["sigma_z_m"] / 2 + pen * v),
-        "slope_r_p50_deg": feat("slope_r_p50_deg", "deg", lambda v: slope_sigma_deg(2000, t.body) + pen * v),
-        "relief_m": feat("relief_m", "m", lambda v: 2 * D.DEM_ERROR[src]["sigma_z_m"]),
+        f"tri_f{b}_m": feat(f"tri_f{b}_m", "m", lambda v: D.dem_error(src)["sigma_z_m"] / 2 + pen * v),
+        "slope_r_p50_deg": feat("slope_r_p50_deg", "deg", lambda v: slope_sigma_deg(2000, t.body, src) + pen * v),
+        "relief_m": feat("relief_m", "m", lambda v: 2 * D.dem_error(src)["sigma_z_m"]),
     }
     lo, hi = D.noon_elevation_range(w.lat, D.BODY[t.body]["obliquity_deg"])
     fp = {

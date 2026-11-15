@@ -11,6 +11,8 @@ import { CandidateDetail, ComparePanel } from './CandidateDetail';
 import { CopilotPanel } from './CopilotPanel';
 import { IntervalBar } from './charts';
 import { KazakhstanPanel } from './KazakhstanPanel';
+import { PointPicker, alignShard, type PointResult } from './PointPicker';
+import { AlphaEarthPanel } from './AlphaEarthPanel';
 import type { DiscoveryBundle, ScoreShard, TargetEntry, ValidationDoc, ValidationTarget } from './types';
 import './discover.css';
 import { usePlanet } from '../planet/workspace/store';
@@ -93,23 +95,37 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
   const [shard, setShard] = useState<ScoreShard | null>(null);
   const [shardError, setShardError] = useState<string | null>(null);
   const [showWeights, setShowWeights] = useState(false);
-  const target = bundle.targets.find(x => x.id === targetId)!;
+  const [points, setPoints] = useState<PointResult[]>([]);
+  const allTargets = useMemo(() => [...bundle.targets, ...points.map(p => p.target)], [bundle, points]);
+  const target = allTargets.find(x => x.id === targetId) ?? bundle.targets[0];
+  const point = points.find(p => p.target.id === target.id) ?? null;
+  const addPoint = (p: PointResult) => {
+    setPoints(ps => [...ps.filter(x => x.target.id !== p.target.id), p].slice(-6));
+    setTargetId(p.target.id); setSelected(null); setCompare([]);
+  };
 
-  useEffect(() => { setShard(null); setShardError(null); loadShard(target).then(setShard).catch(e => setShardError(String((e as Error).message))); }, [target]);
+  useEffect(() => {
+    setShard(null); setShardError(null);
+    if (point) { setShard(alignShard(point.shard, point.window_ids, bundle.windows.id)); return; }
+    loadShard(target).then(setShard).catch(e => setShardError(String((e as Error).message)));
+  }, [target, point, bundle]);
   useEffect(() => { writeHash({ target: targetId, profile, region, window: selected }); }, [targetId, profile, region, selected]);
   useEffect(() => { // shared links and back/forward inside the workspace
     const onHash = () => {
       const h = readHash();
-      if (h.target && h.target !== targetId && bundle.targets.some(x => x.id === h.target)) setTargetId(h.target);
+      if (h.target && h.target !== targetId && allTargets.some(x => x.id === h.target)) setTargetId(h.target);
       if (h.window !== selected) setSelected(h.window && bundle.windows.id.includes(h.window) ? h.window : null);
     };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
-  }, [bundle, targetId, selected]);
+  }, [bundle, allTargets, targetId, selected]);
   const chooseProfile = (p: string) => { setProfile(p); setWeights({ ...bundle.profiles[p].weights }); };
 
   const W = bundle.windows;
-  const agg = useMemo(() => shard ? aggregate(shard, weights) : null, [shard, weights]);
+  // A picked point adds point-only dimensions (e.g. surface albedo); merge them into the view.
+  const view = useMemo(() => point?.extra_dimensions?.length ? { ...bundle, dimensions: [...bundle.dimensions, ...point.extra_dimensions] } : bundle, [bundle, point]);
+  const effWeights = useMemo(() => point?.extra_dimensions?.length ? { ...Object.fromEntries(point.extra_dimensions.map(d => [d.id, d.weight])), ...weights } : weights, [point, weights]);
+  const agg = useMemo(() => shard ? aggregate(shard, effWeights) : null, [shard, effWeights]);
   const rankValue = useMemo(() => {
     if (!agg) return null;
     return Float64Array.from(agg.score, (s, i) => rankBy === 'score' ? s : rankBy === 'fidelity' ? (Number.isFinite(agg.fidelity[i]) ? agg.fidelity[i] : 0) : (Number.isFinite(agg.lo[i]) ? agg.lo[i] * agg.coverage[i] : 0));
@@ -144,6 +160,7 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
       <label className="dc-field"><span>{t('Planetary target')}</span>
         <select value={targetId} onChange={e => { setTargetId(e.target.value); setSelected(null); setCompare([]); }}>
           {(['moon', 'mars'] as const).map(b => <optgroup key={b} label={b === 'moon' ? t('Moon') : t('Mars')}>{bundle.targets.filter(x => x.body === b).map(x => <option key={x.id} value={x.id}>{x.name}</option>)}</optgroup>)}
+          {points.length > 0 && <optgroup label={t('Picked points')}>{points.map(p => <option key={p.target.id} value={p.target.id}>{p.target.name}</option>)}</optgroup>}
         </select></label>
       <label className="dc-field"><span>{t('Mission objective')}</span>
         <select value={profile} onChange={e => chooseProfile(e.target.value)}>{Object.entries(bundle.profiles).map(([k, p]) => <option key={k} value={k}>{t(p.label)}</option>)}</select></label>
@@ -159,14 +176,16 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
     </section>
 
     {showWeights && <section className="dc-weights" aria-label={t('Dimension weights')}>
-      {bundle.dimensions.map(d => { const st = target.dimension_status[d.id]; return <label key={d.id} className={`dc-weight ${st !== 'measured' ? 'off' : ''}`} title={d.method || d.reason || d.bodies_not_applicable[target.body]}>
+      {view.dimensions.map(d => { const st = target.dimension_status[d.id]; return <label key={d.id} className={`dc-weight ${st !== 'measured' ? 'off' : ''}`} title={d.method || d.reason || d.bodies_not_applicable[target.body]}>
         <span>{t(d.label)}<small>{st === 'measured' ? t('measured') : st === 'not_applicable' ? t('not applicable to this body') : t('not assessed — no dataset')}</small></span>
-        <input type="range" min={0} max={3} step={0.25} value={weights[d.id] ?? 0} disabled={st === 'not_applicable'} onChange={e => setWeights(w => ({ ...w, [d.id]: Number(e.target.value) }))} />
-        <b>{(weights[d.id] ?? 0).toFixed(2)}</b></label>; })}
+        <input type="range" min={0} max={3} step={0.25} value={effWeights[d.id] ?? 0} disabled={st === 'not_applicable'} onChange={e => setWeights(w => ({ ...w, [d.id]: Number(e.target.value) }))} />
+        <b>{(effWeights[d.id] ?? 0).toFixed(2)}</b></label>; })}
       <p className="dc-note">{t('Not-assessed dimensions keep their weight in coverage: giving them weight lowers every score instead of rewarding missing data.')}</p>
     </section>}
 
+    <PointPicker onResult={addPoint} active={point?.target.id ?? null} />
     <TargetCard target={target} />
+    {point && <PointSummary p={point} onSelect={setSelected} />}
     <TrustCard val={val} />
     {shardError && <div className="dc-notice" role="alert"><TriangleAlert size={16} /><p>{shardError}</p></div>}
 
@@ -189,13 +208,14 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
     </div>
 
     {region === 'kaz' && <KazakhstanPanel target={target} onSelect={setSelected} />}
-    {agg && shard && selIndex >= 0 && <CandidateDetail bundle={bundle} target={target} shard={shard} agg={agg} i={selIndex} rank={globalRank.get(selIndex) ?? 0}
-      weights={weights} profile={profile} dimPct={dimPct} scorePct={scorePct} entry={entry} validation={validation}
+    {agg && shard && selIndex >= 0 && <CandidateDetail bundle={view} target={target} shard={shard} agg={agg} i={selIndex} rank={globalRank.get(selIndex) ?? 0}
+      weights={effWeights} profile={profile} dimPct={dimPct} scorePct={scorePct} entry={entry} validation={validation}
       inCompare={compare.includes(selected!)} onCompare={() => toggleCompare(selected!)} onClose={() => setSelected(null)} />}
-    {agg && shard && compare.length > 0 && <ComparePanel bundle={bundle} shard={shard} agg={agg} ids={compare} onRemove={id => setCompare(c => c.filter(x => x !== id))} target={target} />}
+    {selIndex >= 0 && <AlphaEarthPanel lon={W.lon[selIndex]} lat={W.lat[selIndex]} name={String(W.name[selIndex])} />}
+    {agg && shard && compare.length > 0 && <ComparePanel bundle={view} shard={shard} agg={agg} ids={compare} onRemove={id => setCompare(c => c.filter(x => x !== id))} target={target} />}
 
     <div className="dc-cols dc-bottom">
-      {agg && shard && <CopilotPanel ctx={{ bundle, target, shard, weights, selected, compare, validation }} onSelect={setSelected} />}
+      {agg && shard && <CopilotPanel ctx={{ bundle: view, target, shard, weights: effWeights, selected, compare, validation }} onSelect={setSelected} />}
       <section className="dc-validation" aria-labelledby="dc-val-title">
         <h2 id="dc-val-title"><Info size={15} /> {t('Is the method any good?')}</h2>
         {val ? <>
@@ -214,6 +234,48 @@ function Workspace({ bundle, validation }: { bundle: DiscoveryBundle; validation
       </section>
     </div>
   </main>;
+}
+
+/** What was measured at a picked point, what verdict the ranking gives, and what is still missing. */
+function PointSummary({ p, onSelect }: { p: PointResult; onSelect(id: string): void }) {
+  const top = p.target.shortlist[0];
+  const ae = p.alphaearth;
+  return <section className="dc-point-sum" aria-label={t('Point analysis')}>
+    <p><b>{t('Verdict')}:</b> {p.verdict ? t(p.verdict) : '—'}{top && <> · {t('closest')}: <b>{top.name ?? top.window}</b> ({t('score')} {top.score.toFixed(3)}, {t('fidelity')} {top.fidelity.toFixed(2)} [{top.lo.toFixed(2)}–{top.hi.toFixed(2)}])</>}</p>
+    <p className="dc-note">{t(p.not_assessed_note)}</p>
+    <PropsTable p={p} />
+    <div className="dc-ae-expand">
+      <h3>{t('Looks the same from orbit (AlphaEarth)')}</h3>
+      {ae?.status === 'ok' && ae.top ? <>
+        <p className="dc-note">{t('Earth windows whose AlphaEarth embedding is closest to the best physical matches, excluding their 150 km surroundings. A physical rank far down the list means a new place the terrain ranking alone would miss.')}</p>
+        <table className="dc-table"><thead><tr><th>{t('Window')}</th><th>{t('cosine')}</th><th>{t('physical rank')}</th></tr></thead>
+          <tbody>{ae.top.slice(0, 8).map(r => <tr key={r.window}><th scope="row"><button className="dc-link" onClick={() => onSelect(r.window)}>{r.name}</button></th><td className="dc-mono">{r.cosine.toFixed(3)}</td><td className="dc-mono">#{r.physical_rank}</td></tr>)}</tbody></table>
+      </> : <p className="dc-note">{t('AlphaEarth index not built yet')}{ae?.note ? `: ${ae.note}` : ''}.</p>}
+    </div>
+    <div className="dc-ae-expand">
+      <h3>{t('Physics → AlphaEarth bridge (Earth-trained model)')}</h3>
+      {p.bridge?.status === 'ok' && p.bridge.top ? <>
+        <p className="dc-note">{t('A ridge model trained on Earth maps the physical features measurable on both worlds to an AlphaEarth embedding; the planet point is projected and searched among Earth windows.')} {t('Spatial-block CV')}: cos {p.bridge.cv?.cv_cosine_mean.toFixed(3)} ({t('skill')} {p.bridge.cv?.skill.toFixed(2)}). {t('Mahalanobis')} d² {p.bridge.mahalanobis_d2} / p99 {p.bridge.training_d2_p99}.</p>
+        {p.bridge.warning && <div className="dc-notice" role="alert"><TriangleAlert size={16} /><p>{t(p.bridge.warning)}</p></div>}
+        <table className="dc-table"><thead><tr><th>{t('Window')}</th><th>{t('cosine')}</th><th>{t('physical rank')}</th></tr></thead>
+          <tbody>{p.bridge.top.slice(0, 8).map(r => <tr key={r.window}><th scope="row"><button className="dc-link" onClick={() => onSelect(r.window)}>{r.name}</button></th><td className="dc-mono">{r.cosine.toFixed(3)}</td><td className="dc-mono">#{r.physical_rank}</td></tr>)}</tbody></table>
+      </> : <p className="dc-note">{t('Bridge model not trained yet')}{p.bridge?.note ? `: ${p.bridge.note}` : ''}.</p>}
+    </div>
+    <p className="dc-note">{t('DEM')}: <a href={p.point.dem_url} target="_blank" rel="noreferrer">{p.point.dem}</a> · {t('window')} {p.point.window_km} km · {t('measured in')} {p.timing_s.measure}s, {t('scored in')} {p.timing_s.score}s</p>
+  </section>;
+}
+
+/** Physical properties read at the point from global orbital maps, and the geology inferred from them. */
+function PropsTable({ p }: { p: PointResult }) {
+  const vals = Object.entries(p.properties?.values ?? {});
+  return <div className="dc-ae-expand">
+    <h3>{t('Physical properties at the point (orbital maps)')}</h3>
+    {vals.length ? <table className="dc-table"><thead><tr><th>{t('Property')}</th><th>{t('value')}</th><th>{t('source')}</th></tr></thead>
+      <tbody>{vals.map(([k, v]) => <tr key={k}><th scope="row">{t(v.label)}</th><td className="dc-mono">{(+v.value.toPrecision(3)).toString()} {v.unit} <small>± {(+v.std.toPrecision(2)).toString()} · n={v.n_pixels}</small></td><td><small><a href={v.url} target="_blank" rel="noreferrer">{v.source}</a></small></td></tr>)}</tbody></table>
+      : <p className="dc-note">{t('No orbital composition map covers this point.')}</p>}
+    {(p.properties?.gaps ?? []).length > 0 && <p className="dc-note">{t('Not covered')}: {p.properties!.gaps.map(g => `${t(g.label)} (${t(g.reason)})`).join('; ')}</p>}
+    {p.geology_inferred && <p className="dc-note"><b>{t('Geology inferred')}:</b> {p.geology_inferred.classes.join(', ') || '—'} — {p.geology_inferred.rules.join('; ')}</p>}
+  </div>;
 }
 
 const fmtCi = (ci: unknown) => Array.isArray(ci) ? `[90 % ${ci.join('–')}]` : '';
@@ -249,7 +311,7 @@ function TargetCard({ target }: { target: TargetEntry }) {
     <dl className="dc-fp">
       {terr.map(([k, f]) => <div key={k}><dt>{k}</dt><dd>{typeof f.value === 'number' ? (+f.value.toPrecision(3)).toString() : '—'} {f.unit}{f.sigma ? <small> ± {+f.sigma.toPrecision(2)}</small> : null}</dd></div>)}
       <div><dt>{t('noon Sun elevation')}</dt><dd>{String(fp.illumination?.noon_elevation_min_deg?.value)}° – {String(fp.illumination?.noon_elevation_max_deg?.value)}°</dd></div>
-      <div><dt>{t('geology (literature)')}</dt><dd>{(fp.geology?.classes?.value as string[] | undefined)?.join(', ')}</dd></div>
+      <div><dt>{target.kind === 'point' ? t('geology (inferred from composition)') : t('geology (literature)')}</dt><dd>{(fp.geology?.classes?.value as string[] | undefined)?.join(', ') || t('not assessed — no dataset')}</dd></div>
       <div><dt>{t('temperature reference')}</dt><dd>{(fp.thermal?.air_or_surface_range_k?.value as number[] | undefined)?.join('–')} K</dd></div>
     </dl>
   </section>;

@@ -7,6 +7,11 @@ python -m pipeline.discovery build                                   # fingerpri
 python -m pipeline.discovery validate                                # benchmark, ablation, sensitivity
 python -m pipeline.discovery verify                                  # rebuild in memory and compare hashes
 python -m pipeline.discovery report                                  # docs/discovery/RESULTS.md from the bundle
+python -m pipeline.discovery point --body mars --lon 77.45 --lat 18.44 # analyse any Moon/Mars point on demand
+python -m pipeline.discovery alphaearth-index                        # AlphaEarth mean embedding per Earth window (Earth Engine)
+python -m pipeline.discovery earth-albedo                            # Earth surface albedo per window (NASA POWER)
+python -m pipeline.discovery alphaearth-bridge                       # train physics -> AlphaEarth embedding model
+python -m pipeline.discovery serve                                   # point API on 127.0.0.1:8767 (Vite proxies /api/point)
 python -m pipeline.discovery refine-plan|refine-acquire|refine-index|refine-build   # Kazakhstan 20 km refinement
 """
 from __future__ import annotations
@@ -34,6 +39,19 @@ def main(argv=None) -> int:
     sub.add_parser("validate")
     sub.add_parser("report")
     sub.add_parser("verify")
+    pt = sub.add_parser("point")
+    pt.add_argument("--body", choices=["moon", "mars"], required=True)
+    pt.add_argument("--lon", type=float, required=True)
+    pt.add_argument("--lat", type=float, required=True)
+    pt.add_argument("--out", default=None)
+    ai = sub.add_parser("alphaearth-index")
+    ai.add_argument("--year", type=int, default=2024)
+    ai.add_argument("--workers", type=int, default=4)
+    sub.add_parser("alphaearth-bridge")
+    ea = sub.add_parser("earth-albedo")
+    ea.add_argument("--workers", type=int, default=6)
+    sv = sub.add_parser("serve")
+    sv.add_argument("--port", type=int, default=8767)
     sub.add_parser("refine-plan")
     ra = sub.add_parser("refine-acquire")
     ra.add_argument("--workers", type=int, default=6)
@@ -75,6 +93,33 @@ def main(argv=None) -> int:
     if args.cmd == "report":
         from pipeline.discovery.report import write_report
         print(write_report())
+        return 0
+    if args.cmd == "point":
+        from pipeline.discovery.point import analyze
+        result = analyze(args.body, args.lon, args.lat)
+        text = json.dumps(result, ensure_ascii=False, allow_nan=False)
+        if args.out:
+            open(args.out, "w", encoding="utf-8").write(text)
+        top = result["target"]["shortlist"][:5]
+        print(json.dumps({"point": result["point"], "terrain": result["terrain"], "verdict": result["verdict"],
+                          "top": [{k: e[k] for k in ("name", "score", "fidelity", "lo", "hi", "category")} for e in top],
+                          "timing_s": result["timing_s"]}, ensure_ascii=False, indent=1))
+        return 0
+    if args.cmd == "alphaearth-index":
+        from pipeline.discovery.alphaearth import build_index
+        print(json.dumps(build_index(args.year, workers=args.workers), indent=1))
+        return 0
+    if args.cmd == "alphaearth-bridge":
+        from pipeline.discovery.bridge import train
+        print(json.dumps(train(), indent=1))
+        return 0
+    if args.cmd == "earth-albedo":
+        from pipeline.discovery.earth_albedo import acquire
+        print(json.dumps(acquire(args.workers), indent=1))
+        return 0
+    if args.cmd == "serve":
+        from pipeline.discovery.serve import serve
+        serve(args.port)
         return 0
     if args.cmd.startswith("refine-"):
         from pipeline.discovery import refine as RF

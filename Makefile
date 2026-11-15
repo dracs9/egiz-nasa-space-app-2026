@@ -161,6 +161,16 @@ discover:
 	$(PYTHON) -m pipeline.discovery validate
 	$(PYTHON) -m pipeline.discovery report
 	node web/scripts/copy-data.mjs
+# AlphaEarth needs Earth Engine: project id below; credentials from EE_SERVICE_ACCOUNT_KEY (JSON key kept
+# outside the repo, default ~/.config/egiz/ee-key.json) or from `earthengine authenticate`.
+EE_PROJECT ?= deft-cove-409713
+EE_KEY_DEFAULT := $(wildcard $(HOME)/.config/egiz/ee-key.json)
+EE_SERVICE_ACCOUNT_KEY ?= $(EE_KEY_DEFAULT)
+export EE_PROJECT EE_SERVICE_ACCOUNT_KEY
+discover-serve:
+	$(PYTHON) -m pipeline.discovery serve
+alphaearth-index:
+	$(PYTHON) -m pipeline.discovery alphaearth-index
 discover-check:
 	$(PYTHON) -m pytest -q tests/test_discovery.py
 	$(PYTHON) -m pipeline.discovery verify

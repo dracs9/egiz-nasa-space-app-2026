@@ -175,3 +175,49 @@
 .dc-kz-card .dc-dl { display: block; margin: 0; }
 .dc-kz-card .dc-dl dt { font-size: 11px; color: var(--paper-3); margin-top: 8px; font-family: var(--font-mono); letter-spacing: .04em; }
 .dc-kz-card .dc-dl dd { margin: 2px 0 0; font-size: 13px; color: var(--paper-2); overflow-wrap: anywhere; }
+
+/* Any-point picker (PointPicker.tsx) */
+.dc-picker { display: grid; gap: 12px; padding: 16px 18px; border: 1px solid var(--rule); border-left: 3px solid var(--paper-3); border-radius: 6px; background: var(--ink-1); }
+.dc-picker.body-moon { border-left-color: var(--moon); } .dc-picker.body-mars { border-left-color: var(--mars); }
+.dc-picker header h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 17px; }
+.dc-picker header p { margin: 0; }
+.dc-picker-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr); gap: 16px; align-items: start; }
+.dc-picker-map { position: relative; aspect-ratio: 2 / 1; border-radius: 4px; overflow: hidden; cursor: crosshair; background: #0b0b0d; outline-offset: 2px; }
+.dc-picker-map img { display: block; width: 100%; height: 100%; object-fit: fill; user-select: none; }
+.dc-picker-pin { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px rgba(0,0,0,.55); pointer-events: none; }
+.dc-picker-hover { position: absolute; left: 8px; bottom: 8px; padding: 2px 6px; font: 12px var(--font-mono, monospace); color: #fff; background: rgba(0,0,0,.6); border-radius: 3px; pointer-events: none; }
+.dc-picker-busy { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff; background: rgba(0,0,0,.55); font-size: 14px; }
+.dc-spin { animation: dc-spin 1s linear infinite; }
+@keyframes dc-spin { to { transform: rotate(360deg); } }
+.dc-picker-form { display: grid; gap: 10px; }
+.dc-picker-form input { width: 100%; }
+.dc-seg { display: flex; gap: 4px; }
+.dc-seg button { flex: 1; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 4px; background: transparent; color: inherit; cursor: pointer; }
+.dc-seg button[aria-pressed="true"] { background: var(--paper-3); color: var(--ink-0, #000); }
+.dc-run { padding: 8px 12px; border: 0; border-radius: 4px; background: var(--paper-1, #eee); color: var(--ink-0, #000); font-weight: 600; cursor: pointer; }
+.dc-run:disabled { opacity: .5; cursor: default; }
+.dc-point-sum { padding: 10px 18px; border: 1px dashed var(--rule); border-radius: 6px; }
+.dc-point-sum p { margin: 4px 0; }
+@media (max-width: 760px) { .dc-picker-body { grid-template-columns: 1fr; } }
+
+/* AlphaEarth (AlphaEarthPanel.tsx, PointSummary) */
+.dc-ae { display: grid; gap: 10px; padding: 16px 18px; border: 1px solid var(--rule); border-radius: 6px; background: var(--ink-1); }
+.dc-ae header h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 17px; }
+.dc-ae header p { margin: 0; }
+.dc-ae-actions { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; }
+.dc-ae-actions .dc-run { display: inline-flex; align-items: center; gap: 6px; }
+.dc-ae-k { width: 80px; }
+.dc-ae-bars { display: flex; align-items: flex-end; gap: 6px; height: 70px; padding: 4px 0; }
+.dc-ae-bars span { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 2px; }
+.dc-ae-bars i { display: block; width: 100%; background: var(--paper-3); border-radius: 2px 2px 0 0; }
+.dc-ae-bars i.mid { background: #d9a441; } .dc-ae-bars i.bad { background: #d9534f; }
+.dc-ae-bars small { font-size: 10px; opacity: .7; }
+.dc-ae-zones { display: grid; grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr); gap: 12px; }
+.dc-ae-map { height: 320px; border-radius: 4px; overflow: hidden; }
+.dc-ae-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; align-content: start; }
+.dc-ae-legend li { display: flex; align-items: center; gap: 8px; }
+.dc-ae-legend i { width: 12px; height: 12px; border-radius: 2px; }
+.dc-ae-legend span { margin-left: auto; }
+.dc-ae-zones > .dc-note { grid-column: 1 / -1; }
+.dc-ae-expand h3 { margin: 10px 0 4px; font-size: 15px; }
+@media (max-width: 760px) { .dc-ae-zones { grid-template-columns: 1fr; } }
