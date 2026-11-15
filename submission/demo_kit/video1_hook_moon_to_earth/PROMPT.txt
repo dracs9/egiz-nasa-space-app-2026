@@ -1,0 +1,29 @@
+EGIZ · VIDEO 1 of 3 · 0–10 s · HOOK: "The Moon starts here" -> "This is not the Moon"
+Model: Omni 1.2 Flash / Veo · Ingredients (reference images) · 16:9 · 10 s · 1080p · generated audio OFF
+
+INGREDIENTS (upload from frames/):
+  01_landing_hero.png               - black space, Moon crescent, headline "THE MOON STARTS HERE."
+  02_landing_Before_anyone_walks... - lunar regolith close-up
+  03_landing_THIS_IS_NOT_THE_MOON_  - astronauts on an Earth salt flat (final look)
+  05_landing_JEZERO.png / 06_...    - optional Mars beauty shots
+Real footage of the same scenes: screen_recordings/ ; fallback ready cut: READY_10s_real_footage.mp4
+
+PROMPT:
+Opening title sequence of a premium space-tech product, Apple keynote quality, photoreal.
+0–3 s: pitch-black space, the thin luminous crescent of the Moon on the horizon, bold white headline "THE MOON STARTS HERE." on the left exactly as in the reference; a near-static, hypnotic slow push-in toward the lunar limb, faint stars drifting, a glint of sunlight crawling along the crescent edge.
+3–7 s: the camera dives over the horizon and skims low over grey lunar regolith and craters with long razor-sharp shadows, dust motes catching hard sunlight.
+7–10 s: seamless match-cut, the grey regolith transforms into a sunlit Earth salt flat under a deep blue sky with layered mountains; two astronauts in white suits walk toward camera and the frame settles on the headline "THIS IS NOT THE MOON."
+Camera: 35 mm anamorphic, smooth gimbal dolly, ease-in-out, subtle lens breathing, shallow depth of field on the astronauts at the end.
+Light: hard low-angle sunlight, deep blacks, crisp highlights, light volumetric haze, cool space blue warming into Earth daylight.
+Style: IMAX documentary, 24 fps film grain, restrained, elegant, no cuts.
+Keep: headline text exactly as in the references, sharp and correctly spelled; no new text.
+
+NEGATIVE:
+warped text, melting letters, gibberish typography, new UI, extra logos, NASA logo, morphing faces, extra people, flicker, jitter, cartoon, low resolution, watermark
+
+VOICE-OVER (ElevenLabs, place at 0.3 s, ~9 s):
+Before anyone walks on the Moon or Mars, they rehearse here, on Earth. The hard part has always been knowing exactly where.
+
+SUBTITLE:
+00:00:00,300 --> 00:00:09,600
+Before anyone walks on the Moon or Mars, they rehearse here, on Earth. The hard part is knowing exactly where.
